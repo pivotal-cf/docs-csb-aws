@@ -11,6 +11,11 @@ This topic describes how to install and configure <%= vars.product_full %> (<%= 
 
 Before you install <%= vars.product_short %>, you must have:
 
+* **A Small MySQL Database:**
+
+    This database is used as the _state database_.
+    The broker requires this database to store its state.
+
 * **AWS Account Credentials:**
 
     Any services provisioned by CSB must be provisioned by the same AWS account
@@ -200,11 +205,9 @@ To configure AWS credentials:
 
 ### <a id="state-db"></a>Configure a State Database
 
-This section describes how to associate <%= vars.product_short %> with a MySQL database,
-the _state database_.
-The broker requires this database to store its state.
+This section describes how to associate <%= vars.product_short %> with a small MySQL database,
+which you provide.
 
-**Prerequisite:** A small MySQL database to use as the state database.
 
 To configure <%= vars.product_short %> with a database:
 
