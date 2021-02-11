@@ -12,7 +12,6 @@ to the <%= vars.product_full %> tile.
 This process of moving control of an instance from one broker tile
 to another is called _subsuming_ the instance.
 
-
 ## <a id='about'></a> About Subsuming an Amazon RDS for PostgreSQL Instance
 
 Because the VMware Tanzu Service Broker for AWS (hereafter: "the legacy broker") tile
@@ -55,6 +54,14 @@ you must reset it in order to subsume the database.
 
 
 ## <a id='subsume'></a> Subsume a VMware Tanzu Service Broker for AWS PostgreSQL Instance
+
+<p class="note warning">
+  <strong>Warning:</strong> The subsume process is potentially destructive.
+  VMware recommends creating a manual backup of your Amazon RDS instance before attempting this procedure.
+  For how to backup an Amazon RDS DB instance, see the
+  <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html">
+    AWS Documentation</a>.
+</p>
 
 To subsume control of an existing legacy PostgreSQL instance to the <%= vars.product_short %>:
 
