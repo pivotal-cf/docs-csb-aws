@@ -7,6 +7,29 @@ owner: Cloud Service Broker
 
 These are release notes for <%= vars.product_full %>.
 
+
+##<a id="1-0-2"></a> v1.0.2
+
+**Release Date:** April 08, 2021
+
+### Resolved Issues
+
+- [BUG FIX] AWS Tile no longer emits secrets in test logs  
+- [BUG FIX] AWS DynamoDB parameter "tabel_name" typo has been fixed and now reads "table_name"
+- [BUG FIX] AWS CSB Postgres tile now has correct permissions to generate db schemas
+
+### Known Issue
+
+This release has the following issue:
+
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for PostgreSQL,
+  instance plans cannot be changed to smaller plans, for example, through a `cf update-service -p` command.
+  This restriction also applies to subsumed PostgreSQL instances.
+  Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
+  For information about decreasing the total provisioned storage size of an Amazon RDS DB instance,
+  see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
+
+
 ##<a id="1-0-1"></a> v1.0.1
 
 **Release Date:** December 10, 2020
