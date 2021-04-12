@@ -13,17 +13,19 @@ These are release notes for <%= vars.product_full %>.
 **Release Date:** April 08, 2021
 
 ### Resolved Issues
+This release has the following fixes:
 
-- [BUG FIX] AWS Tile no longer emits secrets in test logs  
-- [BUG FIX] AWS DynamoDB parameter "tabel_name" typo has been fixed and now reads "table_name"
-- [BUG FIX] AWS CSB Postgres tile now has correct permissions to generate db schemas
+* <%= vars.product_short %> no longer emits secrets in test logs.
+* AWS DynamoDB parameter `tabel_name` typo is fixed and now reads `table_name`.
+* Postgres now has the correct permissions to generate db schemas.
 
 ### Known Issue
 
 This release has the following issue:
 
-* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for PostgreSQL,
-  instance plans cannot be changed to smaller plans, for example, through a `cf update-service -p` command.
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+  PostgreSQL, instance plans cannot be changed to smaller plans.
+  For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS DB instance,
@@ -69,8 +71,9 @@ This makes the errors that some customers are receiving more user-friendly.
 
 This release has the following issue:
 
-* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for PostgreSQL,
-  instance plans cannot be changed to smaller plans, for example, through a `cf update-service -p` command.
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+  PostgreSQL, instance plans cannot be changed to smaller plans.
+  For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS DB instance,
@@ -90,8 +93,9 @@ New feature in this release:
 
 This release has the following issue:
 
-* **PostgreSQL instances cannot be moved to smaller plans:**  Because of a limitation with Amazon RDS for PostgreSQL,
-  instance plans cannot be changed to smaller plans, for example, through a `cf update-service -p` command.
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+  PostgreSQL, instance plans cannot be changed to smaller plans.
+  For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS DB instance,
