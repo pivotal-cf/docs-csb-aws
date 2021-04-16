@@ -10,14 +10,14 @@ These are release notes for <%= vars.product_full %>.
 
 ##<a id="1-0-2"></a> v1.0.2
 
-**Release Date:** April 08, 2021
+**Release Date:** April 8, 2021
 
 ### Resolved Issues
 This release has the following fixes:
 
-* <%= vars.product_short %> no longer emits secrets in test logs.
-* AWS DynamoDB parameter `tabel_name` typo is fixed and now reads `table_name`.
-* Postgres now has the correct permissions to generate db schemas.
+* **Secret issue in test logs:** <%= vars.product_short %> no longer emits secrets in test logs.
+* **AWS DynamoDB parameter typo:** AWS DynamoDB parameter `tabel_name` typo is fixed and now reads `table_name`.
+* **PostgreSQL permissions:** Postgres now has the correct permissions to generate db schemas.
 
 ### Known Issue
 
@@ -67,9 +67,9 @@ For more information, see [Prerequisites for Installing Cloud Service Broker for
 * **Marked defaults and required parameters in DynamoDB.**
 This makes the errors that some customers are receiving more user-friendly.
 
-### Known Issue
+### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 * **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
   PostgreSQL, instance plans cannot be changed to smaller plans.
@@ -78,6 +78,9 @@ This release has the following issue:
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS DB instance,
   see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
+* **Secret issue in test logs:** <%= vars.product_short %> emits secrets in test logs.
+* **AWS DynamoDB parameter has a typo:** Currently says `tabel_name`, but should be `table_name`.
+* **PostgreSQL permissions issue:** Postgres does not have the correct permissions to generate db schemas.
 
 ##<a id="1-0-0"></a> v1.0.0
 
@@ -89,9 +92,9 @@ New feature in this release:
 
 * **Initial release:** This is the initial release for the <%= vars.product_full %> tile.
 
-### Known Issue
+### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 * **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
   PostgreSQL, instance plans cannot be changed to smaller plans.
@@ -100,3 +103,6 @@ This release has the following issue:
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS DB instance,
   see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
+* **Secret issue in test logs:** <%= vars.product_short %> emits secrets in test logs.
+* **AWS DynamoDB parameter has a typo:** Currently says `tabel_name`, but should be `table_name`.
+* **PostgreSQL permissions issue:** Postgres does not have the correct permissions to generate db schemas.
