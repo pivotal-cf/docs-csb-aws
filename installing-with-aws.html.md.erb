@@ -205,12 +205,45 @@ To configure AWS credentials:
 
 ### <a id="state-db"></a>Configure a State Database
 
-This section describes how to associate <%= vars.product_short %> with the state database,
-which is a small, externally-provided MySQL database.
+This section describes how to associate <%= vars.product_short %> with a MySQL database,
+the _state database_.
+
+#### About Encrypting the State Database
+
+In production environments, VMware recommends that you enable encryption.
+This encrypts certain sensitive information in the state database, such as IaaS credentials.
+The encryption password that you enter on the Service Broker Config pane is used to generate an encryption key.
+
+<p class="note">
+<strong>Note:</strong>
+Applying changes takes longer than normal when you first enable encryption and when you change the
+encryption password.
+</p>
+
+#### Prerequisite
+
+You must have a small MySQL database to use as the state database.
+
+#### Procedure: Configure a State Database
 
 To configure <%= vars.product_short %> with a database:
 
 1. Click **Service Broker Config**.
+
+    <%= image_tag("images/service-broker-config-pane.png", :alt => "Fields for configuring the service broker.
+  See the following steps for detailed descriptions of the configurable fields.", :width => "400") %>
+
+1. Configure the fields as follows:
+
+    | Field | Instructions |
+    |-------|--------------|
+    | **Database host** | Enter the host name of the prerequisite state database.|
+    | **Database username** and **Database password** | Enter the credentials for the state database.|
+    | **TLS Enforcement** | Select the type of TLS enforcement you want. If you select **Custom**, enter your CA certificate, client certificate, and key. |
+    | **Enable encryption of the Cloud Service Broker database**| If you want the sensitive data to be encrypted, select this checkbox and the **Add** button. If you do not want to encrypt the date, leave the checkbox unselected and do not fill in the Database Encryption Passwords fields.|
+    | **Label**| Enter a unique password label. You cannot change this label after you save.|
+    | **Password**| Enter a secure password that is at least 20 characters long. You cannot change this password after you save.|
+    | **Primary**| Select this checkbox if this is the password that you want to use to encrypt the data. You must mark one and only one password as primary.|
 
 1. Enter the credentials for the state database.
 
@@ -256,3 +289,51 @@ the **Settings** tab.
 1. Click **Apply changes**.
 
 1. Review your Cloud Foundry Marketplace to see the new plan sizes.
+
+## <a id="rotate-password"></a>Rotate the Encryption Password on the State Database
+
+If you have already set an encryption password and want to change it, follow the instructions below:
+
+To rotate the password on the state database:
+
+1. Click **Service Broker Config**.
+
+2. Clear the **Primary** checkbox.
+
+3. Click **Add**.
+
+4. Enter a new **Label** and **Password** for the new password, and select  **Primary**.
+
+    You cannot change the label or password after you save.
+
+1. Click **Save**.
+
+1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+
+1. Click **Review Pending Changes**.
+
+1. Click **Apply changes** to install the <%= vars.product_short %> tile.
+
+1. (Recommended) After the apply changes process completes, delete the non-primary label and password pair and apply changes again. 
+
+## <a id="remove-encryption"></a> Remove Encryption from the State Database
+
+If the data in the state database was previously encrypted and you want to disable encryption, follow the instructions below.
+
+To remove encryption from the state database:
+
+1. Click **Service Broker Config**.
+
+2. Clear the **Enable encryption of the Cloud Service Broker database** checkbox.
+
+4. Clear the **Primary** checkbox, but do not change the Label or Password fields.
+
+1. Click **Save**.
+
+1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+
+1. Click **Review Pending Changes**.
+
+1. Click **Apply changes** to install the <%= vars.product_short %> tile.
+
+1. (Recommended) After the apply changes process completes, delete all label and password pairs and apply changes again. 
