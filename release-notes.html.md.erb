@@ -15,19 +15,30 @@ These are release notes for <%= vars.product_full %>.
 
 New features and changes in this release:
 
-* **Run-in header:** Description.
+* **Support for encryption of sensitive data:** <%= vars.product_short %> can now encrypt sensitive
+data that is provided or genearated during provisioning and binding and stored in the state database.
+A key generated from the password you configure in the tile is used for the encryption.
+For how to configure encryption, see <a href="installing-with-aws.html#state-db">Configure a State Database</a>.
 
 ### Resolved Issues
 
 This release has the following fixes:
 
-* **Run-in header:** Description.
+* **Use restricted user to connect to CredHub:** The broker uses `cf.uaa.services_credhub_credentials`
+instead of `cf.uaa.credhub_admin_client_client_credentials` to communicate with CredHub.
+The new credentials have restricted access.
 
 ### Known Issues
 
 This release has the following issue:
 
-* **Run-in header:** Description.
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+  PostgreSQL, instance plans cannot be changed to smaller plans.
+  For example, when using a `cf update-service -p` command.
+  This restriction also applies to subsumed PostgreSQL instances.
+  Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
+  For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
+  see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
 
 ## <a id="view"></a> View Release Notes for Another Version
 
