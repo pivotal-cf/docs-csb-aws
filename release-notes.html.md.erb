@@ -9,23 +9,24 @@ These are release notes for <%= vars.product_full %>.
 
 ##<a id="1-1-0"></a> v1.1.0
 
-**Release Date:** MMMMM DD, YYYY
+**Release Date:** October 4, 2021
 
 ### Features
 
 New features and changes in this release:
 
-* **Run-in heading for feature:** Description of feature
-
-*  
+* **Support for encryption of sensitive data:** <%= vars.product_short %> can now encrypt sensitive
+data that is provided or genearated during provisioning and binding and stored in the state database.
+A key generated from the password you configure in the tile is used for the encryption.
+For how to configure encryption, see <a href="installing-with-azure.html#state-db">Configure a State Database</a>.
 
 ### Resolved Issues
 
 This release has the following fixes:
 
-* 
-
-* 
+* **Use restricted user to connect to CredHub:** The broker uses `cf.uaa.services_credhub_credentials`
+instead of `cf.uaa.credhub_admin_client_client_credentials` to communicate with CredHub.
+The new credentials have restricted access.
 
 ### Known Issues
 
