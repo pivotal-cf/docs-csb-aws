@@ -13,6 +13,7 @@ Then, if necessary, immediately cherry-pick/copy any changes that you want to pu
 | Branch Name| Use for… |
 |------------| ---------|
 | master     | 1.n Use for staging doc for the next release. (staged here: http://docs-pcf-staging.cfapps.io/csb-aws/1-n/) |
+| 1.1     | 1.1 (Staged here: http://docs.pivotal.io/csb-aws/1-1/) |
 | 1.0     | 1.0 First GA release. (Staged here: http://docs.pivotal.io/csb-aws/1-0/) |
 
 
