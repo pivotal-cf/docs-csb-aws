@@ -628,3 +628,205 @@ The format for binding credentials for Redis is as follows:
     "tls_port" : "REDIS-TLS-PORT"
 }
 ```
+
+
+## <a id="aws-dynamodb"></a> Amazon DynamoDB
+
+This section applies to the `csb-aws-dynamodb` service.
+This section lists default plans and configuration options for Amazon DynamoDB.
+
+You can provision an Amazon DynamoDB table by running:
+
+```
+cf create-service csb-aws-dynamodb PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+```
+
+For example:
+```
+cf create-service csb-aws-dynamodb ondemand my-service -c '
+{
+  "attributes": [
+    {"name":"id","type":"S"},
+    {"name":"key","type":"S"},
+    {"name":"value","type":"S"}
+  ],
+  "global_secondary_indexes": [
+    {
+      "hash_key": "key",
+      "name": "KeyIndex",
+      "non_key_attributes": ["id"],
+      "projection_type": "INCLUDE",
+      "range_key": "value"
+    }
+  ],
+  "hash_key": "id",
+  "range_key": "value",
+  "table_name": "csb-dynamodb-test"
+}'
+```
+
+You can update the configuration parameters for a service instance by running:
+
+```
+cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+### <a id="aws-dynamodb-plans"></a> Amazon DynamoDB Plans
+
+The default plans for Amazon DynamoDB are in the table below:
+
+| Plan | Billing Mode |
+|------|--------------|
+| ondemand | With on-demand capacity mode, DynamoDB is charged for the data reads and writes the application performs on the table. |
+| provisioned | With provisioned capacity mode, specify the number of reads and writes per second that the application is expected to require. |
+
+### <a id="aws-redis-plans-config"></a> Amazon DynamoDB Plan Configuration Parameters
+
+The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
+You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-dynamodb` service:
+
+<table class="nice">
+  <thead>
+    <tr>
+    <th width="25%">Parameter Name</th>
+    <th width="10%">Type</th>
+    <th width="5%">Required</th>
+    <th width="45%">Description</th>
+    <th width="15%">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>table_name</code></td>
+      <td>string</td>
+      <td>yes</td>
+      <td>The name of the table.</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>hash_key</code></td>
+      <td>string</td>
+      <td>yes</td>
+      <td>The key to use as the hash key.</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>range_key</code></td>
+      <td>string</td>
+      <td>yes</td>
+      <td>The key to use as the range key.</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>attributes</code></td>
+      <td>array</td>
+      <td>yes</td>
+      <td>A list of attributes and their types, e.g. <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>global_secondary_indexes</code></td>
+      <td>array</td>
+      <td>yes</td>
+      <td>A list of global secondard indicies, e.g. <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>local_secondary_indexes</code></td>
+      <td>array</td>
+      <td>no</td>
+      <td>A list of local secondard indicies, e.g. <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>instance_name</code></td>
+      <td>string</td>
+      <td>no</td>
+      <td>The name of the AWS instance to create.</td>
+      <td><code>csb-dynamodb-INSTANCE-ID</code></td>
+    </tr>
+    <tr>
+      <td><code>region</code></td>
+      <td>string</td>
+      <td>no</td>
+      <td>
+        The AWS region to deploy the service in.
+        For more information about available regions, see the
+        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
+      </td>
+      <td><code>us-west-2</code></td>
+    </tr>
+    <tr>
+      <td><code>ttl_enabled</code></td>
+      <td>boolean</td>
+      <td>no</td>
+      <td>Whether TTL is enabled</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>ttl_attribute_name</code></td>
+      <td>string</td>
+      <td>no</td>
+      <td>The name of the table attribute to store the TTL timestamp in</td>
+      <td><code>""</code></td>
+    </tr>
+    <tr>
+      <td><code>stream_enabled</code></td>
+      <td>boolean</td>
+      <td>no</td>
+      <td>Indicates whether Streams are to be enabled.</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>stream_view_type</code></td>
+      <td>string</td>
+      <td>no</td>
+      <td>Valid values are KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, NEW_AND_OLD_IMAGES.</td>
+      <td><code>null</code></td>
+    </tr>
+    <tr>
+      <td><code>server_side_encryption_enabled</code></td>
+      <td>boolean</td>
+      <td>no</td>
+      <td>Whether or not to enable encryption at rest using an AWS managed KMS customer master key (CMK).</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>server_side_encryption_kms_key_arn</code></td>
+      <td>string</td>
+      <td>no</td>
+      <td>The ARN of the CMK that should be used for the AWS KMS encryption. This attribute should only be specified if the key is different from the default DynamoDB CMK, alias/aws/dynamodb.</td>
+      <td><code>null</code></td>
+    </tr>
+    <tr>
+      <td><code>write_capacity</code></td>
+      <td>number</td>
+      <td>no</td>
+      <td>The number of write units for this table. If the billing_mode is PROVISIONED, this field should be greater than 0.</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <td><code>read_capacity</code></td>
+      <td>number</td>
+      <td>no</td>
+      <td>The number of read units for this table. If the billing_mode is PROVISIONED, this field should be greater than 0.</td>
+      <td>n/a</td>
+    </tr>
+  </tbody>
+</table>
+
+
+### <a id="aws-dynamodb-binding"></a> Amazon DynamoDB Binding Credentials
+
+The format for binding credentials for DynamoDB is as follows:
+
+```json
+{
+    "access_key_id" : "AWS-ACCESS-KEY-ID",
+    "secret_access_key" : "AWS-SECRET-ACCESS-KEY",
+    "region" : "AWS-REGION",
+    "dynamodb_table_name": "DYNAMODB-TABLE-NAME",
+    "dynamodb_table_arn" : "DYNAMODB-TABLE-ARN",
+    "dynamodb_table_id" : "DYNAMODB-TABLE-ID"
+}
+```
