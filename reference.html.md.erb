@@ -637,12 +637,13 @@ This section lists default plans and configuration options for Amazon DynamoDB.
 
 You can provision an Amazon DynamoDB table by running:
 
-```
+```console
 cf create-service csb-aws-dynamodb PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 For example:
-```
+
+```console
 cf create-service csb-aws-dynamodb ondemand my-service -c '
 {
   "attributes": [
@@ -667,9 +668,10 @@ cf create-service csb-aws-dynamodb ondemand my-service -c '
 
 You can update the configuration parameters for a service instance by running:
 
+```console
+cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
-cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
-```
+
 
 ### <a id="aws-dynamodb-plans"></a> Amazon DynamoDB Plans
 
@@ -683,7 +685,8 @@ The default plans for Amazon DynamoDB are in the table below:
 ### <a id="aws-redis-plans-config"></a> Amazon DynamoDB Plan Configuration Parameters
 
 The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
-You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-dynamodb` service:
+You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-dynamodb`
+service:
 
 <table class="nice">
   <thead>
@@ -700,49 +703,49 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td><code>table_name</code></td>
       <td>string</td>
       <td>yes</td>
-      <td>The name of the table.</td>
-      <td>n/a</td>
+      <td>The name of the table</td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>hash_key</code></td>
       <td>string</td>
       <td>yes</td>
-      <td>The key to use as the hash key.</td>
-      <td>n/a</td>
+      <td>The key to use as the hash key</td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>range_key</code></td>
       <td>string</td>
       <td>yes</td>
-      <td>The key to use as the range key.</td>
-      <td>n/a</td>
+      <td>The key to use as the range key</td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>attributes</code></td>
       <td>array</td>
       <td>yes</td>
-      <td>A list of attributes and their types, e.g. <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
-      <td>n/a</td>
+      <td>A list of attributes and their types, for example: <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>global_secondary_indexes</code></td>
       <td>array</td>
       <td>yes</td>
-      <td>A list of global secondard indicies, e.g. <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
-      <td>n/a</td>
+      <td>A list of global secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>local_secondary_indexes</code></td>
       <td>array</td>
       <td>no</td>
-      <td>A list of local secondard indicies, e.g. <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
-      <td>n/a</td>
+      <td>A list of local secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>instance_name</code></td>
       <td>string</td>
       <td>no</td>
-      <td>The name of the AWS instance to create.</td>
+      <td>The name of the AWS instance to create</td>
       <td><code>csb-dynamodb-INSTANCE-ID</code></td>
     </tr>
     <tr>
@@ -750,7 +753,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td>string</td>
       <td>no</td>
       <td>
-        The AWS region to deploy the service in.
+        This is the AWS region to deploy the service in.
         For more information about available regions, see the
         <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
       </td>
@@ -774,21 +777,21 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td><code>stream_enabled</code></td>
       <td>boolean</td>
       <td>no</td>
-      <td>Indicates whether Streams are to be enabled.</td>
+      <td>Indicates whether Streams are to be enabled</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>stream_view_type</code></td>
       <td>string</td>
       <td>no</td>
-      <td>Valid values are KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, NEW_AND_OLD_IMAGES.</td>
+      <td>Valid values are <code>KEYS_ONLY</code>, <code>NEW_IMAGE</code>, <code>OLD_IMAGE</code>, <code>NEW_AND_OLD_IMAGES</code></td>
       <td><code>null</code></td>
     </tr>
     <tr>
       <td><code>server_side_encryption_enabled</code></td>
       <td>boolean</td>
       <td>no</td>
-      <td>Whether or not to enable encryption at rest using an AWS managed KMS customer master key (CMK).</td>
+      <td>Whether or not to enable encryption at rest using an AWS-managed KMS customer master key (CMK).</td>
       <td><code>false</code></td>
     </tr>
     <tr>
@@ -802,15 +805,15 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td><code>write_capacity</code></td>
       <td>number</td>
       <td>no</td>
-      <td>The number of write units for this table. If the billing_mode is PROVISIONED, this field should be greater than 0.</td>
-      <td>n/a</td>
+      <td>The number of write units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>read_capacity</code></td>
       <td>number</td>
       <td>no</td>
-      <td>The number of read units for this table. If the billing_mode is PROVISIONED, this field should be greater than 0.</td>
-      <td>n/a</td>
+      <td>The number of read units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
+      <td><em>n/a</em></td>
     </tr>
   </tbody>
 </table>
