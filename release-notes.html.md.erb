@@ -7,6 +7,17 @@ owner: Cloud Service Broker
 
 These are release notes for <%= vars.product_full %>.
 
+##<a id="1-1-1"></a> v1.1.1
+
+**Release Date:** November 19, 2021
+
+### Resolved Issues
+
+This release has the following fixes:
+
+* **Terraform workspaces larger then 64K no longer fail to save** The database migration will succeed for all terraform workspaces. 
+Also, new terraform deployment workspaces larger then 64K can be stored.
+
 ##<a id="1-1-0"></a> v1.1.0
 
 **Release Date:** October 4, 2021
@@ -31,6 +42,9 @@ The new credentials have restricted access.
 ### Known Issues
 
 This release has the following issue:
+
+* **Database failure for terraform workspaces larger then 64K** The database migration will fail if you migrate to this version and there is a 
+stored terraform deployment workspace that is larger then 64K in the database. Also, when new terraform deployment workspaces larger then 64K are stored, they will be truncated.
 
 * **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
   PostgreSQL, instance plans cannot be changed to smaller plans.
