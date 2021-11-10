@@ -18,6 +18,18 @@ This release has the following fixes:
 * **Terraform workspaces larger then 64&nbsp;K no longer fail to save:** The database migration succeeds for all terraform workspaces.
 Also, new terraform deployment workspaces larger then 64&nbsp;K can be stored.
 
+### Known Issues
+
+This release has the following issue:
+
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+  PostgreSQL, instance plans cannot be changed to smaller plans.
+  For example, when using a `cf update-service -p` command.
+  This restriction also applies to subsumed PostgreSQL instances.
+  Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
+  For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
+  see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
+
 ##<a id="1-1-0"></a> v1.1.0
 
 **Release Date:** October 4, 2021
@@ -41,7 +53,7 @@ The new credentials have restricted access.
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 * **Database failure for terraform workspaces larger than 64&nbsp;K:**
 The database migration fails if you migrate to this version
