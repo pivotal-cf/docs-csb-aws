@@ -21,6 +21,12 @@ these commands would accept the property change request, but override it with th
 cf update-service, cf bind-service or cf create-service-key they are now validated against the list of
 supported parameters; the operation will fail with an error if a parameter is unknown.
 
+### Resolved issues
+
+This release has the following fixes:
+
+* **Persist parameters through multiple updates:** Parameters sent when updating a service are stored and don't need to be sent again in subsequent updates. 
+
 ##<a id="1-1-1"></a> v1.1.1
 
 **Release Date:** November 19, 2021
