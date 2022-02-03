@@ -7,6 +7,26 @@ owner: Cloud Service Broker
 
 These are release notes for <%= vars.product_full %>.
 
+##<a id="1-1-2"></a> v1.1.2
+
+**Release Date:** February 8, 2022
+
+### Features
+
+New features and changes in this release:
+
+* **Provision and update operations return errors when attempting to override plan defined properties:** Previously
+these commands would accept the property change request, but override it with the plan defined value. (#362)
+* **Validation of parameters:** When additional JSON parameters are supplied as part of a cf create-service,
+cf update-service, cf bind-service or cf create-service-key they are now validated against the list of
+supported parameters; the operation will fail with an error if a parameter is unknown.
+
+### Resolved issues
+
+This release has the following fixes:
+
+* **Persist parameters through multiple updates:** Parameters sent when updating a service are stored and don't need to be sent again in subsequent updates. 
+
 ##<a id="1-1-1"></a> v1.1.1
 
 **Release Date:** November 19, 2021
