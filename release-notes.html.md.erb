@@ -16,16 +16,31 @@ These are release notes for <%= vars.product_full %>.
 New features and changes in this release:
 
 * **Provision and update operations return errors when attempting to override plan defined properties:** Previously
-these commands would accept the property change request, but override it with the plan defined value. (#362)
-* **Validation of parameters:** When additional JSON parameters are supplied as part of a cf create-service,
-cf update-service, cf bind-service or cf create-service-key they are now validated against the list of
-supported parameters; the operation will fail with an error if a parameter is unknown.
+these commands would accept the property change request, but override it with the plan defined value.
 
-### Resolved issues
+* **Validation of parameters:** When additional JSON parameters are supplied as part of a `cf create-service`,
+`cf update-service`, `cf bind-service`, or `cf create-service-key`, they are now validated against the list of
+supported parameters. The operation fails with an error if a parameter is unknown.
+
+### Resolved Issues
 
 This release has the following fixes:
 
-* **Persist parameters through multiple updates:** Parameters sent when updating a service are stored and don't need to be sent again in subsequent updates. 
+* **Parameters now persist through multiple updates:** Parameters sent when updating a
+service are stored, and do not need to be sent again in subsequent updates.
+
+### Known Issues
+
+This release has the following issues:
+
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+  PostgreSQL, instance plans cannot be changed to smaller plans.
+  For example, when using a `cf update-service -p` command.
+  This restriction also applies to subsumed PostgreSQL instances.
+  Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
+  For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
+  see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
+
 
 ##<a id="1-1-1"></a> v1.1.1
 
