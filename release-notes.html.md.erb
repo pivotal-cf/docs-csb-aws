@@ -15,8 +15,9 @@ These are release notes for <%= vars.product_full %>.
 
 New features and changes in this release:
 
-* **Provision and update operations return errors when attempting to override plan defined properties:** Previously
-these commands would accept the property change request, but override it with the plan defined value.
+* **Provision and update operations alert you if you attempt to override plan defined properties:*
+The attempt now returns an error. Previously these commands would accept the
+property change request, but override your change with the plan defined value.
 
 * **Validation of parameters:** When additional JSON parameters are supplied as part of a `cf create-service`,
 `cf update-service`, `cf bind-service`, or `cf create-service-key`, they are now validated against the list of
