@@ -164,13 +164,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
   <tbody>
     <tr>
       <td><code>instance_name</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The name of the AWS instance to create.</td>
       <td><code>csb-mysql-INSTANCE-ID</code></td>
     </tr>
     <tr>
       <td><code>region</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>
         The AWS region to deploy the service in.
         For more information about available regions, see the
@@ -180,36 +180,36 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>aws_vpc_id</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
       <td>The default VPC</td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
     <tr>
       <td><code>aws_secret_access_key</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
     <tr>
       <td><code>instance_class</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>Specifying the instance class overrides the conversion of cores to instance classes that is
         described in the <em>Core to Instance Class Mapping</em> table in the
         <a href="#aws-mysql-plans">Plans for MySQL</a> section above.<br><br>
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
       </td>
-      <td>n/a</td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>multi-az</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>If <code>true</code>, create a Multi-AZ (HA) instance.
         For more information about Multi-AZ deployment, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.
@@ -220,13 +220,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>publicly_accessible</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>If <code>true</code>, make instance available to public connections.</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>allow_major_version_upgrade</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>Indicates that major version upgrades are allowed.
         Changing this parameter does not result in an outage and the change is
         asynchronously applied as soon as possible.</td>
@@ -234,64 +234,64 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>auto_minor_version_upgrade</code></td>
-      <td>boolean</td>
-      <td>(Optional) Indicates that minor engine upgrades will be applied automatically
+      <td>Boolean</td>
+      <td>(Optional) Indicates that minor engine upgrades are applied automatically
         to the database instance during the maintenance window.</td>
       <td><code>true</code></td>
     </tr>
        <tr>
       <td><code>maintenance_day</code>,<code>maintenance_start_hour</code>,<code>maintenance_start_min</code>,<code>maintenance_end_hour</code>, <code>maintenance_end_min</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>(Optional) Maintenance window definition.</td>
       <td>Defaults vary by region. See the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow">AWS Documentation</a>.</td>
     </tr>
     <tr>
       <td><code>storage_encrypted</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>If <code>true</code>, database storage is encrypted.</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>parameter_group_name</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The MySQL parameter group name for the service instance.</td>
       <td><code>default.mysql.MYSQL-VERSION</code></td>
     </tr>
     <tr>
       <td><code>rds_subnet_group</code></td>
-      <td>string</td>
+      <td>String</td>
        <td>The name of subnet to attach the database instance to.
          This overrides <code>aws_vpc_id</code.></td>
       <td>None</td>
     </tr>
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
-      <td>comma separated string</td>
+      <td>Comma-separated string</td>
       <td>Security group IDs to assign to the database instance.</td>
       <td>None</td>
     </tr>
     <tr>
       <td><code>use_tls</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>Use TLS for database connections.</td>
       <td><code>true</code></td>
     </tr>
     <tr>
       <td><code>storage_autoscale</code></td>
-      <td>boolean</td>
-      <td>Enable storage autoscaling up to storage_autoscale_limit_gb.</td>
+      <td>Boolean</td>
+      <td>Enable storage autoscaling up to <code>storage_autoscale_limit_gb</code>.</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>storage_autoscale_limit_gb</code></td>
-      <td>number</td>
-      <td>Max storage size if storage_autoscale is enabled.</td>
+      <td>Number</td>
+      <td>Maximum storage size if <code>storage_autoscale</code> is enabled.</td>
       <td><code>0</code></td>
     </tr>
     <tr>
       <td><code>db_name</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The name of the database.</td>
       <td><code>vsbdb</code></td>
     </tr>
