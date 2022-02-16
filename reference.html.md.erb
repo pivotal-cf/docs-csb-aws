@@ -59,13 +59,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
   <tbody>
     <tr>
       <td><code>bucket_name</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The name of bucket to create.</td>
       <td><code>csb-INSTANCE-ID</code></td>
     </tr>
     <tr>
       <td><code>region</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>
         The AWS region to deploy the service in.
         For more information about available regions, see the
@@ -74,13 +74,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
     <tr>
       <td><code>aws_secret_access_key</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
@@ -267,7 +267,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
-      <td>Comma-separated string</td>
+      <td>Comma-separated String</td>
       <td>Security group IDs to assign to the database instance.</td>
       <td>None</td>
     </tr>
@@ -376,13 +376,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
   <tbody>
     <tr>
       <td><code>instance_name</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The name of the AWS instance to create.</td>
       <td><code>csb-mysql-INSTANCE-ID</code></td>
     </tr>
     <tr>
       <td><code>region</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>
         The AWS region in which to deploy the service. For more information about available regions,
         see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
@@ -391,35 +391,35 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>vpc_id</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
       <td>The default VPC</td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
     <tr>
       <td><code>aws_secret_access_key</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
     <tr>
       <td><code>instance_class</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>Specifying the instance class overrides the conversion of cores to instance classes that is
         described in the <em>Core to Instance Class Mapping</em> table in the
         <a href="#aws-postgres-plans">Plans for PostgreSQL</a> section above.<br><br>
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
-      <td>n/a</td>
+      <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>multi-az</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>If <code>true</code>, create a Multi-AZ (HA) instance.
       For more information about Multi-AZ deployments, see the
       <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.</td>
@@ -427,13 +427,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>publicly_accessible</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>If <code>true</code>, make instance available to public connections.</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>allow_major_version_upgrade</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>Indicates that major version upgrades are allowed.
         Changing this parameter does not result in an outage and the change is
         asynchronously applied as soon as possible.</td>
@@ -441,46 +441,46 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>allow_minor_version_upgrade</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>(Optional) Indicates that minor engine upgrades will be applied automatically
         to the database instance during the maintenance window.</td>
       <td><code>true</code></td>
     </tr>
     <tr>
       <td><code>maintenance_day</code>,<code>maintenance_start_hour</code>,<code>maintenance_start_min</code>,<code>maintenance_end_hour</code>, <code>maintenance_end_min</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>(Optional) Maintenance window definition.</td>
       <td>Defaults vary by region. See the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow">AWS Documentation</a>.</td>
     </tr>
     <tr>
       <td><code>storage_encrypted</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>If <code>true</code>, database storage is encrypted.</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>parameter_group_name</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The PostgreSQL parameter group name for the service instance.</td>
       <td><code>default.postgres.POSTGRES-VERSION</code></td>
     </tr>
     <tr>
       <td><code>rds_subnet_group</code></td>
-      <td>string</td>
+      <td>String</td>
        <td>The name of subnet to attach the database instance to.
          This overrides <code>aws_vpc_id</code.></td>
       <td>None</td>
     </tr>
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
-      <td>comma separated string</td>
+      <td>Comma-separated String</td>
       <td>Security group IDs to assign to the database instance.</td>
       <td>None</td>
     </tr>
     <tr>
       <td><code>use_tls</code></td>
-      <td>boolean</td>
+      <td>Boolean</td>
       <td>Use TLS for database connections.</td>
       <td>true</td>
     </tr>
@@ -572,13 +572,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
   <tbody>
     <tr>
       <td><code>instance_name</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The name of the AWS instance to create.</td>
       <td><code>csb-redis-INSTANCE-ID</code></td>
     </tr>
     <tr>
       <td><code>region</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>
         The AWS region to deploy the service in.
         For more information about available regions, see the
@@ -588,25 +588,25 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>vpc_id</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
       <td>The default VPC</td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
     <tr>
       <td><code>aws_secret_access_key</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
     </tr>
     <tr>
       <td><code>redis_version</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>Redis version to provision: <code>&quot;2.6&quot;</code>,
         <code>&quot;2.8&quot;</code>,
         <code>&quot;3.2&quot;</code>,
@@ -616,19 +616,19 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     </tr>
     <tr>
       <td><code>cache_size</code></td>
-      <td>integer</td>
+      <td>Integer</td>
       <td>The size in GB for the cache: 1, 2, 4, 8, 16, 32, 64, 128, 256</td>
       <td>The default for the plan you selected.</td>
     </tr>
     <tr>
       <td><code>node_type</code></td>
-      <td>string</td>
+      <td>String</td>
       <td>Specifying the node type overrides the `cache-size` conversion to node type that is
         described in the <strong>Cache Size to AWS Node Type Mapping</strong> table in the
         <a href="#aws-redis-plans">Plans for Amazon ElastiCache</a> section above.<br><br>
         For more information about node types and pricing, see the
         <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a>.</td>
-      <td>n/a</td>
+      <td><em>n/a</em></td>
     </tr>
   </tbody>
 </table>
@@ -719,57 +719,57 @@ service:
   <tbody>
     <tr>
       <td><code>table_name</code></td>
-      <td>string</td>
-      <td>yes</td>
+      <td>String</td>
+      <td>Yes</td>
       <td>The name of the table</td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>hash_key</code></td>
-      <td>string</td>
-      <td>yes</td>
+      <td>String</td>
+      <td>Yes</td>
       <td>The key to use as the hash key</td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>range_key</code></td>
-      <td>string</td>
-      <td>yes</td>
+      <td>String</td>
+      <td>Yes</td>
       <td>The key to use as the range key</td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>attributes</code></td>
-      <td>array</td>
-      <td>yes</td>
+      <td>Array</td>
+      <td>Yes</td>
       <td>A list of attributes and their types, for example: <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>global_secondary_indexes</code></td>
-      <td>array</td>
-      <td>yes</td>
+      <td>Array</td>
+      <td>Yes</td>
       <td>A list of global secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>local_secondary_indexes</code></td>
-      <td>array</td>
-      <td>no</td>
+      <td>Array</td>
+      <td>No</td>
       <td>A list of local secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>instance_name</code></td>
-      <td>string</td>
-      <td>no</td>
+      <td>String</td>
+      <td>No</td>
       <td>The name of the AWS instance to create</td>
       <td><code>csb-dynamodb-INSTANCE-ID</code></td>
     </tr>
     <tr>
       <td><code>region</code></td>
-      <td>string</td>
-      <td>no</td>
+      <td>String</td>
+      <td>No</td>
       <td>
         This is the AWS region to deploy the service in.
         For more information about available regions, see the
@@ -779,57 +779,57 @@ service:
     </tr>
     <tr>
       <td><code>ttl_enabled</code></td>
-      <td>boolean</td>
-      <td>no</td>
+      <td>Boolean</td>
+      <td>No</td>
       <td>Whether TTL is enabled</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>ttl_attribute_name</code></td>
-      <td>string</td>
-      <td>no</td>
+      <td>String</td>
+      <td>No</td>
       <td>The name of the table attribute to store the TTL timestamp in</td>
       <td><code>""</code></td>
     </tr>
     <tr>
       <td><code>stream_enabled</code></td>
-      <td>boolean</td>
-      <td>no</td>
+      <td>Boolean</td>
+      <td>No</td>
       <td>Indicates whether Streams are to be enabled</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>stream_view_type</code></td>
-      <td>string</td>
-      <td>no</td>
+      <td>String</td>
+      <td>No</td>
       <td>Valid values are <code>KEYS_ONLY</code>, <code>NEW_IMAGE</code>, <code>OLD_IMAGE</code>, <code>NEW_AND_OLD_IMAGES</code></td>
       <td><code>null</code></td>
     </tr>
     <tr>
       <td><code>server_side_encryption_enabled</code></td>
-      <td>boolean</td>
-      <td>no</td>
+      <td>Boolean</td>
+      <td>No</td>
       <td>Whether or not to enable encryption at rest using an AWS-managed KMS customer master key (CMK).</td>
       <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>server_side_encryption_kms_key_arn</code></td>
-      <td>string</td>
-      <td>no</td>
+      <td>String</td>
+      <td>No</td>
       <td>The ARN of the CMK that should be used for the AWS KMS encryption. This attribute should only be specified if the key is different from the default DynamoDB CMK, alias/aws/dynamodb.</td>
       <td><code>null</code></td>
     </tr>
     <tr>
       <td><code>write_capacity</code></td>
-      <td>number</td>
-      <td>no</td>
+      <td>Number</td>
+      <td>No</td>
       <td>The number of write units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>read_capacity</code></td>
-      <td>number</td>
-      <td>no</td>
+      <td>Number</td>
+      <td>No</td>
       <td>The number of read units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
       <td><em>n/a</em></td>
     </tr>
