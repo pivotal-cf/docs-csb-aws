@@ -11,19 +11,20 @@ This topic describes how to install and configure <%= vars.product_full %> (<%= 
 
 Before you install <%= vars.product_short %>, you must have:
 
-* **A Small MySQL Database:**
+* **A small MySQL database:**
 
     This database is used as the _state database_.
     The broker requires this database to store its state.
 
-* **AWS Account Credentials:**
+* **AWS account credentials:**
 
     The broker needs the following credentials to manage resources within an account:
 
-    - Access Key ID
-    - Secret Access Key
+        - Access Key ID
+        - Secret Access Key
 
-    In the scenario that the AWS account where the instances are created differs from the one the platform runs in, the user is responsible of setting up the necessary networking. 
+    If the AWS account where the instances are created differs from the one the
+    platform runs in, the user is responsible for setting up the necessary networking.
 
 * **IAM Policies:**
 
