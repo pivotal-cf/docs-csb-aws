@@ -7,6 +7,42 @@ owner: Cloud Service Broker
 
 These are release notes for <%= vars.product_full %>.
 
+##<a id="1-1-2"></a> v1.1.2
+
+**Release Date:** February 8, 2022
+
+### Features
+
+New features and changes in this release:
+
+* **Provision and update operations alert you if you attempt to override plan defined properties:*
+The attempt now returns an error. Previously these commands would accept the
+property change request, but override your change with the plan defined value.
+
+* **Validation of parameters:** When additional JSON parameters are supplied as part of a `cf create-service`,
+`cf update-service`, `cf bind-service`, or `cf create-service-key`, they are now validated against the list of
+supported parameters. The operation fails with an error if a parameter is unknown.
+
+### Resolved Issues
+
+This release has the following fixes:
+
+* **Parameters now persist through multiple updates:** Parameters sent when updating a
+service are stored, and do not need to be sent again in subsequent updates.
+
+### Known Issues
+
+This release has the following issues:
+
+* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+  PostgreSQL, instance plans cannot be changed to smaller plans.
+  For example, when using a `cf update-service -p` command.
+  This restriction also applies to subsumed PostgreSQL instances.
+  Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
+  For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
+  see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
+
+
 ##<a id="1-1-1"></a> v1.1.1
 
 **Release Date:** November 19, 2021
