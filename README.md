@@ -2,7 +2,7 @@
 
 ## Branches in this Content Repo
 
-The master branch is the tree-trunk, so **always** make changes you want carried forward in this branch. This includes:
+The main branch is the tree-trunk, so **always** make changes you want carried forward in this branch. This includes:
 
 * Unreleased features
 * Doc bug fixes
@@ -12,7 +12,8 @@ Then, if necessary, immediately cherry-pick/copy any changes that you want to pu
 
 | Branch Name| Use for… |
 |------------| ---------|
-| master     | 1.n Use for staging doc for the next release. (staged here: http://docs-pcf-staging.cfapps.io/csb-aws/1-n/) |
+| main     | 1.n Use for staging doc for the next release. (staged here: http://docs-pcf-staging.cfapps.io/csb-aws/1-n/) |
+| 1.1 | v1.1 (https://docs-staging.vmware.com/en/Cloud-Service-Broker-for-AWS/1.1/cloud-service-broker-aws/GUID-index.html) |
 
 
 
@@ -51,11 +52,11 @@ Cross-product partials (if any) for Cloud Service Broker are single sourced from
 
 ### Releasing a New Minor Version
 
-Because **master** is the latest and greatest documentation, the process would be to cut a **x.x-live** branch
-for the version that **master** was targeting during that time.
+Because **main** is the latest and greatest documentation, the process would be to cut a **x.x-live** branch
+for the version that **main** was targeting during that time.
 A corresponding section in **config.yml** in the [docs-book-pcfservices][docs-book-pcfservices] repository would also need to be made.
 
-After this point, **master** will then be the target for the next version of the Cloud Service Broker for AWS product.
+After this point, **main** will then be the target for the next version of the Cloud Service Broker for AWS product.
 
 
 ## Style Guide
