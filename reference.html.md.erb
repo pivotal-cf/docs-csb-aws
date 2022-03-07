@@ -239,8 +239,14 @@ You can also configure these parameters using the `-c` flag when provisioning a 
         to the database instance during the maintenance window.</td>
       <td><code>true</code></td>
     </tr>
-       <tr>
-      <td><code>maintenance_day</code>,<code>maintenance_start_hour</code>,<code>maintenance_start_min</code>,<code>maintenance_end_hour</code>, <code>maintenance_end_min</code></td>
+    <tr>
+      <td>
+        <code>maintenance_day</code>, <br>
+        <code>maintenance_start_hour</code>, <br>
+        <code>maintenance_start_min</code>, <br>
+        <code>maintenance_end_hour</code>, <br>
+        <code>maintenance_end_min</code>
+      </td>
       <td>boolean</td>
       <td>(Optional) Maintenance window definition.</td>
       <td>Defaults vary by region. See the
@@ -447,7 +453,13 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td><code>true</code></td>
     </tr>
     <tr>
-      <td><code>maintenance_day</code>,<code>maintenance_start_hour</code>,<code>maintenance_start_min</code>,<code>maintenance_end_hour</code>, <code>maintenance_end_min</code></td>
+      <td>
+        <code>maintenance_day</code>, <br>
+        <code>maintenance_start_hour</code>, <br>
+        <code>maintenance_start_min</code>, <br>
+        <code>maintenance_end_hour</code>, <br>
+        <code>maintenance_end_min</code>
+      </td>
       <td>boolean</td>
       <td>(Optional) Maintenance window definition.</td>
       <td>Defaults vary by region. See the
@@ -742,21 +754,27 @@ service:
       <td><code>attributes</code></td>
       <td>array</td>
       <td>yes</td>
-      <td>A list of attributes and their types, for example: <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
+      <td>A list of attributes and their types, for example: <br>
+        <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code>
+      </td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>global_secondary_indexes</code></td>
       <td>array</td>
       <td>yes</td>
-      <td>A list of global secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
+      <td>A list of global secondary indexes, for example: <br>
+        <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code>
+      </td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
       <td><code>local_secondary_indexes</code></td>
       <td>array</td>
       <td>no</td>
-      <td>A list of local secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
+      <td>A list of local secondary indexes, for example: <br>
+        <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code>
+      </td>
       <td><em>n/a</em></td>
     </tr>
     <tr>
