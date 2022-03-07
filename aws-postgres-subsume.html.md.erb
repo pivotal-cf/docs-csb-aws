@@ -34,8 +34,7 @@ Detailed steps for subsuming are given below.
 However, the outline of the process is:
 
 + Create a new Cloud Service-brokered instance.
-+ Import information about the PostgreSQL instance using the "subsume" plan in the
-Cloud Foundry Marketplace.
++ Import information about the PostgreSQL instance using the "subsume" plan in the Cloud Foundry Marketplace.
 + Unbind apps from the legacy broker's instance.
 + Bind apps to the new Cloud Service-brokered instance.
 + Purge the connections between the legacy-brokered instance and the PostgreSQL instance.
@@ -75,27 +74,29 @@ To subsume control of an existing legacy PostgreSQL instance to the <%= vars.pro
     <br><br>
     For example:
 
-    <pre class="terminal">$ cf service my-old-instance
-    name:             my-legacy-instance
-    service:          aws-rds-PostgreSQL
-    tags:
-    plan:             basic
-    description:      Create and manage Amazon RDS PostgreSQL deployments
-    documentation:    https<span>:</span>//aws.amazon.com/rds/postgresql/
-    dashboard:
-    service broker:   aws-services-broker
+    <pre class="terminal">
+      $ cf service my-old-instance
+      name:             my-legacy-instance
+      service:          aws-rds-PostgreSQL
+      tags:
+      plan:             basic
+      description:      Create and manage Amazon RDS PostgreSQL deployments
+      documentation:    https<span>:</span>//aws.amazon.com/rds/postgresql/
+      dashboard:
+      service broker:   aws-services-broker
 
-    Showing status of last operation from service my-legacy-instance...
+      Showing status of last operation from service my-legacy-instance...
 
-    status:    create succeeded
-    message:   Instance identifier(s) : [e7c0ac8a-0416-11eb-ae0e-3bbe060ffff9]
-    started:   2020-09-15T21:30:41Z
-    updated:   2020-09-15T21:34:53Z
+      status:    create succeeded
+      message:   Instance identifier(s) : [e7c0ac8a-0416-11eb-ae0e-3bbe060ffff9]
+      started:   2020-09-15T21:30:41Z
+      updated:   2020-09-15T21:34:53Z
 
-    There are no bound apps for this service.
+      There are no bound apps for this service.
 
-    Upgrades are not supported by this broker.
+      Upgrades are not supported by this broker.
     </pre>
+
     Record the AWS resource ID in `Instance identifier(s)`.
 
 2. Create a new PostgreSQL service instance using <%= vars.product_short %>  and
@@ -148,7 +149,9 @@ To subsume control of an existing legacy PostgreSQL instance to the <%= vars.pro
 
     For example:
 
-    <pre class="terminal">$cf bind-service my-app my-csb-aws-instance </pre>
+    <pre class="terminal">
+      $ cf bind-service my-app my-csb-aws-instance
+    </pre>
 
     Because <%= vars.product_short %> creates new credentials at bind time,
     this creates new binding credentials for the app.
@@ -168,7 +171,9 @@ To subsume control of an existing legacy PostgreSQL instance to the <%= vars.pro
 
     For example:
 
-    <pre class="terminal">$ cf purge-service-instance my-old-instance</pre>
+    <pre class="terminal">
+      $ cf purge-service-instance my-old-instance
+    </pre>
 
     <p class="note warning">
       <strong> Warning:</strong> Do not run <code>cf delete-service</code>
