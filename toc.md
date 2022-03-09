@@ -1,4 +1,4 @@
-*   [<%= vars.product_full %>](/docs-csb-aws/index.html)
+*   [Cloud Service Broker for AWS](/docs-csb-aws/index.html)
 *   [Release Notes](/docs-csb-aws/release-notes.html)
 *   [Installing and Configuring](/docs-csb-aws/installing-with-aws.html)
 *   [Subsuming an Amazon RDS for PostgreSQL Instance](/docs-csb-aws/aws-postgres-subsume.html)
