@@ -118,8 +118,8 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
     For example:
 
     <pre class="terminal">
-      $ cf create-service csb-aws-postgresql subsume my-csb-aws-instance \
-      -c '{"aws_db_id":"e7c0ac8a-0416-11eb-ae0e-3bbe060ffff9","admin_password":"example-PA55W0RD"}'
+    $ cf create-service csb-aws-postgresql subsume my-csb-aws-instance \
+    -c '{"aws_db_id":"e7c0ac8a-0416-11eb-ae0e-3bbe060ffff9","admin_password":"example-PA55W0RD"}'
     </pre>
 
 3. Disconnect the app from the legacy service binding by running:
@@ -136,7 +136,7 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
     For example:
 
     <pre class="terminal">
-      $ cf unbind-service my-app my-old-instance
+    $ cf unbind-service my-app my-old-instance
     </pre>
 
 5. Bind the app to the new service instance by running:
@@ -151,7 +151,7 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
     For example:
 
     <pre class="terminal">
-      $ cf bind-service my-app my-csb-aws-instance
+    $ cf bind-service my-app my-csb-aws-instance
     </pre>
 
     Because <%= vars.product_short %> creates new credentials at bind time,
@@ -173,7 +173,7 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
     For example:
 
     <pre class="terminal">
-      $ cf purge-service-instance my-old-instance
+    $ cf purge-service-instance my-old-instance
     </pre>
 
     <p class="note warning">
