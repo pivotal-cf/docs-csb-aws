@@ -108,6 +108,7 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
     ```
 
     Where:
+
     * `NEW-SERVICE-INSTANCE` is a name you choose for the new service instance
        that <%= vars.product_short %> creates to replace legacy PostgreSQL service instance.
     * `ADMIN-PASSWORD` is the admin password for the database.
@@ -116,10 +117,10 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
 
     For example:
 
-    <pre class="terminal">
+    ```
     $ cf create-service csb-aws-postgresql subsume my-csb-aws-instance \
     -c '{"aws_db_id":"e7c0ac8a-0416-11eb-ae0e-3bbe060ffff9","admin_password":"example-PA55W0RD"}'
-    </pre>
+    ```
 
 3. Disconnect the app from the legacy service binding by running:
 
@@ -128,6 +129,7 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
     ```
 
     Where:
+
     * `APP-NAME` is the app using the PostgreSQL instance.
     * `LEGACY-SERVICE-INSTANCE` is the name of the VMware Tanzu Service Broker for AWS-brokered PostgreSQL instance.
 
