@@ -9,8 +9,8 @@ This topic describes moving an Amazon Relational Database Service (Amazon RDS) f
 PostgreSQL Instance from the VMware Tanzu Service Broker for AWS tile
 to the <%= vars.product_full %> tile.
 
-This process of moving control of an instance from one broker tile
-to another is called _subsuming_ the instance.
+This process of moving control of an instance from one broker tile to another is called _subsuming_
+the instance.
 
 ## <a id='about'></a> About Subsuming an Amazon RDS for PostgreSQL Instance
 
@@ -52,7 +52,6 @@ you must reset it in order to subsume the database.
 [Find instructions on how to reset the password for your PostgreSQL database on the AWS website](https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-password-rds/).
 
 
-
 ## <a id='subsume'></a> Subsume a VMware Tanzu Service Broker for AWS PostgreSQL Instance
 
 <p class="note warning">
@@ -71,11 +70,13 @@ To subsume control of an existing legacy PostgreSQL instance to the <%= vars.pro
     cf service LEGACY-SERVICE-INSTANCE
     ```
 
-    Where is `LEGACY-SERVICE-INSTANCE` is the name of the PostgreSQL instance to transfer control of to <%= vars.product_short %>
+    Where is `LEGACY-SERVICE-INSTANCE` is the name of the PostgreSQL instance to transfer control of
+    to <%= vars.product_short %>
     <br><br>
     For example:
 
-    <pre class="terminal">$ cf service my-old-instance
+    ```
+    $ cf service my-old-instance
     name:             my-legacy-instance
     service:          aws-rds-PostgreSQL
     tags:
@@ -95,11 +96,12 @@ To subsume control of an existing legacy PostgreSQL instance to the <%= vars.pro
     There are no bound apps for this service.
 
     Upgrades are not supported by this broker.
-    </pre>
+    ```
+
     Record the AWS resource ID in `Instance identifier(s)`.
 
-2. Create a new PostgreSQL service instance using <%= vars.product_short %>  and
-   import the existing legacy-provisioned resource by choosing the "subsume" plan and including the metadata as shown:
+2. Create a new PostgreSQL service instance using <%= vars.product_short %> and import the existing
+legacy-provisioned resource by choosing the "subsume" plan and including the metadata as shown:
 
     ```
     cf create-service csb-aws-postgresql subsume NEW-SERVICE-INSTANCE -c '{{"aws_db_id":"AWS-RESOURCE-ID","admin_password":"ADMIN-PASSWORD"}}'
@@ -169,9 +171,8 @@ $ cf unbind-service my-app my-old-instance
     <pre class="terminal">$ cf purge-service-instance my-old-instance</pre>
 
     <p class="note warning">
-      <strong> Warning:</strong> Do not run <code>cf delete-service</code>
-      because then the VMware Tanzu Service Broker for AWS deletes the AWS
-      resource, that is, the database.
+      <strong> Warning:</strong> Do not run <code>cf delete-service</code> because then the
+      VMware Tanzu Service Broker for AWS deletes the AWS resource, that is, the database.
     </p>
 
 
