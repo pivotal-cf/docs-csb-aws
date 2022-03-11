@@ -1,0 +1,48 @@
+---
+template_variables:
+  book_title: VMware Tanzu Documentation
+  book_title_short: VMware Tanzu Docs
+  title: <span class="title-deemph">VMware Tanzu</span> Documentation
+  title_image: images/icon-p-green.jpg
+  hero_text: "Detailed documentation to help you install, understand, and succeed with VMware's enterprise-grade software."
+
+  tile_name: Cloud Service Broker
+
+  product_full: Tanzu Cloud Service Broker for AWS
+  product_short: Cloud Service Broker for AWS
+  product_abbr: CSB for AWS #(do not use)
+
+  product_network: VMware Tanzu Network
+
+  path_to_partials: /cloud-service-broker/partials
+
+  app_runtime_full: VMware Tanzu Application Service for VMs
+  app_runtime_abbr: TAS for VMs
+
+  k8s_runtime_full: Tanzu Kubernetes Grid Integrated Edition
+  k8s_runtime_abbr: TKGI
+
+  windows_runtime_full: VMware Tanzu Application Service for VMs &#91;Windows&#93;
+  windows_runtime_abbr: TAS for VMs &#91;Windows&#93;
+
+  segment_runtime_full: Isolation Segment
+
+  ops_manager: Ops Manager
+
+  product_url: https://network.pivotal.io/products/
+  product_link: <div class="header-item"><a href="https://network.pivotal.io/products/pivotal-cf">Back to Product Page</a></div>
+
+  service_name: Cloud Service Broker
+  service_name_article: the Cloud Service Broker
+  service_name_article_full: Cloud Service Broker service
+  support_link: <a href="http://support.pivotal.io" target="_blank">Support</a>
+  support_call_to_action: <a href="http://support.pivotal.io" target="_blank">Need Support?</a>
+  support_url: http://support.pivotal.io
+
+
+  api_version: 235
+  gtm_account_id: GTM-MW4LZHR
+
+  use_global_header: true
+  global_header_product_href: https://network.pivotal.io/
+  global_header_product_link_text: Downloads
