@@ -199,10 +199,7 @@ To configure AWS credentials:
     | AWS Secret Access Key | Enter the AWS Secret Access Key |
     | Region | Enter the Region where your VPC is located |
 
-
-
 1. Click **Save**.
-
 
 ### <a id="state-db"></a>Configure a State Database
 
@@ -214,6 +211,11 @@ the _state database_.
 In production environments, VMware recommends that you enable encryption.
 This encrypts certain sensitive information in the state database, such as IaaS credentials.
 The encryption password that you enter on the Service Broker Config pane is used to generate an encryption key.
+
+<p class="note">
+<strong>Note:</strong>
+We recommend that backup and restore capabilities are enabled in the MySQL database before attemping encryption.
+</p>
 
 <p class="note">
 <strong>Note:</strong>
