@@ -212,16 +212,15 @@ In production environments, VMware recommends that you enable encryption.
 This encrypts certain sensitive information in the state database, such as IaaS credentials.
 The encryption password that you enter on the Service Broker Config pane is used to generate an encryption key.
 
-<p class="note">
-<strong>Note:</strong>
-We recommend that backup and restore capabilities are enabled in the MySQL database before attemping encryption.
-</p>
-
-<p class="note">
-<strong>Note:</strong>
 Applying changes takes longer than normal when you first enable encryption and when you change the
 encryption password.
+
+<p class="note">
+  <strong>Note:</strong> VMware recommends enabling backup and restore capabilities in the MySQL
+  database before attempting encryption. This is because if something goes wrong, and your database
+  is only partially encrypted, it is safest to revert to the most recent database backup.
 </p>
+
 
 #### Prerequisite
 
