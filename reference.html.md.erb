@@ -503,6 +503,13 @@ The format for binding credentials for PostgreSQL is as follows:
 }
 ```
 
+<p class="note">
+  <strong>Note:</strong> When a binding or service key is deleted, the underlying PostgreSQL user
+  still exists in the database. To remove the user completely, use the CLI.
+  For more information, see the
+  <a href="https://www.postgresql.org/docs/current/sql-dropuser.html">PostgreSQL documentation</a>.
+</p>
+
 
 ## <a id="aws-redis"></a> Amazon ElastiCache for Redis
 
