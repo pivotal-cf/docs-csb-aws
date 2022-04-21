@@ -18,11 +18,6 @@ production into the appropriate branches listed below:
 | 1.1        | v1.1. Staged at https://docs-staging.vmware.com/en/Cloud-Service-Broker-for-AWS/1.1/cloud-service-broker-aws/GUID-index.html |
 | 1.0        | v1.0. Staged at https://docs-staging.vmware.com/en/Cloud-Service-Broker-for-AWS/1.0/cloud-service-broker-aws/GUID-index.html |
 
-## Book Repo
-
-The book repository associated with this content is
-[pivotal-cf/docs-book-csb-aws](https://github.com/pivotal-cf/docs-book-csb-aws).
-
 ### Contributing Documentation
 
 If there is some documentation to add for an unreleased patch version of Cloud Service Broker then
@@ -35,11 +30,6 @@ If the documentation is meant to target several released versions, ask the techn
 cherry-pick to particular branches/versions.
 If this isn't practical because the content differs too much between versions, create a separate pull
 request for each minor version.
-
-### Partials
-
-Cross-product partials (if any) for Cloud Service Broker are single sourced from the
-[Docs Partials](https://github.com/pivotal-cf/docs-partials) repository.
 
 ### Releasing a New Minor Version
 
@@ -137,3 +127,9 @@ General information about landing pages:
 This version number becomes part of the URL.
 - Some products, such as, [Tanzu Kubernetes Grid](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html) publish separate release notes publications for each point release.
 - For comparison see https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/index.html
+
+## Historic Bookbinder and Runway information
+
+Content used to be published with Bookbinder and Runway. This is no longer true.
+The book repository associated with this content was
+[pivotal-cf/docs-book-csb-aws](https://github.com/pivotal-cf/docs-book-csb-aws).
