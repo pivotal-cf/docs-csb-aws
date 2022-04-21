@@ -1,5 +1,5 @@
 ---
-title: Cloud Service Broker for AWS
+title: VMware Tanzu Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
@@ -14,10 +14,6 @@ The <%= vars.product_full %> enables platform operators to easily expose service
 from any public cloud with a Terraform provider.
 <%= vars.product_short %> is thoroughly extensible, and can expose new services or public clouds
 through the use of custom brokerpaks.
-The <%= vars.product_full %> tile released on <%= vars.product_network %> currently supports AWS and
-Azure. For the Azure version, go to
-[Tanzu Cloud Service Broker for Azure](https://network.pivotal.io/products/cloud-service-broker-azure).
-
 
 ## <a id='features'></a> Key Features
 
@@ -27,16 +23,16 @@ Azure. For the Azure version, go to
 services. If your target public cloud has a Terraform provider, you can provision services
 through a common interface using standard Cloud Foundry CLI (cf CLI) commands.
 For more information about brokerpaks, see
-[Brokerpak](https://github.com/pivotal/cloud-service-broker/blob/master/docs/brokerpak-intro.md)
-in GitHub and the [Terraform documentation](https://www.terraform.io/docs/providers/index.html).
+[Brokerpak Introduction](https://github.com/pivotal/cloud-service-broker/blob/master/docs/brokerpak-intro.md)
+in GitHub.
 - **One common broker for all brokered services:** <%= vars.product_short %> decouples the service
 broker functionality from the catalog of services that it exposes.
 - **CredHub integration out-of-the-box:** CredHub encrypts and manages all the secrets associated
 with your usage of cloud services.
 - **Community:** When you expose a service through a brokerpak, you can make it available to
 everyone who uses <%= vars.product_short %> and vice versa. For more information, see the
-[Brokerpak](https://github.com/pivotal/cloud-service-broker/blob/master/docs/brokerpak-intro.md)
-GitHub repository.
+[Brokerpak Introduction](https://github.com/pivotal/cloud-service-broker/blob/master/docs/brokerpak-intro.md)
+in GitHub.
 - **Service migration through Terraform:** Easily migrate existing services through the import
 feature in Terraform. For more information, see the
 [Terraform documentation](https://www.terraform.io/docs/import/index.html).
@@ -51,15 +47,15 @@ The following table provides version and version-support information about <%= v
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>1.0.0</td>
+        <td>1.2.0</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>November 16, 2020</td>
+        <td>MONTH DD, YYYY</td>
     </tr>
     <tr>
         <td>Software component version</td>
-        <td>1.0</td>
+        <td>1.2</td>
     </tr>
     <tr>
         <td>Compatible <%= vars.ops_manager %> versions</td>
@@ -84,9 +80,9 @@ The following table provides version and version-support information about <%= v
 
 <%= vars.product_short %> has the following requirements:
 
-+ Access to the console <%# What console? CSB console? %> on AWS.
++ Access to the AWS Management Console.
 + <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) installed on your platform of choice.
-
++ A small MySQL database to use as the state database.
 
 ## <a id="limitations"></a> Limitations
 
@@ -101,5 +97,5 @@ from GitHub. The tiles do not support custom brokerpaks at this time.
 
 If you have a feature request, questions, or information about an issue, please open an issue on
 the [cloud-service-broker](https://github.com/pivotal/cloud-service-broker) GitHub repository or
-post in the #cloud-service-broker-beta [Cloud Foundry Slack](https://slack.cloudfoundry.org/)
+post in the #cloudservicebroker [Cloud Foundry Slack](https://slack.cloudfoundry.org/)
 channel.
