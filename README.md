@@ -14,7 +14,7 @@ production into the appropriate branches listed below:
 
 | Branch Name| Use for… |
 |------------| ---------|
-| main       | v1.2. Staged at https://docs-staging.vmware.com/en/Cloud-Service-Broker-for-AWS/1.2/cloud-service-broker-aws/GUID-index.html |
+| main       | v1.2. Staged at https://docs-staging.vmware.com/en/draft/Tanzu-Cloud-Service-Broker-for-AWS/1.2/csb-aws/GUID-index.html |
 | 1.1        | v1.1. Staged at https://docs-staging.vmware.com/en/Cloud-Service-Broker-for-AWS/1.1/cloud-service-broker-aws/GUID-index.html |
 | 1.0        | v1.0. Staged at https://docs-staging.vmware.com/en/Cloud-Service-Broker-for-AWS/1.0/cloud-service-broker-aws/GUID-index.html |
 
