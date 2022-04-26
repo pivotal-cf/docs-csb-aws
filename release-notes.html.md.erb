@@ -16,20 +16,20 @@ These are release notes for <%= vars.product_full %>.
 
 New feature in this release:
 
-**S3 bucket versioning is available:** You can enable versioning for each bucket by setting
+* **S3 bucket versioning is available:** You can enable versioning for each bucket by setting
 `enable_versioning` in the plan properties or in the service instance create request.
 
 ### Resolved Issue
 
 This release has the following fix:
 
-**Redis display names are now correct:** Some display names were labeled incorrectly before.
+* **Redis display names are now correct:** Some display names were labeled incorrectly before.
 
 ### Known Issue
 
 This release has the following issue:
 
-**PostgreSQL instances cannot be moved to smaller plans:**
+* **PostgreSQL instances cannot be moved to smaller plans:**
 Because of a limitation with Amazon RDS for PostgreSQL, instance plans cannot be changed to smaller plans.
 For example, when using a `cf update-service -p` command.
 This restriction also applies to subsumed PostgreSQL instances.
