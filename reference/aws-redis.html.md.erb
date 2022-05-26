@@ -1,0 +1,147 @@
+---
+title: Amazon ElastiCache for Redis
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+
+This topic provides reference information about the  Amazon ElastiCache for Redis (csb-aws-redis) service.
+It details the plans, configuration parameters, and binding credentials.
+
+### <a id="plans"></a> Plans
+
+Tables for cache sizes and plans are below:
+
+#### Cache Size to AWS Node Type Mapping
+
+| cache_size | node type |
+|------------|-----------|
+| 1   |cache.t2.small |
+| 2   |cache.t3.medium |
+| 4   |cache.m5.large |
+| 8   |cache.m5.xlarge |
+| 16  |cache.r4.xlarge |
+| 32  |cache.r4.2xlarge |
+| 64  |cache.r4.4xlarge |
+| 128 |cache.r4.8xlarge |
+| 256 |cache.r5.12xlarge |
+
+#### Basic Plans
+
+| Plan | Cache Size | AWS Cache Node Type | HA |
+|------|------------|---------------------|-----|
+| small | minimum 1&nbsp;GB | cache.t2.small | no |
+| medium | minimum 4&nbsp;GB |cache.m5.large | no |
+| large | minimum 16&nbsp;GB |cache.r4.xlarge | no |
+
+#### High Availability Plans
+
+| Plan | Cache Size | AWS Cache Node Type | HA |
+|------|------------|---------------------|-----|
+| small-ha | minimum 1&nbsp;GB | cache.t2.small | yes |
+| medium-ha | minimum 4&nbsp;GB |cache.m5.large | yes |
+| large-ha | minimum 16&nbsp;GB |cache.r4.xlarge | yes |
+
+### <a id="parameters"></a> Configuration Parameters
+
+You can provision a service by running:
+
+```
+cf create-service csb-aws-redis PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+```
+
+You can update the configuration parameters for a service instance by running:
+
+```
+cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
+You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-redis` service:
+
+<table class="nice">
+  <thead>
+    <tr>
+    <th width="25%">Parameter Name</th>
+    <th width="10%">Type</th>
+    <th width="45%">Description</th>
+    <th width="20%">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>instance_name</code></td>
+      <td>String</td>
+      <td>The name of the AWS instance to create.</td>
+      <td><code>csb-redis-INSTANCE-ID</code></td>
+    </tr>
+    <tr>
+      <td><code>region</code></td>
+      <td>String</td>
+      <td>
+        The AWS region to deploy the service in.
+        For more information about available regions, see the
+        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
+      </td>
+      <td><code>us-west-2</code></td>
+    </tr>
+    <tr>
+      <td><code>vpc_id</code></td>
+      <td>String</td>
+      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
+      <td>The default VPC</td>
+    </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+    </tr>
+    <tr>
+      <td><code>redis_version</code></td>
+      <td>String</td>
+      <td>Redis version to provision: <code>&quot;2.6&quot;</code>,
+        <code>&quot;2.8&quot;</code>,
+        <code>&quot;3.2&quot;</code>,
+        <code>&quot;4.0&quot;</code>,
+        <code>&quot;5.0&quot;</code></td>
+      <td><code>&quot;5.0&quot;</code></td>
+    </tr>
+    <tr>
+      <td><code>cache_size</code></td>
+      <td>Integer</td>
+      <td>The size in GB for the cache: 1, 2, 4, 8, 16, 32, 64, 128, 256</td>
+      <td>The default for the plan you selected.</td>
+    </tr>
+    <tr>
+      <td><code>node_type</code></td>
+      <td>String</td>
+      <td>Specifying the node type overrides the `cache-size` conversion to node type that is
+        described in the <strong>Cache Size to AWS Node Type Mapping</strong> table in the
+        <a href="#aws-redis-plans">Plans for Amazon ElastiCache</a> section above.<br><br>
+        For more information about node types and pricing, see the
+        <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a>.</td>
+      <td><em>n/a</em></td>
+    </tr>
+  </tbody>
+</table>
+
+
+### <a id="binding-creds"></a> Binding Credentials
+
+The format for binding credentials for Redis is as follows:
+
+```json
+{
+    "host" : "REDIS-SERVER-HOSTNAME",
+    "port" : "REDIS-SERVER-PORT",
+    "password" : "AUTHENTICATION-PASSWORD",
+    "tls_port" : "REDIS-TLS-PORT"
+}
+```
