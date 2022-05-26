@@ -1,0 +1,199 @@
+---
+title: Amazon RDS for PosgreSQL
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+
+This topic provides reference information about the Amazon RDS for PostgreSQL (aws-rds-postgres) service.
+It details the plans, configuration parameters, and binding credentials.
+
+### <a id="plans"></a> Plans
+
+The default plans and configuration options for Amazon RDS for PostgreSQL are in the table below:
+
+| Plan | Instance Class | Version | CPUs | Memory Size | Disk Size |
+|------|---------|---------|------|-------------|-----------|
+|small | db.t2.medium | 11      | 2    | minimum 4&nbsp;GB     | 5&nbsp;GB       |
+|medium| db.m4.xlarge | 11      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
+|large | db.m4.2xlarge | 11      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
+
+#### Amazon RDS for PostgreSQL Core to Instance Class Mapping
+
+The table below shows the CPU size mapped to AWS database instance types:
+
+| CPUs | Instance Class |
+|-------|---------------|
+| 1     | db.m1.medium  |
+| 2     | db.t2.medium  |
+| 4     | db.m4.xlarge  |
+| 8     | db.m4.2xlarge |
+| 16    | db.m4.4xlarge |
+| 32    | db.m5.8xlarge |
+| 64    | db.m5.16xlarge|
+
+For more information about database instance classes, see the
+[AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html).
+
+### <a id="parameters"></a> Configuration Parameters
+
+You can provision a service by running:
+
+```
+cf create-service aws-rds-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+```
+
+You can update the configuration parameters for a service instance by running:
+
+```
+cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
+You can also configure these parameters using the `-c` flag when provisioning a `aws-rds-postgres` service:
+
+<table class="nice">
+  <thead>
+    <tr>
+    <th width="25%">Parameter Name</th>
+    <th width="10%">Type</th>
+    <th width="45%">Description</th>
+    <th width="20%">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>instance_name</code></td>
+      <td>String</td>
+      <td>The name of the AWS instance to create.</td>
+      <td><code>csb-mysql-INSTANCE-ID</code></td>
+    </tr>
+    <tr>
+      <td><code>region</code></td>
+      <td>String</td>
+      <td>
+        The AWS region in which to deploy the service. For more information about available regions,
+        see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
+      </td>
+      <td><code>us-west-2</code></td>
+    </tr>
+    <tr>
+      <td><code>vpc_id</code></td>
+      <td>String</td>
+      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
+      <td>The default VPC</td>
+    </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+    </tr>
+    <tr>
+      <td><code>instance_class</code></td>
+      <td>String</td>
+      <td>Specifying the instance class overrides the conversion of cores to instance classes that is
+        described in the <em>Core to Instance Class Mapping</em> table in the
+        <a href="#aws-postgres-plans">Plans for PostgreSQL</a> section above.<br><br>
+        For more information about database instance classes, see the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
+      <td><em>n/a</em></td>
+    </tr>
+    <tr>
+      <td><code>multi-az</code></td>
+      <td>Boolean</td>
+      <td>If <code>true</code>, create a Multi-AZ (HA) instance.
+      For more information about Multi-AZ deployments, see the
+      <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>publicly_accessible</code></td>
+      <td>Boolean</td>
+      <td>If <code>true</code>, make instance available to public connections.</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>allow_major_version_upgrade</code></td>
+      <td>Boolean</td>
+      <td>Indicates that major version upgrades are allowed.
+        Changing this parameter does not result in an outage and the change is
+        asynchronously applied as soon as possible.</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>allow_minor_version_upgrade</code></td>
+      <td>Boolean</td>
+      <td>(Optional) Indicates that minor engine upgrades will be applied automatically
+        to the database instance during the maintenance window.</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>maintenance_day</code>,<code>maintenance_start_hour</code>,<code>maintenance_start_min</code>,<code>maintenance_end_hour</code>, <code>maintenance_end_min</code></td>
+      <td>Boolean</td>
+      <td>(Optional) Maintenance window definition.</td>
+      <td>Defaults vary by region. See the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow">AWS Documentation</a>.</td>
+    </tr>
+    <tr>
+      <td><code>storage_encrypted</code></td>
+      <td>Boolean</td>
+      <td>If <code>true</code>, database storage is encrypted.</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>parameter_group_name</code></td>
+      <td>String</td>
+      <td>The PostgreSQL parameter group name for the service instance.</td>
+      <td><code>default.postgres.POSTGRES-VERSION</code></td>
+    </tr>
+    <tr>
+      <td><code>rds_subnet_group</code></td>
+      <td>String</td>
+       <td>The name of subnet to attach the database instance to.
+         This overrides <code>aws_vpc_id</code.></td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>rds_vpc_security_group_ids</code></td>
+      <td>Comma-separated String</td>
+      <td>Security group IDs to assign to the database instance.</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>use_tls</code></td>
+      <td>Boolean</td>
+      <td>Use TLS for database connections.</td>
+      <td>true</td>
+    </tr>
+  </tbody>
+</table>
+
+### <a id="binding-creds"></a> Binding Credentials
+
+The format for binding credentials for PostgreSQL is as follows:
+
+```json
+{
+    "name" : "DATABASE-NAME",
+    "hostname" : "DATABASE-SERVER-HOST",
+    "port" : "DATABASE-SERVER-PORT",
+    "username" : "AUTHENTICATION-USERNAME",
+    "password" : "AUTHENTICATION-PASSWORD",
+    "uri" : "DATABASE-CONNECTION-URI",
+    "jdbcUrl" : "JDBC-FORMAT-CONNECTION-URI"
+}
+```
+
+<p class="note">
+  <strong>Note:</strong> When a binding or service key is deleted, the underlying PostgreSQL user
+  still exists in the database. To remove the user completely, use the CLI.
+  For more information, see the
+  <a href="https://www.postgresql.org/docs/current/sql-dropuser.html">PostgreSQL documentation</a>.
+</p>
