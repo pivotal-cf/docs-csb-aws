@@ -1,0 +1,96 @@
+---
+title: Amazon S3 Bucket
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+
+This topic provides reference information about the Amazon S3 Bucket service (csb-aws-s3-bucket).
+It details the plans, configuration parameters, and binding credentials.
+
+### <a id="plans"></a> Plans
+
+The table below lists the plans for the `csb-aws-s3-bucket` service:
+
+| Plan       | Description |
+|------------|------|
+| private       | Private S3 bucket|
+| public-read      | Publicly readable S3 bucket|
+
+### <a id="parameters"></a> Configuration Parameters
+
+You can provision a service by running:
+
+```
+cf create-service csb-aws-s3-bucket PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+```
+
+You can update the configuration parameters for a service instance by running:
+
+```
+cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
+You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-s3-bucket` service:
+
+<table class="nice">
+  <thead>
+    <tr>
+    <th width="25%">Parameter Name</th>
+    <th width="10%">Type</th>
+    <th width="45%">Description</th>
+    <th width="20%">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bucket_name</code></td>
+      <td>String</td>
+      <td>The name of the bucket to create</td>
+      <td><code>csb-INSTANCE-ID</code></td>
+    </tr>
+    <tr>
+      <td><code>enable_versioning</code></td>
+      <td>Boolean</td>
+      <td>Enable bucket versioning</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>region</code></td>
+      <td>String</td>
+      <td>
+        This is the AWS region to deploy the service in.
+        For more information about available regions, see the
+        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.</td>
+      <td><code>us-west-2</code></td>
+    </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %></td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %></td>
+    </tr>
+  </tbody>
+</table>
+
+### <a id="binding-creds"></a> Binding Credentials
+
+The format for binding credentials for Amazon S3 Bucket is as follows:
+
+```
+{
+    "arn" : "BUCKET-ARN",
+    "bucket_domain_name" : "BUCKET-FQDN",
+    "region" : "BUCKET-REGION",
+    "bucket_name" : "BUCKET-NAME",
+    "access_key_id" : "ACCESS-KEY-FOR-BUCKET",
+    "secret_access_key" : "SECRET-KEY-FOR-BUCKET"
+}
+```
