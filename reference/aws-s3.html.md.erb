@@ -8,7 +8,7 @@ owner: Cloud Service Broker
 This topic provides reference information about the Amazon S3 Bucket service (csb-aws-s3-bucket).
 It details the plans, configuration parameters, and binding credentials.
 
-### <a id="plans"></a> Plans
+## <a id="plans"></a> Plans
 
 The table below lists the plans for the `csb-aws-s3-bucket` service:
 
@@ -17,7 +17,7 @@ The table below lists the plans for the `csb-aws-s3-bucket` service:
 | private       | Private S3 bucket|
 | public-read      | Publicly readable S3 bucket|
 
-### <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
@@ -26,7 +26,7 @@ cf create-service csb-aws-s3-bucket PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAME
 ```
 
 You can update the configuration parameters for a service instance by running:
-
+##
 ```
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
@@ -80,7 +80,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
   </tbody>
 </table>
 
-### <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding Credentials
 
 The format for binding credentials for Amazon S3 Bucket is as follows:
 
