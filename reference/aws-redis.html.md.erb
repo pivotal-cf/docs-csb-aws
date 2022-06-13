@@ -8,11 +8,11 @@ owner: Cloud Service Broker
 This topic provides reference information about the  Amazon ElastiCache for Redis (csb-aws-redis) service.
 It details the plans, configuration parameters, and binding credentials.
 
-### <a id="plans"></a> Plans
+## <a id="plans"></a> Plans
 
 Tables for cache sizes and plans are below:
 
-#### Cache Size to AWS Node Type Mapping
+### Cache Size to AWS Node Type Mapping
 
 | cache_size | node type |
 |------------|-----------|
@@ -26,7 +26,7 @@ Tables for cache sizes and plans are below:
 | 128 |cache.r4.8xlarge |
 | 256 |cache.r5.12xlarge |
 
-#### Basic Plans
+### Basic Plans
 
 | Plan | Cache Size | AWS Cache Node Type | HA |
 |------|------------|---------------------|-----|
@@ -34,7 +34,7 @@ Tables for cache sizes and plans are below:
 | medium | minimum 4&nbsp;GB |cache.m5.large | no |
 | large | minimum 16&nbsp;GB |cache.r4.xlarge | no |
 
-#### High Availability Plans
+### High Availability Plans
 
 | Plan | Cache Size | AWS Cache Node Type | HA |
 |------|------------|---------------------|-----|
@@ -42,7 +42,7 @@ Tables for cache sizes and plans are below:
 | medium-ha | minimum 4&nbsp;GB |cache.m5.large | yes |
 | large-ha | minimum 16&nbsp;GB |cache.r4.xlarge | yes |
 
-### <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
@@ -133,7 +133,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
 </table>
 
 
-### <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding Credentials
 
 The format for binding credentials for Redis is as follows:
 
