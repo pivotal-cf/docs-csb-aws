@@ -17,6 +17,35 @@ The default plans for Amazon DynamoDB are in the table below:
 | ondemand | With on-demand capacity mode, DynamoDB is charged for the data reads and writes the application performs on the table. |
 | provisioned | With provisioned capacity mode, specify the number of reads and writes per second that the application is expected to require. |
 
+## <a id="plans-config"></a> Plan Configuration Parameters
+
+When configuring <%= vars.product_short %> you can add additional plans.
+For how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+
+The following table lists parameters which can only be configured for additional plans:
+
+| Parameter Name       | Values                         | Default   |
+|----------------------|--------------------------------|-----------|
+| `name`*              | The plan name                  | _n/a_     |
+| `id`*                | A unique GUID                  | _n/a_     |
+| `description`*       | Description of the new plan    | _n/a_     |
+| `display_name`       | Name to use when displaying plan in marketplace    | _n/a_     |
+| `free`               | When false, Service Instances of this Service Plan have a cost    | true     |
+| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications    | true     |
+| `plan_updateable`    | Whether the Plan supports upgrade/downgrade/sidegrade to another version    | true     |
+| `billing_mode`*      | Controls how you are billed for read/write throughput and how you manage capacity  | PAY_PER_REQUEST     |
+
+<sup>*</sup> Required
+
+You can also add any of the configuration parameters listed in the [parameters](#parameters) section to your plan.
+
+<p class="note">
+  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
+  change the value when creating or updating service instances.
+</p>
+
+
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision an Amazon DynamoDB table by running:
@@ -57,139 +86,174 @@ cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"
 ```
 
 The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
-You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-dynamodb`
+You can also configure these parameters using the `-c` flag when provisioning or updating a `csb-aws-dynamodb`
 service:
 
 <table class="nice">
   <thead>
     <tr>
-    <th width="25%">Parameter Name</th>
-    <th width="10%">Type</th>
-    <th width="5%">Required</th>
-    <th width="45%">Description</th>
-    <th width="15%">Default</th>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+      <th width="10%">Operation</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>table_name</code></td>
       <td>String</td>
-      <td>Yes</td>
-      <td>The name of the table</td>
+      <td>(Required) The name of the table</td>
       <td><em>n/a</em></td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>hash_key</code></td>
       <td>String</td>
-      <td>Yes</td>
-      <td>The key to use as the hash key</td>
+      <td>(Required) The key to use as the hash key</td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>range_key</code></td>
       <td>String</td>
-      <td>Yes</td>
-      <td>The key to use as the range key</td>
+      <td>(Required) The key to use as the range key</td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>attributes</code></td>
       <td>Array</td>
-      <td>Yes</td>
-      <td>A list of attributes and their types, for example: <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
+      <td>(Required) A list of attributes and their types, for example: <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>global_secondary_indexes</code></td>
       <td>Array</td>
-      <td>Yes</td>
-      <td>A list of global secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
+      <td>(Required) A list of global secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>local_secondary_indexes</code></td>
       <td>Array</td>
-      <td>No</td>
       <td>A list of local secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>instance_name</code></td>
       <td>String</td>
-      <td>No</td>
       <td>The name of the AWS instance to create</td>
       <td><code>csb-dynamodb-INSTANCE-ID</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>region</code></td>
       <td>String</td>
-      <td>No</td>
       <td>
         This is the AWS region to deploy the service in.
         For more information about available regions, see the
         <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>ttl_enabled</code></td>
       <td>Boolean</td>
-      <td>No</td>
       <td>Whether TTL is enabled</td>
       <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>ttl_attribute_name</code></td>
       <td>String</td>
-      <td>No</td>
       <td>The name of the table attribute to store the TTL timestamp in</td>
       <td><code>""</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>stream_enabled</code></td>
       <td>Boolean</td>
-      <td>No</td>
       <td>Indicates whether Streams are to be enabled</td>
       <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>stream_view_type</code></td>
       <td>String</td>
-      <td>No</td>
       <td>Valid values are <code>KEYS_ONLY</code>, <code>NEW_IMAGE</code>, <code>OLD_IMAGE</code>, <code>NEW_AND_OLD_IMAGES</code></td>
       <td><code>null</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>server_side_encryption_enabled</code></td>
       <td>Boolean</td>
-      <td>No</td>
       <td>Whether or not to enable encryption at rest using an AWS-managed KMS customer master key (CMK).</td>
       <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>server_side_encryption_kms_key_arn</code></td>
       <td>String</td>
-      <td>No</td>
       <td>The ARN of the CMK that should be used for the AWS KMS encryption. This attribute should only be specified if the key is different from the default DynamoDB CMK, alias/aws/dynamodb.</td>
       <td><code>null</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>write_capacity</code></td>
       <td>Number</td>
-      <td>No</td>
       <td>The number of write units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>read_capacity</code></td>
       <td>Number</td>
-      <td>No</td>
       <td>The number of read units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
   </tbody>
 </table>
 
+## <a id="binding-params"></a> Binding Parameters
+
+You can bind a service by running:
+
+```bash
+cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+The table below lists the parameters that you can configure, using the `-c` flag, when
+binding to a `csb-aws-dynamodb` service:
+
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %></td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %></td>
+    </tr>
+  </tbody>
+</table>
 
 ## <a id="binding-creds"></a> Binding Credentials
 
