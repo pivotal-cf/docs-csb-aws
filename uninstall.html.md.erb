@@ -1,0 +1,51 @@
+---
+title: Uninstalling Cloud Service Broker for AWS
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+
+This topic describes how to uninstall <%= vars.product_short %>.
+
+## <a id="overview"></a> Overview
+
+To uninstall <%= vars.product_short %> you must:
+
+1. [Clean Up Service Instances and Associated Resources](#cleanup-resources)
+2. [Uninstall the Tile](#uninstall-tile)
+
+## <a id="cleanup-resources"></a> Clean Up Service Instances and Associated Resources
+
+Before deleting the <%= vars.product_short %> tile, decide what to do with any
+service instances already created.
+Uninstalling this broker stops users from using Cloud Foundry to manage the service instances, bindings,
+and keys created by this broker.
+
+Choose one of the following options to clean up the resources for each service:
+
+* **Option 1:** Permanently delete all service instances, bindings, and keys from Cloud Foundry,
+and remove all resources from the AWS Console.
+For each service created by <%= vars.product_short %>, run:
+
+    ```
+    cf delete-service SERVICE-NAME
+    ```
+
+* **Option 2:** Delete all service instances and associated service bindings and
+service keys from Cloud Foundry, but keep the AWS resources.
+For each service created by <%= vars.product_short %>, run:
+
+    ```
+    cf purge-service-instance SERVICE-NAME
+    ```
+    The resources are not removed from the AWS Console, but are no longer managed by <%= vars.product_short %>.
+
+## <a id="uninstall-tile"></a> Uninstall the Tile
+
+To uninstall the <%= vars.product_short %> tile:
+
+1. Navigate to the <%= vars.ops_manager %> Installation Dashboard and click the
+trash can icon on the <%= vars.product_short %> tile.
+1. Click **Confirm** on the pop up window.
+3. Click **Review Pending Changes**.
+3. Click **Apply changes** to uninstall the <%= vars.product_short %> tile.

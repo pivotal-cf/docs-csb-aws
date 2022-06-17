@@ -17,6 +17,35 @@ The table below lists the plans for the `csb-aws-s3-bucket` service:
 | private       | Private S3 bucket|
 | public-read      | Publicly readable S3 bucket|
 
+## <a id="plans-config"></a> Plan Configuration Parameters
+
+When configuring <%= vars.product_short %> you can add additional plans.
+For how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+
+
+The following table lists parameters which can only be configured for additional plans:
+
+| Parameter Name       | Values                         | Default   |
+|----------------------|--------------------------------|-----------|
+| `name`*              | The plan name                  | _n/a_     |
+| `id`*                | A unique GUID                  | _n/a_     |
+| `description`*       | Description of the new plan    | _n/a_     |
+| `display_name`       | Name to use when displaying plan in marketplace    | _n/a_     |
+| `free`               | When false, Service Instances of this Service Plan have a cost    | true     |
+| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications    | true     |
+| `plan_updateable`    | Whether the Plan supports upgrade/downgrade/sidegrade to another version    | true     |
+| `acl`                | S3 bucket ACL (see https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl)    | _n/a_     |
+
+<sup>*</sup> Required
+
+You can also add any of the configuration parameters listed in the [parameters](#parameters) section to your plan.
+
+<p class="note">
+  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
+  change the value when creating or updating service instances.
+</p>
+
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
@@ -32,15 +61,16 @@ cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
 The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
-You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-s3-bucket` service:
+You can also configure these parameters using the `-c` flag when provisioning or updating a `csb-aws-s3-bucket` service:
 
 <table class="nice">
   <thead>
     <tr>
-    <th width="25%">Parameter Name</th>
-    <th width="10%">Type</th>
-    <th width="45%">Description</th>
-    <th width="20%">Default</th>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+      <th width="10%">Operation</th>
     </tr>
   </thead>
   <tbody>
@@ -49,12 +79,14 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td>String</td>
       <td>The name of the bucket to create</td>
       <td><code>csb-INSTANCE-ID</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>enable_versioning</code></td>
       <td>Boolean</td>
       <td>Enable bucket versioning</td>
       <td><code>false</code></td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>region</code></td>
@@ -64,7 +96,46 @@ You can also configure these parameters using the `-c` flag when provisioning a 
         For more information about available regions, see the
         <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.</td>
       <td><code>us-west-2</code></td>
+      <td>provision and update</td>
     </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %></td>
+      <td>provision and update</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id="binding-params"></a> Binding Parameters
+
+You can bind a service by running:
+
+```bash
+cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+The table below lists the parameters that you can configure, using the `-c` flag, when
+binding to a `csb-aws-s3-bucket` service:
+
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
