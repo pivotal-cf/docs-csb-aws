@@ -8,3 +8,4 @@
     * [Amazon RDS for PostgreSQL](reference/aws-postgres.html)
     * [Amazon ElastiCache for Redis](reference/aws-redis.html)
     * [Amazon DynamoDB](reference/aws-dynamodb.html)
+* [Uninstalling](uninstall.html)
