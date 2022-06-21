@@ -51,21 +51,21 @@ You can configure this  in <%= vars.ops_manager %> in the **Config and Plans** p
 You can configure this in <%= vars.ops_manager %> in the **PostgresSQL Config and Plans** pane.
 <br>New fields include: `storage_encrypted`, `parameter_group_name`, `rds_subnet_group`,
 `rds_vpc_security_group_ids`, and `use_tls`.
-For more information, see the configuration parameters for your service on [Service Plan Reference](./reference.html).
+For more information, see the configuration parameters for your service on [Service Plan Reference](reference/index.html).
 
 * **Functionality to allow major or minor upgrade and specify maintenance window:**
 This feature is available for the Amazon RDS for MySQL and Amazon RDS for PostgreSQL plans.
 You can add these as JSON parameters in <%= vars.ops_manager %> in the **Additional Plans**
 field of the **Config and Plans** panes for PostgreSQL and MySQL.
 <br>For the parameters to add, see the `allow_major_version_upgrade`, `allow_minor_version_upgrade`,
-and `maintenance` configuration parameters for your service on [Service Plan Reference](./reference.html).
+and `maintenance` configuration parameters for your service on [Service Plan Reference](reference/index.html).
 
 ### Resolved Issues
 
 This release has the following fixes:
 
 * **Added new and necessary IAM policies to the configuration documentation.**
-For more information, see [Prerequisites for Installing Cloud Service Broker for AWS](./installing-with-aws.html#prereq).
+For more information, see [Prerequisites for Installing Cloud Service Broker for AWS](installing-with-aws.html#prereq).
 
 * **Marked defaults and required parameters in DynamoDB.**
 This makes the errors that some customers are receiving more user-friendly.
