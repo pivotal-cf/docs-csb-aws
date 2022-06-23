@@ -32,10 +32,10 @@ The following table lists parameters which can only be configured for additional
 | `id`*                | A unique GUID                  | _n/a_     |
 | `description`*       | Description of the new plan    | _n/a_     |
 | `display_name`       | Name to use when displaying plan in marketplace    | _n/a_     |
-| `free`               | When false, Service Instances of this Service Plan have a cost    | true     |
-| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications    | true     |
-| `plan_updateable`    | Whether the Plan supports upgrade/downgrade/sidegrade to another version    | true     |
-| `acl`                | S3 bucket ACL (see https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl)    | _n/a_     |
+| `free`               | When false, service instances of this service plan have a cost    | true     |
+| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     |
+| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     |
+| `acl`                | S3 bucket ACL. For more information, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl">AWS documentation</a>.    | _n/a_     |
 
 <sup>*</sup> Required
 
@@ -101,7 +101,7 @@ You can also configure these parameters using the `-c` flag when provisioning or
     <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
-      <td>The AWS Access Key to use for an instance</td>
+      <td>The AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %></td>
       <td>provision and update</td>
     </tr>

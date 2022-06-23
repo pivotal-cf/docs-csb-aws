@@ -29,16 +29,16 @@ The following table lists parameters which can only be configured for additional
 
 | Parameter Name       | Values                         | Default   |
 |----------------------|--------------------------------|-----------|
-| `name`*              | The plan name                  | _n/a_     |
-| `id`*                | A unique GUID                  | _n/a_     |
-| `description`*       | Description of the new plan    | _n/a_     |
-| `display_name`       | Name to use when displaying plan in marketplace    | _n/a_     |
-| `free`               | When false, Service Instances of this Service Plan have a cost    | true     |
-| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications    | true     |
-| `plan_updateable`    | Whether the Plan supports upgrade/downgrade/sidegrade to another version    | true     |
-| `cores`*             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2    | 2     |
-| `mysql_version`*     | The version for the mysql instance. Can be 5.6 or 5.7    | 5.7     |
-| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096    | 5     |
+| `name`*              | The plan name.                 | _n/a_     |
+| `id`*                | A unique GUID.                 | _n/a_     |
+| `description`*       | Description of the new plan.   | _n/a_     |
+| `display_name`       | Name to use when displaying plan in marketplace.    | _n/a_     |
+| `free`               | When false, service instances of this service plan have a cost.    | true     |
+| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.    | true     |
+| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.    | true     |
+| `cores`*             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.    | 2     |
+| `mysql_version`*     | The version for the MySQL instance. Options are 5.6 or 5.7.    | 5.7     |
+| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.    | 5     |
 
 <sup>*</sup> Required
 
@@ -97,7 +97,10 @@ You can also configure these parameters using the `-c` flag when provisioning or
     <tr>
       <td><code>multi_az</code></td>
       <td>Boolean</td>
-      <td> Make instance multi AZ if true (see https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)</td>
+      <td>
+        Make the instance Multi-AZ if true. For more information about Multi-AZ deployments, see the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.
+      </td>
       <td><code>false</code></td>
       <td>provision and update</td>
     </tr>
@@ -123,7 +126,7 @@ You can also configure these parameters using the `-c` flag when provisioning or
       <td><code>rds_subnet_group</code></td>
       <td>String</td>
        <td>The name of subnet to attach the database instance to.
-         This overrides <code>aws_vpc_id</code></td>
+         This overrides <code>aws_vpc_id</code>.</td>
       <td>None</td>
     </tr>
     <tr>
@@ -213,7 +216,7 @@ You can also configure these parameters using the `-c` flag when provisioning or
       <td>The preferred maintenance start minute. </td>
       <td><code>00</code></td>
       <td>provision and update</td>
-    </tr>  
+    </tr>
     <tr>
       <td><code>maintenance_end_hour</code></td>
       <td>String</td>
@@ -227,7 +230,7 @@ You can also configure these parameters using the `-c` flag when provisioning or
       <td>The preferred maintenance end minute. </td>
       <td><code>00</code></td>
       <td>provision and update</td>
-    </tr>  
+    </tr>
     <tr>
       <td><code>storage_encrypted</code></td>
       <td>Boolean</td>
