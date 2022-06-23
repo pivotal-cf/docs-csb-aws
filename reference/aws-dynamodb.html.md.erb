@@ -56,7 +56,7 @@ cf create-service csb-aws-dynamodb PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMET
 
 For example:
 
-<p class="terminal">
+<pre class="terminal">
 $ cf create-service csb-aws-dynamodb ondemand my-service -c '
 {
   "attributes": [
@@ -77,7 +77,7 @@ $ cf create-service csb-aws-dynamodb ondemand my-service -c '
   "range_key": "value",
   "table_name": "csb-dynamodb-test"
 }'
-</p>
+</pre>
 
 You can update the configuration parameters for a service instance by running:
 
