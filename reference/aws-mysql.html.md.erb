@@ -42,7 +42,7 @@ The following table lists parameters which can only be configured for additional
 
 <sup>*</sup> Required
 
-You can also add any of the configuration parameters listed in the [parameters](#parameters) section to your plan.
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
 
 To create plans with specific size and versions we recommend setting `cores`, `storage_gb` and
 `mysql_version` properties.
@@ -95,16 +95,6 @@ You can also configure these parameters using the `-c` flag when provisioning or
       <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>multi_az</code></td>
-      <td>Boolean</td>
-      <td>
-        Make the instance Multi-AZ if true. For more information about Multi-AZ deployments, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.
-      </td>
-      <td><code>false</code></td>
-      <td>provision and update</td>
-    </tr>
-    <tr>
       <td><code>region</code></td>
       <td>String</td>
       <td>
@@ -128,12 +118,14 @@ You can also configure these parameters using the `-c` flag when provisioning or
        <td>The name of subnet to attach the database instance to.
          This overrides <code>aws_vpc_id</code>.</td>
       <td>None</td>
+      <td></td>
     </tr>
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
       <td>Comma-separated String</td>
       <td>Security group IDs to assign to the database instance.</td>
       <td>None</td>
+      <td></td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
@@ -165,12 +157,11 @@ You can also configure these parameters using the `-c` flag when provisioning or
       <td><code>multi-az</code></td>
       <td>Boolean</td>
       <td>If <code>true</code>, create a Multi-AZ (HA) instance.
-        For more information about Multi-AZ deployment, see the
+        For more information about Multi-AZ deployments, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.
       </td>
-      <td>
-        <code>false</code>
-      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>publicly_accessible</code></td>
