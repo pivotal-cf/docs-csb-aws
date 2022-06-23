@@ -38,7 +38,7 @@ The following table lists parameters which can only be configured for additional
 
 <sup>*</sup> Required
 
-You can also add any of the configuration parameters listed in the [parameters](#parameters) section to your plan.
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
 
 <p class="note">
   <strong>Note:</strong> If you set a parameter at plan level, developers cannot
@@ -56,8 +56,8 @@ cf create-service csb-aws-dynamodb PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMET
 
 For example:
 
-```console
-cf create-service csb-aws-dynamodb ondemand my-service -c '
+<p class="terminal">
+$ cf create-service csb-aws-dynamodb ondemand my-service -c '
 {
   "attributes": [
     {"name":"id","type":"S"},
@@ -78,6 +78,7 @@ cf create-service csb-aws-dynamodb ondemand my-service -c '
   "table_name": "csb-dynamodb-test"
 }'
 ```
+</p>
 
 You can update the configuration parameters for a service instance by running:
 
