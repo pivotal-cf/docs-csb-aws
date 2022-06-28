@@ -8,7 +8,7 @@ owner: Cloud Service Broker
 > **Warning:** The Amazon RDS for PosgreSQL service is currently in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
 
-This topic provides reference information about the Amazon RDS for PostgreSQL (aws-rds-postgres) service.
+This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres) service.
 It details the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
@@ -60,7 +60,7 @@ To create plans with specific size and versions we recommend setting `cores`, `s
 You can provision a service by running:
 
 ```
-cf create-service aws-rds-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+cf create-service csb-aws-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
@@ -69,7 +69,7 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `aws-rds-postgres` service. 
+The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-postgres` service. 
 The Operation column displays whether a parameter is supported for both provision and update, or for provision only:
 
 <table class="nice">
