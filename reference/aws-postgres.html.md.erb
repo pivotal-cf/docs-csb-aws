@@ -8,8 +8,8 @@ owner: Cloud Service Broker
 > **Warning:** The Amazon RDS for PosgreSQL service is currently in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
 
-This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres) service.
-It details the plans, configuration parameters, and binding credentials.
+This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres)
+service. It details the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
 
@@ -21,7 +21,6 @@ The default plans and configuration options for Amazon RDS for PostgreSQL are in
 |medium| db.m4.xlarge | 11      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
 |large | db.m4.2xlarge | 11      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
 
-
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
@@ -30,30 +29,27 @@ For how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   |
-|----------------------|--------------------------------|-----------|
-| `name`*              | The plan name.                 | _n/a_     |
-| `id`*                | A unique GUID.                 | _n/a_     |
-| `description`*       | Description of the new plan.   | _n/a_     |
-| `display_name`       | Name to use when displaying plan in marketplace.    | _n/a_     |
-| `free`               | When false, service instances of this service plan have a cost.    | true     |
-| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.    | true     |
-| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.    | true     |
-| `cores`*             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.    | 2     |
-| `postgres_version`*  | The version for the PostgreSQL instance. Options are 9.4, 9.5, 9.6, 10 or 11.    | 11     |
-| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.    | 5     |
+| Parameter Name       | Values                         | Default   | Required |
+|----------------------|--------------------------------|-----------|----------|
+| `name`              | The plan name                  | _n/a_     | Yes      |
+| `id`                | A unique GUID                  | _n/a_     | Yes      |
+| `description`       | Description of the new plan    | _n/a_     | Yes      |
+| `display_name`       | Name to use when displaying plan in Marketplace    | _n/a_     | No |
+| `free`               | When false, service instances of this service plan have a cost    | true     | No |
+| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
+| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
+| `cores`             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.    | 2     | Yes |
+| `postgres_version`  | This is the version for the PostgreSQL instance. Options are 9.4, 9.5, 9.6, 10, or 11.  | 11     | Yes |
+| `storage_gb`        | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB    | 5     | Yes |
 
-<sup>*</sup> Required
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+to your plan.
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
+To create plans with specific size and versions, set `cores`, `storage_gb`, and `mysql_version`
+properties.
 
-To create plans with specific size and versions we recommend setting `cores`, `storage_gb` and
-`mysql_version` properties.
-
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
-  change the value when creating or updating service instances.
-</p>
+> **Note:** If you set a parameter at plan level, developers cannot change the value when creating
+  or updating service instances.
 
 ## <a id="parameters"></a> Configuration Parameters
 
@@ -69,7 +65,7 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-postgres` service. 
+The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-postgres` service.
 The Operation column displays whether a parameter is supported for both provision and update, or for provision only:
 
 <table class="nice">
@@ -93,7 +89,7 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>db_name</code></td>
       <td>String</td>
-      <td>Name for the database to create.</td>
+      <td>Name for the database to create</td>
       <td><code>vsbdb</code></td>
       <td>provision and update</td>
     </tr>
@@ -154,62 +150,62 @@ The Operation column displays whether a parameter is supported for both provisio
       <td><code>auto_minor_version_upgrade</code></td>
       <td>Boolean</td>
       <td>Indicates that minor engine upgrades will be applied automatically
-        to the database instance during the maintenance window.</td>
+        to the database instance during the maintenance window</td>
       <td><code>true</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_day</code></td>
       <td>String</td>
-      <td>The preferred maintenance day. Options: Sun, Mon, Tue, Wed, Thu, Fri, Sat </td>
+      <td>The preferred maintenance day: Sun, Mon, Tue, Wed, Thu, Fri, or Sat</td>
       <td><code>Sun</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_start_hour</code></td>
       <td>String</td>
-      <td>The preferred maintenance start hour. </td>
+      <td>The preferred maintenance start hour</td>
       <td><code>00</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_start_min</code></td>
       <td>String</td>
-      <td>The preferred maintenance start minute. </td>
+      <td>The preferred maintenance start minute</td>
       <td><code>00</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_end_hour</code></td>
       <td>String</td>
-      <td>The preferred maintenance end hour. </td>
+      <td>The preferred maintenance end hour</td>
       <td><code>00</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_end_min</code></td>
       <td>String</td>
-      <td>The preferred maintenance end minute. </td>
+      <td>The preferred maintenance end minute</td>
       <td><code>00</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>storage_encrypted</code></td>
       <td>Boolean</td>
-      <td>If <code>true</code>, database storage is encrypted.</td>
+      <td>If <code>true</code>, database storage is encrypted</td>
       <td><code>false</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>parameter_group_name</code></td>
       <td>String</td>
-      <td>The PostgreSQL parameter group name for the service instance.</td>
+      <td>The PostgreSQL parameter group name for the service instance</td>
       <td><code>default.postgres.POSTGRES-VERSION</code></td>
     </tr>
     <tr>
       <td><code>aws_vpc_id</code></td>
       <td>String</td>
-      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
+      <td>The Virtual Private Cloud (VPC) to connect the instance to</td>
       <td>The default VPC</td>
       <td>provision and update</td>
     </tr>
@@ -238,29 +234,29 @@ The Operation column displays whether a parameter is supported for both provisio
      <tr>
       <td><code>storage_autoscale</code></td>
       <td>Boolean</td>
-      <td>Enable storage autoscaling up to storage_autoscale_limit_gb if true.</td>
+      <td>Enable storage autoscaling up to <code>storage_autoscale_limit_gb</code> if true</td>
       <td>true</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>storage_autoscale_limit_gb</code></td>
       <td>Integer</td>
-      <td>Max storage size if storage_autoscale is true.</td>
+      <td>Maximum storage size if storage_autoscale is true</td>
       <td>0</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
-      <td>The AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>The AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_secret_access_key</code></td>
       <td>String</td>
-      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %></td>
       <td>provision and update</td>
     </tr>
   </tbody>
@@ -270,7 +266,7 @@ The Operation column displays whether a parameter is supported for both provisio
 
 You can bind a service by running:
 
-```bash
+```console
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
