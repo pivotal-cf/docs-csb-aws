@@ -29,21 +29,48 @@ Tables for cache sizes and plans are below:
 | 128 |cache.r4.8xlarge |
 | 256 |cache.r5.12xlarge |
 
-### Basic Plans
+## <a id="plans"></a> Plans
+
+The default plans for Amazon ElastiCache for Redis are in the table below:
 
 | Plan | Cache Size | AWS Cache Node Type | HA |
 |------|------------|---------------------|-----|
 | small | minimum 1&nbsp;GB | cache.t2.small | no |
 | medium | minimum 4&nbsp;GB |cache.m5.large | no |
 | large | minimum 16&nbsp;GB |cache.r4.xlarge | no |
-
-### High Availability Plans
-
-| Plan | Cache Size | AWS Cache Node Type | HA |
-|------|------------|---------------------|-----|
 | small-ha | minimum 1&nbsp;GB | cache.t2.small | yes |
 | medium-ha | minimum 4&nbsp;GB |cache.m5.large | yes |
 | large-ha | minimum 16&nbsp;GB |cache.r4.xlarge | yes |
+
+
+## <a id="plans-config"></a> Plan Configuration Parameters
+
+When configuring <%= vars.product_short %> you can add additional plans.
+For how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+
+The following table lists parameters which can only be configured for additional plans:
+
+| Parameter Name       | Values                         | Default   |
+|----------------------|--------------------------------|-----------|
+| `name`*              | The plan name                  | _n/a_     |
+| `id`*                | A unique GUID                  | _n/a_     |
+| `description`*       | Description of the new plan    | _n/a_     |
+| `display_name`       | Name to use when displaying the plan in marketplace    | _n/a_     |
+| `free`               | When false, service instances of this service plan have a cost    | true     |
+| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     |
+| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     |
+| `cache_size`*        | Cache size in GB. 1&ndash;256, multiples of 2. | _n/a_     |
+| `redis_version`*     | The version for the redis instance. Can be 3.2, 4.0, 5.0, 6.0. | _n/a_     |
+
+<sup>*</sup> Required
+
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
+
+<p class="note">
+  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
+  change the value when creating or updating service instances.
+</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
@@ -59,16 +86,17 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
-You can also configure these parameters using the `-c` flag when provisioning a `csb-aws-redis` service:
+The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-redis` service. 
+The Operation column displays whether a parameter is supported for both provision and update, or for provision only:
 
 <table class="nice">
   <thead>
     <tr>
-    <th width="25%">Parameter Name</th>
-    <th width="10%">Type</th>
-    <th width="45%">Description</th>
-    <th width="20%">Default</th>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+      <th width="10%">Operation</th>
     </tr>
   </thead>
   <tbody>
@@ -77,6 +105,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td>String</td>
       <td>The name of the AWS instance to create.</td>
       <td><code>csb-redis-INSTANCE-ID</code></td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>region</code></td>
@@ -87,40 +116,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
         <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
-    </tr>
-    <tr>
-      <td><code>vpc_id</code></td>
-      <td>String</td>
-      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
-      <td>The default VPC</td>
-    </tr>
-    <tr>
-      <td><code>aws_access_key_id</code></td>
-      <td>String</td>
-      <td>The AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
-    </tr>
-    <tr>
-      <td><code>aws_secret_access_key</code></td>
-      <td>String</td>
-      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
-    </tr>
-    <tr>
-      <td><code>redis_version</code></td>
-      <td>String</td>
-      <td>Redis version to provision: <code>&quot;2.6&quot;</code>,
-        <code>&quot;2.8&quot;</code>,
-        <code>&quot;3.2&quot;</code>,
-        <code>&quot;4.0&quot;</code>,
-        <code>&quot;5.0&quot;</code></td>
-      <td><code>&quot;5.0&quot;</code></td>
-    </tr>
-    <tr>
-      <td><code>cache_size</code></td>
-      <td>Integer</td>
-      <td>The size in GB for the cache: 1, 2, 4, 8, 16, 32, 64, 128, 256</td>
-      <td>The default for the plan you selected.</td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>node_type</code></td>
@@ -131,10 +127,60 @@ You can also configure these parameters using the `-c` flag when provisioning a 
         For more information about node types and pricing, see the
         <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a>.</td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>node_count</code></td>
+      <td>Integer</td>
+      <td>Number of nodes (primary and replicas) in cluster.</td>
+      <td><code>2</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>vpc_id</code></td>
+      <td>String</td>
+      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
+      <td>The default VPC</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>elasticache_subnet_group</code></td>
+      <td>String</td>
+      <td>AWS Elasticache subnet group already in existence to use.</td>
+      <td>_n/a_</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>elasticache_vpc_security_group_ids</code></td>
+      <td>String</td>
+      <td>Comma delimited list of security group ID's for instance.</td>
+      <td>_n/a_</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
     </tr>
   </tbody>
 </table>
 
+## <a id="binding"></a> Binding
+
+You can bind a service by running:
+
+```bash
+cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
+```
 
 ## <a id="binding-creds"></a> Binding Credentials
 
@@ -142,8 +188,8 @@ The format for binding credentials for Redis is as follows:
 
 ```json
 {
+    "name" : "REDIS-CLUSTER0-NAME",
     "host" : "REDIS-SERVER-HOSTNAME",
-    "port" : "REDIS-SERVER-PORT",
     "password" : "AUTHENTICATION-PASSWORD",
     "tls_port" : "REDIS-TLS-PORT"
 }

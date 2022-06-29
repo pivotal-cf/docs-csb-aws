@@ -8,7 +8,7 @@ owner: Cloud Service Broker
 > **Warning:** The Amazon RDS for PosgreSQL service is currently in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
 
-This topic provides reference information about the Amazon RDS for PostgreSQL (aws-rds-postgres) service.
+This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres) service.
 It details the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
@@ -21,29 +21,46 @@ The default plans and configuration options for Amazon RDS for PostgreSQL are in
 |medium| db.m4.xlarge | 11      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
 |large | db.m4.2xlarge | 11      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
 
-### Amazon RDS for PostgreSQL Core to Instance Class Mapping
 
-The table below shows the CPU size mapped to AWS database instance types:
+## <a id="plans-config"></a> Plan Configuration Parameters
 
-| CPUs | Instance Class |
-|-------|---------------|
-| 1     | db.m1.medium  |
-| 2     | db.t2.medium  |
-| 4     | db.m4.xlarge  |
-| 8     | db.m4.2xlarge |
-| 16    | db.m4.4xlarge |
-| 32    | db.m5.8xlarge |
-| 64    | db.m5.16xlarge|
+When configuring <%= vars.product_short %> you can add additional plans.
+For how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
 
-For more information about database instance classes, see the
-[AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html).
+The following table lists parameters which can only be configured for additional plans:
+
+| Parameter Name       | Values                         | Default   |
+|----------------------|--------------------------------|-----------|
+| `name`*              | The plan name.                 | _n/a_     |
+| `id`*                | A unique GUID.                 | _n/a_     |
+| `description`*       | Description of the new plan.   | _n/a_     |
+| `display_name`       | Name to use when displaying plan in marketplace.    | _n/a_     |
+| `free`               | When false, service instances of this service plan have a cost.    | true     |
+| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.    | true     |
+| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.    | true     |
+| `cores`*             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.    | 2     |
+| `postgres_version`*  | The version for the PostgreSQL instance. Options are 9.4, 9.5, 9.6, 10 or 11.    | 11     |
+| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.    | 5     |
+
+<sup>*</sup> Required
+
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
+
+To create plans with specific size and versions we recommend setting `cores`, `storage_gb` and
+`mysql_version` properties.
+
+<p class="note">
+  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
+  change the value when creating or updating service instances.
+</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
 ```
-cf create-service aws-rds-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+cf create-service csb-aws-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
@@ -52,16 +69,17 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
-You can also configure these parameters using the `-c` flag when provisioning a `aws-rds-postgres` service:
+The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-postgres` service. 
+The Operation column displays whether a parameter is supported for both provision and update, or for provision only:
 
 <table class="nice">
   <thead>
     <tr>
-    <th width="25%">Parameter Name</th>
-    <th width="10%">Type</th>
-    <th width="45%">Description</th>
-    <th width="20%">Default</th>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+      <th width="10%">Operation</th>
     </tr>
   </thead>
   <tbody>
@@ -70,6 +88,14 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td>String</td>
       <td>The name of the AWS instance to create.</td>
       <td><code>csb-mysql-INSTANCE-ID</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>db_name</code></td>
+      <td>String</td>
+      <td>Name for the database to create.</td>
+      <td><code>vsbdb</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>region</code></td>
@@ -79,24 +105,14 @@ You can also configure these parameters using the `-c` flag when provisioning a 
         see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>vpc_id</code></td>
       <td>String</td>
       <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
       <td>The default VPC</td>
-    </tr>
-    <tr>
-      <td><code>aws_access_key_id</code></td>
-      <td>String</td>
-      <td>The AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
-    </tr>
-    <tr>
-      <td><code>aws_secret_access_key</code></td>
-      <td>String</td>
-      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>instance_class</code></td>
@@ -107,20 +123,23 @@ You can also configure these parameters using the `-c` flag when provisioning a 
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>multi-az</code></td>
+      <td><code>multi_az</code></td>
       <td>Boolean</td>
       <td>If <code>true</code>, create a Multi-AZ (HA) instance.
       For more information about Multi-AZ deployments, see the
       <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.</td>
       <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>publicly_accessible</code></td>
       <td>Boolean</td>
       <td>If <code>true</code>, make instance available to public connections.</td>
       <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>allow_major_version_upgrade</code></td>
@@ -129,26 +148,57 @@ You can also configure these parameters using the `-c` flag when provisioning a 
         Changing this parameter does not result in an outage and the change is
         asynchronously applied as soon as possible.</td>
       <td><code>true</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>allow_minor_version_upgrade</code></td>
+      <td><code>auto_minor_version_upgrade</code></td>
       <td>Boolean</td>
-      <td>(Optional) Indicates that minor engine upgrades will be applied automatically
+      <td>Indicates that minor engine upgrades will be applied automatically
         to the database instance during the maintenance window.</td>
       <td><code>true</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>maintenance_day</code>, <code>maintenance_start_hour</code>, <code>maintenance_start_min</code>, <code>maintenance_end_hour</code>, <code>maintenance_end_min</code></td>
-      <td>Boolean</td>
-      <td>(Optional) Maintenance window definition.</td>
-      <td>Defaults vary by region. See the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow">AWS Documentation</a>.</td>
+      <td><code>maintenance_day</code></td>
+      <td>String</td>
+      <td>The preferred maintenance day. Options: Sun, Mon, Tue, Wed, Thu, Fri, Sat </td>
+      <td><code>Sun</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>maintenance_start_hour</code></td>
+      <td>String</td>
+      <td>The preferred maintenance start hour. </td>
+      <td><code>00</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>maintenance_start_min</code></td>
+      <td>String</td>
+      <td>The preferred maintenance start minute. </td>
+      <td><code>00</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>maintenance_end_hour</code></td>
+      <td>String</td>
+      <td>The preferred maintenance end hour. </td>
+      <td><code>00</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>maintenance_end_min</code></td>
+      <td>String</td>
+      <td>The preferred maintenance end minute. </td>
+      <td><code>00</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>storage_encrypted</code></td>
       <td>Boolean</td>
       <td>If <code>true</code>, database storage is encrypted.</td>
       <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>parameter_group_name</code></td>
@@ -157,26 +207,72 @@ You can also configure these parameters using the `-c` flag when provisioning a 
       <td><code>default.postgres.POSTGRES-VERSION</code></td>
     </tr>
     <tr>
+      <td><code>aws_vpc_id</code></td>
+      <td>String</td>
+      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
+      <td>The default VPC</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>rds_subnet_group</code></td>
       <td>String</td>
        <td>The name of subnet to attach the database instance to.
-         This overrides <code>aws_vpc_id</code.></td>
+         This overrides <code>aws_vpc_id</code></td>
       <td>None</td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
       <td>Comma-separated String</td>
       <td>Security group IDs to assign to the database instance.</td>
       <td>None</td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>use_tls</code></td>
       <td>Boolean</td>
       <td>Use TLS for database connections.</td>
       <td>true</td>
+      <td>provision and update</td>
+    </tr>
+     <tr>
+      <td><code>storage_autoscale</code></td>
+      <td>Boolean</td>
+      <td>Enable storage autoscaling up to storage_autoscale_limit_gb if true.</td>
+      <td>true</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>storage_autoscale_limit_gb</code></td>
+      <td>Integer</td>
+      <td>Max storage size if storage_autoscale is true.</td>
+      <td>0</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
     </tr>
   </tbody>
 </table>
+
+## <a id="binding"></a> Binding
+
+You can bind a service by running:
+
+```bash
+cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
+```
 
 ## <a id="binding-creds"></a> Binding Credentials
 
@@ -190,6 +286,7 @@ The format for binding credentials for PostgreSQL is as follows:
     "username" : "AUTHENTICATION-USERNAME",
     "password" : "AUTHENTICATION-PASSWORD",
     "uri" : "DATABASE-CONNECTION-URI",
+    "use_tls" : true,
     "jdbcUrl" : "JDBC-FORMAT-CONNECTION-URI"
 }
 ```
