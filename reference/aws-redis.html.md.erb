@@ -49,45 +49,44 @@ When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
 [Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
 
-The following table lists parameters which can only be configured for additional plans:
+The following table lists parameters that can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   |
-|----------------------|--------------------------------|-----------|
-| `name`*              | The plan name                  | _n/a_     |
-| `id`*                | A unique GUID                  | _n/a_     |
-| `description`*       | Description of the new plan    | _n/a_     |
-| `display_name`       | Name to use when displaying the plan in marketplace    | _n/a_     |
-| `free`               | When false, service instances of this service plan have a cost    | true     |
-| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     |
-| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     |
-| `cache_size`*        | Cache size in GB. 1&ndash;256, multiples of 2. | _n/a_     |
-| `redis_version`*     | The version for the redis instance. Can be 3.2, 4.0, 5.0, 6.0. | _n/a_     |
+| Parameter Name       | Values                         | Default   | Required |
+|----------------------|--------------------------------|-----------|----------|
+| `name`               | The plan name                  | _n/a_     | Yes      |
+| `id`                 | A unique GUID                  | _n/a_     | Yes      |
+| `description`        | Description of the new plan    | _n/a_     | Yes      |
+| `display_name`       | Name to use when displaying the plan in marketplace    | _n/a_     | No |
+| `free`               | When false, service instances of this service plan have a cost    | true     | No |
+| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
+| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
+| `cache_size`         | Cache size in GB. 1&ndash;256, multiples of 2. | _n/a_     | Yes |
+| `redis_version`      | The version for the redis instance. Can be 3.2, 4.0, 5.0, 6.0. | _n/a_     | Yes |
 
-<sup>*</sup> Required
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+to your plan.
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
-
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
-  change the value when creating or updating service instances.
-</p>
+> **Note:** If you set a parameter at plan level, developers cannot change the value when creating
+  or updating service instances.
 
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
-```
+```console
 cf create-service csb-aws-redis PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
 
-```
+```console
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-redis` service. 
-The Operation column displays whether a parameter is supported for both provision and update, or for provision only:
+The following table lists the parameters that you can configure, by using the `-c` flag, when
+provisioning or updating a `csb-aws-redis` service.
+The Operation column displays whether a parameter is supported for both provision and update, or for
+provision only:
 
 <table class="nice">
   <thead>
@@ -103,7 +102,7 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>instance_name</code></td>
       <td>String</td>
-      <td>The name of the AWS instance to create.</td>
+      <td>The name of the AWS instance to create</td>
       <td><code>csb-redis-INSTANCE-ID</code></td>
       <td>provision</td>
     </tr>
@@ -132,43 +131,43 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>node_count</code></td>
       <td>Integer</td>
-      <td>Number of nodes (primary and replicas) in cluster.</td>
+      <td>Number of nodes (primary and replicas) in the cluster</td>
       <td><code>2</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>vpc_id</code></td>
       <td>String</td>
-      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
+      <td>The Virtual Private Cloud (VPC) to connect the instance to</td>
       <td>The default VPC</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>elasticache_subnet_group</code></td>
       <td>String</td>
-      <td>AWS Elasticache subnet group already in existence to use.</td>
+      <td>Pre-existing AWS Elasticache subnet group to use</td>
       <td>_n/a_</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>elasticache_vpc_security_group_ids</code></td>
       <td>String</td>
-      <td>Comma delimited list of security group ID's for instance.</td>
+      <td>Comma-delimited list of security group IDs for the instance</td>
       <td>_n/a_</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
-      <td>The AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>The AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_secret_access_key</code></td>
       <td>String</td>
-      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
-      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %></td>
       <td>provision and update</td>
     </tr>
   </tbody>
@@ -178,7 +177,7 @@ The Operation column displays whether a parameter is supported for both provisio
 
 You can bind a service by running:
 
-```bash
+```console
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
