@@ -177,6 +177,15 @@ provision only:
   For example, if you are using server-side encryption with AWS KMS keys, consider how the possible deletion of the key might interact with S3 Object Lock.
 </p>
 
+<p class="note">
+  <strong>Note:</strong> When creating a bucket with Object Lock enabled, Amazon S3 automatically enables versioning for the bucket.
+  To avoid differences between the local state and the AWS state, we must set manually the versioning at the time of bucket creation, otherwise,
+  if we later want to modify the object lock infrastructure object, the value sent in the versioning property will not be supported by the IaaS,
+  since we will be trying to modify an Object Lock and at the same time eliminate the controlling versioning, which is an indispensable condition for enabling Object Lock,
+  in other words, versioning must always be enabled to have the capabilities of Object Lock functionality.
+  Hence, if we want to modify the configuration of the Object Lock, we must establish the control version property with true value in its creation.
+</p>
+
 ## <a id="binding-params"></a> Binding Parameters
 
 You can bind a service by running:
