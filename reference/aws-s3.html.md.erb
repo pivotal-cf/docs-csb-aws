@@ -89,9 +89,12 @@ provision only:
     <tr>
       <td><code>enable_versioning</code></td>
       <td>Boolean</td>
-      <td>Enable bucket versioning</td>
+      <td>
+        Enable bucket versioning.
+        Versioning will be automatically enabled if Object Lock is enabled.
+      </td>
       <td><code>false</code></td>
-      <td>provision</td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>region</code></td>
@@ -113,6 +116,18 @@ provision only:
       </td>
       <td><code>false</code></td>
       <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>ol_configuration_default_retention_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Whether the bucket has an Object Lock `configuration` enabled
+        To enable Object Lock for a new bucket, see `ol_enabled`
+        For more information, see the
+        <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS documentation</a>.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>ol_configuration_default_retention_mode</code></td>
@@ -179,11 +194,7 @@ provision only:
 
 <p class="note">
   <strong>Note:</strong> When creating a bucket with Object Lock enabled, Amazon S3 automatically enables versioning for the bucket.
-  To avoid differences between the local state and the AWS state, we must set manually the versioning at the time of bucket creation, otherwise,
-  if we later want to modify the object lock infrastructure object, the value sent in the versioning property will not be supported by the IaaS,
-  since we will be trying to modify an Object Lock and at the same time eliminate the controlling versioning, which is an indispensable condition for enabling Object Lock,
-  in other words, versioning must always be enabled to have the capabilities of Object Lock functionality.
-  Hence, if we want to modify the configuration of the Object Lock, we must establish the control version property with true value in its creation.
+  To avoid differences between the local state and the AWS state, we will enable versioning when enabling Object Lock.
 </p>
 
 ## <a id="binding-params"></a> Binding Parameters
