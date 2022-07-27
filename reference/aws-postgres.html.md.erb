@@ -17,9 +17,9 @@ The default plans and configuration options for Amazon RDS for PostgreSQL are in
 
 | Plan | Instance Class | Version | CPUs | Memory Size | Disk Size |
 |------|---------|---------|------|-------------|-----------|
-|small | db.t2.medium | 11      | 2    | minimum 4&nbsp;GB     | 5&nbsp;GB       |
-|medium| db.m4.xlarge | 11      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
-|large | db.m4.2xlarge | 11      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
+|small | db.t2.medium | 13.4      | 2    | minimum 4&nbsp;GB     | 5&nbsp;GB       |
+|medium| db.m4.xlarge | 13.4     | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
+|large | db.m4.2xlarge | 13.4      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -39,7 +39,7 @@ The following table lists parameters which can only be configured for additional
 | `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
 | `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
 | `cores`             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.    | 2     | Yes |
-| `postgres_version`  | This is the version for the PostgreSQL instance. Options are 9.4, 9.5, 9.6, 10, or 11.  | 11     | Yes |
+| `postgres_version`  | This is the version for the PostgreSQL instance. Options are any supported major or major and minor version.  | 13.4     | Yes |
 | `storage_gb`        | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB    | 5     | Yes |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
