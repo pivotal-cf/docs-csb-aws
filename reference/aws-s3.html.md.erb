@@ -89,9 +89,12 @@ provision only:
     <tr>
       <td><code>enable_versioning</code></td>
       <td>Boolean</td>
-      <td>Enable bucket versioning</td>
+      <td>
+        Enable bucket versioning.
+        Versioning will be automatically enabled if Object Lock is enabled.
+      </td>
       <td><code>false</code></td>
-      <td>provision</td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>region</code></td>
@@ -148,6 +151,70 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>ol_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Whether or not to store objects using a write-once-read-many (WORM) model using Amazon S3 Object Lock.
+        For more information, see the
+        <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS documentation</a>.
+      </td>
+      <td><code>false</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>ol_configuration_default_retention_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Whether the bucket has an Object Lock `configuration` enabled
+        To enable Object Lock for a new bucket, see `ol_enabled`
+        For more information, see the
+        <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS documentation</a>.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>ol_configuration_default_retention_mode</code></td>
+      <td>String</td>
+      <td>
+        The default retention mode for objects placed in the bucket.
+        The property `ol_configuration_default_retention_days` or `ol_configuration_default_retention_years` is required if this property is set.
+        To enable Object Lock for a new bucket, see the `ol_enabled`.
+        For more information, see the
+        <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS documentation</a>.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>ol_configuration_default_retention_days</code></td>
+      <td>Number</td>
+      <td>
+        The default fixed amount of days of retention for objects placed in the bucket.
+        Optional property but required if `ol_configuration_default_retention_years` is not specified.
+        `ol_configuration_default_retention_mode` is required if this property is set.
+        To enable Object Lock for a new bucket, see `ol_enabled`.
+        For more information, see the
+        <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS documentation</a>.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>ol_configuration_default_retention_years</code></td>
+      <td>Number</td>
+      <td>
+        The default fixed amount of years of retention for objects placed in the bucket.
+        Optional property but required if `ol_configuration_default_retention_days` is not specified.
+        `ol_configuration_default_retention_mode` is required if this property is set.
+        To enable Object Lock for a new bucket, see `ol_enabled`.
+        For more information, see the
+        <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html">AWS documentation</a>.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
@@ -163,6 +230,16 @@ provision only:
     </tr>
   </tbody>
 </table>
+
+<p class="note">
+  <strong>Note:</strong> When using S3 Object Lock, make sure to take your encryption technique into consideration.
+  For example, if you are using server-side encryption with AWS KMS keys, consider how the possible deletion of the key might interact with S3 Object Lock.
+</p>
+
+<p class="note">
+  <strong>Note:</strong> When creating a bucket with Object Lock enabled, Amazon S3 automatically enables versioning for the bucket.
+  To avoid differences between the local state and the AWS state, we will enable versioning when enabling Object Lock.
+</p>
 
 ## <a id="binding-params"></a> Binding Parameters
 
