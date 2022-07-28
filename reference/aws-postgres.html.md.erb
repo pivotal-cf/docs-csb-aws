@@ -201,6 +201,14 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>String</td>
       <td>The PostgreSQL parameter group name for the service instance</td>
       <td><code>default.postgres.POSTGRES-VERSION</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>deletion_protection</code></td>
+      <td>Boolean</td>
+      <td>Whether deletion protection is enabled. The database cannot be deleted when this value is set.</td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_vpc_id</code></td>
@@ -225,9 +233,16 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>use_tls</code></td>
+      <td><code>require_ssl</code></td>
       <td>Boolean</td>
-      <td>Use TLS for database connections.</td>
+      <td>Only allow secure database connections.</td>
+      <td>true</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>provider_verify_certificate</code></td>
+      <td>Boolean</td>
+      <td>Whether to verify the certificate of the database server when creating bindings.</td>
       <td>true</td>
       <td>provision and update</td>
     </tr>
