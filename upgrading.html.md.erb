@@ -7,15 +7,15 @@ This topic describes how to upgrade <%= vars.product_full %>.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading from v1.1.2 to v1.2.0
 
-Because of differences in the Amazon S3 Bucket service offering, it is not possible to upgrade Amazon S3 Bucket (Beta)
+Because of differences in the Amazon S3 Bucket service offering, you cannot upgrade Amazon S3 Bucket (Beta)
 instances to v1.2.0.
 You must delete all previously created S3 Bucket service instances before upgrading <%= vars.product_short %>
 from  v1.2.0.
 
-To retain beta instances in the IaaS, remove them from Cloud Foundry.
+You can retain instances in the IaaS, but remove them from Cloud Foundry.
 <%= vars.product_short %> no longer manages these instances.
 
-To remove the instances from Cloud Foundry, run the command:
+To remove the instances from Cloud Foundry, run:
 
 ```console
 cf purge-service-instance
@@ -26,4 +26,5 @@ cf purge-service-instance
 To upgrade the <%= vars.product_short %> to a later version:
 
 1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
+
 1. Follow the procedure in [Installing with AWS](installing-with-aws.html).
