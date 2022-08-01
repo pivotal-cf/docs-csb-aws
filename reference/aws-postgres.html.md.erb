@@ -15,11 +15,11 @@ service. It details the plans, configuration parameters, and binding credentials
 
 The default plans and configuration options for Amazon RDS for PostgreSQL are in the table below:
 
-| Plan | Instance Class | Version | CPUs | Memory Size | Disk Size |
-|------|---------|---------|------|-------------|-----------|
-|small | db.t2.medium | 11      | 2    | minimum 4&nbsp;GB     | 5&nbsp;GB       |
-|medium| db.m4.xlarge | 11      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
-|large | db.m4.2xlarge | 11      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
+| Plan | Description |
+|------|---------|
+|small |  PostgreSQL 13.4, 2 vCPUs, 8GB RAM, 5GB storage |
+|medium|  PostgreSQL 13.4, 4 vCPUs, 16GB RAM, 10GB storage |
+|large |  PostgreSQL 13.4, 8 vCPUs, 32GB RAM, 20GB storage |
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -38,14 +38,12 @@ The following table lists parameters which can only be configured for additional
 | `free`               | When false, service instances of this service plan have a cost    | true     | No |
 | `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
 | `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
-| `cores`             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.    | 2     | Yes |
-| `postgres_version`  | This is the version for the PostgreSQL instance. Options are 9.4, 9.5, 9.6, 10, or 11.  | 11     | Yes |
 | `storage_gb`        | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB    | 5     | Yes |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
 
-To create plans with specific size and versions, set `cores`, `storage_gb`, and `mysql_version`
+To create plans with specific size and versions, set `instance_class`, `storage_gb`, and `postgres_version`
 properties.
 
 > **Note:** If you set a parameter at plan level, developers cannot change the value when creating
@@ -80,6 +78,25 @@ The Operation column displays whether a parameter is supported for both provisio
   </thead>
   <tbody>
     <tr>
+      <td><code>postgres_version</code></td>
+      <td>String</td>
+      <td>
+        Required - The version for the PostgreSQL instance.
+        This can be any supported major version, or major and minor. For example, <code>13</code> or <code>13.4</code>.
+      </td>
+      <td><code>13.4</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>instance_class</code></td>
+      <td>String</td>
+      <td>Required - The AWS DB instance class.
+        For more information about database instance classes, see the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
+      <td><em>db.m6g.large</em></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>instance_name</code></td>
       <td>String</td>
       <td>The name of the AWS instance to create.</td>
@@ -97,7 +114,7 @@ The Operation column displays whether a parameter is supported for both provisio
       <td><code>region</code></td>
       <td>String</td>
       <td>
-        The AWS region in which to deploy the service. For more information about available regions,
+        The AWS region and availability zone in which to deploy the service. For more information about available regions,
         see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
@@ -108,17 +125,6 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>String</td>
       <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
       <td>The default VPC</td>
-      <td>provision and update</td>
-    </tr>
-    <tr>
-      <td><code>instance_class</code></td>
-      <td>String</td>
-      <td>Specifying the instance class overrides the conversion of cores to instance classes that is
-        described in the <em>Core to Instance Class Mapping</em> table in the
-        <a href="#aws-postgres-plans">Plans for PostgreSQL</a> section above.<br><br>
-        For more information about database instance classes, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
-      <td><em>n/a</em></td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -199,8 +205,20 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>parameter_group_name</code></td>
       <td>String</td>
-      <td>The PostgreSQL parameter group name for the service instance</td>
-      <td><code>default.postgres.POSTGRES-VERSION</code></td>
+      <td>
+        The PostgreSQL parameter group name for the service instance.
+        By default, a parameter group is created for each instance, and used to apply security settings.
+        If you set a customer parameter group, it might override other settings, including security settings.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>deletion_protection</code></td>
+      <td>Boolean</td>
+      <td>Whether deletion protection is enabled. The database cannot be deleted when this value is set.</td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_vpc_id</code></td>
@@ -225,23 +243,33 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>use_tls</code></td>
+      <td><code>require_ssl</code></td>
       <td>Boolean</td>
-      <td>Use TLS for database connections.</td>
+      <td>Only allow secure database connections.</td>
       <td>true</td>
       <td>provision and update</td>
     </tr>
-     <tr>
+    <tr>
+      <td><code>provider_verify_certificate</code></td>
+      <td>Boolean</td>
+      <td>Whether to verify the certificate of the database server when creating bindings.</td>
+      <td>true</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>storage_autoscale</code></td>
       <td>Boolean</td>
-      <td>Enable storage autoscaling up to <code>storage_autoscale_limit_gb</code> if true</td>
+      <td>Enable storage autoscaling up to <code>storage_autoscale_limit_gb</code> if true.</td>
       <td>true</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>storage_autoscale_limit_gb</code></td>
       <td>Integer</td>
-      <td>Maximum storage size if storage_autoscale is true</td>
+      <td>
+        Maximum storage size if <code>storage_autoscale</code> is set to true.
+        The value must be higher than <code>storage_gb</code>.
+      </td>
       <td>0</td>
       <td>provision and update</td>
     </tr>
