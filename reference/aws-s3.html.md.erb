@@ -107,6 +107,36 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>boc_object_ownership</code></td>
+      <td>String</td>
+      <td>S3 Bucket Ownership Controls for more information see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">AWS documentation</a>.
+        Allowed values: `BucketOwnerPreferred`,`ObjectWriter`,`BucketOwnerEnforced`.
+      </td>
+      <td><code>BucketOwnerEnforced</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>sse_default_kms_master_key_id</code></td>
+      <td>String</td>
+      <td>The AWS KMS master key ID used for the SSE-KMS encryption. This can only be used when you set the value of `sse_default_algorithm` as `aws:kms`.</td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>sse_default_algorithm</code></td>
+      <td>String</td>
+      <td>The server-side encryption algorithm to use. Valid values are `AES256` and `aws:kms`. For more information see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html">AWS documentation</a>.</td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>sse_bucket_key_enabled</code></td>
+      <td>Boolean</td>
+      <td>Whether or not to use Amazon S3 Bucket Keys for SSE-KMS. For more information see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html">AWS documentation</a>.</td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>pab_block_public_acls</code></td>
       <td>Boolean</td>
       <td>
