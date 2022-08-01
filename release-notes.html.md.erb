@@ -39,8 +39,11 @@ This release has the following fixes:
 
 This release has the following issue:
 
-* **Run-in header:** Description.
-* **Run-in header:** Description.
+* **S3 Bucket service instance update:** * Attempting to disable versioning for an instance
+created before upgrading to this version will be recorded as a `update succeeded` operation at the first attempt.
+However this value is not updated in the broker or in AWS as disabling versioning is not supported in the IaaS.
+Subsequent attempts will result in the appropriate error stating that versioning can't be disabled as expected.
+
 
 ## <a id="view"></a> View Release Notes for Another Version
 
