@@ -209,9 +209,9 @@ The Operation column displays whether a parameter is supported for both provisio
         The PostgreSQL parameter group name for the service instance.
         By default, a parameter group is created for each instance, and used to apply security settings.
         If you set a custom parameter group, it might override other settings, including security settings.
-        Do not introduce this property during a service instance update as the update will fail.
-        However an existing value may be modified during a service instance update, or the
-        parameter group may be unset.
+        
+        Do not introduce this property during a service instance update because the update will fail.
+        However, you can modify or unset an existing value during a service instance update.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
