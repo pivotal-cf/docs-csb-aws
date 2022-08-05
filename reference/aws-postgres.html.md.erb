@@ -15,11 +15,11 @@ service. It details the plans, configuration parameters, and binding credentials
 
 The default plans and configuration options for Amazon RDS for PostgreSQL are in the table below:
 
-| Plan | Description |
-|------|---------|
-|small |  PostgreSQL 13.4, 2 vCPUs, 8GB RAM, 5GB storage |
-|medium|  PostgreSQL 13.4, 4 vCPUs, 16GB RAM, 10GB storage |
-|large |  PostgreSQL 13.4, 8 vCPUs, 32GB RAM, 20GB storage |
+| Plan   | Description                                      |
+|--------|--------------------------------------------------|
+| small  | PostgreSQL 13.4, 2 vCPUs, 8GB RAM, 5GB storage   |
+| medium | PostgreSQL 13.4, 4 vCPUs, 16GB RAM, 10GB storage |
+| large  | PostgreSQL 13.4, 8 vCPUs, 32GB RAM, 20GB storage |
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -29,16 +29,16 @@ For how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   | Required |
-|----------------------|--------------------------------|-----------|----------|
-| `name`              | The plan name                  | _n/a_     | Yes      |
-| `id`                | A unique GUID                  | _n/a_     | Yes      |
-| `description`       | Description of the new plan    | _n/a_     | Yes      |
-| `display_name`       | Name to use when displaying plan in Marketplace    | _n/a_     | No |
-| `free`               | When false, service instances of this service plan have a cost    | true     | No |
-| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
-| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
-| `storage_gb`        | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB    | 5     | Yes |
+| Parameter Name    | Values                                                                              | Default | Required |
+|-------------------|-------------------------------------------------------------------------------------|---------|----------|
+| `name`            | The plan name                                                                       | _n/a_   | Yes      |
+| `id`              | A unique GUID                                                                       | _n/a_   | Yes      |
+| `description`     | Description of the new plan                                                         | _n/a_   | Yes      |
+| `display_name`    | Name to use when displaying plan in Marketplace                                     | _n/a_   | No       |
+| `free`            | When false, service instances of this service plan have a cost                      | true    | No       |
+| `bindable`        | Specifies whether service instances of the service plan can bind to applications    | true    | No       |
+| `plan_updateable` | Whether the plan supports upgrading, downgrading, or sidegrading to another version | true    | No       |
+| `storage_gb`      | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB     | 5       | Yes      |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
@@ -193,6 +193,40 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>String</td>
       <td>The preferred maintenance end minute</td>
       <td><code>00</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>backup_retention_period</code></td>
+      <td>Integer</td>
+      <td>The number of days for which automatic backups are kept.
+        Set the value to 0 to disable automated backups. An outage
+        occurs if you change the backup retention period from 0 to
+        a nonzero value or vice versa. This applies to both Single-AZ
+        and Multi-AZ DB instances.</td>
+      <td><code>7</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>backup_window</code></td>
+      <td>String</td>
+      <td>The daily time range in UTC during which automated backups are created,
+        e.g.: "09:46-10:16". Must not overlap with the maintenance window.
+        See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow</td>
+      <td>Uses AWS default for the region</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>delete_automated_backups</code></td>
+      <td>Boolean</td>
+      <td>Specifies whether to remove automated backups immediately after the DB instance is deleted</td>
+      <td><code>true</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>copy_tags_to_snapshot</code></td>
+      <td>Boolean</td>
+      <td>Copy all instance tags to snapshots</td>
+      <td><code>true</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
