@@ -311,6 +311,27 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>monitoring_interval</code></td>
+      <td>Integer</td>
+      <td>
+        The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance.
+        To disable collecting Enhanced Monitoring metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60.
+        A `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than 0.
+      </td>
+      <td>0</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>monitoring_role_arn</code></td>
+      <td>Integer</td>
+      <td>
+        Enhanced Monitoring requires permission to act on your behalf to send OS metric information to CloudWatch Logs.
+        This property represents the ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs.
+      </td>
+      <td>None</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance</td>
