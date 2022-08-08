@@ -6,57 +6,53 @@ owner: Cloud Service Broker
 <strong><%= modified_date %></strong>
 
 > **Warning:** The Amazon S3 Bucket service is currently in beta and is intended for evaluation and
-  test purposes only. Do not use this service in a production environment.
+> test purposes only. Do not use this service in a production environment.
 
 This topic provides reference information about the Amazon S3 Bucket service (csb-aws-s3-bucket).
 It details the plans, configuration parameters, and binding credentials.
 
-<p class="note">
-  <strong>Note:</strong> Release v1.2.0 removed brokerpak canned plans for Amazon S3 bucket. Since then all plans need to be configured through the tile.
-  If you have instances of S3 bucket that were created in previous versions that you wish to maintain, see [Adding previously canned plans](#old-plans).
-</p>
+> **Note:** Release v1.2.0 removed brokerpak canned plans for Amazon S3 bucket.
+> Since then all plans must be configured through the tile.
+> If you have instances of the S3 bucket that were created in previous versions that you want to
+> maintain, see [Add previously canned plans](#old-plans).
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
-
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   |
-|----------------------|--------------------------------|-----------|
-| `name`*              | The plan name                  | _n/a_     |
-| `id`*                | A unique GUID                  | _n/a_     |
-| `description`*       | Description of the new plan    | _n/a_     |
-| `display_name`       | Name to use when displaying plan in marketplace    | _n/a_     |
-| `free`               | When false, service instances of this service plan have a cost    | true     |
-| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     |
-| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     |
-| `acl`                | S3 bucket Access control list (ACL). For more information, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl">AWS documentation</a>.    | _n/a_     |
+| Parameter Name       | Values                         | Default   | Required |
+|----------------------|--------------------------------|-----------|----------|
+| `name`              | The plan name                  | _n/a_     | Yes
+| `id`                | A unique GUID                  | _n/a_     | Yes
+| `description`       | Description of the new plan    | _n/a_     | Yes
+| `display_name`       | Name to use when displaying plan in Marketplace    | _n/a_     | No |
+| `free`               | When false, service instances of this service plan have a cost    | true     | No |
+| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
+| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
+| `acl`                | S3 bucket Access control list (ACL). For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).    | _n/a_     | No |
 
-<sup>*</sup> Required
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+to your plan.
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
-
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
-  change the value when creating or updating service instances.
-</p>
+> **Caution:** If you set a parameter at plan level, developers cannot change the value when creating
+> or updating service instances.
 
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
-```
+```console
 cf create-service csb-aws-s3-bucket PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
 
-```
-cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```console
+cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
 The following table lists the parameters that you can configure, by using the `-c` flag, when
@@ -139,7 +135,7 @@ provision only:
       <td><code>sse_bucket_key_enabled</code></td>
       <td>Boolean</td>
       <td>
-        Sets whether or not to use Amazon S3 Bucket Keys for SSE-KMS.
+        Sets whether to use Amazon S3 Bucket Keys for SSE-KMS.
         For more information about Bucket Keys, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html">AWS documentation</a>.
       </td>
       <td><code>false</code></td>
@@ -272,28 +268,24 @@ provision only:
   </tbody>
 </table>
 
-<p class="note">
-  <strong>Note:</strong> When using S3 Object Lock, make sure you take your encryption technique into consideration.
-  For example, if you are using server-side encryption with AWS KMS keys, consider how the possible deletion of the key might interact with S3 Object Lock.
-</p>
+When using S3 Object Lock, take your encryption technique into consideration.
+For example, if you are using server-side encryption with AWS KMS keys, consider how the possible
+deletion of the key might interact with S3 Object Lock.
 
-<p class="note">
-  <strong>Note:</strong> When creating a bucket with Object Lock enabled,
-  Amazon S3 automatically enables versioning for the bucket.
-  To avoid differences between the local state and the AWS state,
-  <%= vars.product_short %> enables versioning when enabling Object Lock.
-</p>
+When creating a bucket with Object Lock enabled, Amazon S3 automatically enables versioning for the
+bucket. To avoid differences between the local state and the AWS state, <%= vars.product_short %>
+enables versioning when enabling Object Lock.
 
 ## <a id="binding-params"></a> Binding Parameters
 
 You can bind a service by running:
 
-```bash
-cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```console
+cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The table below lists the parameters that you can configure, using the `-c` flag, when
-binding to a `csb-aws-s3-bucket` service:
+The following table lists the parameters that you can configure, using the `-c` flag, when binding
+to a `csb-aws-s3-bucket` service:
 
 <table>
   <thead>
@@ -324,7 +316,7 @@ binding to a `csb-aws-s3-bucket` service:
 
 The format for binding credentials for Amazon S3 Bucket is as follows:
 
-```
+```json
 {
     "arn" : "BUCKET-ARN",
     "bucket_domain_name" : "BUCKET-FQDN",
@@ -335,24 +327,22 @@ The format for binding credentials for Amazon S3 Bucket is as follows:
 }
 ```
 
-## <a id="old-plans"></a> Adding previously provided canned plans
+## <a id="old-plans"></a> Add previously provided canned plans
 
-The table below lists the previously provided plans for the `csb-aws-s3-bucket` service:
+The following table lists the previously provided plans for the `csb-aws-s3-bucket` service:
 
 | Plan       | Description |
 |------------|------|
 | private       | Private S3 bucket|
 | public-read      | Publicly readable S3 bucket|
 
-
-If you want to keep this plans in newer versions of the broker,
-they will need to be added through the tile as custom plans.
+To keep these plans in later versions of the broker, add them through the tile as custom plans.
 For how to configure plans through the tile, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
 
-To add the `private` plan
+If you want to add the `private` plan, see this example:
 
-```
+```json
 {
     "name": "private",
     "id": "8938b4c0-d67f-4c34-9f68-a66deef99b4e",
@@ -363,9 +353,9 @@ To add the `private` plan
 }
 ```
 
-To add the `public-read` plan
+If you want to add the `public-read` plan, see this example:
 
-```
+```json
   {
       "name": "public-read",
       "id": "04317eaa-11ac-4c5f-b77f-eb005fe977fe",

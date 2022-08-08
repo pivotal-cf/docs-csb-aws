@@ -15,11 +15,12 @@ These are release notes for <%= vars.product_full %>.
 
 This release has the following breaking change:
 
-**GA Amazon S3 Bucket service offering**: S3 Bucket is no longer beta and can be used in production.
-Since this version, plans are no longer povided with the brokerpak.
-If you have S3 Bucket instances already created that you wish to maintain,
-previously provided plans will need to be added through the tile.
-Refer to [Adding previously provided canned plans](reference/aws-s3.html#old-plans) for more information.
+**Amazon S3 bucket service offering is generally available**: The Amazon S3 bucket offering is no
+longer in beta and can be used in production.
+From this version onwards, plans are no longer provided with the brokerpak.
+If you have S3 bucket instances that you want to maintain, previously provided plans must be added
+through the tile.
+For more information, see [Add previously provided canned plans](reference/aws-s3.html.md.erb#old-plans).
 
 ### Features
 
@@ -39,13 +40,15 @@ This release has the following fixes:
 
 This release has the following issue:
 
-* **S3 Bucket service instance update:** * Attempting to disable versioning for an instance
-created before upgrading to this version will be recorded as a `update succeeded` operation at the first attempt.
-However this value is not updated in the broker or in AWS as disabling versioning is not supported in the IaaS.
-Subsequent attempts will result in the appropriate error stating that versioning can't be disabled as expected.
+* **S3 bucket service instance update:** If you attempt to disable versioning for an instance
+created before upgrading to this version, it is recorded as an `update succeeded` operation at the
+first attempt.
+However this value is not updated in the broker or in AWS because disabling versioning is not
+supported in the IaaS.
+Subsequent attempts cause an error message that states that versioning can't be disabled
+as expected.
 
+## <a id="view"></a> View release notes for another version
 
-## <a id="view"></a> View Release Notes for Another Version
-
-To view the release notes for another product version, select the version from
-dropdown at the top of this page.
+To view the release notes for another product version, select the version from drop-down menu at the
+top of this page.

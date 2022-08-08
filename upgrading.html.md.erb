@@ -7,14 +7,14 @@ This topic describes how to upgrade <%= vars.product_full %>.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading from v1.1.2 to v1.2.0
 
-S3 Bucket is no longer beta and can be used in production.
-Since this version, plans are no longer povided with the brokerpak.
-If you have S3 Bucket instances already created that you wish to maintain,
-previously provided plans will need to be added through the tile.
-Refer to [Adding previously provided canned plans](reference/aws-s3.html#old-plans) for more information.
+S3 bucket is no longer in beta and can be used in production.
+From this version onwards, plans are no longer provided with the brokerpak.
+If you have S3 bucket instances that you want to maintain, you must add previously provided plans
+through the tile.
+For more information, see [Add previously provided canned plans](reference/aws-s3.html.md.erb#old-plans).
 
-If you instead want to delete all previously created S3 Bucket service instances, you must delete them before upgrading <%= vars.product_short %>
-to  v1.2.0.
+If you instead want to delete all previously created S3 bucket service instances, you must delete
+them before upgrading <%= vars.product_short %> to v1.2.0.
 
 To remove the instances from the broker, run:
 
@@ -22,9 +22,7 @@ To remove the instances from the broker, run:
 cf delete-service SERVICE-NAME
 ```
 
-You can also retain instances in the IaaS, but remove them from Cloud Foundry.
-
-To remove the instances from Cloud Foundry, run:
+To remove instances from Cloud Foundry, but retain them in the IaaS, run:
 
 ```console
 cf purge-service-instance
@@ -36,4 +34,4 @@ To upgrade the <%= vars.product_short %> to a later version:
 
 1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
 
-1. Follow the procedure in [Installing with AWS](installing-with-aws.html).
+1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb).
