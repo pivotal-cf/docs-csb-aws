@@ -7,13 +7,22 @@ This topic describes how to upgrade <%= vars.product_full %>.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading from v1.1.2 to v1.2.0
 
-Because of differences in the Amazon S3 Bucket service offering, you cannot upgrade Amazon S3 Bucket (Beta)
-instances to v1.2.0.
-You must delete all previously created S3 Bucket service instances before upgrading <%= vars.product_short %>
-from  v1.2.0.
+S3 Bucket is no longer beta and can be used in production.
+Since this version, plans are no longer povided with the brokerpak.
+If you have S3 Bucket instances already created that you wish to maintain,
+previously provided plans will need to be added through the tile.
+Refer to [Adding previously provided canned plans](reference/aws-s3.html#old-plans) for more information.
 
-You can retain instances in the IaaS, but remove them from Cloud Foundry.
-<%= vars.product_short %> no longer manages these instances.
+If you instead want to delete all previously created S3 Bucket service instances, you must delete them before upgrading <%= vars.product_short %>
+to  v1.2.0.
+
+To remove the instances from the broker, run:
+
+```console
+cf delete-service SERVICE-NAME
+```
+
+You can also retain instances in the IaaS, but remove them from Cloud Foundry.
 
 To remove the instances from Cloud Foundry, run:
 

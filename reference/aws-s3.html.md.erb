@@ -11,14 +11,10 @@ owner: Cloud Service Broker
 This topic provides reference information about the Amazon S3 Bucket service (csb-aws-s3-bucket).
 It details the plans, configuration parameters, and binding credentials.
 
-## <a id="plans"></a> Plans
-
-The table below lists the plans for the `csb-aws-s3-bucket` service:
-
-| Plan       | Description |
-|------------|------|
-| private       | Private S3 bucket|
-| public-read      | Publicly readable S3 bucket|
+<p class="note">
+  <strong>Note:</strong> Release v1.2.0 removed brokerpak canned plans for Amazon S3 bucket. Since then all plans need to be configured through the tile.
+  If you have instances of S3 bucket that were created in previous versions that you wish to maintain, see [Adding previously canned plans](#old-plans).
+</p>
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -337,4 +333,45 @@ The format for binding credentials for Amazon S3 Bucket is as follows:
     "access_key_id" : "ACCESS-KEY-FOR-BUCKET",
     "secret_access_key" : "SECRET-KEY-FOR-BUCKET"
 }
+```
+
+## <a id="old-plans"></a> Adding previously provided canned plans
+
+The table below lists the previously provided plans for the `csb-aws-s3-bucket` service:
+
+| Plan       | Description |
+|------------|------|
+| private       | Private S3 bucket|
+| public-read      | Publicly readable S3 bucket|
+
+
+If you want to keep this plans in newer versions of the broker,
+they will need to be added through the tile as custom plans.
+For how to configure plans through the tile, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+
+To add the `private` plan
+
+```
+{
+    "name": "private",
+    "id": "8938b4c0-d67f-4c34-9f68-a66deef99b4e",
+    "description": "Private S3 bucket",
+    "display_name": "Private",
+    "acl": "private",
+    "boc_object_ownership": "ObjectWriter"
+}
+```
+
+To add the `public-read` plan
+
+```
+  {
+      "name": "public-read",
+      "id": "04317eaa-11ac-4c5f-b77f-eb005fe977fe",
+      "description": "Public-read S3 bucket",
+      "display_name": "Public Read",
+      "acl": "public-read",
+      "boc_object_ownership": "ObjectWriter"
+  }
 ```
