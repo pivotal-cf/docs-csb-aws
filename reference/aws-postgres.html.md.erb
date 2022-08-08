@@ -5,27 +5,27 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-> **Warning:** The Amazon RDS for PostgreSQL service is currently in beta and is intended for
-  evaluation and test purposes only. Do not use this service in a production environment.
+> **Caution:** The Amazon RDS for PostgreSQL service is currently in beta and is intended for
+> evaluation and test purposes only. Do not use this service in a production environment.
 
 This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres)
 service. It details the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
 
-The default plans and configuration options for Amazon RDS for PostgreSQL are in the table below:
+The default plans and configuration options for Amazon RDS for PostgreSQL are in the following table:
 
 | Plan   | Description                                      |
 |--------|--------------------------------------------------|
-| small  | PostgreSQL 13.4, 2 vCPUs, 8GB RAM, 5GB storage   |
-| medium | PostgreSQL 13.4, 4 vCPUs, 16GB RAM, 10GB storage |
-| large  | PostgreSQL 13.4, 8 vCPUs, 32GB RAM, 20GB storage |
+| small  | PostgreSQL 13.4, 2 vCPUs, 8&nbsp;GB RAM, 5&nbsp;GB storage   |
+| medium | PostgreSQL 13.4, 4 vCPUs, 16&nbsp;GB RAM, 10&nbsp;GB storage |
+| large  | PostgreSQL 13.4, 8 vCPUs, 32&nbsp;GB RAM, 20&nbsp;GB storage |
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
 
 The following table lists parameters which can only be configured for additional plans:
 
@@ -47,20 +47,20 @@ To create plans with specific size and versions, set `instance_class`, `storage_
 properties.
 
 > **Note:** If you set a parameter at plan level, developers cannot change the value when creating
-  or updating service instances.
+> or updating service instances.
 
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
-```
+```console
 cf create-service csb-aws-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
 
-```
-cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```console
+cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
 The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-postgres` service.
@@ -90,7 +90,7 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>instance_class</code></td>
       <td>String</td>
-      <td>Required - The AWS DB instance class.
+      <td>Required - The AWS database instance class.
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
       <td><em>db.m6g.large</em></td>
@@ -114,7 +114,7 @@ The Operation column displays whether a parameter is supported for both provisio
       <td><code>region</code></td>
       <td>String</td>
       <td>
-        The AWS region and availability zone in which to deploy the service. For more information about available regions,
+        The AWS region and availability zone (AZ) in which to deploy the service. For more information about available regions,
         see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
@@ -155,7 +155,7 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>auto_minor_version_upgrade</code></td>
       <td>Boolean</td>
-      <td>Indicates that minor engine upgrades will be applied automatically
+      <td>Indicates that minor engine upgrades are applied automatically
         to the database instance during the maintenance window</td>
       <td><code>true</code></td>
       <td>provision and update</td>
@@ -201,8 +201,8 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>The number of days for which automatic backups are kept.
         Set the value to 0 to disable automated backups. An outage
         occurs if you change the backup retention period from 0 to
-        a nonzero value or vice versa. This applies to both Single-AZ
-        and Multi-AZ DB instances.</td>
+        a nonzero value or the reverse. This applies to both Single-AZ
+        and Multi-AZ database instances.</td>
       <td><code>7</code></td>
       <td>provision and update</td>
     </tr>
@@ -210,7 +210,7 @@ The Operation column displays whether a parameter is supported for both provisio
       <td><code>backup_window</code></td>
       <td>String</td>
       <td>The daily time range in UTC during which automated backups are created,
-        e.g.: "09:46-10:16". Must not overlap with the maintenance window.
+        For example, <code>09:46-10:16</code>. It must not overlap with the maintenance window.
         See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow</td>
       <td>Uses AWS default for the region</td>
       <td>provision and update</td>
@@ -218,7 +218,7 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>delete_automated_backups</code></td>
       <td>Boolean</td>
-      <td>Specifies whether to remove automated backups immediately after the DB instance is deleted</td>
+      <td>Specifies whether to remove automated backups immediately after the database instance is deleted</td>
       <td><code>true</code></td>
       <td>provision and update</td>
     </tr>
@@ -243,9 +243,8 @@ The Operation column displays whether a parameter is supported for both provisio
         The PostgreSQL parameter group name for the service instance.
         By default, a parameter group is created for each instance, and used to apply security settings.
         If you set a custom parameter group, it might override other settings, including security settings.
-        
-        Do not introduce this property during a service instance update because the update will fail.
-        However, you can modify or unset an existing value during a service instance update.
+        Do not introduce this property during a service instance update because it causes the update to fail.<br>
+        However, you can edit or unset an existing value during a service instance update.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -268,7 +267,7 @@ The Operation column displays whether a parameter is supported for both provisio
       <td><code>rds_subnet_group</code></td>
       <td>String</td>
        <td>The name of subnet to attach the database instance to.
-         This overrides <code>aws_vpc_id</code></td>
+         This overrides <code>aws_vpc_id</code>.</td>
       <td>None</td>
       <td>provision and update</td>
     </tr>
@@ -314,9 +313,9 @@ The Operation column displays whether a parameter is supported for both provisio
       <td><code>monitoring_interval</code></td>
       <td>Integer</td>
       <td>
-        The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance.
-        To disable collecting Enhanced Monitoring metrics, specify 0. Valid Values: 0, 1, 5, 10, 15, 30, 60.
-        A `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than 0.
+        The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the database instance.
+        To stop collecting Enhanced Monitoring metrics, enter 0. Valid values: 0, 1, 5, 10, 15, 30, 60.
+        A <code>monitoring_role_arn</code> value is required if you enter a <code>monitoring_interval</code> value other than 0.
       </td>
       <td>0</td>
       <td>provision and update</td>
@@ -353,7 +352,7 @@ The Operation column displays whether a parameter is supported for both provisio
 You can bind a service by running:
 
 ```console
-cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
+cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
 ```
 
 ## <a id="binding-creds"></a> Binding Credentials
@@ -373,9 +372,6 @@ The format for binding credentials for PostgreSQL is as follows:
 }
 ```
 
-<p class="note">
-  <strong>Note:</strong> When a binding or service key is deleted, the underlying PostgreSQL user
-  still exists in the database. To remove the user completely, use the CLI.
-  For more information, see the
-  <a href="https://www.postgresql.org/docs/current/sql-dropuser.html">PostgreSQL documentation</a>.
-</p>
+When a binding or service key is deleted, the underlying PostgreSQL user still exists in the database.
+To remove the user completely, use the CLI. For more information, see the
+[PostgreSQL documentation](https://www.postgresql.org/docs/current/sql-dropuser.html)
