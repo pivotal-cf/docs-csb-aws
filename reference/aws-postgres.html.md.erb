@@ -39,6 +39,7 @@ The following table lists parameters which can only be configured for additional
 | `bindable`        | Specifies whether service instances of the service plan can bind to applications    | true    | No       |
 | `plan_updateable` | Whether the plan supports upgrading, downgrading, or sidegrading to another version | true    | No       |
 | `storage_gb`      | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB     | 5       | Yes      |
+| `cores`           | Deprecated - Minimum number of cores for service instance.  1&ndash;64&nbsp;. We recommend using `instance_class` instead.  | 2       | No       |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
@@ -90,7 +91,7 @@ The Operation column displays whether a parameter is supported for both provisio
     <tr>
       <td><code>instance_class</code></td>
       <td>String</td>
-      <td>Required - The AWS database instance class.
+      <td>The AWS database instance class.
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
       <td><em>db.m6g.large</em></td>
