@@ -27,11 +27,42 @@ To remove instances from Cloud Foundry, but retain them in the IaaS, run:
 ```console
 cf purge-service-instance
 ```
+### <a id="custom-plans"></a> Custom plans changes
+
+If you have custom plans already configured, you may need to change the configuration to account for the new `boc_object_ownership` property
+which defaults to `BucketOwnerEnforced` and thus disables ACLs. E.g
+
+```json
+  {
+      "name": "public-read",
+      "id": "04317eaa-11ac-4c5f-b77f-eb005fe977fe",
+      "description": "Public-read S3 bucket",
+      "display_name": "Public Read",
+      "acl": "public-read",
+  }
+```
+
+Should now become
+
+```json
+  {
+      "name": "public-read",
+      "id": "04317eaa-11ac-4c5f-b77f-eb005fe977fe",
+      "description": "Public-read S3 bucket",
+      "display_name": "Public Read",
+      "acl": "public-read",
+      "boc_object_ownership": "ObjectWriter"
+  }
+```
+
+More information on the <code>boc_object_ownership</code> and <code>acl</code>
+properties can be found in the [Amazon S3 Bucket](reference/aws-s3.html.md.erb) service offereing documentation.
+
+
 
 ## <a id="procedure"></a> Upgrade procedure
 
 To upgrade the <%= vars.product_short %> to a later version:
 
 1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
-
-1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb).
+1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.

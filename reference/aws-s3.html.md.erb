@@ -33,7 +33,6 @@ The following table lists parameters which can only be configured for additional
 | `free`               | When false, service instances of this service plan have a cost    | true     | No |
 | `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
 | `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
-| `acl`                | S3 bucket Access control list (ACL). For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).    | _n/a_     | No |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
@@ -79,6 +78,20 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>acl</code></td>
+      <td>String</td>
+      <td>
+        S3 bucket Access control list (ACL).
+        For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
+        ACLs are automatically disabled if <a href="#boc-object-ownership">Object Ownership</a>
+        is set to "BucketOwnerEnforced".
+        Allowed values: <code>null</code>, <code>private<code>, <code>public-read<code>, <code>public-read-write<code>, <code>aws-exec-read<code>,
+          <code>authenticated-read<code>, <code>bucket-owner-read<code>, <code>bucket-owner-full-control<code>, <code>log-delivery-write<code>
+      </td>
+      <td><code>null</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
       <td><code>enable_versioning</code></td>
       <td>Boolean</td>
       <td>
@@ -100,15 +113,16 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>boc_object_ownership</code></td>
+      <td><a id="boc-object-ownership"></a><code>boc_object_ownership</code></td>
       <td>String</td>
       <td>
         S3 Bucket Ownership Controls.
         Allowed values: <code>BucketOwnerPreferred</code>,<code>ObjectWriter</code>, and <code>BucketOwnerEnforced</code>.
+        Setting this property to <code>BucketOwnerEnforced</code> will disaable ACLs.
         For more information, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">AWS documentation</a>.
       </td>
       <td><code>BucketOwnerEnforced</code></td>
-      <td>provision and update</td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>sse_default_kms_master_key_id</code></td>
