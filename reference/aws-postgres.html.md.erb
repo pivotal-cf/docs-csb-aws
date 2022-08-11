@@ -39,7 +39,7 @@ The following table lists parameters which can only be configured for additional
 | `bindable`        | Specifies whether service instances of the service plan can bind to applications    | true    | No       |
 | `plan_updateable` | Whether the plan supports upgrading, downgrading, or sidegrading to another version | true    | No       |
 | `storage_gb`      | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB     | 5       | Yes      |
-| `cores`           | Deprecated - Minimum number of cores for service instance.  1&ndash;64&nbsp;. We recommend using `instance_class` instead.  | 2       | No       |
+| `cores`           | Deprecated - Minimum number of cores for service instance.  1&ndash;64&nbsp;. Use `instance_class` instead. | 2       | No       |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
@@ -64,8 +64,10 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The following table lists the parameters that you can configure, by using the -c flag, when provisioning or updating a `csb-aws-postgres` service.
-The Operation column displays whether a parameter is supported for both provision and update, or for provision only:
+The following table lists the parameters that you can configure, by using the `-c` flag, when
+provisioning or updating a `csb-aws-postgres` service.
+The Operation column displays whether a parameter is supported for both provision and update, or for
+provision only:
 
 <table class="nice">
   <thead>
@@ -241,9 +243,12 @@ The Operation column displays whether a parameter is supported for both provisio
       <td><code>kms_key_id</code></td>
       <td>String</td>
       <td>
-        The ARN for the KMS encryption key. The `storage_encrypted` property must be enabled if the key is specified.
-        Amazon RDS encrypted DB instances provide an additional layer of data protection by securing data from unauthorized access to the underlying storage.
-        Amazon RDS uses an AWS KMS key to encrypt these resources. A custom key with the desired configuration can be used.
+        The ARN for the KMS encryption key. Enable the <code>storage_encrypted</code> property if the
+        key is specified.<br><br>
+        Amazon RDS-encrypted database instances provide an additional layer of data protection by
+        securing data from unauthorized access to the underlying storage.<br><br>
+        Amazon RDS uses an AWS KMS key to encrypt these resources. You can use a custom key with the
+        configuration that you want.
       </td>
       <td><code>None</code></td>
       <td>provision</td>
@@ -254,8 +259,8 @@ The Operation column displays whether a parameter is supported for both provisio
       <td>
         The PostgreSQL parameter group name for the service instance.
         By default, a parameter group is created for each instance, and used to apply security settings.
-        If you set a custom parameter group, it might override other settings, including security settings.
-        Do not introduce this property during a service instance update because it causes the update to fail.<br>
+        If you set a custom parameter group, it might override other settings, including security settings.<br><br>
+        Do not introduce this property during a service instance update because it causes the update to fail.
         However, you can edit or unset an existing value during a service instance update.
       </td>
       <td><code>""</code></td>
