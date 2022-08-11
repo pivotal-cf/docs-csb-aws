@@ -81,12 +81,12 @@ provision only:
       <td><code>acl</code></td>
       <td>String</td>
       <td>
-        S3 bucket Access control list (ACL).
-        For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
-        ACLs are automatically disabled if <a href="#boc-object-ownership">Object Ownership</a>
-        is set to "BucketOwnerEnforced".
-        Allowed values: <code>null</code>, <code>private<code>, <code>public-read<code>, <code>public-read-write<code>, <code>aws-exec-read<code>,
-          <code>authenticated-read<code>, <code>bucket-owner-read<code>, <code>bucket-owner-full-control<code>, <code>log-delivery-write<code>
+        S3 bucket access control list (ACL).
+        For more information, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl">AWS documentation</a>.
+        ACLs are automatically deactivated if <a href="#boc-object-ownership">boc_object_ownership</a>
+        is set to <code>BucketOwnerEnforced</code>.
+        Permitted values: <code>null</code>, <code>private</code>, <code>public-read</code>, <code>public-read-write</code>, <code>aws-exec-read</code>,
+          <code>authenticated-read</code>, <code>bucket-owner-read</code>, <code>bucket-owner-full-control</code>, and <code>log-delivery-write</code>
       </td>
       <td><code>null</code></td>
       <td>provision</td>
@@ -117,8 +117,8 @@ provision only:
       <td>String</td>
       <td>
         S3 Bucket Ownership Controls.
-        Allowed values: <code>BucketOwnerPreferred</code>,<code>ObjectWriter</code>, and <code>BucketOwnerEnforced</code>.
-        Setting this property to <code>BucketOwnerEnforced</code> will disaable ACLs.
+        Permitted values: <code>BucketOwnerPreferred</code>, <code>ObjectWriter</code>, and <code>BucketOwnerEnforced</code>.
+        Setting this property to <code>BucketOwnerEnforced</code> deactivates ACLs.
         For more information, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html">AWS documentation</a>.
       </td>
       <td><code>BucketOwnerEnforced</code></td>
