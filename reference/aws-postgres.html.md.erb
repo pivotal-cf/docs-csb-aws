@@ -5,7 +5,7 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-> **Caution:** The Amazon RDS for PostgreSQL service is currently in beta and is intended for
+> **Caution:** The Amazon RDS for PostgreSQL service is in beta and is intended for
 > evaluation and test purposes only. Do not use this service in a production environment.
 
 This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres)
@@ -352,8 +352,11 @@ provision only:
       <td>Boolean</td>
       <td>
         Specifies whether Performance Insights are enabled.
-        Performance Insights expands on existing Amazon RDS monitoring features to illustrate and help you analyze your database performance.
-        With the Performance Insights dashboard, you can visualize the database load on your Amazon RDS DB instance load and filter the load by waits, SQL statements, hosts, or users.
+        Performance Insights expands on existing Amazon RDS monitoring features to illustrate your
+        database performance and help you analyze it.
+        From the Performance Insights dashboard you can visualize the database load on your
+        Amazon RDS database instance load and filter the load by wait types,
+        SQL statements, hosts, or users.
       </td>
       <td>false</td>
       <td>provision and update</td>
@@ -363,8 +366,8 @@ provision only:
       <td>String</td>
       <td>
         The ARN for the KMS key to encrypt Performance Insights data.
-        When specifying `performance_insights_kms_key_id`, `performance_insights_enabled` needs to be set to true.
-        Once KMS key is set, it can never be changed.
+        When specifying `performance_insights_kms_key_id`, set `performance_insights_enabled` as `true`.
+        After the KMS key is set, it can never be changed.
       </td>
       <td>None</td>
       <td>provision and update</td>
