@@ -33,7 +33,7 @@ To remove instances from Cloud Foundry, but retain them in the IaaS, run:
 cf purge-service-instance
 ```
 
-#### <a id="custom-plans"></a> Changing custom plans
+#### <a id="s3-custom-plans"></a> Changing custom plans
 
 If you have custom plans already configured, you might need to change the configuration because the
 new `boc_object_ownership` property defaults to `BucketOwnerEnforced`, which deactivates ACLs.
@@ -78,6 +78,29 @@ To remove instances from Cloud Foundry, but retain them in the IaaS, run:
 
 ```console
 cf purge-service-instance
+```
+
+
+#### <a id="rds-postgres-custom-plans"></a> Changing custom plans
+
+If you have custom plans already configured for PostgreSQL, you will need to change the configuration because the
+new `storage_type` property defaults to `io1`, which will attempt to move all service instances into a new storage 
+type from the General purpose (gp2) that they are on currently.
+
+To make sure no unintended changes happen to your existing instances, add the `storage_type` property to your plan.
+
+For example:
+
+```json
+  {
+    "name": "my-custom-plan",
+    "id": "dd448d6e-1d71-11ed-9974-77a0c9ef0141",
+    "description": "Custom plan",
+    "cores": 2,
+    "storage_gb": 5,
+    "postgres_version": 11,
+    "storage_type": "gp2"
+  }
 ```
 
 ## <a id="procedure"></a> Upgrade procedure
