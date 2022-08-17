@@ -11,15 +11,10 @@ owner: Cloud Service Broker
 This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres)
 service. It details the plans, configuration parameters, and binding credentials.
 
-## <a id="plans"></a> Plans
-
-The default plans and configuration options for Amazon RDS for PostgreSQL are in the following table:
-
-| Plan   | Description                                      |
-|--------|--------------------------------------------------|
-| small  | PostgreSQL 13.4, 2 vCPUs, 8&nbsp;GB RAM, 5&nbsp;GB storage   |
-| medium | PostgreSQL 13.4, 4 vCPUs, 16&nbsp;GB RAM, 10&nbsp;GB storage |
-| large  | PostgreSQL 13.4, 8 vCPUs, 32&nbsp;GB RAM, 20&nbsp;GB storage |
+> **Note:** Release v1.2.0 removed brokerpak canned plans for Amazon RDS for PostgreSQL.
+> Since then all plans must be configured through the tile.
+> If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
+> maintain, see [Add previously canned plans](#old-plans).
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -93,12 +88,26 @@ provision only:
     <tr>
       <td><code>instance_class</code></td>
       <td>String</td>
-      <td>The AWS database instance class.
+      <td>Required unless cores is defined in plan - The AWS database instance class.
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
       <td><em>db.m6g.large</em></td>
       <td>provision and update</td>
     </tr>
+    <tr>
+      <td><code>storage_type</code></td>
+      <td>String</td>
+      <td>Type of storage to be used. One of "standard" (magnetic), "gp2" (general purpose SSD), or "io1" (provisioned IOPS SSD).</td>
+      <td><em>io1</em></td>
+      <td>provision and update</td>
+    </tr>   
+    <tr>
+    <td><code>iops</code></td>
+    <td>Integer</td>
+    <td>The amount of provisioned IOPS. Setting this implies a storage_type of "io1". Setting storage_type to any value other than "io1" will result in this value being ignored.</td>
+    <td><em>3000</em></td>
+    <td>provision and update</td>
+    </tr>   
     <tr>
       <td><code>instance_name</code></td>
       <td>String</td>
@@ -417,3 +426,62 @@ The format for binding credentials for PostgreSQL is as follows:
 When a binding or service key is deleted, the underlying PostgreSQL user still exists in the database.
 To remove the user completely, use the CLI. For more information, see the
 [PostgreSQL documentation](https://www.postgresql.org/docs/current/sql-dropuser.html)
+
+
+## <a id="old-plans"></a> Add previously provided canned plans
+
+The following table lists the previously provided plans for the Amazon RDS for PostgreSQL service:
+
+| Plan   | Description                                      |
+|--------|--------------------------------------------------|
+| small  | PostgreSQL 11, 2 vCPUs, 8&nbsp;GB RAM, 5&nbsp;GB storage   |
+| medium | PostgreSQL 11, 4 vCPUs, 16&nbsp;GB RAM, 10&nbsp;GB storage |
+| large  | PostgreSQL 11, 8 vCPUs, 32&nbsp;GB RAM, 20&nbsp;GB storage |
+
+To keep these plans in later versions of the broker, add them through the tile as custom plans.
+For how to configure plans through the tile, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
+
+Add the following block to keep the `small` plan:
+
+```json
+{
+    "name": "small",
+    "id": "ffc51616-228b-41bd-bed1-d601c18d58f5",
+    "description": "PostgreSQL 11, minimum 2 cores, minimum 4GB ram, 5GB storage",
+    "display_name": "small",
+    "cores": 2,
+    "storage_gb": 5,
+    "storage_type": "gp2",
+    "postgres_version": 11
+}
+```
+
+Add the following block to keep the `medium` plan:
+
+```json
+{
+    "name": "medium",
+    "id": "e64d07f9-ceb2-40a6-abd9-391047fa3cf5",
+    "description": "PostgreSQL 11, minimum 4 cores, minimum 8GB ram, 10GB storage",
+    "display_name": "medium",
+    "cores": 4,
+    "storage_gb": 10,
+    "storage_type": "gp2",
+    "postgres_version": 11
+}
+```
+
+Add the following block to keep the `large` plan:
+```json
+{
+    "name": "large",
+    "id": "48baef10-a14c-4ae1-aab5-25f26eba941a",
+    "description": "PostgreSQL 11, minimum 8 cores, minimum 16GB ram, 20GB storage",
+    "display_name": "large",
+    "cores": 8,
+    "storage_gb": 20,
+    "storage_type": "gp2",
+    "postgres_version": 11
+}
+```
