@@ -5,7 +5,19 @@ owner: Cloud Service Broker
 
 This topic describes how to upgrade <%= vars.product_full %>.
 
-## <a id="upgrade-to-1-2-0"></a> Upgrading from v1.1.2 to v1.2.0
+
+
+## <a id="upgrade-to-1-2-0"></a> Upgrading to v1.2.0
+
+<%= vars.product_short %> uses Terraform internally to manage the deployment of service instances.
+Terraform was updated from v0.12 to v1.1.
+As a result, there is an upgrade process that must be performed on every
+service instance so that <%= vars.product_short %> can continue to manage it.
+
+VMware recommends that you back up service instances before upgrading.
+
+VMware recommends that you review the known issues before upgrading to v1.2.0.
+For more information, see [Known Issues](#known-issues).
 
 ### <a id="s3-bucket"></a> S3 Bucket
 
@@ -109,3 +121,11 @@ To upgrade the <%= vars.product_short %> to a later version:
 
 1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
 1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
+
+
+## <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
+
+Upgrading from v.1.0.0 is not possible. This is due to a change in the internal structuring of the Terraform configuration files, resulting in upgrades for all services failing.
+
+If a `csb-aws-dynamodb` service was created with v1.0.1 or earlier, upgrading fails. This is due to a bug which was fixed in later versions where the property `table_name` was incorrectly named `tabel_name`.
+Any updates to the service result in a failure due to the property key changing in subsequent versions.
