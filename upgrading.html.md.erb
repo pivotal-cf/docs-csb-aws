@@ -28,7 +28,7 @@ S3 bucket is no longer in beta and can be used in production.
 From this version onwards, plans are no longer provided with the brokerpak.
 If you have S3 bucket instances that you want to maintain, you must add previously provided plans
 through the tile.
-For more information, see [Add previously provided canned plans](reference/aws-s3.html.md.erb#old-plans).
+For more information, see [Add previously provided pre-configured plans](reference/aws-s3.html.md.erb#old-plans).
 
 If you instead want to delete all previously created S3 bucket service instances, you must delete
 them before upgrading <%= vars.product_short %> to v1.2.0.
@@ -68,17 +68,20 @@ For example:
 For more information about the <code>boc_object_ownership</code> and <code>acl</code> properties,
 see [Amazon S3 Bucket](reference/aws-s3.html.md.erb).
 
-### <a id="rds-postgres"></a> Amazon RDS for PostgreSQL 
+### <a id="rds-postgres"></a> Amazon RDS for PostgreSQL
 
-#### <a id="rds-postgres-old-plans"></a> Changing custom plans
+See the following procedures for changing plans.
+
+#### <a id="rds-postgres-old-plans"></a> Changing old plans
 
 From this version onwards, plans are no longer provided with the brokerpak.
-If you have Amazon RDS for PostgreSQL instances that you want to maintain, you must add previously provided plans
-through the tile.
-For more information, see [Add previously provided canned plans](reference/aws-postgres.html.md.erb#old-plans).
+If you have Amazon RDS for PostgreSQL instances that you want to maintain, you must add previously
+provided plans through the tile.
+For more information, see
+[Add previously provided pre-configured plans](reference/aws-postgres.html.md.erb#old-plans).
 
-If you instead want to delete all previously created Amazon RDS for PostgreSQL service instances, you must delete
-them before upgrading <%= vars.product_short %> to v1.2.0.
+If you instead want to delete all previously created Amazon RDS for PostgreSQL service instances,
+you must delete them before upgrading <%= vars.product_short %> to v1.2.0.
 
 To remove the instances from the broker, run:
 
@@ -92,16 +95,15 @@ To remove instances from Cloud Foundry, but retain them in the IaaS, run:
 cf purge-service-instance
 ```
 
-
 #### <a id="rds-postgres-custom-plans"></a> Changing custom plans
 
-If you have custom plans already configured for PostgreSQL, you will need to change the configuration because the
-new `storage_type` property defaults to `io1`, which will attempt to move all service instances into a new storage 
-type from the General purpose (gp2) that they are on currently.
+If you have custom plans already configured for PostgreSQL, you must change the configuration.
+This is because the new `storage_type` property is `io1` by default, which attempts to move all
+service instances into a new storage type from the general purpose (gp2) type that they are on
+currently.
 
-To make sure no unintended changes happen to your existing instances, add the `storage_type` property to your plan.
-
-For example:
+To ensure that no unintended changes happen to your existing instances, add the `storage_type`
+property to your plan. For example:
 
 ```json
   {
@@ -122,10 +124,12 @@ To upgrade the <%= vars.product_short %> to a later version:
 1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
 1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
 
-
 ## <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
 
-Upgrading from v.1.0.0 is not possible. This is due to a change in the internal structuring of the Terraform configuration files, resulting in upgrades for all services failing.
+Upgrading from v1.0.0 is not possible. This is due to a change in the internal structuring of the
+Terraform configuration files that causes upgrades for all services to fail.
 
-If a `csb-aws-dynamodb` service was created with v1.0.1 or earlier, upgrading fails. This is due to a bug which was fixed in later versions where the property `table_name` was incorrectly named `tabel_name`.
-Any updates to the service result in a failure due to the property key changing in subsequent versions.
+If a `csb-aws-dynamodb` service was created with v1.0.1 or earlier, upgrading fails.
+This is due to an issue that was fixed in later versions where the property `table_name` was
+incorrectly named `tabel_name`.
+Any updates to the service cause a failure because the property key changed in subsequent versions.

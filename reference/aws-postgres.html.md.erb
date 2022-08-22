@@ -11,10 +11,10 @@ owner: Cloud Service Broker
 This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres)
 service. It details the plans, configuration parameters, and binding credentials.
 
-> **Note:** Release v1.2.0 removed brokerpak canned plans for Amazon RDS for PostgreSQL.
+> **Note:** Release v1.2.0 removed brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
 > Since then all plans must be configured through the tile.
 > If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
-> maintain, see [Add previously canned plans](#old-plans).
+> maintain, see [Add previously pre-configured plans](#old-plans).
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -88,7 +88,7 @@ provision only:
     <tr>
       <td><code>instance_class</code></td>
       <td>String</td>
-      <td>Required unless cores is defined in plan - The AWS database instance class.
+      <td>Required unless cores is defined in plan - the AWS database instance class.
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
       <td><em>db.m6g.large</em></td>
@@ -97,17 +97,17 @@ provision only:
     <tr>
       <td><code>storage_type</code></td>
       <td>String</td>
-      <td>Type of storage to be used. One of "standard" (magnetic), "gp2" (general purpose SSD), or "io1" (provisioned IOPS SSD).</td>
+      <td>Type of storage to be used. One of <code>standard</code> (magnetic), <code>gp2</code> (general purpose SSD), or <code>io1</code> (provisioned IOPS SSD).</td>
       <td><em>io1</em></td>
       <td>provision and update</td>
-    </tr>   
+    </tr>
     <tr>
     <td><code>iops</code></td>
     <td>Integer</td>
-    <td>The amount of provisioned IOPS. In order for this property to take effect, `storage_type` must be set to `io1`.</td>
+    <td>The amount of provisioned IOPS. For this property to take effect, <code>storage_type</code> must be set to <code>io1</code>.</td>
     <td><em>3000</em></td>
     <td>provision and update</td>
-    </tr>   
+    </tr>
     <tr>
       <td><code>instance_name</code></td>
       <td>String</td>
@@ -375,7 +375,7 @@ provision only:
       <td>String</td>
       <td>
         The ARN for the KMS key to encrypt Performance Insights data.
-        When specifying `performance_insights_kms_key_id`, set `performance_insights_enabled` as `true`.
+        When specifying <code>performance_insights_kms_key_id</code>, set <code>performance_insights_enabled</code> as <code>true</code>.
         After the KMS key is set, it can never be changed.
       </td>
       <td>None</td>
@@ -427,8 +427,7 @@ When a binding or service key is deleted, the underlying PostgreSQL user still e
 To remove the user completely, use the CLI. For more information, see the
 [PostgreSQL documentation](https://www.postgresql.org/docs/current/sql-dropuser.html)
 
-
-## <a id="old-plans"></a> Add previously provided canned plans
+## <a id="old-plans"></a> Add previously provided pre-configured plans
 
 The following table lists the previously provided plans for the Amazon RDS for PostgreSQL service:
 
@@ -473,6 +472,7 @@ Add the following block to keep the `medium` plan:
 ```
 
 Add the following block to keep the `large` plan:
+
 ```json
 {
     "name": "large",
