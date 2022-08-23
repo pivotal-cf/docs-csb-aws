@@ -5,19 +5,15 @@ owner: Cloud Service Broker
 
 This topic describes how to upgrade <%= vars.product_full %>.
 
-
-
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to v1.2.0
 
 <%= vars.product_short %> uses Terraform internally to manage the deployment of service instances.
 Terraform was updated from v0.12 to v1.1.
-As a result, there is an upgrade process that must be performed on every
-service instance so that <%= vars.product_short %> can continue to manage it.
+As a result, there is an upgrade process that must be performed on every service instance so that
+<%= vars.product_short %> can continue to manage it.
 
-VMware recommends that you back up service instances before upgrading.
-
-VMware recommends that you review the known issues before upgrading to v1.2.0.
-For more information, see [Known Issues](#known-issues).
+Back up service instances and review the known issues before upgrading to v1.2.0.
+For more information, see [Known Issues with Upgrading to v1.2.0](#known-issues).
 
 ### <a id="s3-bucket"></a> S3 Bucket
 
@@ -126,7 +122,7 @@ To upgrade the <%= vars.product_short %> to a later version:
 
 ## <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
 
-Upgrading from v1.0.0 is not possible. This is due to a change in the internal structuring of the
+Upgrading from v1.0.0 is not possible. This is due to a change in the internal structure of the
 Terraform configuration files that causes upgrades for all services to fail.
 
 If a `csb-aws-dynamodb` service was created with v1.0.1 or earlier, upgrading fails.
