@@ -125,6 +125,17 @@ provision only:
       <td>provision</td>
     </tr>
     <tr>
+      <td><code>sse_default_algorithm</code></td>
+      <td>String</td>
+      <td>
+        The server-side encryption algorithm to use to automatically encrypt new objects stored in this bucket. 
+        Valid values are <code>AES256</code> to use Amazon S3-managed keys (SSE-S3) and <code>aws:kms</code> to use AWS Key Management Service key (SSE-KMS).
+        For more information about server-side encryption, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html">AWS documentation</a>.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>    
+    <tr>
       <td><code>sse_default_kms_master_key_id</code></td>
       <td>String</td>
       <td>
@@ -135,16 +146,7 @@ provision only:
       <td><code>null</code></td>
       <td>provision and update</td>
     </tr>
-    <tr>
-      <td><code>sse_default_algorithm</code></td>
-      <td>String</td>
-      <td>
-        The server-side encryption algorithm to use. Valid values are <code>AES256</code> and <code>aws:kms</code>.
-        For more information about server-side encryption, see the <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/serv-side-encryption.html">AWS documentation</a>.
-      </td>
-      <td><code>null</code></td>
-      <td>provision and update</td>
-    </tr>
+
     <tr>
       <td><code>sse_bucket_key_enabled</code></td>
       <td>Boolean</td>
