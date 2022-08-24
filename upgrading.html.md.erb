@@ -19,7 +19,7 @@ For more information, see [Known Issues with Upgrading to v1.2.0](#known-issues)
 
 S3 bucket is no longer in beta and can be used in production.
 
-#### <a id="s3-old-plans"></a> Adding back brokerpak provided plans
+#### <a id="s3-old-plans"></a> Restoring brokerpak-provided plans
 
 From this version onwards, plans are no longer provided with the brokerpak.
 If you have S3 bucket instances that you want to maintain, you must add previously provided plans
@@ -128,4 +128,4 @@ Terraform configuration files that causes upgrades for all services to fail.
 If a `csb-aws-dynamodb` service was created with v1.0.1 or earlier, upgrading fails.
 This is due to an issue that was fixed in later versions where the property `table_name` was
 incorrectly named `tabel_name`.
-Any updates to the service would cause a failure because the property key changed in subsequent versions.
+Any updates to the service can cause a failure because the property key changed in subsequent versions.
