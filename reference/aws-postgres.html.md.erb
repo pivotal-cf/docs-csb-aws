@@ -91,7 +91,7 @@ provision only:
       <td>Required unless cores is defined in plan - the AWS database instance class.
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.</td>
-      <td><em>db.m6g.large</em></td>
+      <td><code>""</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -102,17 +102,17 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
-    <td><code>iops</code></td>
-    <td>Integer</td>
-    <td>The amount of provisioned IOPS. For this property to take effect, <code>storage_type</code> must be set to <code>io1</code>.</td>
-    <td><em>3000</em></td>
-    <td>provision and update</td>
+      <td><code>iops</code></td>
+      <td>Integer</td>
+      <td>The amount of provisioned IOPS. For this property to take effect, <code>storage_type</code> must be set to <code>io1</code>.</td>
+      <td><em>3000</em></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>instance_name</code></td>
       <td>String</td>
       <td>The name of the AWS instance to create.</td>
-      <td><code>csb-mysql-INSTANCE-ID</code></td>
+      <td><code>csb-postgresql-INSTANCE-ID</code></td>
       <td>provision</td>
     </tr>
     <tr>
@@ -130,14 +130,7 @@ provision only:
         see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
-      <td>provision and update</td>
-    </tr>
-    <tr>
-      <td><code>vpc_id</code></td>
-      <td>String</td>
-      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
-      <td>The default VPC</td>
-      <td>provision and update</td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>multi_az</code></td>
@@ -259,7 +252,7 @@ provision only:
         Amazon RDS uses an AWS KMS key to encrypt these resources. You can use a custom key with the
         configuration that you want.
       </td>
-      <td><code>None</code></td>
+      <td><code>""</code></td>
       <td>provision</td>
     </tr>
     <tr>
@@ -294,14 +287,14 @@ provision only:
       <td>String</td>
        <td>The name of subnet to attach the database instance to.
          This overrides <code>aws_vpc_id</code>.</td>
-      <td>None</td>
+      <td><code>""<code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
       <td>Comma-separated String</td>
       <td>Security group IDs to assign to the database instance.</td>
-      <td>None</td>
+      <td><code>""<code></td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -322,7 +315,7 @@ provision only:
       <td><code>storage_autoscale</code></td>
       <td>Boolean</td>
       <td>Enable storage autoscaling up to <code>storage_autoscale_limit_gb</code> if true.</td>
-      <td>true</td>
+      <td>false</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -353,7 +346,7 @@ provision only:
         Enhanced Monitoring requires permission to act on your behalf to send OS metric information to CloudWatch Logs.
         This property represents the ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs.
       </td>
-      <td>None</td>
+      <td><code>""</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -378,7 +371,7 @@ provision only:
         When specifying <code>performance_insights_kms_key_id</code>, set <code>performance_insights_enabled</code> as <code>true</code>.
         After the KMS key is set, it can never be changed.
       </td>
-      <td>None</td>
+      <td><code>""</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
