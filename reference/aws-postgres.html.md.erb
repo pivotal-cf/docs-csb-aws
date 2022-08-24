@@ -416,9 +416,12 @@ The format for binding credentials for PostgreSQL is as follows:
 }
 ```
 
-When a binding or service key is deleted, the underlying PostgreSQL user still exists in the database.
-To remove the user completely, use the CLI. For more information, see the
-[PostgreSQL documentation](https://www.postgresql.org/docs/current/sql-dropuser.html)
+A binding or service key corresponds to a user in PostgreSQL. By default, PostgreSQL users do not have
+have access to data written by other users. In order for bindings to have access to the same data,
+the <code>public</code> schema may be used, or a schema can be created and access granted to other users.
+When a binding or service key is deleted, data owned by the PostgreSQL user is re-assigned to a role
+called <code>binding_user_group</code> before the user is deleted. This ensures that other bindings
+still have access to the data.
 
 ## <a id="old-plans"></a> Add previously provided pre-configured plans
 
