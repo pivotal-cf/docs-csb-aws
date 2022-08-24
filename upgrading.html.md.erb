@@ -113,14 +113,7 @@ property to your plan. For example:
   }
 ```
 
-## <a id="procedure"></a> Upgrade procedure
-
-To upgrade the <%= vars.product_short %> to a later version:
-
-1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
-1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
-
-## <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
+### <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
 
 Upgrading from v1.0.0 is not possible. This is due to a change in the internal structure of the
 Terraform configuration files that causes upgrades for all services to fail.
@@ -129,3 +122,14 @@ If a `csb-aws-dynamodb` service was created with v1.0.1 or earlier, upgrading fa
 This is due to an issue that was fixed in later versions where the property `table_name` was
 incorrectly named `tabel_name`.
 Any updates to the service can cause a failure because the property key changed in subsequent versions.
+
+## <a id="procedure"></a> Upgrade procedure
+
+To upgrade the <%= vars.product_short %> to a later version:
+
+1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
+1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
+1. If you are upgrading to a version later than v1.0, service instances might need to be upgraded.
+Before installing the new version, see
+[Upgrade All Service Instances Config](installing-with-aws.html#upgrade-all-config).
+
