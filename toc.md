@@ -2,6 +2,7 @@
 * [Release Notes](release-notes.html)
 * [Installing and Configuring](installing-with-aws.html)
 * [Subsuming an Amazon RDS for PostgreSQL (Beta) Instance](aws-postgres-subsume.html)
+* [Migrating Data to Amazon RDS for PostgreSQL (Beta) Instance](aws-postgres-migration.html)
 * [Upgrading](upgrading.html)
 * [Service Plan Reference](reference/index.html)
     * [Amazon S3 (Beta)](reference/aws-s3.html)
