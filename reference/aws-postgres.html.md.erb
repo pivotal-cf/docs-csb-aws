@@ -416,12 +416,14 @@ The format for binding credentials for PostgreSQL is as follows:
 }
 ```
 
-A binding or service key corresponds to a user in PostgreSQL. By default, PostgreSQL users do not have
-have access to data written by other users. In order for bindings to have access to the same data,
-the <code>public</code> schema may be used, or a schema can be created and access granted to other users.
+A binding or service key corresponds to a user in PostgreSQL.
+By default, PostgreSQL users do not have have access to data written by other users.
+For bindings to have access to the same data, the `public` schema can be used, or a schema can be
+created and access can be granted to other users.
+
 When a binding or service key is deleted, data owned by the PostgreSQL user is re-assigned to a role
-called <code>binding_user_group</code> before the user is deleted. This ensures that other bindings
-still have access to the data.
+called `binding_user_group` before the user is deleted. This ensures that other bindings still have
+access to the data.
 
 ## <a id="old-plans"></a> Add previously provided pre-configured plans
 
