@@ -11,153 +11,146 @@ This topic describes how to install and configure <%= vars.product_full %> (<%= 
 
 Before you install <%= vars.product_short %>, you must have:
 
-* **A small MySQL database:**
+- **A small MySQL database:** This database is used as the _state database_.
+  The broker requires this database to store its state.
 
-    This database is used as the _state database_.
-    The broker requires this database to store its state.
+- **AWS account credentials:** If the AWS account where the instances are created differs from the
+  one the platform runs in, the user is responsible for setting up the necessary networking.
+  The broker needs the following credentials to manage resources within an account:
+  - Access Key ID
+  - Secret Access Key
 
-* **AWS account credentials:**
+- **IAM Policies:**
+  The AWS account needs the following IAM policies:
 
-    The broker needs the following credentials to manage resources within an account:
-
-        - Access Key ID
-        - Secret Access Key
-
-    If the AWS account where the instances are created differs from the one the
-    platform runs in, the user is responsible for setting up the necessary networking.
-
-* **IAM Policies:**
-
-    The AWS account needs the following IAM policies:
-
-    ```json
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Action": [
-                "dynamodb:CreateTable",
-                "dynamodb:CreateTableReplica",
-                "dynamodb:DeleteTable",
-                "dynamodb:DescribeBackup",
-                "dynamodb:DescribeContinuousBackups",
-                "dynamodb:DescribeTable",
-                "dynamodb:DescribeTimeToLive",
-                "dynamodb:ListTables",
-                "dynamodb:ListTagsOfResource",
-                "dynamodb:TagResource",
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:CreateSecurityGroup",
-                "ec2:DeleteSecurityGroup",
-                "ec2:DescribeNetworkInterfaces",
-                "ec2:DescribeSecurityGroups",
-                "ec2:DescribeSubnets",
-                "ec2:DescribeVpcAttribute",
-                "ec2:DescribeVpcs",
-                "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress",
-                "elasticache:CreateCacheSubnetGroup",
-                "elasticache:CreateReplicationGroup",
-                "elasticache:DeleteCacheSubnetGroup",
-                "elasticache:DeleteReplicationGroup",
-                "elasticache:DescribeCacheClusters",
-                "elasticache:DescribeCacheSubnetGroups",
-                "elasticache:DescribeReplicationGroups",
-                "elasticache:ListTagsForResource",
-                "elasticache:ModifyReplicationGroup",
-                "elasticache:ModifyReplicationGroupShardConfiguration",
-                "iam:CreateAccessKey",
-                "iam:CreateUser",
-                "iam:DeleteAccessKey",
-                "iam:DeleteUser",
-                "iam:DeleteUserPolicy",
-                "iam:GetAccountAuthorizationDetails",
-                "iam:GetPolicy",
-                "iam:GetUser",
-                "iam:GetUserPolicy",
-                "iam:ListAccessKeys",
-                "iam:ListAttachedUserPolicies",
-                "iam:ListGroupsForUser",
-                "iam:ListPolicies",
-                "iam:ListUserPolicies",
-                "iam:PutUserPolicy",
-                "rds:AddTagsToResource",
-                "rds:CreateDBCluster",
-                "rds:CreateDBInstance",
-                "rds:CreateDBParameterGroup",
-                "rds:CreateDBSubnetGroup",
-                "rds:DeleteDBCluster",
-                "rds:DeleteDBInstance",
-                "rds:DeleteDBParameterGroup",
-                "rds:DeleteDBSnapshot",
-                "rds:DeleteDBSubnetGroup",
-                "rds:DescribeDBClusters",
-                "rds:DescribeDBInstances",
-                "rds:DescribeDBSnapshots",
-                "rds:DescribeDBSubnetGroups",
-                "rds:ListTagsForResource",
-                "rds:ModifyDBInstance",
-                "rds:ModifyDBParameterGroup",
-                "s3:CreateBucket",
-                "s3:DeleteAccessPointPolicy",
-                "s3:DeleteBucket",
-                "s3:DeleteBucketPolicy",
-                "s3:DeleteObject",
-                "s3:GetAccelerateConfiguration",
-                "s3:GetBucketAcl",
-                "s3:GetBucketCORS",
-                "s3:GetBucketLogging",
-                "s3:GetBucketObjectLockConfiguration",
-                "s3:GetBucketPolicy",
-                "s3:GetBucketRequestPayment",
-                "s3:GetBucketTagging",
-                "s3:GetBucketVersioning",
-                "s3:GetBucketWebsite",
-                "s3:GetEncryptionConfiguration",
-                "s3:GetLifecycleConfiguration",
-                "s3:GetObject",
-                "s3:GetReplicationConfiguration",
-                "s3:ListBucket",
-                "s3:PutAccessPointPolicy",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutBucketAcl",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutBucketRequestPayment",
-                "s3:PutBucketTagging",
-                "s3:PutBucketVersioning",
-                "s3:PutBucketOwnershipControls",
-                "s3:PutEncryptionConfiguration",
-                "s3:PutObject",
-                "s3:PutObjectAcl",
-                "s3:GetBucketPolicyStatus",
-                "s3:GetBucketPublicAccessBlock",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:GetAccountPublicAccessBlock",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:CreateAccessPoint",
-                "s3:BypassGovernanceRetention",
-                "s3:GetBucketObjectLockConfiguration",
-                "s3:GetObjectLegalHold",
-                "s3:GetObjectRetention",
-                "s3:PutBucketObjectLockConfiguration",
-                "s3:PutObjectLegalHold",
-                "s3:PutObjectRetention",
-                "sqs:CreateQueue",
-                "sqs:DeleteQueue"
-                ],
-                "Effect": "Allow",
-                "Resource": "*"
-            }
-        ]
-    }
-    ```
+  ```json
+  {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Action": [
+              "dynamodb:CreateTable",
+              "dynamodb:CreateTableReplica",
+              "dynamodb:DeleteTable",
+              "dynamodb:DescribeBackup",
+              "dynamodb:DescribeContinuousBackups",
+              "dynamodb:DescribeTable",
+              "dynamodb:DescribeTimeToLive",
+              "dynamodb:ListTables",
+              "dynamodb:ListTagsOfResource",
+              "dynamodb:TagResource",
+              "ec2:AuthorizeSecurityGroupIngress",
+              "ec2:CreateSecurityGroup",
+              "ec2:DeleteSecurityGroup",
+              "ec2:DescribeNetworkInterfaces",
+              "ec2:DescribeSecurityGroups",
+              "ec2:DescribeSubnets",
+              "ec2:DescribeVpcAttribute",
+              "ec2:DescribeVpcs",
+              "ec2:RevokeSecurityGroupEgress",
+              "ec2:RevokeSecurityGroupIngress",
+              "elasticache:CreateCacheSubnetGroup",
+              "elasticache:CreateReplicationGroup",
+              "elasticache:DeleteCacheSubnetGroup",
+              "elasticache:DeleteReplicationGroup",
+              "elasticache:DescribeCacheClusters",
+              "elasticache:DescribeCacheSubnetGroups",
+              "elasticache:DescribeReplicationGroups",
+              "elasticache:ListTagsForResource",
+              "elasticache:ModifyReplicationGroup",
+              "elasticache:ModifyReplicationGroupShardConfiguration",
+              "iam:CreateAccessKey",
+              "iam:CreateUser",
+              "iam:DeleteAccessKey",
+              "iam:DeleteUser",
+              "iam:DeleteUserPolicy",
+              "iam:GetAccountAuthorizationDetails",
+              "iam:GetPolicy",
+              "iam:GetUser",
+              "iam:GetUserPolicy",
+              "iam:ListAccessKeys",
+              "iam:ListAttachedUserPolicies",
+              "iam:ListGroupsForUser",
+              "iam:ListPolicies",
+              "iam:ListUserPolicies",
+              "iam:PutUserPolicy",
+              "rds:AddTagsToResource",
+              "rds:CreateDBCluster",
+              "rds:CreateDBInstance",
+              "rds:CreateDBParameterGroup",
+              "rds:CreateDBSubnetGroup",
+              "rds:DeleteDBCluster",
+              "rds:DeleteDBInstance",
+              "rds:DeleteDBParameterGroup",
+              "rds:DeleteDBSnapshot",
+              "rds:DeleteDBSubnetGroup",
+              "rds:DescribeDBClusters",
+              "rds:DescribeDBInstances",
+              "rds:DescribeDBSnapshots",
+              "rds:DescribeDBSubnetGroups",
+              "rds:ListTagsForResource",
+              "rds:ModifyDBInstance",
+              "rds:ModifyDBParameterGroup",
+              "s3:CreateBucket",
+              "s3:DeleteAccessPointPolicy",
+              "s3:DeleteBucket",
+              "s3:DeleteBucketPolicy",
+              "s3:DeleteObject",
+              "s3:GetAccelerateConfiguration",
+              "s3:GetBucketAcl",
+              "s3:GetBucketCORS",
+              "s3:GetBucketLogging",
+              "s3:GetBucketObjectLockConfiguration",
+              "s3:GetBucketPolicy",
+              "s3:GetBucketRequestPayment",
+              "s3:GetBucketTagging",
+              "s3:GetBucketVersioning",
+              "s3:GetBucketWebsite",
+              "s3:GetEncryptionConfiguration",
+              "s3:GetLifecycleConfiguration",
+              "s3:GetObject",
+              "s3:GetReplicationConfiguration",
+              "s3:ListBucket",
+              "s3:PutAccessPointPolicy",
+              "s3:PutAccountPublicAccessBlock",
+              "s3:PutBucketAcl",
+              "s3:PutBucketPolicy",
+              "s3:PutBucketPublicAccessBlock",
+              "s3:PutBucketRequestPayment",
+              "s3:PutBucketTagging",
+              "s3:PutBucketVersioning",
+              "s3:PutBucketOwnershipControls",
+              "s3:PutEncryptionConfiguration",
+              "s3:PutObject",
+              "s3:PutObjectAcl",
+              "s3:GetBucketPolicyStatus",
+              "s3:GetBucketPublicAccessBlock",
+              "s3:PutBucketPublicAccessBlock",
+              "s3:PutBucketPublicAccessBlock",
+              "s3:GetAccountPublicAccessBlock",
+              "s3:PutAccountPublicAccessBlock",
+              "s3:PutAccountPublicAccessBlock",
+              "s3:CreateAccessPoint",
+              "s3:BypassGovernanceRetention",
+              "s3:GetBucketObjectLockConfiguration",
+              "s3:GetObjectLegalHold",
+              "s3:GetObjectRetention",
+              "s3:PutBucketObjectLockConfiguration",
+              "s3:PutObjectLegalHold",
+              "s3:PutObjectRetention",
+              "sqs:CreateQueue",
+              "sqs:DeleteQueue"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+          }
+      ]
+  }
+  ```
 
 ## <a id="install"></a> Install <%= vars.product_short %>
 
-To install the <%= vars.product_short %> using <%= vars.ops_manager %> Installation Dashboard:
+To use <%= vars.ops_manager %> Installation Dashboard to install <%= vars.product_short %>
 
 1. Download the product file from
 [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
@@ -183,16 +176,15 @@ To configure AZs and networks:
 
 1. Click **Assign AZs and Networks**.
 
-1. Configure the fields as follows:
+2. Configure the text boxes as follows:
 
-    | Field | Instructions |
-    |-------|----------------|
-    | Place singleton jobs in | Select the AZ in which the broker VM for <%= vars.product_short %> runs. The broker runs as a singleton job. |
-    | Balance other jobs in | Select the AZs in which other jobs can run. |
-    | Network | Select a subnet for the <%= vars.product_short %> broker. This is typically the same subnet that includes the component VMs for <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). |
+   | Text box | Instructions |
+   |-------|----------------|
+   | Place singleton jobs in | Select the AZ in which the broker VM for <%= vars.product_short %> runs. The broker runs as a singleton job. |
+   | Balance other jobs in | Select the AZs in which other jobs can run. |
+   | Network | Select a subnet for the <%= vars.product_short %> broker. This is typically the same subnet that includes the component VMs for <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). |
 
-1. Click **Save**.
-
+3. Click **Save**.
 
 ### <a id="config-creds"></a> Configure AWS Credentials
 
@@ -203,38 +195,36 @@ To configure AWS credentials:
 
 1. Click **AWS Config**.
 
-1. Configure the fields as follows:
+2. Configure the text boxes as follows:
 
-    | Field | Instructions |
-    |-------|--------------|
-    | AWS Access Key | Enter the AWS Access Key |
-    | AWS Secret Access Key | Enter the AWS Secret Access Key |
-    | Region | Enter the Region where your VPC is located |
+   | Field | Instructions |
+   |-------|--------------|
+   | AWS Access Key | Enter the AWS Access Key |
+   | AWS Secret Access Key | Enter the AWS Secret Access Key |
+   | Region | Enter the Region where your VPC is located |
 
-1. Click **Save**.
+3. Click **Save**.
 
-### <a id="state-db"></a>Configure a State Database
+### <a id="state-db"></a> Configure a State Database
 
 This section describes how to associate <%= vars.product_short %> with a MySQL database,
 the _state database_.
 
-#### About Encrypting the State Database
+#### <a id="encrypt-state-db"></a> About Encrypting the State Database
 
 In production environments, VMware recommends that you enable encryption.
 This encrypts certain sensitive information in the state database, such as IaaS credentials.
-The encryption password that you enter on the Service Broker Config pane is used to generate an encryption key.
+The encryption password that you enter on the **Service Broker Config** pane is used to generate an
+encryption key.
 
 Applying changes takes longer than normal when you first enable encryption and when you change the
 encryption password.
 
-<p class="note">
-  <strong>Note:</strong> VMware recommends enabling backup and restore capabilities in the MySQL
-  database before attempting encryption. This is because if something goes wrong, and your database
-  is only partially encrypted, it is safest to revert to the most recent database backup.
-</p>
+> **Caution:** Enable backup and restore capabilities in the MySQL database before
+> attempting encryption. This is because if something goes wrong, and your database is only partially
+> encrypted, it is safest to revert to the most recent database backup.
 
-
-#### Prerequisite
+#### <a id="state-db-prereq"></a> Prerequisite
 
 You must have a small MySQL database to use as the state database.
 
@@ -243,38 +233,38 @@ You must have a small MySQL database to use as the state database.
 To configure <%= vars.product_short %> with a database:
 
 1. Click **Service Broker Config**.
-2. Configure the fields as follows:
+1. Configure the text boxes as follows:
 
-    | Field | Instructions |
-    |-------|--------------|
-    | **Database host** | Enter the host name of the prerequisite state database.|
-    | **Database username** and **Database password** | Enter the credentials for the state database. The example shown in the screenshot in the previous step refers to setting the username for a MySQL tile provisioned database. If you are configuring a database provisioned by another service, refer to the documentation for that service for the correct username format. For RDS MySQL, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html). |
-    | **Database port** | Enter the port number for connection to the state database. Defaults to `3306`. |
-    | **Database name** | Enter the name of an existing database to use as the state database.|
-    | **TLS Enforcement** | Select the type of TLS enforcement you want. If you select **Custom**, enter your CA certificate, client certificate, and key. |
-    | **Enable encryption of the Cloud Service Broker database**| If you want the sensitive data to be encrypted, select this checkbox and the **Add** button. If you do not want to encrypt the data, leave the checkbox unselected and do not fill in the Database Encryption Passwords fields.|
-    | **Label**| Enter a unique password label. You cannot change this label after you save.|
-    | **Password**| Enter a secure password that is at least 20 characters long. You cannot change this password after you save.|
-    | **Primary**| Select this checkbox if this is the password that you want to use to encrypt the data. You must mark one and only one password as primary.|
+   | Text box | Instructions |
+   |-------|--------------|
+   | **Database host** | Enter the host name of the prerequisite state database.|
+   | **Database username** and **Database password** | Enter the credentials for the state database. The example shown in the screenshot in the earlier step refers to setting the user name for a MySQL tile provisioned database. If you are configuring a database provisioned by another service, see the documentation for that service for the correct user name format. For RDS MySQL, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html). |
+   | **Database port** | Enter the port number for connection to the state database. Defaults to `3306`. |
+   | **Database name** | Enter the name of an existing database to use as the state database.|
+   | **TLS Enforcement** | Select the type of TLS enforcement you want. If you select **Custom**, enter your CA certificate, client certificate, and key. |
+   | **Enable encryption of the Cloud Service Broker database**| If you want the sensitive data to be encrypted, select this check box and the **Add** button. If you do not want to encrypt the data, leave the check box unselected and do not fill in the Database Encryption Passwords text boxes.|
+   | **Label**| Enter a unique password label. You cannot change this label after you save.|
+   | **Password**| Enter a secure password that is at least 20 characters long. You cannot change this password after you save.|
+   | **Primary**| Select this check box if this is the password that you want to use to encrypt the data. You must mark one and only one password as primary.|
 
-3. Click **Save**.
+1. Click **Save**.
 
 1. If upgrading from a previous tile version, service instances might need upgrading.
 By default, the tile upgrades all instances during installation.
-To configure the upgrade task, see [Upgrade All Service Instances Config](#upgrade-all-config).
+To configure the upgrade task, see [Upgrade All Service Instances Configuration](#upgrade-all-config).
 For version-specific upgrade instructions, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
 
+1. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
-4. Return to the <%= vars.ops_manager %> Installation Dashboard.
+1. Click **Review Pending Changes**.
 
-5. Click **Review Pending Changes**.
-
-6. Click **Apply changes** to install the <%= vars.product_short %> tile.
+1. Click **Apply changes** to install the <%= vars.product_short %> tile.
 
 If you later want to change the password on the state database,
-see [Rotate the Encryption Password on the State Database](#rotate-password) below.<br>
-If you later want to turn off encryption,
-see [Remove Encryption from the State Database](#remove-encryption) below.
+see [Rotate the Encryption Password on the State Database](#rotate-password) later in the topic.
+
+If you later want to deactivate encryption,
+see [Remove Encryption from the State Database](#remove-encryption) later in the topic.
 
 ### <a id="services"></a> Configure Services with <%= vars.product_short %>
 
@@ -289,33 +279,31 @@ To configure services and service plans:
 1. Click the already-installed <%= vars.product_short %> tile in your
 <%= vars.ops_manager %> tile Dashboard.
 
-1. Find the service you want to make available in the left hand navigation under
+1. Find the service you want to make available in the left navigation under
 the **Settings** tab.
 
-1. Enter additional plans as additional JSON objects within the provided field.
-For details about properties for each service configuration, see
-[Service Plan Reference](reference/index.html).
+1. Enter additional plans as additional JSON objects within the provided text box.
+   For details about properties for each service configuration, see
+   [Service Plan Reference](reference/index.html).
 
-    <p class="note">
-      <strong>Note:</strong> When developers create or update a service instance, they cannot override
-      any plan-level properties that you set in this field.
-    </p>
+   > **Note:** When developers create or update a service instance, they cannot override any plan-level
+   > properties that you set in this text box.
 
 1. (Optional) To use different credentials to the ones specified in the **AWS Config** tab,
 supply the credentials as properties to a plan instance in the additional plans box:
 
-    ```json
-    [
-      {
-        "name" : "PLAN-NAME",
-        "id" : "UUID",
-        "description" : "PLAN-DESCRIPTION",
-        "aws_access_key_id" : "AWS_ACCESS_KEY_ID",
-        "aws_secret_access_key" : "AWS_SECRET_ACCESS_KEY",
-        ...
-      }
-    ]
-    ```
+   ```json
+   [
+   {
+     "name" : "PLAN-NAME",
+     "id" : "UUID",
+     "description" : "PLAN-DESCRIPTION",
+     "aws_access_key_id" : "AWS_ACCESS_KEY_ID",
+     "aws_secret_access_key" : "AWS_SECRET_ACCESS_KEY",
+     ...
+   }
+   ]
+   ```
 
 1. Click **Save**.
 
@@ -340,87 +328,88 @@ select the check box.
 
 ## <a id="rotate-password"></a>Rotate the Encryption Password on the State Database
 
-If you have already set an encryption password and want to change it, follow the instructions below:
+If you have already set an encryption password and want to change it, see the following instructions
+steps:
 
 To rotate the password on the state database:
 
 1. Click **Service Broker Config**.
 
-2. Clear the **Primary** checkbox.
+2. Deselect the **Primary** check box.
 
 3. Click **Add**.
 
 4. Enter a new **Label** and **Password** for the new password, and select  **Primary**.
+   You cannot change the label or password after you save.
 
-    You cannot change the label or password after you save.
+5. Click **Save**.
 
-1. Click **Save**.
+6. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+7. Click **Review Pending Changes**.
 
-1. Click **Review Pending Changes**.
+8. Click **Apply changes** to install the <%= vars.product_short %> tile.
 
-1. Click **Apply changes** to install the <%= vars.product_short %> tile.
-
-1. (Recommended) After the apply changes process completes, delete the non-primary label and password pair and apply changes again.
+9. (Recommended) After the apply changes process completes, delete the non-primary label and password
+   pair and apply changes again.
 
 ## <a id="remove-encryption"></a> Remove Encryption from the State Database
 
-If the data in the state database was previously encrypted and you want to disable encryption, follow the instructions below.
-
-To remove encryption from the state database:
+If the data in the state database was previously encrypted and you want to deactivate encryption,
+remove encryption from the state database:
 
 1. Click **Service Broker Config**.
 
-2. Clear the **Enable encryption of the Cloud Service Broker database** checkbox.
+2. Deselect the **Enable encryption of the Cloud Service Broker database** check box.
 
-4. Clear the **Primary** checkbox, but do not change the Label or Password fields.
+3. Deselect the **Primary** check box, but do not change the Label or Password text boxes.
 
-1. Click **Save**.
+4. Click **Save**.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+5. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
-1. Click **Review Pending Changes**.
+6. Click **Review Pending Changes**.
 
-1. Click **Apply changes** to install the <%= vars.product_short %> tile.
+7. Click **Apply changes** to install the <%= vars.product_short %> tile.
 
-1. (Recommended) After the apply changes process completes, delete all label and password pairs and apply changes again.
+8. (Recommended) After the apply changes process completes, delete all label and password pairs and
+   apply changes again.
 
-## <a id="upgrade-all-config"></a> Upgrade All Services Instances Config
+## <a id="upgrade-all-config"></a> Upgrade All Services Instances Configuration
 
 If upgrading from a previous tile version, service instances might need upgrading.
 By default, the tile upgrades all instances during installation.
 This section is about the general configuration of upgrades.
 For version-specific upgrade instructions, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
 
-If <strong>Upgrade all services</strong> is unchecked, service instances are not upgraded during
-installation. The broker might not be able to manage these service instances anymore.
-In that case, any operations on that instance (update/bind/unbind/delete) are blocked until the
-upgrade is performed. You can run the upgrade task any time.
+If **Upgrade all services** is unchecked, service instances are not upgraded during installation, and
+the broker might be unable to manage these service instances anymore.
+In this case, any operations on that instance (update/bind/unbind/delete) are blocked until the
+upgrade is performed. You can run the upgrade task at any time.
 
-Deleting custom plans before upgrading all instances might cause some instances to become unmanageable
-by the broker.
+If you delete custom plans before upgrading all instances, you might cause some instances to become
+unmanageable for the broker.
 Delete plans at a later step or see [Release Notes for Cloud Service Broker for AWS](release-notes.html)
-and [Upgrading Cloud Service Broker for AWS](upgrading.html) to ensure there are no conflicting upgrades.
+and [Upgrading Cloud Service Broker for AWS](upgrading.html) to prevent conflicting upgrades.
 
 To perform the upgrade task:
 
 1. Go to the **Upgrade All Service Instances Config** tab.
 
- <%= image_tag("images/upgrade-all-services-config-pane.png", :alt => "Fields for configuring Upgrade All Service Instances task.
-  See the following steps for detailed descriptions of the configurable fields.", :width => "400") %>
+   <%= image_tag("images/upgrade-all-services-config-pane.png", :alt => "Text boxes for configuring Upgrade All Service Instances task.
+   See the following steps for detailed descriptions of the configurable fields.", :width => "400") %>
 
-1. Configure the fields as follows:
+2. Configure the text boxes.
 
-    | Field | Instructions |
-    |-------|--------------|
-    | **Upgrade all services** | Checked by default. Indicates if service instances are upgraded during product installation.|
-    | **The number of upgrades to run in parallel** | Indicates the number of instances that can be in the `upgrading` status at any given time. |
+   | Text box | Description |
+   |----------|--------------|
+   | **Upgrade all services** | Checked by default. Indicates if service instances are upgraded during product installation.|
+   | **The number of upgrades to run in parallel** | Indicates the number of instances that can be in the `upgrading` status at any given time. |
 
-1. Click **Save**.
+3. Click **Save**.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+4. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
-1. Click **Review Pending Changes**.
+5. Click **Review Pending Changes**.
 
-1. Click **Apply changes** to install the <%= vars.product_short %> tile.
+6. Click **Apply changes** to install the <%= vars.product_short %> tile.
