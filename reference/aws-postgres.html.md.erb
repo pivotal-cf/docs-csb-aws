@@ -168,36 +168,46 @@ provision only:
     <tr>
       <td><code>maintenance_day</code></td>
       <td>String</td>
-      <td>The preferred maintenance day: Sun, Mon, Tue, Wed, Thu, Fri, or Sat</td>
-      <td><code>Sun</code></td>
+      <td>The preferred maintenance day: "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", or "Sat".
+        Set to <code>null</code>, along with all the other <code>maintenance_*</code>
+        parameters to revert to the default value.</td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_start_hour</code></td>
       <td>String</td>
-      <td>The preferred maintenance start hour</td>
-      <td><code>00</code></td>
+      <td>The preferred maintenance start hour. Valid values are "00" through "23".
+        Set to <code>null</code>, along with all the other <code>maintenance_*</code>
+        parameters to revert to the default value.</td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_start_min</code></td>
       <td>String</td>
-      <td>The preferred maintenance start minute</td>
-      <td><code>00</code></td>
+      <td>The preferred maintenance start minute. Valid values are "00", "15", "30", "45".
+        Set to <code>null</code>, along with all the other <code>maintenance_*</code>
+        parameters to revert to the default value.</td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_end_hour</code></td>
       <td>String</td>
-      <td>The preferred maintenance end hour</td>
-      <td><code>00</code></td>
+      <td>The preferred maintenance end hour. Valid values are "00" through "23".
+        Set to <code>null</code>, along with all the other <code>maintenance_*</code>
+        parameters to revert to the default value.</td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_end_min</code></td>
       <td>String</td>
-      <td>The preferred maintenance end minute</td>
-      <td><code>00</code></td>
+      <td>The preferred maintenance end minute. Valid values are "00", "15", "30", "45".
+        Set to <code>null</code>, along with all the other <code>maintenance_*</code>
+        parameters to revert to the default value.</td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -216,7 +226,8 @@ provision only:
       <td>String</td>
       <td>The daily time range in UTC during which automated backups are created.
         For example, <code>09:46-10:16</code>. It must not overlap with the maintenance window.
-        For more information, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow">AWS documentation</a>.</td>
+        Set to <code>null</code> to revert to default. For more information, see
+        the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow">AWS documentation</a>.</td>
       <td>Uses AWS default for the region</td>
       <td>provision and update</td>
     </tr>
