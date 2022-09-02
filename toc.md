@@ -4,7 +4,7 @@
 * [Migrating Data to Amazon RDS for PostgreSQL (Beta) Instance](aws-postgres-migration.html)
 * [Upgrading](upgrading.html)
 * [Service Plan Reference](reference/index.html)
-    * [Amazon S3 (Beta)](reference/aws-s3.html)
+    * [Amazon S3 Bucket](reference/aws-s3.html)
     * [Amazon RDS for MySQL (Beta)](reference/aws-mysql.html)
     * [Amazon RDS for PostgreSQL (Beta)](reference/aws-postgres.html)
     * [Amazon ElastiCache for Redis (Beta)](reference/aws-redis.html)
