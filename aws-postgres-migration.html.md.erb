@@ -19,14 +19,13 @@ The <%= vars.product_short %> plans are configurable.
 When migrating, examine the configuration of the plans in use with the legacy broker and create
 matching plans in the <%= vars.product_short %>.
 
-You can use the <a href="https://aws.amazon.com/dms/>AWS Data Migration Service (DMS)</a>
-to migrate data between Amazon RDS for PostgreSQL Instances.
+You can use the AWS Data Migration Service (DMS) to migrate data between Amazon RDS for PostgreSQL Instances.
 The tool copies data from one database to another.
 Because the original database is not modified, you can reverse the migration if you detect any problems.
 It also allows migration to happen over time.
 
 The DMS is a tool provided as part of AWS.
-For more information about DMS, see the <a href="https://aws.amazon.com/dms">AWS documentation</a>.
+For more information about AWS DMS, see the [AWS documentation](https://aws.amazon.com/dms/).
 
 ### <a id='configuration'></a> Matching Configuration
 
@@ -43,7 +42,7 @@ created with the <%= vars.product_short %>.
 
 > **Important:** Migration of data might incur app downtime. The amount of downtime depends on the method chosen.
 
-There are many options for performing data migration which include the [AWS Data Migration Service](https://aws.amazon.com/dms/),
+There are many options for performing data migration which include [AWS DMS](https://aws.amazon.com/dms/),
 manual data migration, and options available from other vendors.
 For more information about the data migration process, refer to the documentation for the option that you choose.
 
@@ -56,7 +55,7 @@ In general, the data migration steps are:
 1. After migration is complete, you can stop on-going migration and optionally delete
 the legacy broker PostgreSQL instance.
 
-For more detailed steps showing the Cloud Foundry commands necessary to use AWS Data Migration Service,
+For more detailed steps showing the Cloud Foundry commands necessary to use AWS DMS,
 see [Migrate Data to a VMware Tanzu Service Broker for AWS PostgreSQL Instance](#steps).
 
 ## <a id='steps'></a> Migrate Data to a VMware Tanzu Service Broker for AWS PostgreSQL Instance
@@ -96,7 +95,7 @@ To migrate data from an existing legacy PostgreSQL instance to the <%= vars.prod
     Inspect the JSON output for the hostname, name, username, password, and port which are required
     to configure data migration.
 
-1. Configure and run data migration, for example, by using AWS Data Migration Service.
+1. Configure and run data migration, for example, by using AWS DMS.
 For how to configure data migration, see the documentation for the process you have chosen.
 
     > **Note:** A data migration process might create schemas and tables without
