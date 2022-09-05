@@ -5,8 +5,10 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-> **Warning:** The Amazon RDS for PosgreSQL service is currently in beta and is intended for
+<p class="note important">
+  <strong>Important:</strong> The Amazon RDS for PosgreSQL service is currently in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
+</p>
 
 This topic provides reference information about the Amazon RDS for PostgreSQL (csb-aws-postgres)
 service. It details the plans, configuration parameters, and binding credentials.
@@ -48,8 +50,10 @@ to your plan.
 To create plans with specific size and versions, set `cores`, `storage_gb`, and `mysql_version`
 properties.
 
-> **Note:** If you set a parameter at plan level, developers cannot change the value when creating
+<p class="note">
+  <strong>Note:</strong>  If you set a parameter at plan level, developers cannot change the value when creating
   or updating service instances.
+</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
