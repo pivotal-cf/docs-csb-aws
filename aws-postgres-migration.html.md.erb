@@ -40,7 +40,10 @@ For instructions on how to configure plans, see
 You might want to migrate data from instances created with the legacy broker to instances
 created with the <%= vars.product_short %>.
 
-> **Important:** Migration of data might incur app downtime. The amount of downtime depends on the method chosen.
+<p class="note important">
+  <strong>Important:</strong> Migration of data might incur app downtime.
+  The amount of downtime depends on the method chosen.
+</p>
 
 There are many options for performing data migration which include [AWS DMS](https://aws.amazon.com/dms/),
 manual data migration, and options available from other vendors.
@@ -98,15 +101,17 @@ To migrate data from an existing legacy PostgreSQL instance to the <%= vars.prod
 1. Configure and run data migration, for example, by using AWS DMS.
 For how to configure data migration, see the documentation for the process you have chosen.
 
-    > **Note:** A data migration process might create schemas and tables without
-    > granting access for other users to work with that data.
-    > You can resolve this by connecting to the database using the credentials used for DMS,
-    > and granting the `binding_user_group` access to the schemas and tables.
-    >
-    > Alternatively, if you are not using continuous migration, for example, AWS DMS Change Data Capture,
-    > delete the service key used for data migration.
-    > This re-assigns data ownership to the `binding_user_group` role, automatically
-    > giving access to other users.
+    <p class="note">
+      <strong>Note:</strong> A data migration process might create schemas and tables without
+      granting access for other users to work with that data.
+      You can resolve this by connecting to the database using the credentials used for DMS,
+      and granting the `binding_user_group` access to the schemas and tables.
+
+      Alternatively, if you are not using continuous migration, for example, AWS DMS Change Data Capture,
+      delete the service key used for data migration.
+      This re-assigns data ownership to the `binding_user_group` role, automatically
+      giving access to other users.
+    </p>
 
 1. Disconnect the app from the legacy service binding by running:
 

@@ -220,9 +220,11 @@ encryption key.
 Applying changes takes longer than normal when you first enable encryption and when you change the
 encryption password.
 
-> **Caution:** Enable backup and restore capabilities in the MySQL database before
-> attempting encryption. This is because if something goes wrong, and your database is only partially
-> encrypted, it is safest to revert to the most recent database backup.
+<p class="note caution">
+  <strong>Caution:</strong> Enable backup and restore capabilities in the MySQL database before
+  attempting encryption. This is because if something goes wrong, and your database is only partially
+  encrypted, it is safest to revert to the most recent database backup.
+</p>
 
 #### <a id="state-db-prereq"></a> Prerequisite
 
@@ -286,8 +288,10 @@ the **Settings** tab.
    For details about properties for each service configuration, see
    [Service Plan Reference](reference/index.html).
 
-   > **Note:** When developers create or update a service instance, they cannot override any plan-level
-   > properties that you set in this text box.
+   <p class="note">
+     <strong>Note:</strong> When developers create or update a service instance,
+     they cannot override any plan-level properties that you set in this text box.
+  </p>
 
 1. (Optional) To use different credentials to the ones specified in the **AWS Config** tab,
 supply the credentials as properties to a plan instance in the additional plans box:
