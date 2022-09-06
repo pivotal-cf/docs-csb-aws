@@ -407,7 +407,11 @@ To perform the upgrade task:
    | Text box | Description |
    |----------|--------------|
    | **Upgrade all services** | Checked by default. Indicates if service instances are upgraded during product installation.|
-   | **The number of upgrades to run in parallel** | Indicates the number of instances that can be in the `upgrading` status at any given time. |
+   | **The number of upgrades to run in parallel** <sup>*</sup> | Indicates the number of instances that can be in the `upgrading` status at any given time. |
+
+<sup>*</sup> - By default, the number of parallel upgrades is set to 5. This will impact the time required to perform the
+upgrades, however, the upgrades do not cause downtime. Setting this to a bigger number may cause the broker to crash due
+to insufficient memory.
 
 3. Click **Save**.
 
