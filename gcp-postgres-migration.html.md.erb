@@ -1,0 +1,158 @@
+---
+title: Migrating to an Google Cloud SQL for PostgreSQL Instance
+owner: Cloud Service Broker for GCP
+---
+
+<strong><%= modified_date %></strong>
+
+This topic describes migrating from GCP Relational Database Service (Google Cloud SQL) for
+PostgreSQL Instance of the VMware Tanzu Service Broker for GCP tile
+to the <%= vars.product_full %> tile.
+
+## <a id='about'></a> About Migrating Data to Google Cloud SQL for PostgreSQL Instance
+
+Because the VMware Tanzu Service Broker for GCP (hereafter: "the legacy broker") tile
+is going out of support, it is important to move from PostgreSQL instances that
+were created by the legacy broker over to the <%= vars.product_short %>.
+
+The <%= vars.product_short %> plans are configurable.
+When migrating, examine the configuration of the plans in use with the legacy broker and create
+matching plans in the <%= vars.product_short %>.
+
+You can use the GCP Database Migration Service (DMS) to migrate data between Google Cloud SQL for PostgreSQL Instances.
+The tool copies data from one database to another.
+Because the original database is not modified, you can reverse the migration if you detect any problems.
+It also allows migration to happen over time.
+
+The DMS is a tool provided as part of GCP.
+For more information about GCP DMS, see the [GCP documentation](https://cloud.google.com/database-migration/docs/postgres).
+
+### <a id='configuration'></a> Matching Configuration
+
+Both the legacy broker and the <%= vars.product_short %> allow you to customize service plans.
+Create plans in the <%= vars.product_short %> that match the plans used in the legacy broker.
+It may be useful to create a test service instance and compare the properties in the GCP console.
+For instructions on how to configure plans, see
+[Configure Services with Cloud Service Broker for GCP](installing-with-gcp.html#services).
+
+### <a id='migration'></a> Migrating Data
+
+You might want to migrate data from instances created with the legacy broker to instances
+created with the <%= vars.product_short %>.
+
+<p class="note important">
+  <strong>Important:</strong> Migration of data might incur app downtime.
+  The amount of downtime depends on the method chosen.
+</p>
+
+There are many options for performing data migration which include [GCP DMS](https://cloud.google.com/database-migration/docs/postgres),
+manual data migration, and options available from other vendors.
+For more information about the data migration process, refer to the documentation for the option that you choose.
+
+In general, the data migration steps are:
+
+1. Create a backup of the PostgreSQL instance.
+1. Create an Google Cloud SQL for PostgreSQL instance using the <%= vars.product_short %>.
+1. Replicate the data from a legacy broker PostgreSQL instance into the newly created instance.
+1. Unbind apps from the legacy broker PostgreSQL instance and bind them to the newly created instance.
+1. After migration is complete, you can stop on-going migration and optionally delete
+the legacy broker PostgreSQL instance.
+
+For more detailed steps showing the Cloud Foundry commands necessary to use GCP DMS,
+see [Migrate Data to a VMware Tanzu Service Broker for GCP PostgreSQL Instance](#steps).
+
+## <a id='steps'></a> Migrate Data to a VMware Tanzu Service Broker for GCP PostgreSQL Instance
+
+To migrate data from an existing legacy PostgreSQL instance to the <%= vars.product_short %>:
+
+1. Create a backup of the legacy PostgreSQL instance.
+
+1. Get credentials for the legacy PostgreSQL instance details by running:
+
+    ```console
+    cf env APP-USING-LEGACY-SERVICE-INSTANCE
+    ```
+
+    Where is `APP-USING-LEGACY-SERVICE-INSTANCE` is the name of an app that is bound to a
+    service instance from the legacy broker. Inspect the `VCAP_SERVICES` JSON
+    output to see the hostname, database, username, password, and port which are required
+    to configure DMS.
+
+1. Create a new PostgreSQL service instance using <%= vars.product_short %>.
+
+1. Create a service key in the new PostgreSQL service by running:
+
+    ```console
+    cf create-service-key SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
+    ```
+
+    Where `SERVICE-INSTANCE-NAME` is the name of the new PostgreSQL service instance and
+    `SERVICE-KEY-NAME` is a name that you choose for the service key.
+
+1. Get credentials from the service key by running:
+
+    ```console
+    cf service-key SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
+    ```
+
+    Inspect the JSON output for the hostname, name, username, password, and port which are required
+    to configure data migration.
+
+1. Configure and run data migration, for example, by using GCP DMS.
+For how to configure data migration, see the documentation for the process you have chosen.
+
+    <p class="note">
+      <strong>Note:</strong> A data migration process might create schemas and tables without
+      granting access for other users to work with that data.
+      You can resolve this by connecting to the database using the credentials used for DMS,
+      and granting the `binding_user_group` access to the schemas and tables.
+
+      Alternatively, if you are not using continuous migration, for example, GCP DMS Change Data Capture,
+      delete the service key used for data migration.
+      This re-assigns data ownership to the `binding_user_group` role, automatically
+      giving access to other users.
+    </p>
+
+1. Disconnect the app from the legacy service binding by running:
+
+    ```console
+    cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE
+    ```
+
+    Where:
+
+    * `APP-NAME` is the app using the PostgreSQL instance.
+    * `LEGACY-SERVICE-INSTANCE` is the name of the VMware Tanzu Service Broker for GCP-brokered PostgreSQL instance.
+
+    For example:
+
+    <pre class="terminal">
+    $ cf unbind-service my-app my-old-instance
+    </pre>
+
+1. Bind the app to the new service instance by running:
+
+    ```console
+    cf bind-service APP-NAME NEW-SERVICE-INSTANCE
+    ```
+
+    Where `NEW-SERVICE-INSTANCE` is the name of the <%= vars.product_short %> service instance
+    that you created in step 2 above.
+
+    For example:
+
+    <pre class="terminal">
+    $ cf bind-service my-app my-csb-gcp-instance
+    </pre>
+
+    Because <%= vars.product_short %> creates new credentials at bind time,
+    this creates new binding credentials for the app.
+
+1. Restage the app:
+
+    ```console
+    cf restage APP-NAME
+    ```
+
+1. After the migration is successful, you can stop continuous migration and remove
+the legacy service instance.
