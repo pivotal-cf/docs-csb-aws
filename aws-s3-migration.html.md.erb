@@ -96,11 +96,11 @@ For how to configure data migration, see the documentation for the process you h
     Because <%= vars.product_short %> creates new credentials at bind time,
     this creates new binding credentials for the app.
 
-1. Prepare the app to consume the new binding
+1. Update app to consume new binding credential format
 
     The legacy binding exposes the bucket name in the credentials block as `bucket`, 
     whereas the binding credentials received from CSB exposes the bucket name as `bucket_name`. 
-    The consuming app will need to be updated to ahndle the `bucket_name` credential property. 
+    The consuming app will need to be updated to handle the `bucket_name` credential property. 
 
 1. Push and start the app:
 
