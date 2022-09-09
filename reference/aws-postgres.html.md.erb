@@ -277,8 +277,10 @@ provision only:
       <td><code>kms_key_id</code></td>
       <td>String</td>
       <td>
-        The **ARN** for the KMS encryption key. Enable the <code>storage_encrypted</code> property if the
-        key is specified. Note the **ARN** should be used in this field and not the **ID** as the name may imply<br><br>
+        The <strong>ARN</strong> for the KMS encryption key.
+        Enable the <code>storage_encrypted</code> property if the key is specified.
+        Use the <strong>ARN</strong> in this field, not the <strong>ID</strong>
+        as the name might suggest.<br><br>
         Amazon RDS-encrypted database instances provide an additional layer of data protection by
         securing data from unauthorized access to the underlying storage.<br><br>
         Amazon RDS uses an AWS KMS key to encrypt these resources. You can use a custom key with the
@@ -358,7 +360,7 @@ provision only:
       <td>
         Maximum storage size if <code>storage_autoscale</code> is set to true.
         The value must be higher than <code>storage_gb</code>.
-        Autoscaling is disabled is this value is less than <code>storage_gb</code> or no value is set.
+        Autoscaling is disabled if this value is less than <code>storage_gb</code> or no value is set.
       </td>
       <td><code>0</code></td>
       <td>provision and update</td>
