@@ -2,6 +2,7 @@
 * [Release Notes](release-notes.html)
 * [Installing and Configuring](installing-with-aws.html)
 * [Migrating Data to Amazon RDS for PostgreSQL Instance](aws-postgres-migration.html)
+* [Migrating an Amazon S3 Instance](aws-s3-migration.html)
 * [Upgrading](upgrading.html)
 * [Service Plan Reference](reference/index.html)
     * [Amazon S3 Bucket](reference/aws-s3.html)
