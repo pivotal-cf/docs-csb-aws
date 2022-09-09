@@ -5,107 +5,109 @@ owner: Cloud Service Broker for AWS
 
 <strong><%= modified_date %></strong>
 
-This topic describes migrating from Amazon S3 Instance of the VMware Tanzu Service Broker for AWS tile
-to the <%= vars.product_full %> tile.
+This topic describes migrating from an Amazon S3 instance of the VMware Tanzu Service Broker for AWS
+tile to the <%= vars.product_full %> tile.
 
-## <a id='about'></a> About Migrating Amazon S3 Instance
+## <a id='overview'></a> Overview
 
-Because the VMware Tanzu Service Broker for AWS (hereafter: "the legacy broker") tile
-is going out of support, it is important to move from S3 instances that
-were created by the legacy broker over to the <%= vars.product_short %>.
+Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
+is going out of support, it is important to move from S3 instances that were created by the legacy
+broker over to the <%= vars.product_short %>.
 
 The <%= vars.product_short %> plans are configurable.
 When migrating, examine the configuration of the plans in use with the legacy broker and create
 matching plans in the <%= vars.product_short %>.
 
-You can use any compatible migration tool for migrating between AWS S3 buckets.
+You can use any compatible migration tool for migrating between Amazon S3 buckets.
 
 ### <a id='configuration'></a> Matching Configuration
 
 Both the legacy broker and the <%= vars.product_short %> allow you to customize service plans.
 Create plans in the <%= vars.product_short %> that match the plans used in the legacy broker.
-It may be useful to create a test service instance and compare the properties in the AWS console.
-For instructions on how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](installing-with-aws.html#services).
+It might be useful to create a test service instance and compare the properties in the AWS console.
+For how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](installing-with-aws.html.md.erb#services).
 
 ### <a id='migration'></a> Migrating Data
 
 You might want to migrate data from instances created with the legacy broker to instances
 created with the <%= vars.product_short %>.
 
-> **Important:** Migration of data might incur app downtime. The amount of downtime depends on the method chosen.
+> **Important:** Migration of data might incur app downtime. The amount of downtime depends on the
+> method chosen.
 
-There are several options for performing S3 migration which include [AWS CLI sync command](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/sync.html),
-[AWS DataSync tool](https://aws.amazon.com/datasync/), manual data migration, and options available from other vendors.
-For more information about the data migration process, refer to the documentation for the option that you choose.
+There are several options for performing S3 migration, including the
+[AWS CLI sync command](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/sync.html),
+the [AWS DataSync tool](https://aws.amazon.com/datasync/), manual data migration, and options available
+from other vendors.
+For more information about the data migration process, see the documentation for the option that
+you choose.
 
-In general, the data migration steps are:
+In general, to migrate data:
 
 1. Create a backup of the S3 instance.
-1. Create an Amazon S3 instance using the <%= vars.product_short %>.
-1. Replicate the data from a legacy broker S3 instance into the newly created instance.
-1. Unbind apps from the legacy broker S3 instance and bind them to the newly created instance.
-1. After migration is complete, you can optionally delete the legacy broker S3 instance.
+2. Create an Amazon S3 instance using the <%= vars.product_short %>.
+3. Replicate the data from a legacy broker S3 instance into the newly created instance.
+4. Unbind apps from the legacy broker S3 instance and bind them to the newly created instance.
+5. (Optional) After migration is complete, delete the legacy broker S3 instance.
 
-For more detailed steps showing the Cloud Foundry commands necessary to use AWS sync command,
-see [Migrate Data to a VMware Tanzu Service Broker for AWS S3 Instance](#steps).
+## <a id='steps'></a> Migrate data to a VMware Tanzu Service Broker for an Amazon S3 instance
 
-## <a id='steps'></a> Migrate Data to a VMware Tanzu Service Broker for AWS S3 Instance
-
+The following steps have the Cloud Foundry commands necessary to use the AWS sync command.
 To migrate data from an existing legacy S3 instance to the <%= vars.product_short %>:
 
 1. Create a backup of the legacy S3 instance.
 
 1. Create a new S3 service instance using <%= vars.product_short %>.
 
-1. Configure and run data migration, for example, by using [AWS CLI `sync` command](https://aws.amazon.com/premiumsupport/knowledge-center/move-objects-s3-bucket/).
-For how to configure data migration, see the documentation for the process you have chosen.
+1. Configure and run data migration, for example, by using the
+   [AWS CLI `sync` command](https://aws.amazon.com/premiumsupport/knowledge-center/move-objects-s3-bucket/).
+   For how to configure data migration, see the documentation for the process you have chosen.
 
 1. Disconnect the app from the legacy service binding by running:
 
-    ```console
-    cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE
-    ```
+   ```console
+   cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE-NAME
+   ```
 
-    Where:
+   Where:
 
-    * `APP-NAME` is the app using the S3 instance.
-    * `LEGACY-SERVICE-INSTANCE` is the name of the VMware Tanzu Service Broker for AWS-brokered S3 instance.
+   * `APP-NAME` is the app using the S3 instance.
+   * `LEGACY-SERVICE-INSTANCE-NAME` is the name of the VMware Tanzu Service Broker for the AWS-brokered S3 instance.
 
-    For example:
+   For example:
 
-    <pre class="terminal">
-    $ cf unbind-service my-app my-old-instance
-    </pre>
+   ```console
+   $ cf unbind-service my-app my-old-instance
+   ```
 
 1. Bind the app to the new service instance by running:
 
-    ```console
-    cf bind-service APP-NAME NEW-SERVICE-INSTANCE
-    ```
+   ```console
+   cf bind-service APP-NAME NEW-SERVICE-INSTANCE-NAME
+   ```
 
-    Where `NEW-SERVICE-INSTANCE` is the name of the <%= vars.product_short %> service instance
-    that you created in step 2 above.
+   Where `NEW-SERVICE-INSTANCE-NAME` is the name of the <%= vars.product_short %> service instance
+   that you created earlier.
 
-    For example:
+   For example:
 
-    <pre class="terminal">
-    $ cf bind-service my-app my-csb-aws-instance
-    </pre>
+   ```console
+   $ cf bind-service my-app my-csb-aws-instance
+   ```
 
-    Because <%= vars.product_short %> creates new credentials at bind time,
-    this creates new binding credentials for the app.
+   Because <%= vars.product_short %> creates new credentials at bind time,
+   this creates new binding credentials for the app.
 
-1. Update app to consume new binding credential format
+1. Update the app to consume the new binding credential format.
+   The legacy binding exposes the bucket name in the credentials block as `bucket`, whereas the
+   binding credentials received from CSB exposes the bucket name as `bucket_name`.
+   The consuming app must be updated to handle the `bucket_name` credential property.
 
-    The legacy binding exposes the bucket name in the credentials block as `bucket`, 
-    whereas the binding credentials received from CSB exposes the bucket name as `bucket_name`. 
-    The consuming app will need to be updated to handle the `bucket_name` credential property. 
+1. Push and start the app by running:
 
-1. Push and start the app:
+   ```console
+   cf push APP-NAME
+   ```
 
-    ```console
-    cf push APP-NAME
-    ```
-
-1. After the migration is successful, you can remove the legacy service instance.
+1. (Optional) After the migration has finished, remove the legacy service instance.
