@@ -181,7 +181,7 @@ To configure AZs and networks:
    | Text box | Instructions |
    |-------|----------------|
    | Place singleton jobs in | Select the AZ in which the broker VM for <%= vars.product_short %> runs. The broker runs as a singleton job. |
-   | Balance other jobs in | Select the AZs in which other jobs can run. |
+   | Balance other jobs in | Select the AZs in which other jobs can run. |<!--฿ Do not include closing punctuation for a sentence fragment in a cell, unless it is followed by another fragment or sentence. ฿-->
    | Network | Select a subnet for the <%= vars.product_short %> broker. This is typically the same subnet that includes the component VMs for <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). |
 
 3. Click **Save**.
@@ -214,14 +214,14 @@ the _state database_.
 
 In production environments, VMware recommends that you enable encryption.
 This encrypts certain sensitive information in the state database, such as IaaS credentials.
-The encryption password that you enter on the **Service Broker Config** pane is used to generate an
+The encryption password that you enter on the **Service Broker Config** pane is used to<!--฿ Redundant? ฿--> generate an
 encryption key.
 
 Applying changes takes longer than normal when you first enable encryption and when you change the
 encryption password.
 
 <p class="note caution">
-  <strong>Caution:</strong> Enable backup and restore capabilities in the MySQL database before
+  <strong>Caution<!--฿ Proper note formatting is |> **Note:**| or |> **Caution:**| or |> **Important:**|. ฿-->:</strong> Enable backup and restore capabilities in the MySQL database before
   attempting encryption. This is because if something goes wrong, and your database is only partially
   encrypted, it is safest to revert to the most recent database backup.
 </p>
@@ -239,15 +239,15 @@ To configure <%= vars.product_short %> with a database:
 
    | Text box | Instructions |
    |-------|--------------|
-   | **Database host** | Enter the host name of the prerequisite state database.|
-   | **Database username** and **Database password** | Enter the credentials for the state database. The example shown in the screenshot in the earlier step refers to setting the user name for a MySQL tile provisioned database. If you are configuring a database provisioned by another service, see the documentation for that service for the correct user name format. For RDS MySQL, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html). |
-   | **Database port** | Enter the port number for connection to the state database. Defaults to `3306`. |
-   | **Database name** | Enter the name of an existing database to use as the state database.|
-   | **TLS Enforcement** | Select the type of TLS enforcement you want. If you select **Custom**, enter your CA certificate, client certificate, and key. |
-   | **Enable encryption of the Cloud Service Broker database**| If you want the sensitive data to be encrypted, select this check box and the **Add** button. If you do not want to encrypt the data, leave the check box unselected and do not fill in the Database Encryption Passwords text boxes.|
-   | **Label**| Enter a unique password label. You cannot change this label after you save.|
-   | **Password**| Enter a secure password that is at least 20 characters long. You cannot change this password after you save.|
-   | **Primary**| Select this check box if this is the password that you want to use to encrypt the data. You must mark one and only one password as primary.|
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Database host** | Enter the host name of the prerequisite<!--฿ Requirements are things needed to install and run the product. We list them on the product index page. Prerequisites are things needed for a given procedure beyond the product requirements. We list those on the procedure page. ฿--> state database.|<!--฿ Do not include closing punctuation for a sentence fragment in a cell, unless it is followed by another fragment or sentence. ฿-->
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Database username** and **Database password** | Enter the credentials for the state database. The example shown in the screenshot<!--฿ If introducing a screenshot, consider if you really need to: good screenshots are self-explanatory by nature and by placement within the topic. ฿--> in the earlier step refers to setting the user name for a MySQL tile provisioned database. If you are configuring a database provisioned by another service, see the documentation for that service for the correct user name format. For RDS MySQL, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html). |
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Database port** | Enter the port number for connection to the state database. Defaults to `3306`. |
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Database name** | Enter the name of an existing database to use as the state database.|<!--฿ Do not include closing punctuation for a sentence fragment in a cell, unless it is followed by another fragment or sentence. ฿-->
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*TLS Enforcement** | Select the type of TLS enforcement you want. If you select **Custom**, enter your CA certificate, client certificate, and key. |
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Enable encryption of the Cloud Service Broker database**| If you want the sensitive data to be encrypted, select this check box and the **Add** button. If you do not want to encrypt the data, leave the check box unselected and do not fill in the Database Encryption Passwords text boxes.|
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Label**| Enter a unique password label. You cannot change this label after you save.|
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Password**| Enter a secure password that is at least 20 characters long. You cannot change this password after you save.|
+   | *<!--฿ Put the asterisk in superscript tags. ฿-->*Primary**| Select this check box if this is the password that you want to use to encrypt the data. You must mark one and only one password as primary.|
 
 1. Click **Save**.
 
@@ -288,8 +288,8 @@ the **Settings** tab.
    For details about properties for each service configuration, see
    [Service Plan Reference](reference/index.html).
 
-   <p class="note">
-     <strong>Note:</strong> When developers create or update a service instance,
+   <p class="note"><!--฿ Format the note properly -- https://docs-wiki.tas.vmware.com/wiki/style/html-classes.html#note-class ฿-->
+     <strong>Note<!--฿ Proper note formatting is |> **Note:**| or |> **Caution:**| or |> **Important:**|. ฿-->:</strong> When developers create or update a service instance,
      they cannot override any plan-level properties that you set in this text box.
   </p>
 
@@ -407,11 +407,7 @@ To perform the upgrade task:
    | Text box | Description |
    |----------|--------------|
    | **Upgrade all services** | Checked by default. Indicates if service instances are upgraded during product installation.|
-   | **The number of upgrades to run in parallel** <sup>*</sup> | Indicates the number of instances that can be in the `upgrading` status at any given time. |
-
-<sup>*</sup> - By default, the number of parallel upgrades is set to 5. This will impact the time required to perform the
-upgrades, however, the upgrades do not cause downtime. Setting this to a bigger number may cause the broker to crash due
-to insufficient memory.
+   | **The number of upgrades to run in parallel** | Indicates the number of instances that can be in the `upgrading` status at any given time. By default, the number of parallel upgrades is set to 5. This impacts the time required to perform the upgrades, however, the upgrades do not cause downtime. Setting this to a higher number can cause the broker to fail due to insufficient memory. |
 
 3. Click **Save**.
 
