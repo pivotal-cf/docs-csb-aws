@@ -15,14 +15,14 @@ These are release notes for <%= vars.product_full %>.
 
 This release has the following breaking changes:
 
-* **Amazon S3 and RDS PostgreSQL pre-configured plans were removed:** From this version onwards,
+- **Amazon S3 and RDS PostgreSQL pre-configured plans were removed:** From this version onwards,
   plans are no longer provided with the brokerpak.
   If you have S3 or RDS PostgreSQL service instances that were using build-in plans and that you want
   to maintain, previously provided plans must be added through the tile configuration.
   For more information, see
   [Add S3 previously provided pre-configured plans](reference/aws-s3.html.md.erb#old-plans) and
   [Add RSD Postgres previously provided pre-configured plans](reference/aws-postgres.html.md.erb#old-plans).
-* **RDS PostgreSQL new default storage type:** The default storage type is now set as io1
+- **RDS PostgreSQL new default storage type:** The default storage type is now set as io1
   (provisioned IOPS SSD). Previously the default used gp2 (general purpose SSD).
   Users who previously had custom plans must add the property `"storage_type":"gp2"` to the plan
   definition to ensure that the storage type is not amended on any update.
@@ -32,110 +32,113 @@ This release has the following breaking changes:
 
 New features and changes in this release:
 
-* **Amazon S3 bucket service offering is generally available:** The Amazon S3 bucket offering is no
-  longer in beta and can be used in production. As part of this the following S3 features were introduced:
-  * **ACL can now be a user input:** ACL can now be specified on creation of service instance if
+- **Amazon S3 bucket service offering is generally available:** The Amazon S3 bucket offering is no
+  longer in beta and can be used in production. As part of this the following S3 features are introduced:
+  - **ACL can now be a user input:** ACL can now be specified on creation of a service instance if
     the plan does not specify a value for it. Previously it was a plan-only input and as such could
     only be specified in the plan definition.
-  * **Exposed Bucket Ownership controls:** Bucket Ownership controls can now be specified in a plan
-    or on service instance creation if the plan does not specify a value for it.
+  - **Exposed Bucket Ownership controls:** Bucket Ownership controls can now be specified in a plan
+    or when a service instance is created if the plan does not specify a value for it.
     It defaults to `ObjectOwnershipEnforced` and this disables ACLs by default.
     If you have custom plans, see [Changing custom plans](upgrading.html.md.erb#s3-custom-plans)
-    for information regarding this change.
-  * **Blocking public access to Amazon S3 storage:** This feature provides settings for buckets to
+    for information about this change.
+  - **Blocking public access to Amazon S3 storage:** This feature provides settings for buckets to
     help manage public access to Amazon S3 resources. S3 Block Public Access settings override
     policies and permissions so that it is possible to limit public access to these resources.
-  * **Server Side encryption can now be enabled and configured:** This feature provides settings
+  - **Server Side encryption can now be enabled and configured:** This feature provides settings
     for configuring encryption of data in an S3 bucket.
-  * **Allow enabling Object Lock:** This feature allows storing objects using a write-once-read-many
+  - **Allow enabling Object Lock:** This feature allows storing objects using a write-once-read-many
     (WORM) model. Object Lock can help prevent objects from being deleted or overwritten for a fixed
     amount of time.
-  * **Allow versioning updates:** Added the ability to edit the versioning of an S3 bucket to
+  - **Allow versioning updates:** Added the ability to edit the versioning of an S3 bucket to
     enable such functionality after its creation. After versioning is enabled, it can no longer be
     disabled. Trying to do so causes an IaaS error.
-* **Amazon RDS PostgreSQL service offering is generally available:** The Amazon RDS PostgreSQL offering
+- **Amazon RDS PostgreSQL service offering is generally available:** The Amazon RDS PostgreSQL offering
   is no longer in beta and can be used in production.
-  * When creating a binding, by default the PostgreSQL connection is secured through the
+  - When creating a binding, by default the PostgreSQL connection is secured through the
     `verify-full` PostgreSQL configuration. This requires the AWS certificate bundle to be
     installed, or it can be disabled by setting `require_ssl=false`.
-  * A new `provider_verify_certificate` property allows for the PostgreSQL Terraform provider to
+  - A new `provider_verify_certificate` property allows for the PostgreSQL Terraform provider to
     skip the verification of the server certificate.
-  * **Allow enforcing SSL:** Introduced `require_ssl` to replace `use_tls`. When the `require_ssl`
-    property is true, it enforces the server to require SSL connections. When `false` (default),
-    the server accepts SSL and non-SSL connections.
-  * **Exposed Enhanced Monitoring:** Amazon RDS provides metrics in real time for the operating
+  - **Allow enforcing SSL:** Introduced `require_ssl` to replace `use_tls`. When the `require_ssl`
+    property is true, it enforces the server to require SSL connections. When `false` the server
+    accepts SSL and non-SSL connections. `false` is the default value.
+  - **Exposed Enhanced Monitoring:** Amazon RDS provides metrics in real time for the operating
     system (OS) of the database instance. Enhanced Monitoring enables all the system metrics and
     process information for the RDS database instances on the console.
-  * **Deprecated cores properties:** The `cores` property is now deprecated and and optional.
+  - **Deprecated cores properties:** The `cores` property is now deprecated and and optional.
     Use the `instance_class` property instead when creating new plans.
-  * **Exposed Automated Backups:** Automated backups can now be scheduled through `backup_window`.
-    By default, the automated backups are disabled. This feature can be customized through the
+  - **Exposed Automated Backups:** Automated backups can now be scheduled through `backup_window`.
+    By default, automated backups are disabled. This feature can be customized through the
     following properties:
-    `delete_automated_backups` - delete backups when deleting the instance, defaults to true.
-    `copy_tags_to_snapshot` - copy all instance tags to snapshots, defaults to true.
-  * **Enable encryption with a custom key:** Amazon RDS PostgreSQL by default uses an AWS KMS key to
-    encrypt data at rest, and now a custom key with the configuration that you want can be used.
-  * **Exposed Performance Insights:** Performance Insights can now be enabled and a KSM key can be
-    provided to encrypt the performance insights data. Performance insights is deactivated by default.
-  * **Exposed Storage Type:** The storage type can now be defined through the property `storage_type`.
-    In addition to this, if using the provisioned IOPS SSD (io1) storage type, then the IOPS value
+    - `delete_automated_backups`: Delete backups when deleting the instance, defaults to true.
+    - `copy_tags_to_snapshot`: Copy all instance tags to snapshots, defaults to true.
+  - **Enable encryption with a custom key:** Amazon RDS PostgreSQL by default uses an AWS KMS key to
+    encrypt data at rest. Now you can use a custom key with the configuration that you want.
+  - **Exposed Performance Insights:** Performance Insights can now be enabled and a KSM key can be
+    provided to encrypt the performance insights data. Performance insights are deactivated by default.
+  - **Exposed Storage Type:** The storage type can now be defined through the property `storage_type`.
+    In addition to this, if using the provisioned IOPS SSD (io1) storage type then the IOPS value
     can also be defined through the property `iops`.
-  * **Blocked update operation for db_name property:** Previously, updating this field led
-    to data loss as a new database was created on update.
-  * **Removed Subsume functionality:** Subsume functionality was removed from the
+  - **Blocked update operation for db_name property:** Previously, updating this field led
+    to data loss as a new database was created when updating.
+  - **Removed Subsume functionality:** Subsume functionality was removed from the
     RDS PostgreSQL offering. The previously available plan and associated properties were removed
     due to the functionality not working.
     For how to migrate from the legacy broker to <%= vars.product_full %>, see
     [Migrating to an Amazon RDS for PostgreSQL Instance](aws-postgres-migration.html.md.erb)
-* **Amazon Aurora PostgreSQL Beta service offering:** An experimental foundation was added for
+- **Amazon Aurora PostgreSQL Beta service offering:** An experimental foundation was added for
   development and test purposes only.
-* **Amazon Aurora MySQL Beta service offering:** An experimental foundation was added for development
+- **Amazon Aurora MySQL Beta service offering:** An experimental foundation was added for development
   and test purposes only.
-* **Beta service offerings:** All service offerings other than S3 and RDS PostgreSQL are tagged as beta
-  and are not displayed by default in Marketplace. Do not use these service offerings in production.
+- **Beta service offerings:** All service offerings other than S3 and RDS PostgreSQL are tagged as
+  beta and are not displayed by default in Marketplace. Do not use these service offerings in
+  production.
   Select `Enable Beta service offerings` in the new Feature Flags panel to enable them all.
-* **Terraform version update:** Terraform is now v1.1.9. Upgrade all previous instances to this
+- **Terraform version update:** Terraform is now v1.1.9. Upgrade all previous instances to this
   version. Upgrades are only supported for Terraform v0.12.0 and later.
-* **New upgrade-all-instances task:** The operator can choose if they want to upgrade all instances
+- **New upgrade-all-instances task:** The operator can choose if they want to upgrade all instances
   to the latest version of the brokerpak while deploying the broker.
-  By default all instances are upgraded. Update, bind, unbind, and delete operations on an instance
+  By default, all instances are upgraded. Update, bind, unbind, and delete operations on an instance
   are blocked if an upgrade is available and has not been applied yet.
-* **Flexible region property:** Previously, the brokerpak specified regions that can be used with each
-  service and, as the supported regions in the IaaS changed, a tile upgrade was required to enable those.
+- **Flexible region property:** Previously, the brokerpak specified regions that can be used with each
+  service and, as the supported regions in the IaaS changed, a tile upgrade was required to enable
+  those.
   As of this version, any supported IaaS region for the specific service works.
-* **CSB database TLS config:** Users are allowed to configure the TLS skip-verify option when using
+- **CSB database TLS config:** Users are allowed to configure the TLS skip-verify option when using
   custom certificates.
-* **Improved Apps Manager service offering metadata:**
-  * The documentation URL in Apps Manager now links to the Tanzu documentation.
-  * The name of each offering now includes the `CSB` prefix to differentiate services from other
-  broker's offerings.
+- **Improved Apps Manager service offering metadata:**
+  - The documentation URL in Apps Manager now links to the Tanzu documentation.
+  - The name of each offering now includes the `CSB` prefix to differentiate services from other
+  another broker's offerings.
 
 ### Resolved Issues
 
 This release has the following fixes:
 
 <%= partial '/csb/logo-resolved' %>
-* **Data loss prevention:** Added additional checks to prevent service instance recreation during an
+
+- **Data loss prevention:** Added additional checks to prevent service instance recreation during an
   update.
-* **Valid PostgreSQL JDBC URL SSL parameter:** By default, RDS for PostgreSQL uses and expects all
+- **Valid PostgreSQL JDBC URL SSL parameter:** By default, RDS for PostgreSQL uses and expects all
   clients to connect using SSL/TLS, therefore the value of SSL parameter in the PostgreSQL JDBC URL
   is always set to true. The `require_ssl` property can be used to enforce only SSL/TLS connections.
-* **PostgreSQL binding users are correctly cleaned up:** PostgreSQ users are now completely deleted
+- **PostgreSQL binding users are correctly cleaned up:** PostgreSQ users are now completely deleted
   during unbind.
-* **Correct image in Apps Manager:** The image for the tile now appears in all service offerings in
+- **Correct image in Apps Manager:** The image for the tile now appears in all service offerings in
   the AppsManager UI.
-* **Blocked update operation for region property:** The modification of region property for all service
+- **Blocked update operation for region property:** The modification of region property for all service
   offerings is deactivated. The update generates the same service without eliminating the existing
   one in the newly established region.
-* **Enforced minimum storage_gb constraints on RDS MySQL and RDS PostgreSQL**
-* **RDS PostgreSQL default maintenance window can be set easier:** The maintenance window can now be
+- **Enforced minimum storage_gb constraints on RDS MySQL and RDS PostgreSQL**
+- **RDS PostgreSQL default maintenance window can be set easier:** The maintenance window can now be
   set to to null to allow AWS to select a default window.
 
 ### Known Issues
 
 This release has the following issue:
 
-* **S3 bucket service instance update:** If you attempt to deactivate versioning for an instance
+- **S3 bucket service instance update:** If you attempt to deactivate versioning for an instance
   created before upgrading to this version, it is recorded as an `update succeeded` operation at the
   first attempt. However this value is not updated in the broker or in AWS because deactivating
   versioning is not supported in the IaaS. Subsequent attempts cause an error message that states
