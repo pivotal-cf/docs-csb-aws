@@ -103,12 +103,12 @@ To migrate data from an existing legacy S3 instance to the <%= vars.product_shor
 
 1. Update the app to consume the new binding credential format.
    The legacy binding exposes the bucket name in the credentials block as `bucket`, whereas the
-   binding credentials received from CSB exposes the bucket name as `bucket_name`.
-   The consuming app must be updated to handle the `bucket_name` credential property.
+   binding credentials received from <%= vars.product_short %> exposes the bucket name as `bucket_name`.
+   You must update the consuming app to handle the `bucket_name` credential property.
 
     <p class="note">
-      <strong>Note:</strong>  We recommend reviewing all references where the legacy S3 bucket was used
-      and make sure that the new bucket is now being referenced.
+      <strong>Note:</strong> VMware recommends reviewing all references where the legacy S3 bucket was used
+      to make sure that the new bucket is now being referenced.
     </p>
 
 1. Push and start the app by running:
