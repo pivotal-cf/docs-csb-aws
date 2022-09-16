@@ -113,7 +113,7 @@ from staging to pre-prod to production.
 1. Click the check box next to your build.
 1. Click **Deploy Selected to Pre-Prod** and wait for the pop-up to turn green.
 1. Go to the [Pre-prod deployment area of the Docs Dashboard](https://docsdash.vmware.com/deployment-pre-prod).
-1. Select the check box for your build again. If the check box is disabled, you must wait until your build has finished processing.
+1. Select the check box for your build again. If the check box is not selected, you must wait until your build has finished processing.
 1. Click **Sign-Off For Release**.
 1. Wait for your username to show up in the **Signed-Off By** column.
 1. Select the check box for your build again.
