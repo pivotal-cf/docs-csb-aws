@@ -23,7 +23,6 @@ The default plans and configuration options for Amazon RDS for MySQL are in the 
 |medium| db.m4.xlarge | 5.7      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
 |large | db.m4.2xlarge | 5.7      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
 
-
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
@@ -198,7 +197,7 @@ provision only:
       <td><code>maintenance_day</code></td>
       <td>String</td>
       <td>
-        The preferred maintenance day: "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", or "Sat".
+        The preferred maintenance day: <code>Sun</code>, <code>Mon</code>, <code>Tue</code>, <code>Wed</code>, <code>Thu</code>, <code>Fri</code>, or <code>Sat</code>.
         To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
       </td>
       <td>No preference</td>
@@ -208,7 +207,7 @@ provision only:
       <td><code>maintenance_start_hour</code></td>
       <td>String</td>
       <td>
-        The preferred maintenance start hour. Valid values are "00" through "23".
+        The preferred maintenance start hour. Valid values are <code>00</code> through <code>23</code>.
         To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
       </td>
       <td>No preference</td>
@@ -218,7 +217,7 @@ provision only:
       <td><code>maintenance_start_min</code></td>
       <td>String</td>
       <td>
-        The preferred maintenance start minute. Valid values are "00", "15", "30", "45".
+        The preferred maintenance start minute. Valid values are <code>00</code>, <code>15</code>, <code>30</code>, <code>45</code>.
         To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
       </td>
       <td>No preference</td>
@@ -228,7 +227,7 @@ provision only:
       <td><code>maintenance_end_hour</code></td>
       <td>String</td>
       <td>
-        The preferred maintenance end hour. Valid values are "00" through "23".
+        The preferred maintenance end hour. Valid values are <code>00</code> through <code>23</code>.
         To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
       </td>
       <td>No preference</td>
@@ -238,7 +237,7 @@ provision only:
       <td><code>maintenance_end_min</code></td>
       <td>String</td>
       <td>
-        The preferred maintenance end minute. Valid values are "00", "15", "30", "45".
+        The preferred maintenance end minute. Valid values are <code>00</code>, <code>15</code>, <code>30</code>, <code>45</code>.
         To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
       </td>
       <td>No preference</td>

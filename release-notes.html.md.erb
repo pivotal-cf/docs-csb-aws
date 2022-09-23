@@ -25,11 +25,12 @@ New features and changes in this release:
   to a list of supported values.
   You can now choose the version you want when creating a plan.
   To view the supported versions, see the
-  [Amazon documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
+  [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
 
-- **The properties for setting the maintenance window are nullables:** Previously these properties used
-  default string values to determine whether the final value of the maintenance window should be configured or not.
-  Now, these properties are null, adding readability and improving long-term code maintenance.
+- **The properties for setting the maintenance window are nullables:** Previously these properties
+  used default string values to determine whether the final value of the maintenance window must be
+  configured or not.
+  These properties are now null to make code easier to read and maintain long-term.
 
 ### Resolved Issues
 
