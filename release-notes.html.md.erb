@@ -27,6 +27,10 @@ New features and changes in this release:
   To view the supported versions, see the
   [Amazon documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
 
+- **The properties for setting the maintenance window are nullables:** Previously these properties used
+  default string values to determine whether the final value of the maintenance window should be configured or not.
+  Now, these properties are null, adding readability and improving long-term code maintenance.
+
 ### Resolved Issues
 
 This release has the following fixes:

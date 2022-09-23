@@ -32,18 +32,18 @@ For how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   |
-|----------------------|--------------------------------|-----------|
-| `name`*              | The plan name.                 | _n/a_     |
-| `id`*                | A unique GUID.                 | _n/a_     |
-| `description`*       | Description of the new plan.   | _n/a_     |
-| `display_name`       | Name to use when displaying plan in marketplace.    | _n/a_     |
-| `free`               | When false, service instances of this service plan have a cost.    | true     |
-| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.    | true     |
-| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.    | true     |
-| `cores`*             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.    | 2     |
-| `mysql_version`*     | The version for the MySQL instance. Options are 5.6 or 5.7.    | 5.7     |
-| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.    | 5     |
+| Parameter Name       | Values                                                                                | Default   |
+|----------------------|---------------------------------------------------------------------------------------|-----------|
+| `name`*              | The plan name.                                                                        | _n/a_     |
+| `id`*                | A unique GUID.                                                                        | _n/a_     |
+| `description`*       | Description of the new plan.                                                          | _n/a_     |
+| `display_name`       | Name to use when displaying plan in marketplace.                                      | _n/a_     |
+| `free`               | When false, service instances of this service plan have a cost.                       | true     |
+| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.     | true     |
+| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true     |
+| `cores`*             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.             | 2     |
+| `mysql_version`*     | The version for the MySQL instance.                                                   | _n/a_     |
+| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.                            | 5     |
 
 <sup>*</sup> Required
 
@@ -197,36 +197,51 @@ provision only:
     <tr>
       <td><code>maintenance_day</code></td>
       <td>String</td>
-      <td>The preferred maintenance day. Options: Sun, Mon, Tue, Wed, Thu, Fri, Sat </td>
-      <td><code>Sun</code></td>
+      <td>
+        The preferred maintenance day: "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", or "Sat".
+        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+      </td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_start_hour</code></td>
       <td>String</td>
-      <td>The preferred maintenance start hour. </td>
-      <td><code>00</code></td>
+      <td>
+        The preferred maintenance start hour. Valid values are "00" through "23".
+        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+      </td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_start_min</code></td>
       <td>String</td>
-      <td>The preferred maintenance start minute. </td>
-      <td><code>00</code></td>
+      <td>
+        The preferred maintenance start minute. Valid values are "00", "15", "30", "45".
+        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+      </td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_end_hour</code></td>
       <td>String</td>
-      <td>The preferred maintenance end hour. </td>
-      <td><code>00</code></td>
+      <td>
+        The preferred maintenance end hour. Valid values are "00" through "23".
+        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+      </td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>maintenance_end_min</code></td>
       <td>String</td>
-      <td>The preferred maintenance end minute. </td>
-      <td><code>00</code></td>
+      <td>
+        The preferred maintenance end minute. Valid values are "00", "15", "30", "45".
+        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+      </td>
+      <td>No preference</td>
       <td>provision and update</td>
     </tr>
     <tr>
