@@ -113,6 +113,37 @@ property to your plan. For example:
   }
 ```
 
+### <a id="rds-mysql"></a> Amazon RDS for MySQL
+
+Amazon RDS for MySQL allows you to configure the deletion protection for the MySQL database in both
+the provisioning and the updating phase of the instance. By default, the protection is disabled in
+the old and new versions of the product, but it can be enabled in existing instances by running the
+following command:
+
+```console
+cf update-service SERVICE-NAME -c '{ "deletion_protection": true }'
+```
+
+#### <a id="rds-postgres-custom-plans"></a> Changing custom plans
+
+If you have custom plans already configured for MySQL, and you want to create protected instances by default,
+you must modify the plan by adding the property mentioned with the value true. For example:
+
+```json
+  {
+    "name": "my-custom-plan",
+    "id": "dd448d6e-1d71-11ed-9974-77a0c9ef0141",
+    "description": "Custom plan",
+    "cores": 2,
+    "storage_gb": 5,
+    "mysql_version": 5.7,
+    "subsume": false,
+    "deletion_protection": true
+  }
+```
+
+Remember that a plan property cannot be modified later.
+
 ### <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
 
 Upgrading from v1.0.0 is not possible. This is due to a change in the internal structure of the
