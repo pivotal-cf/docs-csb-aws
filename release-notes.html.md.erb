@@ -41,6 +41,10 @@ New features and changes in this release:
 
 - **`db_name` property is no longer updatable:** Updating the db_name property results in a destructive
   action as the db is recreated by Terraform. This change fails the update quickly for improved user experience.
+
+- **`deletion_protection` is configurable and updatable:** New added property that allows you to configure the
+  deletion protection for the MySQL database in both the provisioning and the updating phase of the instance.
+  By default the protection is disabled.
 ### Resolved Issues
 
 This release has the following fixes:
