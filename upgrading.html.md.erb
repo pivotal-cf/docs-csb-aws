@@ -147,6 +147,10 @@ property to your plan. For example:
   }
 ```
 
+On the contrary, if you decide that you prefer to change your old plans to use the io1 value, you should
+set `storage_gb` to at least 100GB, as this is the minimum value that this type of disk supports.
+Read documentation for more [information](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
+
 If you have custom plans already configured for MySQL, and you want to create protected instances
 for being deleted by default, you must modify the plan by adding the property `deletion_protection`
 with the value true. For example:
