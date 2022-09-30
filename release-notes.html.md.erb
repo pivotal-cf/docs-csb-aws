@@ -15,52 +15,56 @@ These are release notes for <%= vars.product_full %>.
 
 This release has the following breaking changes:
 
-- **the default storage type is now set as 'io1' (provisioned IOPS SSD):** Previously the default used
-  'gp2' (general purpose SSD).
-  Users who previously had custom plans should add the property `"storage_type":"gp2"` to the plan definition,
-  to ensure the storage type is not amended on any update.
-  As part of this work, the default storage size has also been increased to 100GB, as this is the smallest
-  storage supported by the 'io1' storage type.
+- **Amazon RDS MySQL service:**
+  - **the default storage type is now set as 'io1' (provisioned IOPS SSD):** Previously the default used
+    'gp2' (general purpose SSD).
+    Users who previously had custom plans should add the property `"storage_type":"gp2"` to the plan definition,
+    to ensure the storage type is not amended on any update.
+    As part of this work, the default storage size has also been increased to 100GB, as this is the smallest
+    storage supported by the 'io1' storage type.
+    For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+
 
 ### Features
 
 New features and changes in this release:
 
-- **MySQL version is no longer restricted:** Previously the parameter `mysql_version` was restricted
-  to a list of supported values.
-  You can now choose the version you want when creating a plan.
-  To view the supported versions, see the
-  [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
+- **Amazon RDS MySQL service:**
+  - **MySQL version is no longer restricted:** Previously the parameter `mysql_version` was restricted
+    to a list of supported values.
+    You can now choose the version you want when creating a plan.
+    To view the supported versions, see the
+    [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
 
-- **The properties for setting the maintenance window are nullables:** Previously these properties
-  used default string values to determine whether the final value of the maintenance window must be
-  configured or not.
-  These properties are now null to make code easier to read and maintain long-term.
+  - **The properties for setting the maintenance window are nullables:** Previously these properties
+    used default string values to determine whether the final value of the maintenance window must be
+    configured or not.
+    These properties are now null to make code easier to read and maintain long-term.
 
-- **Exposed Automated Backups:** Automated backups can now be scheduled through `backup_window`.
-  By default, automated backups are disabled. This feature can be customized through the
-  following properties:
-  - `delete_automated_backups`: Delete backups when deleting the instance, defaults to true.
-  - `copy_tags_to_snapshot`: Copy all instance tags to snapshots, defaults to true.
-  - `backup_retention_period`: The number of days (1-35) for which automatic backups are kept. Set the value to 0 to disable automated backups.
+  - **Exposed Automated Backups:** Automated backups can now be scheduled through `backup_window`.
+    By default, automated backups are disabled. This feature can be customized through the
+    following properties:
+    - `delete_automated_backups`: Delete backups when deleting the instance, defaults to true.
+    - `copy_tags_to_snapshot`: Copy all instance tags to snapshots, defaults to true.
+    - `backup_retention_period`: The number of days (1-35) for which automatic backups are kept. Set the value to 0 to disable automated backups.
 
-- **`db_name` property is no longer updatable:** Updating the db_name property results in a destructive
-  action as the db is recreated by Terraform. This change fails the update quickly for improved user experience.
+  - **`db_name` property is no longer updatable:** Updating the db_name property results in a destructive
+    action as the db is recreated by Terraform. This change fails the update quickly for improved user experience.
 
-- **`deletion_protection` is configurable and updatable:** New added property that allows you to configure the
-  deletion protection for the MySQL database in both the provisioning and the updating phase of the instance.
-  By default the protection is disabled.
+  - **`deletion_protection` is configurable and updatable:** New added property that allows you to configure the
+    deletion protection for the MySQL database in both the provisioning and the updating phase of the instance.
+    By default the protection is disabled.
 
-- **`storage_type` and `iops` are configurable and updatable:** New added property that allows you to configure the
-  storage type in both the provisioning and the updating phase of the instance.
-  In addition to this, if using the provisioned IOPS SSD (io1) storage type, then the 'iops' value can
-  also be defined through the property "iops".
+  - **`storage_type` and `iops` are configurable and updatable:** New added property that allows you to configure the
+    storage type in both the provisioning and the updating phase of the instance.
+    In addition to this, if using the provisioned IOPS SSD (io1) storage type, then the 'iops' value can
+    also be defined through the property "iops". The default `storage_type` is `io1` if none is defined.
 
-- **Added deprecation warning to `cores` property** The `cores` property is now deprecated and optional if you use
-  the `instance_class` property. This `cores` is a translation layer to the `instance_class` property. The DB
-  instance class determines the computation and memory capacity of an Amazon RDS DB instance. The DB instance
-  class you need depends on your processing power and memory requirements, so we recommend using instance_class
-  to adjust the DB instance to your requirements.
+  - **Added deprecation warning to `cores` property** The `cores` property is now deprecated and optional if you use
+    the `instance_class` property. This `cores` is a translation layer to the `instance_class` property. The DB
+    instance class determines the computation and memory capacity of an Amazon RDS DB instance. The DB instance
+    class you need depends on your processing power and memory requirements, so we recommend using instance_class
+    to adjust the DB instance to your requirements.
 
 ### Resolved Issues
 
