@@ -6,8 +6,8 @@ owner: Cloud Service Broker
 <strong><%= modified_date %></strong>
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon RDS for MySQL service is currently in beta and is intended for evaluation
-  and test purposes only. Do not use this service in a production environment.
+  <strong>Important:</strong> The Amazon RDS for MySQL service is currently in beta and is intended
+  for evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
 This topic provides reference information about the <a href="https://aws.amazon.com/rds/mysql/">Amazon RDS for MySQL</a> (csb-aws-mysql) service.
@@ -15,7 +15,7 @@ It details the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
 
-The default plans and configuration options for Amazon RDS for MySQL are in the table below:
+The default plans and configuration options for Amazon RDS for MySQL are in the following table below:
 
 | Plan | Instance Class | Version | CPUs | Memory Size | Disk Size |
 |------|---------|---------|------|-------------|-----------|
@@ -27,47 +27,46 @@ The default plans and configuration options for Amazon RDS for MySQL are in the 
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                                                                                | Default   |
-|----------------------|---------------------------------------------------------------------------------------|-----------|
-| `name`*              | The plan name.                                                                        | _n/a_     |
-| `id`*                | A unique GUID.                                                                        | _n/a_     |
-| `description`*       | Description of the new plan.                                                          | _n/a_     |
-| `display_name`       | Name to use when displaying plan in marketplace.                                      | _n/a_     |
-| `free`               | When false, service instances of this service plan have a cost.                       | true      |
-| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.     | true      |
-| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true      |
-| `cores`              | Deprecated - Minimum number of cores for service instance. 1&ndash;64, multiples of 2. Use `instance_class` instead. | 2         |
-| `mysql_version`*     | The version for the MySQL instance.                                                   | _n/a_     |
-| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.                            | 100       |
+| Parameter Name       | Values                                                                                | Default   | Required |
+|----------------------|---------------------------------------------------------------------------------------|-----------|----------|
+| `name`               | The plan name.                                                                        | _n/a_     | Yes      |
+| `id`                 | A unique GUID.                                                                        | _n/a_     | Yes      |
+| `description`        | Description of the new plan.                                                          | _n/a_     | Yes      |
+| `display_name`       | Name to use when displaying plan in Marketplace.                                      | _n/a_     | No       |
+| `free`               | When false, service instances of this service plan have a cost.                       | true      | No       |
+| `bindable`           | Specifies whether service instances of the service plan can bind to applications.     | true      | No       |
+| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true      | No       |
+| `cores`              | Deprecated - Minimum number of cores for service instance. 1&ndash;64, multiples of 2. Use `instance_class` instead. | 2         | No |
+| `mysql_version`      | The version for the MySQL instance.                                                   | _n/a_     | Yes |
+| `storage_gb`         | Size of storage volume for service instance. 5&ndash;4096.                            | 100       | Yes |
 
-<sup>*</sup> Required
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+to your plan.
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
-
-To create plans with specific size and versions we recommend setting `instance_class`, `storage_gb` and
+To create plans with specific size and versions, set `instance_class`, `storage_gb`, and
 `mysql_version` properties.
 
 <p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
-  change the value when creating or updating service instances.
+  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value
+  when creating or updating service instances.
 </p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
-```
+```console
 cf create-service csb-aws-mysql PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
 
-```
-cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```console
+cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
 The following table lists the parameters that you can configure, by using the `-c` flag, when
@@ -198,7 +197,7 @@ provision only:
       <td>String</td>
       <td>Specifying the instance class overrides the conversion of cores to instance classes that is
         described in the <em>Core to Instance Class Mapping</em> table in the
-        <a href="#aws-mysql-plans">Plans for MySQL</a> section above.<br><br>
+        <a href="#aws-mysql-plans">Plans for MySQL</a> section earlier.<br><br>
         For more information about database instance classes, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
       </td>
@@ -245,7 +244,7 @@ provision only:
       <td><code>allow_major_version_upgrade</code></td>
       <td>Boolean</td>
       <td>Indicates that major version upgrades are allowed.
-        Changing this parameter does not result in an outage and the change is
+        Changing this parameter does not cause an outage and the change is
         asynchronously applied as soon as possible.</td>
       <td><code>true</code></td>
       <td>provision and update</td>
@@ -357,8 +356,8 @@ provision only:
 
 You can bind a service by running:
 
-```bash
-cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
+```console
+cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
 ```
 
 ## <a id="binding-creds"></a> Binding Credentials
@@ -373,7 +372,7 @@ The format for binding credentials for MySQL is as follows:
     "username" : "AUTHENTICATION-USERNAME",
     "password" : "AUTHENTICATION-PASSWORD",
     "uri" : "DATABASE-CONNECTION-URI",
-    "jdbcUrl" : "JDBC-FORMAT-CONNECTION-URI"
+    "jdbcUrl" : "JDBC-FORMAT-CONNECTION-URI",
     "use-tls" : true
 }
 ```
