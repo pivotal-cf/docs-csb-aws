@@ -142,7 +142,6 @@ property to your plan. For example:
     "cores": 2,
     "storage_gb": 5,
     "mysql_version": 5.7,
-    "subsume": false,
     "storage_type": "gp2"
   }
 ```
@@ -153,7 +152,7 @@ For more information, see the [AWS documentation](https://docs.aws.amazon.com/Am
 
 If you have custom plans already configured for MySQL, and you want to create protected instances
 for being deleted by default, you must edit the plan by adding the property `deletion_protection`
-with the value true. For example:
+with the value `true`. For example:
 
 ```json
   {
@@ -163,10 +162,13 @@ with the value true. For example:
     "cores": 2,
     "storage_gb": 5,
     "mysql_version": 5.7,
-    "subsume": false,
     "deletion_protection": true
   }
 ```
+
+Finally, the previously available `subsume` property has been removed due to functionality not working.
+By removing this property, we avoid possible confusion about faulty functionality.
+It is necessary to remove such property from your custom plans.
 
 Remember that a plan property cannot be modified later.
 
