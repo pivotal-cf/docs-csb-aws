@@ -66,6 +66,14 @@ New features and changes in this release:
     class you need depends on your processing power and memory requirements, so we recommend using instance_class
     to adjust the DB instance to your requirements.
 
+  - **`subsume` property has been removed from the plans:** The previously available property has been removed due
+    to the functionality not working. By removing this property, we avoid possible confusion about faulty functionality.
+    The old custom plans need to be changed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+
+  - **Exposed DB option group association:** A DB option group can now be associated through `option_group_name`.
+    MySQL offers additional features such as the audit plugin or Memcached to manage data and database or to provide
+    additional security for the database. RDS uses option groups to enable and configure these features.
+
 ### Resolved Issues
 
 This release has the following fixes:
