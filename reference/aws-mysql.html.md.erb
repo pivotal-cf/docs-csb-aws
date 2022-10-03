@@ -37,18 +37,18 @@ The following table lists parameters which can only be configured for additional
 | `id`*                | A unique GUID.                                                                        | _n/a_     |
 | `description`*       | Description of the new plan.                                                          | _n/a_     |
 | `display_name`       | Name to use when displaying plan in marketplace.                                      | _n/a_     |
-| `free`               | When false, service instances of this service plan have a cost.                       | true     |
-| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.     | true     |
-| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true     |
-| `cores`*             | Minimum number of cores for service instance. 1&ndash;64, multiples of 2.             | 2     |
+| `free`               | When false, service instances of this service plan have a cost.                       | true      |
+| `bindable`           | Specifies whether Service Instances of the Service Plan can bind to applications.     | true      |
+| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true      |
+| `cores`              | Deprecated - Minimum number of cores for service instance. 1&ndash;64, multiples of 2. Use `instance_class` instead. | 2         |
 | `mysql_version`*     | The version for the MySQL instance.                                                   | _n/a_     |
-| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.                            | 5     |
+| `storage_gb`*        | Size of storage volume for service instance. 5&ndash;4096.                            | 100       |
 
 <sup>*</sup> Required
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
 
-To create plans with specific size and versions we recommend setting `cores`, `storage_gb` and
+To create plans with specific size and versions we recommend setting `instance_class`, `storage_gb` and
 `mysql_version` properties.
 
 <p class="note">
@@ -203,6 +203,25 @@ provision only:
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
       </td>
       <td><em>n/a</em></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>storage_type</code></td>
+      <td>String</td>
+      <td>
+        Type of storage to be used. One of <code>standard</code> (magnetic), <code>gp2</code> (general purpose SSD), or <code>io1</code> (provisioned IOPS SSD).
+      </td>
+      <td><code>io1</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>iops</code></td>
+      <td>Integer</td>
+      <td>
+        The amount of provisioned IOPS. For this property to take effect, <code>storage_type</code>
+        must be set to <code>io1</code>.
+      </td>
+      <td><code>3000</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
