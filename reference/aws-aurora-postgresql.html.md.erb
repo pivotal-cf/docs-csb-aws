@@ -1,0 +1,136 @@
+---
+title: Amazon Aurora PostgreSQL-Compatible Edition (Beta)
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+
+<p class="note important">
+  <strong>Important:</strong> The Amazon Aurora PostgreSQL-Compatible Edition service is currently in beta and is intended
+  for evaluation and test purposes only. Do not use this service in a production environment.
+</p>
+
+This topic provides reference information about the <a href="https://aws.amazon.com/rds/aurora/">Amazon Aurora MySQL-Compatible Edition</a> (csb-aws-aurora-mysql) service.
+It details the plans, configuration parameters, and binding credentials.
+
+## <a id="plans-config"></a> Plan Configuration Parameters
+
+When configuring <%= vars.product_short %> you can add additional plans.
+For how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
+
+The following table lists parameters which can only be configured for additional plans:
+
+| Parameter Name       | Values                                                                                | Default   | Required |
+|----------------------|---------------------------------------------------------------------------------------|-----------|----------|
+| `name`               | The plan name.                                                                        | _n/a_     | Yes      |
+| `id`                 | A unique GUID.                                                                        | _n/a_     | Yes      |
+| `description`        | Description of the new plan.                                                          | _n/a_     | Yes      |
+| `display_name`       | Name to use when displaying plan in Marketplace.                                      | _n/a_     | No       |
+| `free`               | When false, service instances of this service plan have a cost.                       | true      | No       |
+| `bindable`           | Specifies whether service instances of the service plan can bind to applications.     | true      | No       |
+| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true      | No       |
+
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+to your plan.
+
+<p class="note">
+  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value
+  when creating or updating service instances.
+</p>
+
+## <a id="parameters"></a> Configuration Parameters
+
+You can provision a service by running:
+
+```console
+cf create-service csb-aws-aurora-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+```
+
+You can update the configuration parameters for a service instance by running:
+
+```console
+cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+The following table lists the parameters that you can configure, by using the `-c` flag, when
+provisioning or updating a `csb-aws-aurora-postgresql` service.
+The Operation column displays whether a parameter is supported for both provision and update, or for
+provision only:
+
+<table class="nice">
+  <thead>
+    <tr>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+      <th width="10%">Operation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>instance_name</code></td>
+      <td>String</td>
+      <td>The name of the AWS instance to create.</td>
+      <td><code>csb-aurorapg-INSTANCE-ID</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>cluster_instances</code></td>
+      <td>Integer</td>
+      <td>The number of Aurora instances in the Aurora cluster.</td>
+      <td><code>3</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>region</code></td>
+      <td>String</td>
+      <td>
+        The AWS region to deploy the service in.
+        For more information about available regions, see the
+        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
+      </td>
+      <td><code>us-west-2</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+  </tbody>
+</table>
+
+## <a id="binding"></a> Binding
+
+You can bind a service by running:
+
+```console
+cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
+```
+
+## <a id="binding-creds"></a> Binding Credentials
+
+The format for binding credentials for Amazon Aurora PostgreSQL-Compatible Edition is as follows:
+
+```json
+{
+    "name" : "DATABASE-NAME",
+    "hostname" : "DATABASE-SERVER-HOST",
+    "port" : "DATABASE-SERVER-PORT",
+    "username" : "AUTHENTICATION-USERNAME",
+    "password" : "AUTHENTICATION-PASSWORD",
+    "uri" : "DATABASE-CONNECTION-URI",
+    "jdbcUrl" : "JDBC-FORMAT-CONNECTION-URI"
+}
+```
