@@ -37,13 +37,16 @@ New features and changes in this release:
   To view the supported versions, see the
   [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
 
-- **The properties for setting the maintenance window are nullables:**
-  Previously these properties used default string values to determine whether the final value of
-  the maintenance window must be configured or not.
+- **The default maintenance window can be set easier:** The maintenance window can now be set to to null to
+  allow AWS to select a default window. Previously these properties used default string values to determine
+  whether the final value of the maintenance window must be configured or not.
   These properties are now null to make code easier to read and maintain long-term.
+  The maintenance window configuration uses a AWS default value for the region if all maintenance_* properties
+  are null when creating the instance.
 
 - **Exposed automated backups:**
   Automated backups can now be scheduled through `backup_window`.
+  The `backup_window` configuration uses a AWS default value for the region if the value is null when provisioning the instance.
   By default, automated backups are disabled. This feature can be customized through the
   following properties:
 

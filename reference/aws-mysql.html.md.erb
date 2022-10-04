@@ -136,10 +136,11 @@ provision only:
       <td>
         The daily time range in UTC during which automated backups are created.
         For example, <code>09:46-10:16</code>. It must not overlap with the maintenance window.
-        Set to <code>null</code> to revert to default. For more information, see
+        Make sure to update explicitly with a value other than null once you have chosen a value for this configuration.
+        For more information, see
         the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow">AWS documentation</a>.
       </td>
-      <td>Uses AWS default for the region</td>
+      <td>Uses AWS default value for the region if the value is null when creating the instance</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -262,9 +263,9 @@ provision only:
       <td>String</td>
       <td>
         The preferred maintenance day: <code>Sun</code>, <code>Mon</code>, <code>Tue</code>, <code>Wed</code>, <code>Thu</code>, <code>Fri</code>, or <code>Sat</code>.
-        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+        Make sure to update explicitly with a value other than null once you have chosen a value for this configuration.
       </td>
-      <td>No preference</td>
+      <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -272,9 +273,9 @@ provision only:
       <td>String</td>
       <td>
         The preferred maintenance start hour. Valid values are <code>00</code> through <code>23</code>.
-        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+        Make sure to update explicitly with a value other than null once you have chosen a value for this configuration.
       </td>
-      <td>No preference</td>
+      <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -282,9 +283,9 @@ provision only:
       <td>String</td>
       <td>
         The preferred maintenance start minute. Valid values are <code>00</code>, <code>15</code>, <code>30</code>, <code>45</code>.
-        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+        Make sure to update explicitly with a value other than null once you have chosen a value for this configuration.
       </td>
-      <td>No preference</td>
+      <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -292,9 +293,9 @@ provision only:
       <td>String</td>
       <td>
         The preferred maintenance end hour. Valid values are <code>00</code> through <code>23</code>.
-        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+        Make sure to update explicitly with a value other than null once you have chosen a value for this configuration.
       </td>
-      <td>No preference</td>
+      <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -302,9 +303,9 @@ provision only:
       <td>String</td>
       <td>
         The preferred maintenance end minute. Valid values are <code>00</code>, <code>15</code>, <code>30</code>, <code>45</code>.
-        To revert to the default value, set all <code>maintenance_*</code> parameters to <code>null</code>.
+        Make sure to update explicitly with a value other than null once you have chosen a value for this configuration.
       </td>
-      <td>No preference</td>
+      <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
     </tr>
     <tr>
