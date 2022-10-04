@@ -37,23 +37,19 @@ New features and changes in this release:
   To view the supported versions, see the
   [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
 
-- **The default maintenance window can be set easier:** The maintenance window can now be set to to null to
-  allow AWS to select a default window. Previously these properties used default string values to determine
-  whether the final value of the maintenance window must be configured or not.
-  These properties are now null to make code easier to read and maintain long-term.
-  The maintenance window configuration uses a AWS default value for the region if all maintenance_* properties
-  are null when creating the instance.
+- **The default maintenance window can be set easier:** To use the AWS default maintenance window on provision the
+  properties related to maintenance window can all be set to null instead of empty strings.
 
 - **Exposed automated backups:**
   Automated backups can now be scheduled through `backup_window`.
   The `backup_window` configuration uses a AWS default value for the region if the value is null when provisioning the instance.
-  By default, automated backups are disabled. This feature can be customized through the
+  By default, automated backups are enabled. This feature can be customized through the
   following properties:
 
   - `delete_automated_backups`: Delete backups when deleting the instance. It defaults as `true`.
   - `copy_tags_to_snapshot`: Copy all instance tags to snapshots. It defaults as `true`.
   - `backup_retention_period`: The number of days (1-35) for which automatic backups are kept.
-    Set the value to `0` to disable automated backups.
+    Set the value to `0` to disable automated backups. It defaults as 7.
 
 - **`db_name` property can no longer be updated:**
   Updating the `db_name` property causes a destructive action because Terraform recreates the
