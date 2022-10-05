@@ -19,9 +19,9 @@ The default plans and configuration options for Amazon RDS for MySQL are in the 
 
 | Plan | Instance Class | Version | CPUs | Memory Size | Disk Size |
 |------|---------|---------|------|-------------|-----------|
-|small | db.t2.medium | 5.7     | 2    | minimum 4&nbsp;GB     | 5&nbsp;GB       |
-|medium| db.m4.xlarge | 5.7      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
-|large | db.m4.2xlarge | 5.7      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
+|small | db.t3.medium | 5.7     | 2    | minimum 4&nbsp;GB     | 5&nbsp;GB       |
+|medium| db.m5.xlarge | 5.7      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
+|large | db.m5.2xlarge | 5.7      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -348,6 +348,52 @@ provision only:
       <td>String</td>
       <td>Name of the DB option group to associate.</td>
       <td><code>None</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>monitoring_interval</code></td>
+      <td>Integer</td>
+      <td>
+        The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the database instance.
+        To stop collecting Enhanced Monitoring metrics, enter 0. Valid values: 0, 1, 5, 10, 15, 30, 60.
+        A <code>monitoring_role_arn</code> value is required if you enter a <code>monitoring_interval</code> value other than 0.
+      </td>
+      <td><code>0</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>monitoring_role_arn</code></td>
+      <td>Integer</td>
+      <td>
+        Enhanced Monitoring requires permission to act on your behalf to send OS metric information to CloudWatch Logs.
+        This property represents the ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>performance_insights_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Specifies whether Performance Insights are enabled.
+        Performance Insights expands on existing Amazon RDS monitoring features to illustrate your
+        database performance and help you analyze it.
+        From the Performance Insights dashboard you can visualize the database load on your
+        Amazon RDS database instance load and filter the load by wait types,
+        SQL statements, hosts, or users.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>performance_insights_kms_key_id</code></td>
+      <td>String</td>
+      <td>
+        The ARN for the KMS key to encrypt Performance Insights data.
+        When specifying <code>performance_insights_kms_key_id</code>, set <code>performance_insights_enabled</code> as <code>true</code>.
+        After the KMS key is set, it can never be changed.
+      </td>
+      <td><code>""</code></td>
       <td>provision and update</td>
     </tr>
   </tbody>
