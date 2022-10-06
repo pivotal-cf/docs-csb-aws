@@ -76,13 +76,15 @@ New features and changes in this release:
   The database instance class you need depends on your processing power and memory requirements.
   Use `instance_class` to adjust the database instance to your requirements.
 
-- **`subsume` property has been removed from the plans:** The previously available property has been removed due
-  to the functionality not working. By removing this property, we avoid possible confusion about faulty functionality.
-  The old custom plans need to be changed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+- **`subsume` property was removed from the plans:**
+  The `subsume` property wasn't working and was removed to prevent confusion.
+  The old custom plans must be changed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
-- **Exposed DB option group association:** A DB option group can now be associated through `option_group_name`.
-  MySQL offers additional features such as the audit plugin or Memcached to manage data and database or to provide
-  additional security for the database. RDS uses option groups to enable and configure these features.
+- **Exposed database option group association:**
+  A database option group can now be associated through `option_group_name`.
+  MySQL offers additional features, such as the audit plug-in or Memcached to manage data and the
+  database or to provide additional security for the database.
+  RDS uses option groups to enable and configure these features.
 
 - **Exposed Enhanced Monitoring:** Enhanced monitoring can now be enabled to enable all the system metrics and
   process information for the RDS DB instances on the console.
