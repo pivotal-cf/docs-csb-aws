@@ -78,7 +78,7 @@ New features and changes in this release:
   Use `instance_class` to adjust the database instance to your requirements.
 
 - **`subsume` property was removed from the plans:**
-  The `subsume` property wasn't working and was removed to prevent confusion.
+  The `subsume` property was not working and was removed to prevent confusion.
   The old custom plans must be changed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
 - **Exposed database option group association:**
@@ -124,7 +124,10 @@ New features and changes in this release:
 
 This release has the following fixes:
 
-- **Run-in heading:** Description
+- **Correct behaviour of the AWS RDS security configuration to avoid deletion of the database instance:** This configuration
+ is done using the `deletion_protection` property. Once the property is enabled when deleting the instance,
+ AWS reports that the operation cannot be executed due to the added protection. When removing the protection and
+ trying to delete the instance again an error was shown by not finding the instance on the Cloud Foundry system.
 
 ### Known Issues
 
