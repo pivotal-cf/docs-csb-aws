@@ -121,9 +121,9 @@ New features and changes in this release:
 - **Exposed Performance Insights retention period:**
   The number of days to retain Performance Insights data can be configured through `performance_insights_retention_period`.
   By default, when Performance Insights is enabled, this value is 7 days.
-  The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
-  For example, the following values are valid: 93 (3 months * 31), 341 (11 months * 31), 589 (19 months * 31), and 731.
-  If you specify a retention period such as 94, which is not a valid value, RDS issues an error.
+  The value must be `7`, `NUMBER-OF-MONTHS` * 31 (where `NUMBER-OF-MONTHS` is `1`-`23`), or `731`.
+  For example, the following values are valid: `93` (3 months * 31), `341` (11 months * 31), `589` (19 months * 31), and `731`.
+  If you specify an invalid retention period, such as `94`, RDS issues an error.
 
 **Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition services:**
 
