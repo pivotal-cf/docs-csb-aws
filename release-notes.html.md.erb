@@ -116,6 +116,12 @@ New features and changes in this release:
     When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
 
+- **Exposed the KMS encryption key for encrypting the storage:** Previously to this change, we relied on an AWS
+  managed key for Amazon RDS to encrypt your DB instance. After exposing the property `kms_key_id` you can use a
+  customer managed key.
+  Remember to enable the `storage_encrypted` property if the key is specified, and use the ARN in this field,
+  not the ID as the name might suggest.
+
 **Amazon RDS PostgreSQL service:**
 
 - **Exposed Performance Insights retention period:**
