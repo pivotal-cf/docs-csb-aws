@@ -103,7 +103,7 @@ New features and changes in this release:
 
 - **Exposed Performance Insights:**
   Performance insights can now be enabled to expand on existing Amazon RDS monitoring features to
-  illustrate your database performance and help you analyze it.
+  illustrate the database performance and help you analyze it.
   By default, Performance Insights is disabled. To enable this feature, configure these properties:
 
   - `performance_insights_enabled`: Specifies whether Performance Insights are enabled.
@@ -115,6 +115,11 @@ New features and changes in this release:
   - `performance_insights_retention_period`: The number of days to retain Performance Insights data.
     When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
+
+- **Exposed the KMS encryption key for encrypting the storage:** By default an AWS managed key for Amazon RDS is used 
+  to encrypt the DB instance. You can use the `kms_key_id` property to define a customer managed key.
+  Remember to enable the `storage_encrypted` property if the key is specified, and use the ARN in this field,
+  not the ID as the name might suggest.
 
 **Amazon RDS PostgreSQL service:**
 
@@ -136,6 +141,9 @@ New features and changes in this release:
 
 This release has the following fixes:
 
+- **Fail early when updating RDS storage encryption property:** Updating the `storage_encrypted` property for RDS Postgres and MySQL
+is no longer allowed and it will result in an error imediatelly upon making an update request. Previously updating this property would 
+result in an IaaS error later on the update operation.
 - **Run-in heading:** Description
 
 ### Known Issues

@@ -313,7 +313,23 @@ provision only:
       <td>Boolean</td>
       <td>If <code>true</code>, database storage is encrypted.</td>
       <td><code>false</code></td>
-      <td>provision and update</td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>kms_key_id</code></td>
+      <td>String</td>
+      <td>
+        The <strong>ARN</strong> for the KMS encryption key.
+        Enable the <code>storage_encrypted</code> property if the key is specified.
+        Use the <strong>ARN</strong> in this field, not the <strong>ID</strong>
+        as the name might suggest.<br><br>
+        Amazon RDS-encrypted database instances provide an additional layer of data protection by
+        securing data from unauthorized access to the underlying storage.<br><br>
+        Amazon RDS uses an AWS KMS key to encrypt these resources. You can use a custom key with the
+        configuration that you want.
+      </td>
+      <td><code>""</code></td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>parameter_group_name</code></td>
