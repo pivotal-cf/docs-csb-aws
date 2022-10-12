@@ -124,10 +124,9 @@ New features and changes in this release:
 
 This release has the following fixes:
 
-- **Correct behaviour of the AWS RDS security configuration to avoid deletion of the database instance:** This configuration
- is done using the `deletion_protection` property. Once the property is enabled when deleting the instance,
- AWS reports that the operation cannot be executed due to the added protection. When removing the protection and
- trying to delete the instance again an error was shown by not finding the instance on the Cloud Foundry system.
+- **Disabling deletion protection will result in successful future deletion operations:** Previously when the 
+  `deletion_protection` property was turned off after a failed deletion attempt, the subsequent deletes would remove
+  the instance from CF, but not from the IaaS.
 
 ### Known Issues
 
