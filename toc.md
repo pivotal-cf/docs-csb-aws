@@ -10,4 +10,6 @@
     * [Amazon RDS for PostgreSQL](reference/aws-postgres.html)
     * [Amazon ElastiCache for Redis (Beta)](reference/aws-redis.html)
     * [Amazon DynamoDB (Beta)](reference/aws-dynamodb.html)
+    * [Amazon Aurora MySQL-Compatible Edition (Beta)](reference/aws-aurora-mysql.html)
+    * [Amazon Aurora PostgreSQL-Compatible Edition (Beta)](reference/aws-aurora-postgresql.html)
 * [Uninstalling](uninstall.html)
