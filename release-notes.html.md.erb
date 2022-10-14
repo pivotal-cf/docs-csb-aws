@@ -39,7 +39,7 @@ New features and changes in this release:
     only be specified in the plan definition.
   - **Exposed Bucket Ownership controls:** Bucket Ownership controls can now be specified in a plan
     or when a service instance is created if the plan does not specify a value for it.
-    It defaults to `ObjectOwnershipEnforced` and this disables ACLs by default.
+    It defaults to `ObjectOwnershipEnforced` and this deactivates ACLs by default.
     If you have custom plans, see [Changing custom plans](upgrading.html.md.erb#s3-custom-plans)
     for information about this change.
   - **Blocking public access to Amazon S3 storage:** This feature provides settings for buckets to
@@ -51,13 +51,13 @@ New features and changes in this release:
     (WORM) model. Object Lock can help prevent objects from being deleted or overwritten for a fixed
     amount of time.
   - **Allow versioning updates:** Added the ability to edit the versioning of an S3 bucket to
-    enable such functionality after its creation. After versioning is enabled, it can no longer be
-    disabled. Trying to do so causes an IaaS error.
+    enable such functionality after its creation. After versioning is activated, it can no longer be
+    deactivated. Trying to do so causes an IaaS error.
 - **Amazon RDS PostgreSQL service offering is generally available:** The Amazon RDS PostgreSQL offering
   is no longer in beta and can be used in production.
   - When creating a binding, by default the PostgreSQL connection is secured through the
     `verify-full` PostgreSQL configuration. This requires the AWS certificate bundle to be
-    installed, or it can be disabled by setting `require_ssl=false`.
+    installed, or it can be deactivated by setting `require_ssl=false`.
   - A new `provider_verify_certificate` property allows for the PostgreSQL Terraform provider to
     skip the verification of the server certificate.
   - **Allow enforcing SSL:** Introduced `require_ssl` to replace `use_tls`. When the `require_ssl`
@@ -69,7 +69,7 @@ New features and changes in this release:
   - **Deprecated cores properties:** The `cores` property is now deprecated and and optional.
     Use the `instance_class` property instead when creating new plans.
   - **Exposed Automated Backups:** Automated backups can now be scheduled through `backup_window`.
-    By default, automated backups are disabled. This feature can be customized through the
+    By default, automated backups are deactivated. This feature can be customized through the
     following properties:
     - `delete_automated_backups`: Delete backups when deleting the instance, defaults to true.
     - `copy_tags_to_snapshot`: Copy all instance tags to snapshots, defaults to true.
