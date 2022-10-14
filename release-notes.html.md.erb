@@ -51,7 +51,7 @@ New features and changes in this release:
   - `delete_automated_backups`: Delete backups when deleting the instance. It is `true` by default.
   - `copy_tags_to_snapshot`: Copy all instance tags to snapshots. It is `true` by default.
   - `backup_retention_period`: The number of days (1-35) for which automatic backups are kept.
-    Set the value to `0` to disable automated backups. It is `7` by default.
+    Set the value to `0` to deactivate automated backups. It is `7` by default.
 
 - **`db_name` property can no longer be updated:**
   Updating the `db_name` property causes a destructive action because Terraform recreates the
@@ -60,7 +60,7 @@ New features and changes in this release:
 - **`deletion_protection` can be configured and updated:**
   New added property that enables you to configure the deletion protection for the MySQL database
   in both the provisioning and the updating phase of the instance. By default the protection is
-  disabled.
+  deactivated.
 
 - **`storage_type` and `iops` can be configured and updated:**
   New added property that enables you to configure the storage type in both the provisioning and
@@ -90,10 +90,10 @@ New features and changes in this release:
 - **Exposed Enhanced Monitoring:**
   Enhanced Monitoring can now be activated to enable all the system metrics and process information
   for the RDS database instances on the console.
-  By default, enhanced monitoring is disabled. To enable this feature, configure these properties:
+  By default, enhanced monitoring is deactivated. To enable this feature, configure these properties:
 
   - `monitoring_interval`: The interval, in seconds, between points when Enhanced Monitoring metrics
-    are collected for the database instance. To disable collecting Enhanced Monitoring metrics,
+    are collected for the database instance. To deactivate collecting Enhanced Monitoring metrics,
     specify `0`.
     Valid values are `0`, `1`, `5`, `10`, `15`, `30`, and `60`. It is `0` by default.
     A `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than `0`.
@@ -104,7 +104,7 @@ New features and changes in this release:
 - **Exposed Performance Insights:**
   Performance insights can now be enabled to expand on existing Amazon RDS monitoring features to
   illustrate the database performance and help you analyze it.
-  By default, Performance Insights is disabled. To enable this feature, configure these properties:
+  By default, Performance Insights is deactivated. To enable this feature, configure these properties:
 
   - `performance_insights_enabled`: Specifies whether Performance Insights are enabled.
     It is `false` by default.
@@ -116,7 +116,7 @@ New features and changes in this release:
     When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
 
-- **Exposed the KMS encryption key for encrypting the storage:** By default an AWS managed key for Amazon RDS is used 
+- **Exposed the KMS encryption key for encrypting the storage:** By default an AWS managed key for Amazon RDS is used
   to encrypt the DB instance. You can use the `kms_key_id` property to define a customer managed key.
   Remember to enable the `storage_encrypted` property if the key is specified, and use the ARN in this field,
   not the ID as the name might suggest.
@@ -142,7 +142,7 @@ New features and changes in this release:
 This release has the following fixes:
 
 - **Fail early when updating RDS storage encryption property:** Updating the `storage_encrypted` property for RDS Postgres and MySQL
-is no longer allowed, and it will result in an error immediately upon making an update request. Previously updating this property would 
+is no longer allowed, and it will result in an error immediately upon making an update request. Previously updating this property would
 result in an IaaS error later on the update operation.
 
 ### Known Issues
