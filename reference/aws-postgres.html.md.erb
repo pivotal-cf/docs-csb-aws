@@ -448,10 +448,14 @@ provision only:
       <td><code>enable_audit_logging</code></td>
       <td>Boolean</td>
       <td>
-        If <code>true</code>, it will enable the `audit` cloud_watch_log_export on the RDS instance.
-        Requires setting option_group_name with a pre-created Option Group that fullfils requirements for audit log exports. 
-        For config options see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.MySQL.Options.AuditPlugin.html#Appendix.MySQL.Options.AuditPlugin.Add>AWS documentation</a>.
-        When enabled it creates an associated audit Cloudwatch Log Group. When disabled the asocited audit Cloudwatch Log Group will be deleted.
+        If <code>true</code>, it enables the <code>audit</code> <code>cloud_watch_log_export</code>
+        on the RDS instance.
+        It requires setting <code>option_group_name</code> with a pre-created Option Group that fulfils
+        requirements for audit log exports.
+        For config options, see the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.MySQL.Options.AuditPlugin.html#Appendix.MySQL.Options.AuditPlugin.Add">AWS documentation</a>.
+        When activated, it creates an associated audit CloudWatch log group.
+        When deactivated, the associated audit CloudWatch log group is deleted.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
@@ -460,8 +464,8 @@ provision only:
       <td><code>cloudwatch_log_group_retention_in_days</code></td>
       <td>Integer</td>
       <td>
-        If provided will set the retention days for the log group containing the RDS audit logs.
-        Used in conjunction with <code>enable_audit_logging<code>.
+        If provided, it sets the retention days for the log group that contains the RDS audit logs.
+        It is used in conjunction with <code>enable_audit_logging<code>.
       </td>
       <td><code>30</code></td>
       <td>provision and update</td>
@@ -470,8 +474,9 @@ provision only:
       <td><code>cloudwatch_log_group_kms_key_id</code></td>
       <td>String</td>
       <td>
-        If provided will set the KSM key to use for encrypting the Cloudwatch log group created for the RDS audit logs.
-        Used in conjunction with <code>enable_audit_logging<code>.
+        If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is
+        created for the RDS audit logs.
+        It is used in conjunction with <code>enable_audit_logging<code>.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>

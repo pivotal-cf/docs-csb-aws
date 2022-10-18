@@ -87,14 +87,18 @@ New features and changes in this release:
   database or to provide additional security for the database.
   RDS uses option groups to enable and configure these features.
 
-- **Exposed Audit logging:**
-  Audit logging can now be activated. It requires setting option_group_name with a pre-created 
-  Option Group that fullfils requirements for audit log exports. By default audit logging is disabled. 
-  When enabled the default log retation days will be 30 days. These properties can be configured:
-  - `cloudwatch_log_group_retention_in_days`: Used in conjunction with `enable_audit_logging`. 
-  If provided will set the retention days for the log group containing the RDS audit logs.
-  - `cloudwatch_log_group_kms_key_id`: Used in conjunction with `enable_audit_logging`. 
-  If provided will set the KSM key to use for encrypting the Cloudwatch log group created for the RDS audit logs.
+- **Exposed audit-logging:**
+  Audit-logging can now be activated. It requires setting `option_group_name` with a pre-created
+  Option Group that fulfils requirements for audit log exports.
+  By default, audit-logging is deactivated.
+  When activated, the default number of log retention days is 30. These properties can be configured:
+
+  - `cloudwatch_log_group_retention_in_days`: This is used in conjunction with `enable_audit_logging`.
+    If provided, it sets the retention days for the log group containing the RDS audit logs.
+
+  - `cloudwatch_log_group_kms_key_id`: This is used in conjunction with `enable_audit_logging`.
+    If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is created
+    for the RDS audit logs.
 
 - **Exposed Enhanced Monitoring:**
   Enhanced Monitoring can now be activated to enable all the system metrics and process information
@@ -106,6 +110,7 @@ New features and changes in this release:
     specify `0`.
     Valid values are `0`, `1`, `5`, `10`, `15`, `30`, and `60`. It is `0` by default.
     A `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than `0`.
+
   - `monitoring_role_arn`: Enhanced Monitoring requires permission to act on your behalf to send OS
     metric information to CloudWatch Logs. This property represents the ARN for the IAM role that
     permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs.
@@ -117,10 +122,12 @@ New features and changes in this release:
 
   - `performance_insights_enabled`: Specifies whether Performance Insights are enabled.
     It is `false` by default.
+
   - `performance_insights_kms_key_id`: The ARN for the KMS key to encrypt Performance Insights data.
     When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled` as
     `true`.
     After the KMS key is set, it can never be changed.
+
   - `performance_insights_retention_period`: The number of days to retain Performance Insights data.
     When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
