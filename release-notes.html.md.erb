@@ -87,6 +87,15 @@ New features and changes in this release:
   database or to provide additional security for the database.
   RDS uses option groups to enable and configure these features.
 
+- **Exposed Audit logging:**
+  Audit logging can now be activated. It requires setting option_group_name with a pre-created 
+  Option Group that fullfils requirements for audit log exports. By default audit logging is disabled. 
+  When enabled the default log retation days will be 30 days. These properties can be configured:
+  - `cloudwatch_log_group_retention_in_days`: Used in conjunction with `enable_audit_logging`. 
+  If provided will set the retention days for the log group containing the RDS audit logs.
+  - `cloudwatch_log_group_kms_key_id`: Used in conjunction with `enable_audit_logging`. 
+  If provided will set the KSM key to use for encrypting the Cloudwatch log group created for the RDS audit logs.
+
 - **Exposed Enhanced Monitoring:**
   Enhanced Monitoring can now be activated to enable all the system metrics and process information
   for the RDS database instances on the console.
