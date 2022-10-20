@@ -21,9 +21,12 @@ This release has the following breaking changes:
     Previously the default used `gp2` (general purpose SSD).
     Users who previously had custom plans must add the property `"storage_type":"gp2"` to the plan
     definition to ensure that the storage type is not amended on any update.
-    As part of this work, the default storage size has also been increased to 100&nbsp;GB, because this
-    is the smallest amount of storage that the `io1` storage type supports.
     For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+  - **Defined production grade defaults:** By default all RDS MySQL instances created will have encryption 
+  and multi-AZ enabled. These properties can be changed by setting `storage_encrypted` or `multi_az` to `false`. 
+  This change will be applied to all exiting instances unless the custom plans are updated before the broker upgrade 
+  to include setting `storage_encrypted` or `multi_az` to `false`.
+  For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
 ### Features
 
@@ -59,8 +62,7 @@ New features and changes in this release:
 
 - **`deletion_protection` can be configured and updated:**
   New added property that enables you to configure the deletion protection for the MySQL database
-  in both the provisioning and the updating phase of the instance. By default the protection is
-  deactivated.
+  in the plan configuration or during provision or update operations. By default the protection is deactivated.
 
 - **`storage_type` and `iops` can be configured and updated:**
   New added property that enables you to configure the storage type in both the provisioning and

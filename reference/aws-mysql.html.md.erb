@@ -225,13 +225,13 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>multi-az</code></td>
+      <td><code>multi_az</code></td>
       <td>Boolean</td>
-      <td>If <code>true</code>, create a Multi-AZ (HA) instance.
+      <td>If <code>true</code>, it enables Multi-AZ DB instance deployment.
         For more information about Multi-AZ deployments, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.
       </td>
-      <td><code>false</code></td>
+      <td><code>true</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -311,8 +311,8 @@ provision only:
     <tr>
       <td><code>storage_encrypted</code></td>
       <td>Boolean</td>
-      <td>If <code>true</code>, database storage is encrypted.</td>
-      <td><code>false</code></td>
+      <td>Configures database storage encryption.</td>
+      <td><code>true</code></td>
       <td>provision</td>
     </tr>
     <tr>
