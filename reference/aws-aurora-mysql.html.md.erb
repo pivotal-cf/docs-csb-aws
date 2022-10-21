@@ -143,6 +143,28 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
 ```
 
+The following table lists the parameters that you can configure, by using the `-c` flag, when
+binding a `csb-aws-aurora-mysql` service:
+
+<table class="nice">
+  <thead>
+    <tr>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>reader_endpoint</code></td>
+      <td>Boolean</td>
+      <td>Whether to return the Aurora reader endpoint, which is balanced across Reader and Writer instances. By default the writer endpoint is returned which maps only to the Writer instance. </td>
+      <td><code>false</code></td>
+    </tr>
+  </tbody>
+</table>
+
 ## <a id="binding-creds"></a> Binding Credentials
 
 The format for binding credentials for Amazon Aurora MySQL-Compatible Edition is as follows:
