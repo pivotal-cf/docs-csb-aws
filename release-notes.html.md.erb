@@ -29,7 +29,8 @@ This release has the following breaking changes:
   For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
   - **Insecure connections are no longer supported:** Every connection in RDS MySQL instances must use TLS encryption.
   This change will be applied to previously existing instances after upgrading or binding recreation.
-  The property `use_tls` is now removed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+  The property `use_tls` is now removed.
+  The old custom plans containing the property `use_tls` must be changed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
 ### Features
 
