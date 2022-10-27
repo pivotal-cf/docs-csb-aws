@@ -24,9 +24,12 @@ This release has the following breaking changes:
     For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
   - **Defined production grade defaults:** By default all RDS MySQL instances created will have encryption 
   and multi-AZ enabled. These properties can be changed by setting `storage_encrypted` or `multi_az` to `false`. 
-  This change will be applied to all exiting instances unless the custom plans are updated before the broker upgrade 
+  This change will be applied to all existing instances unless the custom plans are updated before the broker upgrade 
   to include setting `storage_encrypted` or `multi_az` to `false`.
   For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+  - **Insecure connections are no longer supported:** Every connection in RDS MySQL instances must use TLS encryption.
+  This change will be applied to previously existing instances after upgrading or binding recreation.
+  The property `use_tls` is now removed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
 ### Features
 

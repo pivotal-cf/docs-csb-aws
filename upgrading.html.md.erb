@@ -150,7 +150,7 @@ If you decide to change your old plans to use the io1 value, set `storage_gb` to
 as this is the minimum value that this type of disk supports.
 For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
 
-Upon updating the the latest broker all the existing instances will be upgraded to have storage encryption and multi-AZ enabled.
+Upon updating the latest broker all the existing instances will be upgraded to have storage encryption and multi-AZ enabled.
 If you would like to avoid this, you can modify the custom plans already configured for MySQL by adding the `storage_encrypted` and `multi_az`
 with the value `false`. For example:
 
@@ -166,6 +166,8 @@ with the value `false`. For example:
     "multi_az": false
   }
 ```
+
+Finally, if you have configured old plans where the property `use_tls` was included, the plans must be modified removing the property. 
 
 > **Caution:** A plan property cannot be modified during a provision or update operation.
 
