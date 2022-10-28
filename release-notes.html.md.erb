@@ -22,13 +22,16 @@ This release has the following breaking changes:
     Users who previously had custom plans must add the property `"storage_type":"gp2"` to the plan
     definition to ensure that the storage type is not amended on any update.
     For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
-
-  - **Production grade settings defined by default:**
-    By default, all RDS MySQL instances created now have Multi-AZ, storage encryption, and storage autoscaling activated.
-    All existing instances will also be upgraded to activate these settings.
-    To deactivate these settings, you can configure `multi_az`, `storage_encrypted`, or `storage_autoscale` to `false`.
-    For existing instances, configure this before the broker upgrade.
-    For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+  - **Defined production grade defaults:** By default all RDS MySQL instances created will have encryption 
+  and multi-AZ enabled. These properties can be changed by setting `storage_encrypted` or `multi_az` to `false`. 
+  This change will be applied to all existing instances unless the custom plans are updated before the broker upgrade 
+  to include setting `storage_encrypted` or `multi_az` to `false`.
+  For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+  - **Insecure connections are no longer supported:** Every connection in RDS MySQL instances must use TLS encryption.
+  This change will be applied to previously existing instances after upgrading or binding recreation.
+  The property `use_tls` is now removed.
+  The old custom plans containing the property `use_tls` must be changed. For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+  The AWS certificate bundle must be installed in OpsManager.
 
 ### Features
 
@@ -165,10 +168,11 @@ New features and changes in this release:
 
 This release has the following fixes:
 
-- **Fail early if you attempt to update the RDS `storage_encryption` property:**
-  Updating the `storage_encrypted` property for RDS PostgreSQL and MySQL is no longer allowed.
-  <%= vars.product_full %> now issues an error immediately upon making the update request.
-  Previously, updating this property only caused an IaaS error after the update operation.
+- **Fail early when updating RDS storage encryption property:** Updating the `storage_encrypted` property for RDS Postgres and MySQL
+is no longer allowed, and it will result in an error immediately upon making an update request. Previously updating this property would
+result in an IaaS error later on the update operation.
+- **Valid MySQL JDBC URL SSL parameter:** By default, RDS for MySQL uses and expects all clients to connect using
+SSL/TLS, therefore the value of SSL parameter in the MySQL JDBC URL is always set to true.
 
 ### Known Issues
 
