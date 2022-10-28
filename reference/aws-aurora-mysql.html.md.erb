@@ -79,6 +79,13 @@ provision only:
       <td>provision</td>
     </tr>
     <tr>
+      <td><code>db_name</code></td>
+      <td>String</td>
+      <td>The name of the database.</td>
+      <td><code>csbdb</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
       <td><code>cluster_instances</code></td>
       <td>Integer</td>
       <td>The number of Aurora instances in the Aurora cluster.</td>
@@ -116,6 +123,23 @@ provision only:
       <td>String</td>
       <td>The Aurora engine version, e.g. "8.0.mysql_aurora.3.02.0". Not all features are supported by all versions. Refer to the AWS documentation for more details..</td>
       <td><code>null</code> which results in the AWS default</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>allow_major_version_upgrade</code></td>
+      <td>Boolean</td>
+      <td>Indicates that major version upgrades are allowed.
+        Changing this parameter does not cause an outage and the change is
+        asynchronously applied as soon as possible.</td>
+      <td><code>true</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>auto_minor_version_upgrade</code></td>
+      <td>Boolean</td>
+      <td>Indicates that minor engine upgrades are applied automatically
+        to the database instance during the maintenance window.</td>
+      <td><code>true</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
