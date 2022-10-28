@@ -22,11 +22,12 @@ This release has the following breaking changes:
     Users who previously had custom plans must add the property `"storage_type":"gp2"` to the plan
     definition to ensure that the storage type is not amended on any update.
     For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
-  - **Defined production grade defaults:** By default all RDS MySQL instances created will have encryption 
-  and multi-AZ enabled. These properties can be changed by setting `storage_encrypted` or `multi_az` to `false`. 
-  This change will be applied to all exiting instances unless the custom plans are updated before the broker upgrade 
-  to include setting `storage_encrypted` or `multi_az` to `false`.
-  For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+  - **Production grade settings defined by default:**
+    By default all RDS MySQL instances created now have encryption and Multi-AZ activated.
+    All existing instances will also be upgraded to activate these settings.
+    To deactivate these settings, you can configure `storage_encrypted` and `multi_az` to `false`.
+    For existing instances, configure this before the broker upgrade.
+    For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
 ### Features
 
