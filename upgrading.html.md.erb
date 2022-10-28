@@ -150,9 +150,9 @@ If you decide to change your old plans to use the io1 value, set `storage_gb` to
 as this is the minimum value that this type of disk supports.
 For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
 
-Upon updating the the latest broker all the existing instances will be upgraded to have storage encryption, storage autoscaling and multi-AZ enabled.
-If you would like to avoid this, you can modify the custom plans already configured for MySQL by adding the `storage_encrypted`, `storage_autoscale` and `multi_az`
-with the value `false`. For example:
+When you update to the latest broker, all existing instances are upgraded to have storage encryption, Multi-AZ, and storage autoscaling activated.
+To deactivate these settings, edit the custom plans configured for MySQL to add the `storage_encrypted`,
+`multi_az`, and `storage_autoscale` properties with the value `false` before you upgrade the broker. For example:
 
 ```json
   {
@@ -168,7 +168,9 @@ with the value `false`. For example:
   }
 ```
 
-> **Caution:** A plan property cannot be modified during a provision or update operation.
+<p class="note caution">
+  <strong>Caution:</strong> You cannot edit plan properties during a provision or update operation.
+</p>
 
 ### <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
 
