@@ -168,7 +168,7 @@ New features and changes in this release:
 
 **Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition services:**
 
-- **The Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition services have been added:**
+- **The Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition (Beta) services have been added:**
   For more information about how to create and manage these services, see
   [Amazon Aurora MySQL-Compatible Edition (Beta)](reference/aws-aurora-mysql.html.md.erb) and
   [Amazon Aurora PostgreSQL-Compatible Edition (Beta)](reference/aws-aurora-postgresql.html.md.erb).
@@ -193,7 +193,11 @@ This release has the following fixes:
 
 This release has the following issue:
 
-- **Run-in heading:** Description
+- **S3 bucket service instance update:** If you attempt to deactivate versioning for an instance
+  created before upgrading to this version, it is recorded as an `update succeeded` operation at the
+  first attempt. However this value is not updated in the broker or in AWS because deactivating
+  versioning is not supported in the IaaS. Subsequent attempts cause an error message that states
+  that versioning can't be deactivated, as expected.
 
 ## <a id="view"></a> View release notes for another version
 
