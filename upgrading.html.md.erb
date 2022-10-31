@@ -77,7 +77,7 @@ For more information, see
 [Add previously provided pre-configured plans](reference/aws-postgres.html.md.erb#old-plans).
 
 If you instead want to delete all previously created Amazon RDS for PostgreSQL service instances,
-you must delete them before upgrading <%= vars.product_short %> to v1.2.0.
+you must delete them before upgrading <%= vars.product_short %> to this version.
 
 To remove the instances from the broker, run:
 
@@ -111,6 +111,29 @@ property to your plan. For example:
     "postgres_version": 11,
     "storage_type": "gp2"
   }
+```
+
+#### <a id="rds-postgres-old-plans"></a> Restoring brokerpak-provided plans
+
+From this version onwards, plans are no longer provided with the brokerpak.
+If you have Amazon RDS for PostgreSQL instances that you want to maintain, you must add previously
+provided plans through the tile.
+For more information, see
+[Add previously provided pre-configured plans](reference/aws-mysql.html.md.erb#old-plans).
+
+If you instead want to delete all previously created Amazon RDS for MySQL service instances,
+you must delete them before upgrading <%= vars.product_short %> to v1.3.0.
+
+To remove the instances from the broker, run:
+
+```console
+cf delete-service SERVICE-NAME
+```
+
+To remove instances from Cloud Foundry, but retain them in the IaaS, run:
+
+```console
+cf purge-service-instance
 ```
 
 #### <a id="rds-mysql-custom-plans"></a> Changing custom plans
@@ -182,4 +205,3 @@ To upgrade the <%= vars.product_short %> to a later version:
 1. If you are upgrading to a version later than v1.0, service instances might need to be upgraded.
 Before installing the new version, see
 [Upgrade All Service Instances Config](installing-with-aws.html#upgrade-all-config).
-

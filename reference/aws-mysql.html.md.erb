@@ -483,3 +483,62 @@ The format for binding credentials for MySQL is as follows:
     "use-tls" : true
 }
 ```
+
+## <a id="old-plans"></a> Add previously provided pre-configured plans
+
+The following table lists the previously provided plans for the Amazon RDS for MySQL service:
+
+| Plan   | Description                                      |
+|--------|--------------------------------------------------|
+| small  | MySQL 5.7, 2 vCPUs, 4&nbsp;GB RAM, 5&nbsp;GB storage   |
+| medium | MySQL 5.7, 4 vCPUs, 8&nbsp;GB RAM, 10&nbsp;GB storage |
+| large  | MySQL 5.7, 8 vCPUs, 16&nbsp;GB RAM, 20&nbsp;GB storage |
+
+To keep these plans in later versions of the broker, add them through the tile as custom plans.
+For how to configure plans through the tile, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+
+Add the following block to keep the `small` plan:
+
+```json
+{
+    "name": "small",
+    "id": "2268ce43-7fd7-48dc-be2f-8611e11fb12e",
+    "description": "MySQL v5.7, minimum 2 cores, minimum 4GB ram, 5GB storage",
+    "display_name": "small",
+    "cores": 2,
+    "storage_gb": 5,
+    "storage_type": "gp2",
+    "mysql_version": 5.7
+}
+```
+
+Add the following block to keep the `medium` plan:
+
+```json
+{
+    "name": "medium",
+    "id": "f2ae0bb7-6921-43b7-bae7-6d1fe1c5d1c6",
+    "description": "MySQL 5.7, minimum 4 cores, minimum 8GB ram, 10GB storage",
+    "display_name": "medium",
+    "cores": 4,
+    "storage_gb": 10,
+    "storage_type": "gp2",
+    "mysql_version": 5.7
+}
+```
+
+Add the following block to keep the `large` plan:
+
+```json
+{
+    "name": "large",
+    "id": "a5fea013-e87f-488f-969d-1cf038881b57",
+    "description": "MySQL 5.7, minimum 8 cores, minimum 16GB ram, 20GB storage",
+    "display_name": "large",
+    "cores": 8,
+    "storage_gb": 20,
+    "storage_type": "gp2",
+    "mysql_version": 5.7
+}
+```
