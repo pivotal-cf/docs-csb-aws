@@ -126,6 +126,20 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>rds_subnet_group</code></td>
+      <td>String</td>
+       <td>The name of subnet to attach the database instance to.
+      <td>None</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>rds_vpc_security_group_ids</code></td>
+      <td>Comma-separated String</td>
+      <td>Security group IDs to assign to the database instance.</td>
+      <td>None</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>allow_major_version_upgrade</code></td>
       <td>Boolean</td>
       <td>Indicates that major version upgrades are allowed.
