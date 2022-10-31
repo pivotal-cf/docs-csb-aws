@@ -17,6 +17,12 @@ This release has the following breaking changes:
 
 - **Amazon RDS MySQL service:**
 
+  - ** Amazon RDS MySQL pre-configured plans were removed: From this version onwards,
+    plans are no longer provided with the brokerpak. If you have RDS MySQL service instances
+    that were using build-in plans and that you want to maintain, previously provided
+    plans must be added through the tile configuration. For more information, see
+    [Add previously provided pre-configured plans](reference/aws-mysql.html.md.erb#old-plans).
+
   - **The default storage type is now set as `io1` (provisioned IOPS SSD):**
     Previously the default used `gp2` (general purpose SSD).
     Users who previously had custom plans must add the property `"storage_type":"gp2"` to the plan
