@@ -32,30 +32,6 @@ To remove instances from Cloud Foundry, but retain them in the IaaS, run:
 cf purge-service-instance
 ```
 
-If you decide to change your old plans to use the io1 value, set `storage_gb` to at least 100&nbsp;GB,
-as this is the minimum value that this type of disk supports.
-For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
-
-When you update to the latest broker, all existing instances are upgraded to have storage encryption, Multi-AZ, and storage autoscaling activated.
-To deactivate these settings, edit the custom plans configured for MySQL to add the `storage_encrypted`,
-`multi_az`, and `storage_autoscale` properties with the value `false` before you upgrade the broker. For example:
-
-```json
-  {
-    "name": "my-custom-plan",
-    "id": "dd448d6e-1d71-11ed-9974-77a0c9ef0141",
-    "description": "Custom plan",
-    "cores": 2,
-    "storage_gb": 5,
-    "mysql_version": 5.7,
-    "storage_encrypted": false,
-    "multi_az": false,
-    "storage_autoscale": false
-  }
-```
-
-Finally, if you have configured old plans where the property `use_tls` was included, the plans must be modified removing the property.
-
 <p class="note caution">
   <strong>Caution:</strong> You cannot edit plan properties during a provision or update operation.
 </p>
@@ -81,6 +57,30 @@ property to your plan. For example:
     "storage_type": "gp2"
   }
 ```
+
+If you decide to change your old plans to use the io1 value set `storage_gb` to at least 100&nbsp;GB,
+as this is the minimum value that this type of disk supports.
+For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
+
+When you update to the latest broker, all existing instances are upgraded to have storage encryption, Multi-AZ, and storage autoscaling activated.
+To deactivate these settings, edit the custom plans configured for MySQL to add the `storage_encrypted`,
+`multi_az`, and `storage_autoscale` properties with the value `false` before you upgrade the broker. For example:
+
+```json
+  {
+    "name": "my-custom-plan",
+    "id": "dd448d6e-1d71-11ed-9974-77a0c9ef0141",
+    "description": "Custom plan",
+    "cores": 2,
+    "storage_gb": 5,
+    "mysql_version": 5.7,
+    "storage_encrypted": false,
+    "multi_az": false,
+    "storage_autoscale": false
+  }
+```
+
+Finally, if you have configured old plans where the property `use_tls` was included, the plans must be modified removing the property.
 
 ## <a id="procedure"></a> Upgrade procedure
 
