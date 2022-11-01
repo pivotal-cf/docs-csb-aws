@@ -509,7 +509,10 @@ Add the following block to keep the `small` plan:
     "cores": 2,
     "storage_gb": 5,
     "storage_type": "gp2",
-    "mysql_version": 5.7
+    "mysql_version": 5.7,
+    "storage_encrypted": false,
+    "multi_az": false,
+    "storage_autoscale": false
 }
 ```
 
@@ -524,7 +527,10 @@ Add the following block to keep the `medium` plan:
     "cores": 4,
     "storage_gb": 10,
     "storage_type": "gp2",
-    "mysql_version": 5.7
+    "mysql_version": 5.7,
+    "storage_encrypted": false,
+    "multi_az": false,
+    "storage_autoscale": false
 }
 ```
 
@@ -539,6 +545,9 @@ Add the following block to keep the `large` plan:
     "cores": 8,
     "storage_gb": 20,
     "storage_type": "gp2",
-    "mysql_version": 5.7
+    "mysql_version": 5.7,
+    "storage_encrypted": false,
+    "multi_az": false,
+    "storage_autoscale": false    
 }
 ```
