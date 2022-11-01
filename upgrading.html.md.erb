@@ -5,124 +5,36 @@ owner: Cloud Service Broker
 
 This topic describes how to upgrade <%= vars.product_full %>.
 
-## <a id="upgrade-to-1-2-0"></a> Upgrading to v1.2.0
-
-<%= vars.product_short %> uses Terraform internally to manage the deployment of service instances.
-Terraform was updated from v0.12 to v1.1.
-As a result, there is an upgrade process that must be performed on every service instance so that
-<%= vars.product_short %> can continue to manage it.
-
-Back up service instances and review the known issues before upgrading to v1.2.0.
-For more information, see [Known Issues with Upgrading to v1.2.0](#known-issues).
-
-### <a id="s3-bucket"></a> Amazon S3 Bucket
-
-Amazon S3 bucket is no longer in beta and can be used in production.
-
-#### <a id="s3-old-plans"></a> Restoring brokerpak-provided plans
-
-From this version onwards, plans are no longer provided with the brokerpak.
-If you have S3 bucket instances that you want to maintain, you must add previously provided plans
-through the tile.
-For more information, see [Add previously provided pre-configured plans](reference/aws-s3.html.md.erb#old-plans).
-
-If you instead want to delete all previously created S3 bucket service instances, you must delete
-them before upgrading <%= vars.product_short %> to v1.2.0.
-
-To remove the instances from the broker, run:
-
-```console
-cf delete-service SERVICE-NAME
-```
-
-To remove instances from Cloud Foundry, but retain them in the IaaS, run:
-
-```console
-cf purge-service-instance
-```
-
-#### <a id="s3-custom-plans"></a> Changing custom plans
-
-If you have custom plans already configured, you might need to change the configuration because the
-new `boc_object_ownership` property defaults to `BucketOwnerEnforced`, which deactivates ACLs.
-
-To compensate for `boc_object_ownership`, add the property to your plan.
-
-For example:
-
-```json
-  {
-      "name": "public-read",
-      "id": "04317eaa-11ac-4c5f-b77f-eb005fe977fe",
-      "description": "Public-read S3 bucket",
-      "display_name": "Public Read",
-      "acl": "public-read",
-      "boc_object_ownership": "ObjectWriter"
-  }
-```
-
-For more information about the <code>boc_object_ownership</code> and <code>acl</code> properties,
-see [Amazon S3 Bucket](reference/aws-s3.html.md.erb).
-
-### <a id="rds-postgres"></a> Amazon RDS for PostgreSQL
-
-Amazon RDS for PostgreSQL is no longer in beta and can be used in production.
-
-#### <a id="rds-postgres-old-plans"></a> Restoring brokerpak-provided plans
-
-From this version onwards, plans are no longer provided with the brokerpak.
-If you have Amazon RDS for PostgreSQL instances that you want to maintain, you must add previously
-provided plans through the tile.
-For more information, see
-[Add previously provided pre-configured plans](reference/aws-postgres.html.md.erb#old-plans).
-
-If you instead want to delete all previously created Amazon RDS for PostgreSQL service instances,
-you must delete them before upgrading <%= vars.product_short %> to v1.2.0.
-
-To remove the instances from the broker, run:
-
-```console
-cf delete-service SERVICE-NAME
-```
-
-To remove instances from Cloud Foundry, but retain them in the IaaS, run:
-
-```console
-cf purge-service-instance
-```
-
-#### <a id="rds-postgres-custom-plans"></a> Changing custom plans
-
-If you have custom plans already configured for PostgreSQL, you must change the configuration.
-This is because the new `storage_type` property is `io1` by default, which attempts to move all
-service instances into a new storage type from the general purpose (gp2) type that they are on
-currently.
-
-To ensure that no unintended changes happen to your existing instances, add the `storage_type`
-property to your plan. For example:
-
-```json
-  {
-    "name": "my-custom-plan",
-    "id": "dd448d6e-1d71-11ed-9974-77a0c9ef0141",
-    "description": "Custom plan",
-    "cores": 2,
-    "storage_gb": 5,
-    "postgres_version": 11,
-    "storage_type": "gp2"
-  }
-```
+## <a id="upgrade-to-1-2-0"></a> Upgrading to v1.3.0
 
 ### <a id="rds-mysql"></a> Amazon RDS for MySQL
 
-Amazon RDS for MySQL allows you to configure the deletion protection for the MySQL database in both
-the provisioning and the updating phase of the instance. By default, the protection is deactivated in
-the old and new versions of the product, but it can be activated in existing instances by running the
-following command:
+#### <a id="rds-mysql-old-plans"></a> Restoring brokerpak-provided plans
+
+From this version onwards, MySQL plans are no longer provided with the brokerpak.
+If you have Amazon RDS for MySQL instances that you want to maintain, you must add previously
+provided plans through the tile.
+For more information, see
+[Add previously provided pre-configured plans](reference/aws-mysql.html.md.erb#old-plans).
+
+If you instead want to delete all previously created Amazon RDS for MySQL service instances,
+you must delete them before upgrading <%= vars.product_short %> to this version.
+
+To remove the instances from the broker, run:
 
 ```console
-cf update-service SERVICE-NAME -c '{ "deletion_protection": true }'
+cf delete-service SERVICE-NAME
 ```
+
+To remove instances from Cloud Foundry, but retain them in the IaaS, run:
+
+```console
+cf purge-service-instance
+```
+
+<p class="note caution">
+  <strong>Caution:</strong> You cannot edit plan properties during a provision or update operation.
+</p>
 
 #### <a id="rds-mysql-custom-plans"></a> Changing custom plans
 
@@ -146,7 +58,7 @@ property to your plan. For example:
   }
 ```
 
-If you decide to change your old plans to use the io1 value, set `storage_gb` to at least 100&nbsp;GB,
+If you decide to change your old plans to use the io1 value set `storage_gb` to at least 100&nbsp;GB,
 as this is the minimum value that this type of disk supports.
 For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
 
@@ -168,21 +80,7 @@ To deactivate these settings, edit the custom plans configured for MySQL to add 
   }
 ```
 
-Finally, if you have configured old plans where the property `use_tls` was included, the plans must be modified removing the property. 
-
-<p class="note caution">
-  <strong>Caution:</strong> You cannot edit plan properties during a provision or update operation.
-</p>
-
-### <a id="known-issues"></a> Known Issues with Upgrading to v1.2.0
-
-Upgrading from v1.0.0 is not possible. This is due to a change in the internal structure of the
-Terraform configuration files that causes upgrades for all services to fail.
-
-If a `csb-aws-dynamodb` service was created with v1.0.1 or earlier, upgrading fails.
-This is due to an issue that was fixed in later versions where the property `table_name` was
-incorrectly named `tabel_name`.
-Any updates to the service can cause a failure because the property key changed in subsequent versions.
+Finally, if you have configured old plans where the property `use_tls` was included, the plans must be modified removing the property.
 
 ## <a id="procedure"></a> Upgrade procedure
 
@@ -193,4 +91,3 @@ To upgrade the <%= vars.product_short %> to a later version:
 1. If you are upgrading to a version later than v1.0, service instances might need to be upgraded.
 Before installing the new version, see
 [Upgrade All Service Instances Config](installing-with-aws.html#upgrade-all-config).
-
