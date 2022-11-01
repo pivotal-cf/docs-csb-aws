@@ -13,15 +13,13 @@ owner: Cloud Service Broker
 This topic provides reference information about the <a href="https://aws.amazon.com/rds/mysql/">Amazon RDS for MySQL</a> (csb-aws-mysql) service.
 It details the plans, configuration parameters, and binding credentials.
 
-## <a id="plans"></a> Plans
-
-The default plans and configuration options for Amazon RDS for MySQL are in the following table below:
-
-| Plan | Instance Class | Version | CPUs | Memory Size | Disk Size |
-|------|---------|---------|------|-------------|-----------|
-|small | db.t3.medium | 5.7     | 2    | minimum 4&nbsp;GB     | 5&nbsp;GB       |
-|medium| db.m5.xlarge | 5.7      | 4    | minimum 8&nbsp;GB     | 10&nbsp;GB      |
-|large | db.m5.2xlarge | 5.7      | 8    | minimum 16&nbsp;GB    | 20&nbsp;GB      |
+<p class="note">
+  <strong>Note:</strong> Release v1.3.0 removed brokerpak pre-configured plans for Amazon RDS for MySQL.
+  Since then all plans must be configured through the tile.
+  If you have instances of the RDS for MySQL that were created in previous versions that you want to
+  maintain, see <a href="#old-plans">Add previously provided pre-configured plans</a>.
+  For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
+</p>.
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
