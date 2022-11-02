@@ -481,6 +481,9 @@ The format for binding credentials for MySQL is as follows:
     "use-tls" : true
 }
 ```
+<p class="note">
+  <strong>Note:</strong> The `jdbcUrl` has server certificate verification always enabled, and requires the use of MySQL Connector for Java version 8.0.13 or later.
+</p>
 
 ## <a id="old-plans"></a> Add previously provided pre-configured plans
 
@@ -546,6 +549,6 @@ Add the following block to keep the `large` plan:
     "mysql_version": 5.7,
     "storage_encrypted": false,
     "multi_az": false,
-    "storage_autoscale": false    
+    "storage_autoscale": false
 }
 ```
