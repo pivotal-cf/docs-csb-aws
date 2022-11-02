@@ -7,7 +7,14 @@ This topic describes how to upgrade <%= vars.product_full %>.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to v1.3.0
 
+
 ### <a id="rds-mysql"></a> Amazon RDS for MySQL
+
+### <a id="rds-mysql-ssl"></a> Insecure connections are not longer Supported
+
+Every connection in RDS MySQL instances must use TLS encryption.
+This change is applied to previously existing instances after upgrading or binding recreation.
+For connections (including binding creation) to continue working, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
 #### <a id="rds-mysql-old-plans"></a> Restoring brokerpak-provided plans
 
@@ -81,6 +88,13 @@ To deactivate these settings, edit the custom plans configured for MySQL to add 
 ```
 
 Finally, if you have configured old plans where the property `use_tls` was included, the plans must be modified removing the property.
+
+### <a id="aurora-postgres"></a> Amazon Aurora PostgreSQL-Compatible Edition (Beta)
+
+### <a id="aurora-postgres-ssl"></a> Insecure connections from the broker are not longer Supported
+
+Cloud Service Broker connections to Aurora PostgreSQL instances must use TLS encryption.
+For bind/unbind to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
 ## <a id="procedure"></a> Upgrade procedure
 
