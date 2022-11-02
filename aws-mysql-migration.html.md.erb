@@ -155,6 +155,11 @@ For how to configure data migration, see the documentation for the process you h
     Because <%= vars.product_short %> creates new credentials at bind time,
     this creates new binding credentials for the app.
 
+1. Update the app to consume the new binding credential format.
+The legacy binding exposes the database name in the credentials block as `database`, whereas the
+binding credentials received from <%= vars.product_short %> exposes the database name as `name`.
+You must update the consuming app to handle the `name` credential property.
+     
 1. Restage the app:
 
     ```console
