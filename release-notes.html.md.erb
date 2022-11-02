@@ -19,7 +19,7 @@ This release has the following breaking changes:
 
   - ** Amazon RDS MySQL pre-configured plans were removed: From this version onwards,
     plans are no longer provided with the brokerpak. If you have RDS MySQL service instances
-    that were using build-in plans and that you want to maintain, previously provided
+    that were using built-in plans and that you want to maintain, previously provided
     plans must be added through the tile configuration. For more information, see
     [Add previously provided pre-configured plans](reference/aws-mysql.html.md.erb#old-plans).
 
@@ -97,7 +97,7 @@ New features and changes in this release:
 
 - **`subsume` property was removed from the plans:**
   The `subsume` property wasn't working and was removed to prevent confusion.
-  The old custom plans that contained such property should be either modified or deleted.
+  The old custom plans that contained this property must be modified or deleted.
   For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
 - **Exposed database option group association:**
@@ -203,11 +203,13 @@ This release has the following fixes:
 
 This release has the following issue:
 
-- **S3 bucket service instance update:** If you attempt to deactivate versioning for an instance
-  created before upgrading to this version, it is recorded as an `update succeeded` operation at the
-  first attempt. However this value is not updated in the broker or in AWS because deactivating
-  versioning is not supported in the IaaS. Subsequent attempts cause an error message that states
-  that versioning can't be deactivated, as expected.
+- **S3 bucket service instance update:**
+  If you attempt to deactivate versioning for an instance created before upgrading to this version,
+  it is recorded as an `update succeeded` operation at the first attempt.
+  However, this value is not updated in the broker or in AWS because deactivating versioning is not
+  supported in the IaaS.
+  Subsequent attempts cause an error message that states that versioning can't be deactivated, as
+  expected.
 
 ## <a id="view"></a> View release notes for another version
 
