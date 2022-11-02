@@ -180,6 +180,9 @@ New features and changes in this release:
 
 - **Aurora PostgreSQL service bind/unbind are now performed over TLS:** for this operations to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
+- **`deletion_protection` can be configured and updated:** New added property that enables you to configure the deletion protection for the Aurora databases
+  in the plan configuration or during provision or update operations. By default the protection is deactivated.
+
 ### Resolved Issues
 
 This release has the following fixes:
