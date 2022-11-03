@@ -133,12 +133,6 @@ To migrate data from an existing legacy MySQL instance to <%= vars.product_short
     - `LEGACY-SERVICE-INSTANCE` is the name of the VMware Tanzu Service Broker for AWS-brokered MySQL
       instance.
 
-    For example:
-
-    <pre class="terminal">
-    $ cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE
-    </pre>
-
 1. Bind the app to the new service instance by running:
 
     ```console
