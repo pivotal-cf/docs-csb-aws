@@ -191,14 +191,15 @@ New features and changes in this release:
   in the plan configuration or during provision or update operations. By default the protection is deactivated.
 
 - **Exposed automated backups:**
-  Automated backups can now be scheduled through `preferred_backup_window`.
-  The `preferred_backup_window` configuration uses an AWS default value for the region if the value is null when
-  provisioning the instance.
-  By default, automated backups are enabled and cannot be disabled on Aurora.
-  This feature can be customized through the following properties:
+  You can schedule automated backups by using `preferred_backup_window`.
+  The `preferred_backup_window` configuration uses an AWS default value for the region if the value
+  is null when provisioning the instance.
+  By default, automated backups are activated and cannot be deactivated on Aurora.
+  You can customize this feature by using these properties:
 
   - `copy_tags_to_snapshot`: Copy all cluster tags to snapshots. It is `true` by default.
-  - `backup_retention_period`: The backup retention period determines the period for which you can perform a point-in-time recovery. It is `1` by default.
+  - `backup_retention_period`: The backup retention period property sets the period in which you can
+    perform a point-in-time recovery. It is `1` by default.
 
 ### Resolved Issues
 
