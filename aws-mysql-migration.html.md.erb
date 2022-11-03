@@ -160,11 +160,11 @@ The legacy binding exposes the database name in the credentials block as `databa
 binding credentials received from <%= vars.product_short %> exposes the database name as `name`.
 You must update the consuming app to handle the `name` credential property.
      
-1. Restage the app:
+1. Push and start the app by running:
 
-    ```console
-    cf restage APP-NAME
-    ```
+   ```console
+   cf push APP-NAME
+   ```
 
 1. After the migration is successful, you can stop continuous migration and remove
 the legacy service instance.
