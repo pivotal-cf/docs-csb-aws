@@ -168,7 +168,7 @@ New features and changes in this release:
 
 **Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition services:**
 
-- **The Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition (Beta) services have been added:**
+- **Added Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition (Beta) services:**
   For more information about how to create and manage these services, see
   [Amazon Aurora MySQL-Compatible Edition (Beta)](reference/aws-aurora-mysql.html.md.erb) and
   [Amazon Aurora PostgreSQL-Compatible Edition (Beta)](reference/aws-aurora-postgresql.html.md.erb).
@@ -179,7 +179,9 @@ New features and changes in this release:
   Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition.
   Moreover, defining your own RDS subnet group is possible at plan or instance creation.
 
-- **Instances are tagged with TAS IDs** All created instances are tagged with "pcf-organization-guid", "pcf-space-guid", "pcf-instance-id" on provision.
+- **Instances are tagged with TAS IDs:**
+  All created instances are tagged with `pcf-organization-guid`, `pcf-space-guid`, and `pcf-instance-id`
+  on provision.
 
 - **Aurora PostgreSQL service bind/unbind are now performed over TLS:** for this operations to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
