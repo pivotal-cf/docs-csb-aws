@@ -7,14 +7,18 @@ This topic describes how to upgrade <%= vars.product_full %>.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to v1.3.0
 
+The following sections have information about upgrading to v1.3.0.
 
 ### <a id="rds-mysql"></a> Amazon RDS for MySQL
 
-### <a id="rds-mysql-ssl"></a> Insecure connections are not longer Supported
+The following sections describe changes for Amazon RDS for MySQL.
 
-Every connection in RDS MySQL instances must use TLS encryption.
+#### <a id="rds-mysql-ssl"></a> Insecure connections are no longer supported
+
+All connections in RDS MySQL instances must use TLS encryption.
 This change is applied to previously existing instances after upgrading or binding recreation.
-For connections (including binding creation) to continue working, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
+For connections, including binding creation, to continue working the AWS certificate bundle must be
+installed in <%= vars.ops_manager %>.
 
 #### <a id="rds-mysql-old-plans"></a> Restoring brokerpak-provided plans
 
@@ -91,10 +95,12 @@ Finally, if you have configured old plans where the property `use_tls` was inclu
 
 ### <a id="aurora-postgres"></a> Amazon Aurora PostgreSQL-Compatible Edition (Beta)
 
-### <a id="aurora-postgres-ssl"></a> Insecure connections from the broker are not longer Supported
+The following sections describe changes for Amazon Aurora PostgreSQL-Compatible Edition (Beta).
+
+### <a id="aurora-postgres-ssl"></a> Insecure connections from the broker are no longer supported
 
 Cloud Service Broker connections to Aurora PostgreSQL instances must use TLS encryption.
-For bind/unbind to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
+For bind and unbind to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
 ## <a id="procedure"></a> Upgrade procedure
 

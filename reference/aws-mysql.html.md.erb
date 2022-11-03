@@ -21,10 +21,8 @@ It details the plans, configuration parameters, and binding credentials.
   For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
 </p>.
 
-<p class="note">
-  <strong>Note:</strong> Release v1.3.0 onwards does not support insecure connections to RDS MySQL instances.
-  For secure connections to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
-</p>.
+Release v1.3.0 and later doesn't support insecure connections to RDS MySQL instances.
+For secure connections to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -482,7 +480,7 @@ The format for binding credentials for MySQL is as follows:
     "username" : "AUTHENTICATION-USERNAME",
     "password" : "AUTHENTICATION-PASSWORD",
     "uri" : "DATABASE-CONNECTION-URI",
-    "jdbcUrl" : "JDBC-FORMAT-CONNECTION-URL",
+    "jdbcUrl" : "JDBC-FORMAT-CONNECTION-URL"
 }
 ```
 

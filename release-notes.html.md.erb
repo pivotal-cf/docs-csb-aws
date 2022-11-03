@@ -183,7 +183,8 @@ New features and changes in this release:
   All created instances are tagged with `pcf-organization-guid`, `pcf-space-guid`, and `pcf-instance-id`
   on provision.
 
-- **Aurora PostgreSQL service bind/unbind are now performed over TLS:** for this operations to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
+- **Aurora PostgreSQL service bind and unbind are now performed over TLS:**
+  For these operations to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
 - **`deletion_protection` can be configured and updated:** New added property that enables you to configure the deletion protection for the Aurora databases
   in the plan configuration or during provision or update operations. By default the protection is deactivated.
