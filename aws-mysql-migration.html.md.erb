@@ -76,8 +76,9 @@ To migrate data from an existing legacy MySQL instance to <%= vars.product_short
 
     Where `APP-USING-LEGACY-SERVICE-INSTANCE` is the name of an app that is bound to a
     service instance from the legacy broker.
-    Inspect the `VCAP_SERVICES` JSON output to see the host name, database, user name, password, and
-    port required to configure DMS.
+
+1. Inspect the `VCAP_SERVICES` JSON output to see the host name, database, user name, password, and
+   port required to configure DMS.
 
 1. Create a new MySQL service instance using <%= vars.product_short %> by running:
 
@@ -85,8 +86,11 @@ To migrate data from an existing legacy MySQL instance to <%= vars.product_short
     cf create-service csb-aws-mysql SERVICE-PLAN NEW-SERVICE-INSTANCE-NAME
     ```
 
-    Where `SERVICE-PLAN` is the name of the MySQL service plan created to match the legacy instance
-    configuration and `NEW-SERVICE-INSTANCE-NAME` is the name of the new MySQL service instance.
+    Where:
+
+    - `SERVICE-PLAN` is the name of the MySQL service plan created to match the legacy instance
+    configuration
+    - `NEW-SERVICE-INSTANCE-NAME` is the name of the new MySQL service instance
 
 1. Create a service key in the new MySQL service by running:
 
@@ -94,8 +98,10 @@ To migrate data from an existing legacy MySQL instance to <%= vars.product_short
     cf create-service-key NEW-SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
     ```
 
-    Where `NEW-SERVICE-INSTANCE-NAME` is the name of the new MySQL service instance and
-    `SERVICE-KEY-NAME` is a name that you choose for the service key.
+    Where:
+
+    - `NEW-SERVICE-INSTANCE-NAME` is the name of the new MySQL service instance
+    - `SERVICE-KEY-NAME` is a name that you choose for the service key
 
 1. Get credentials from the service key by running:
 
@@ -103,8 +109,8 @@ To migrate data from an existing legacy MySQL instance to <%= vars.product_short
     cf service-key NEW-SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
     ```
 
-    Inspect the JSON output for the host name, name, user name, password, and port required to
-    configure data migration.
+1. Inspect the JSON output for the host name, name, user name, password, and port required to
+   configure the data migration.
 
 1. Configure and run data migration, such as by using AWS DMS.
    For how to configure data migration, see the documentation for the method you have chosen.
@@ -113,11 +119,11 @@ To migrate data from an existing legacy MySQL instance to <%= vars.product_short
       <strong>Note:</strong> A data migration process might create schemas and tables without
       granting access for other users to work with that data.
       You can resolve this by connecting to the database with the credentials used for DMS,
-      and granting `binding_user_group` access to the schemas and tables.
+      and granting <code>binding_user_group</code> access to the schemas and tables.<br><br>
 
       Alternatively if you are not using a continuous migration method, such as
       AWS DMS change data capture (CDC), delete the service key used for data migration.
-      This re-assigns data ownership to the `binding_user_group` role, automatically
+      This re-assigns data ownership to the <code>binding_user_group</code> role, automatically
       giving access to other users.
     </p>
 
