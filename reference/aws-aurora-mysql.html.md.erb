@@ -159,7 +159,10 @@ provision only:
     <tr>
       <td><code>deletion_protection</code></td>
       <td>Boolean</td>
-      <td>Whether deletion protection is enabled. The database cannot be deleted when this value is set.</td>
+      <td>
+        Whether deletion protection is enabled. The DB cluster cannot be deleted when this value is set, but you can delete DB instances within the cluster.
+        See documentation for more information about deleting Aurora DB cluster and DB instances https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection
+      </td>
       <td><code>false</code></td>
       <td>provision and update</td>
     </tr>
