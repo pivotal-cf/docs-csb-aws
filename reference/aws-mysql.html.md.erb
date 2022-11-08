@@ -10,7 +10,8 @@ owner: Cloud Service Broker
   for evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
-This topic provides reference information about the <a href="https://aws.amazon.com/rds/mysql/">Amazon RDS for MySQL</a> (csb-aws-mysql) service.
+This topic provides reference information about the <a href="https://aws.amazon.com/rds/mysql/">Amazon RDS for
+MySQL</a> (csb-aws-mysql) service.
 It details the plans, configuration parameters, and binding credentials.
 
 <p class="note">
@@ -32,24 +33,22 @@ For how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                                                                                | Default   | Required |
-|----------------------|---------------------------------------------------------------------------------------|-----------|----------|
-| `name`               | The plan name.                                                                        | _n/a_     | Yes      |
-| `id`                 | A unique GUID.                                                                        | _n/a_     | Yes      |
-| `description`        | Description of the new plan.                                                          | _n/a_     | Yes      |
-| `display_name`       | Name to use when displaying plan in Marketplace.                                      | _n/a_     | No       |
-| `free`               | When false, service instances of this service plan have a cost.                       | true      | No       |
-| `bindable`           | Specifies whether service instances of the service plan can bind to applications.     | true      | No       |
-| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true      | No       |
-| `cores`              | Deprecated - Minimum number of cores for service instance. 1&ndash;64, multiples of 2. Use `instance_class` instead. | 2         | No |
-| `mysql_version`      | The version for the MySQL instance.                                                   | _n/a_     | Yes |
-| `storage_gb`         | Size of storage volume for service instance. 5&ndash;4096.                            | 100       | Yes |
+| Parameter Name    | Description                                                                                                          | Default | Required |
+|-------------------|----------------------------------------------------------------------------------------------------------------------|---------|----------|
+| `name`            | The plan name.                                                                                                       | _n/a_   | Yes      |
+| `id`              | A unique GUID.                                                                                                       | _n/a_   | Yes      |
+| `description`     | Description of the new plan.                                                                                         | _n/a_   | Yes      |
+| `display_name`    | Name to use when displaying plan in Marketplace.                                                                     | _n/a_   | No       |
+| `free`            | When false, service instances of this service plan have a cost.                                                      | true    | No       |
+| `bindable`        | Specifies whether service instances of the service plan can bind to applications.                                    | true    | No       |
+| `plan_updateable` | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.                                 | true    | No       |
+| `cores`           | Deprecated - Minimum number of cores for service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
+| `mysql_version`   | The version for the MySQL instance, either major (e.g "8.0"), or full version (e.g. "8.0.30").                       | _n/a_   | Yes      |
+| `storage_gb`      | Size of storage volume for service instance. 5&ndash;4096.                                                           | _n/a_   | Yes      |
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
-to your plan.
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
 
-To create plans with specific size and versions, set `instance_class`, `storage_gb`, and
-`mysql_version` properties.
+To create plans with specific size and versions, set `instance_class`, `storage_gb`, and `mysql_version` properties.
 
 <p class="note">
   <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value
