@@ -5,7 +5,8 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-This topic provides reference information about the <a href="https://aws.amazon.com/rds/postgresql/">Amazon RDS for PostgreSQL</a> (csb-aws-postgres)
+This topic provides reference information about the <a href="https://aws.amazon.com/rds/postgresql/">Amazon RDS for
+PostgreSQL</a> (csb-aws-postgres)
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
 <p class="note">
@@ -24,17 +25,18 @@ For instructions on how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name    | Values                                                                              | Default | Required |
-|-------------------|-------------------------------------------------------------------------------------|---------|----------|
-| `name`            | The plan name                                                                       | _n/a_   | Yes      |
-| `id`              | A unique GUID                                                                       | _n/a_   | Yes      |
-| `description`     | Description of the new plan                                                         | _n/a_   | Yes      |
-| `display_name`    | Name to use when displaying plan in Marketplace                                     | _n/a_   | No       |
-| `free`            | When false, service instances of this service plan have a cost                      | true    | No       |
-| `bindable`        | Specifies whether service instances of the service plan can bind to applications    | true    | No       |
-| `plan_updateable` | Whether the plan supports upgrading, downgrading, or sidegrading to another version | true    | No       |
-| `storage_gb`      | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB     | 100       | Yes      |
-| `cores`           | Deprecated - Minimum number of cores for service instance.  1&ndash;64&nbsp;. Use `instance_class` instead. | 2       | No       |
+| Parameter Name     | Description                                                                                                              | Default | Required |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------|---------|----------|
+| `name`             | The plan name                                                                                                            | _n/a_   | Yes      |
+| `id`               | A unique GUID                                                                                                            | _n/a_   | Yes      |
+| `description`      | Description of the new plan                                                                                              | _n/a_   | Yes      |
+| `display_name`     | Name to use when displaying plan in the Marketplace                                                                      | _n/a_   | No       |
+| `free`             | When false, service instances of this service plan have a cost                                                           | true    | No       |
+| `bindable`         | Specifies whether service instances of the service plan can bind to applications                                         | true    | No       |
+| `plan_updateable`  | Whether the plan supports upgrading, downgrading, or sidegrading to another version                                      | true    | No       |
+| `postgres_version` | The version for the PostgreSQL instance. Can be any supported major or major and minor version.                          | _n/a_   | Yes      |
+| `storage_gb`       | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB                                          | _n/a_   | Yes      |
+| `cores`            | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
@@ -77,17 +79,6 @@ provision only:
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><code>postgres_version</code></td>
-      <td>String</td>
-      <td>
-        Required - The version for the PostgreSQL instance.
-        This can be any supported major version, or major and minor.
-        For example, <code>13</code> or <code>13.4</code>.
-      </td>
-      <td><code>""</code></td>
-      <td>provision and update</td>
-    </tr>
     <tr>
       <td><code>instance_class</code></td>
       <td>String</td>

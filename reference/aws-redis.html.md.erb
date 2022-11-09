@@ -19,30 +19,30 @@ Tables for cache sizes and plans are below:
 
 ### Cache Size to AWS Node Type Mapping
 
-| cache_size | node type |
-|------------|-----------|
-| 1   |cache.t2.small |
-| 2   |cache.t3.medium |
-| 4   |cache.m5.large |
-| 8   |cache.m5.xlarge |
-| 16  |cache.r4.xlarge |
-| 32  |cache.r4.2xlarge |
-| 64  |cache.r4.4xlarge |
-| 128 |cache.r4.8xlarge |
-| 256 |cache.r5.12xlarge |
+| cache_size | node type         |
+|------------|-------------------|
+| 1          | cache.t2.small    |
+| 2          | cache.t3.medium   |
+| 4          | cache.m5.large    |
+| 8          | cache.m5.xlarge   |
+| 16         | cache.r4.xlarge   |
+| 32         | cache.r4.2xlarge  |
+| 64         | cache.r4.4xlarge  |
+| 128        | cache.r4.8xlarge  |
+| 256        | cache.r5.12xlarge |
 
 ## <a id="plans"></a> Plans
 
 The default plans for Amazon ElastiCache for Redis are in the table below:
 
-| Plan | Cache Size | AWS Cache Node Type | HA |
-|------|------------|---------------------|-----|
-| small | minimum 1&nbsp;GB | cache.t2.small | no |
-| medium | minimum 4&nbsp;GB |cache.m5.large | no |
-| large | minimum 16&nbsp;GB |cache.r4.xlarge | no |
-| small-ha | minimum 1&nbsp;GB | cache.t2.small | yes |
-| medium-ha | minimum 4&nbsp;GB |cache.m5.large | yes |
-| large-ha | minimum 16&nbsp;GB |cache.r4.xlarge | yes |
+| Plan      | Cache Size         | AWS Cache Node Type | HA  |
+|-----------|--------------------|---------------------|-----|
+| small     | minimum 1&nbsp;GB  | cache.t2.small      | no  |
+| medium    | minimum 4&nbsp;GB  | cache.m5.large      | no  |
+| large     | minimum 16&nbsp;GB | cache.r4.xlarge     | no  |
+| small-ha  | minimum 1&nbsp;GB  | cache.t2.small      | yes |
+| medium-ha | minimum 4&nbsp;GB  | cache.m5.large      | yes |
+| large-ha  | minimum 16&nbsp;GB | cache.r4.xlarge     | yes |
 
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
@@ -53,17 +53,17 @@ For how to configure plans, see
 
 The following table lists parameters that can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   | Required |
-|----------------------|--------------------------------|-----------|----------|
-| `name`               | The plan name                  | _n/a_     | Yes      |
-| `id`                 | A unique GUID                  | _n/a_     | Yes      |
-| `description`        | Description of the new plan    | _n/a_     | Yes      |
-| `display_name`       | Name to use when displaying the plan in marketplace    | _n/a_     | No |
-| `free`               | When false, service instances of this service plan have a cost    | true     | No |
-| `bindable`           | Specifies whether service instances of the service plan can bind to applications    | true     | No |
-| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version    | true     | No |
-| `cache_size`         | Cache size in GB. 1&ndash;256, multiples of 2. | _n/a_     | Yes |
-| `redis_version`      | The version for the redis instance. Can be 3.2, 4.0, 5.0, 6.0. | _n/a_     | Yes |
+| Parameter Name    | Values                                                                              | Default | Required |
+|-------------------|-------------------------------------------------------------------------------------|---------|----------|
+| `name`            | The plan name                                                                       | _n/a_   | Yes      |
+| `id`              | A unique GUID                                                                       | _n/a_   | Yes      |
+| `description`     | Description of the new plan                                                         | _n/a_   | Yes      |
+| `display_name`    | Name to use when displaying the plan in marketplace                                 | _n/a_   | No       |
+| `free`            | When false, service instances of this service plan have a cost                      | true    | No       |
+| `bindable`        | Specifies whether service instances of the service plan can bind to applications    | true    | No       |
+| `plan_updateable` | Whether the plan supports upgrading, downgrading, or sidegrading to another version | true    | No       |
+| `cache_size`      | Cache size in GB. 2&ndash;256, multiples of 2.                                      | _n/a_   | Yes      |
+| `redis_version`   | The version for the redis instance. Can be 3.2, 4.0, 5.0, 6.0.                      | _n/a_   | Yes      |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
