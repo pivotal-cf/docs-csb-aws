@@ -234,7 +234,12 @@ This release has the following fixes:
 
 - **Valid MySQL JDBC URL SSL parameter:**
   By default, RDS for MySQL uses and expects all clients to connect using SSL or TLS.
-  Therefore the value of the SSL parameter in the MySQL JDBC URL is always set to `true`.
+  Therefore, the value of the SSL parameter in the MySQL JDBC URL is always set to `true`.
+
+- **RDS VPC security group IDs cannot up updated:** 
+  Updating the `rds_vpc_security_group_ids` for any of the RDS services (MySQL, PostgreSQL, Aurora MySQL, Aurora PostgreSQL)
+  would result on a DependencyViolation error after several minutes of attempting the update. Updating this property is prohibited
+  and would result in a more timely error message.
 
 ### Known Issues
 
