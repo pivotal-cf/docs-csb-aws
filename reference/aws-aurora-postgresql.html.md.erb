@@ -210,6 +210,45 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>performance_insights_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Specifies whether Performance Insights are enabled.
+        Performance Insights expand on existing Amazon RDS monitoring features to illustrate your
+        database performance and help you analyze it.
+        From the Performance Insights dashboard you can visualize the database load on your
+        Amazon RDS database instance load and filter the load by wait types,
+        SQL statements, hosts, or users.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>performance_insights_kms_key_id</code></td>
+      <td>String</td>
+      <td>
+        The ARN for the KMS key to encrypt Performance Insights data.
+        When specifying <code>performance_insights_kms_key_id</code>, set <code>performance_insights_enabled</code> as <code>true</code>.
+        After the KMS key is set, it can never be changed.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>performance_insights_retention_period</code></td>
+      <td>Integer</td>
+      <td>
+        The number of days for which to retain Performance Insights data.<br><br>
+        The value must be <code>7</code>, <code>NUMBER-OF-MONTHS</code> * 31 (where <code>NUMBER-OF-MONTHS</code> is <code>1</code>-<code>23</code>), or <code>731</code>.<br>
+        For example, the following values are valid: <code>93</code> (because it's 3 months * 31),
+        <code>341</code> (because it's 11 months * 31), <code>589</code> (because it's 19 months * 31),
+        and <code>731</code>.<br><br>
+        If you specify an invalid retention period, such as <code>94</code>, RDS issues an error.
+      </td>
+      <td><code>7</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
