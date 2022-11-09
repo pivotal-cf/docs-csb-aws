@@ -137,7 +137,7 @@ provision only:
       <td>Comma-separated String</td>
       <td>Security group IDs to assign to the database instance.</td>
       <td>None</td>
-      <td>provision and update</td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>allow_major_version_upgrade</code></td>
@@ -185,6 +185,28 @@ provision only:
         This property represents the ARN for the IAM role that permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs.
       </td>
       <td><code>""</code></td>
+    </tr>
+    <tr>
+      <td><code>db_cluster_parameter_group_name</code></td>
+      <td>String</td>
+      <td>
+        The Aurora MySQL DB cluster parameter group name for the service.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>enable_audit_logging</code></td>
+      <td>Boolean</td>
+      <td>
+        If <code>true</code>, it enables the <code>audit</code> <code>cloud_watch_log_export</code>
+        on the DB cluster instances.
+        It requires setting <code>db_cluster_parameter_group_name</code> with a pre-created DB cluster parameter group that fulfils
+        requirements for audit log exports.
+        For config options, see the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Auditing.html">AWS documentation</a>.
+      </td>
+      <td><code>false</code></td>
       <td>provision and update</td>
     </tr>
     <tr>

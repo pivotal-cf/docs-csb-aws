@@ -238,6 +238,14 @@ New features and changes in this release:
 - **Insecure connections are no longer supported:** Every connection in Aurora MySQL instances must use TLS encryption.
   The AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
+- **A DB cluster parameter group name can be configured:** The `db_cluster_parameter_group_name` sets the DB cluster parameter group name.
+  The DB cluster parameter group contains the set of engine configuration parameters that apply throughout the Aurora PostgreSQL DB cluster.
+  The DB cluster parameter group also contains default settings for the DB parameter group for the DB instances that make up the cluster.
+
+- **Exposed audit-logging:**
+  Audit-logging can now be activated. It requires setting `db_cluster_parameter_group_name` with a pre-created
+  DB cluster parameter group that fulfils requirements for audit log exports. By default, audit-logging is deactivated.
+
 ### Resolved Issues
 
 This release has the following fixes:
@@ -249,7 +257,12 @@ This release has the following fixes:
 
 - **Valid MySQL JDBC URL SSL parameter:**
   By default, RDS for MySQL uses and expects all clients to connect using SSL or TLS.
-  Therefore the value of the SSL parameter in the MySQL JDBC URL is always set to `true`.
+  Therefore, the value of the SSL parameter in the MySQL JDBC URL is always set to `true`.
+
+- **RDS VPC security group IDs cannot up updated:** 
+  Updating the `rds_vpc_security_group_ids` for any of the RDS services (MySQL, PostgreSQL, Aurora MySQL, Aurora PostgreSQL)
+  would result on a DependencyViolation error after several minutes of attempting the update. Updating this property is prohibited
+  and would result in a more timely error message.
 
 ### Known Issues
 
