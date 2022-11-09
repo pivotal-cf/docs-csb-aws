@@ -230,6 +230,9 @@ provision only:
         The ARN for the KMS key to encrypt Performance Insights data.
         When specifying <code>performance_insights_kms_key_id</code>, set <code>performance_insights_enabled</code> as <code>true</code>.
         After the KMS key is set, it can never be changed.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>performance_insights_retention_period</code></td>
@@ -243,6 +246,7 @@ provision only:
         If you specify an invalid retention period, such as <code>94</code>, RDS issues an error.
       </td>
       <td><code>7</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
