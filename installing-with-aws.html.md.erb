@@ -175,11 +175,11 @@ To configure AZs and networks:
 
 2. Configure the text boxes as follows:
 
-   | Text box | Instructions |
-   |-------|----------------|
-   | Place singleton jobs in | Select the AZ in which the broker VM for <%= vars.product_short %> runs. The broker runs as a singleton job. |
-   | Balance other jobs in | Select the AZs in which other jobs can run. |
-   | Network | Select a subnet for the <%= vars.product_short %> broker. This is typically the same subnet that includes the component VMs for <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). |
+    | Text box                | Instructions                                                                                                                                                                                 |
+    |-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Place singleton jobs in | Select the AZ in which the broker VM for <%= vars.product_short %> runs. The broker runs as a singleton job.                                                                                 |
+    | Balance other jobs in   | Select the AZs in which other jobs can run.                                                                                                                                                  |
+    | Network                 | Select a subnet for the <%= vars.product_short %> broker. This is typically the same subnet that includes the component VMs for <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). |
 
 3. Click **Save**.
 
@@ -194,18 +194,20 @@ To configure AWS credentials:
 
 2. Configure the text boxes as follows:
 
-   | Text box | Instructions |
-   |-------|--------------|
-   | AWS Access Key | Enter the AWS Access Key |
-   | AWS Secret Access Key | Enter the AWS Secret Access Key |
-   | Region | Enter the Region where your VPC is located |
+    | Text box              | Instructions                               |
+    |-----------------------|--------------------------------------------|
+    | AWS Access Key        | Enter the AWS Access Key                   |
+    | AWS Secret Access Key | Enter the AWS Secret Access Key            |
+    | Region                | Enter the Region where your VPC is located |
 
 3. Click **Save**.
 
 ### <a id="state-db"></a> Configure a State Database
 
 This section describes how to associate <%= vars.product_short %> with a MySQL database,
-the _state database_.
+the _state database_. This database will be used for storing text information about each
+state change of each service instance, so it does not have to be large. For most use cases,
+10Gb should be more than sufficient to cover the needs of the <%= vars.product_short %>.
 
 #### <a id="encrypt-state-db"></a> About Encrypting the State Database
 
