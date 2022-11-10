@@ -7,7 +7,7 @@
 * [Upgrading](upgrading.html)
 * [Service Plan Reference](reference/index.html)
     * [Amazon S3 Bucket](reference/aws-s3.html)
-    * [Amazon RDS for MySQL (Beta)](reference/aws-mysql.html)
+    * [Amazon RDS for MySQL](reference/aws-mysql.html)
     * [Amazon RDS for PostgreSQL](reference/aws-postgres.html)
     * [Amazon ElastiCache for Redis (Beta)](reference/aws-redis.html)
     * [Amazon DynamoDB (Beta)](reference/aws-dynamodb.html)
