@@ -264,6 +264,14 @@ New features and changes in this release:
 - **Exposed audit-logging:**
   Audit-logging can now be activated. It requires setting `db_cluster_parameter_group_name` with a pre-created
   DB cluster parameter group that fulfils requirements for audit log exports. By default, audit-logging is deactivated.
+  When activated, the default number of log retention days is 30. These properties can be configured:
+
+  - `cloudwatch_log_group_retention_in_days`: This is used in conjunction with `enable_audit_logging`.
+  If provided, it sets the retention days for the log group containing the cluster audit logs.
+
+  - `cloudwatch_log_group_kms_key_id`: This is used in conjunction with `enable_audit_logging`.
+    If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is created
+    for the cluster audit logs.
 
 ### Resolved Issues
 
