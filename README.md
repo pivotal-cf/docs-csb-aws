@@ -14,7 +14,8 @@ production into the appropriate branches listed below:
 
 | Branch Name| Use for… |
 |------------| ---------|
-| main       | v1.3. Staged at https://docs-staging.vmware.com/en/draft/Tanzu-Cloud-Service-Broker-for-AWS/1.3/csb-aws/GUID-index.html |
+| main       | v1.4. Staged at https://docs-staging.vmware.com/en/draft/Tanzu-Cloud-Service-Broker-for-AWS/1.4/csb-aws/GUID-index.html |
+| 1.3       | v1.3. Staged at https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.3/csb-aws/GUID-index.html |
 | 1.2        | v1.2. Staged at https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.2/csb-aws/GUID-index.html |
 | 1.1        | v1.1. Staged at https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.1/csb-aws/GUID-index.html |
 | 1.0        | v1.0. Staged at https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.0/csb-aws/GUID-index.html |
@@ -108,7 +109,7 @@ from staging to pre-prod to production.
 
 ### Promote your staged build to production
 
-1. Go to the [Stage deployment area of the Docs Dashboard](https://docsdash.vmware.com/deployment-stage).   
+1. Go to the [Stage deployment area of the Docs Dashboard](https://docsdash.vmware.com/deployment-stage).
 1. Check the **PRODUCT** and **DEPLOYMENT DATE** columns to find your build.
 1. Click the check box next to your build.
 1. Click **Deploy Selected to Pre-Prod** and wait for the pop-up to turn green.
