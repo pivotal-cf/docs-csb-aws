@@ -7,7 +7,6 @@ owner: Cloud Service Broker
 
 These are release notes for <%= vars.product_full %>.
 
-
 ## <a id="1-1-3"></a> v1.1.3
 
 **Release Date:** April 20, 2022
@@ -16,27 +15,28 @@ These are release notes for <%= vars.product_full %>.
 
 New feature in this release:
 
-* **S3 bucket versioning is available:** You can enable versioning for each bucket by setting
-`enable_versioning` in the plan properties or in the service instance create request.
+- **S3 bucket versioning is available:**
+  You can enable versioning for each bucket by setting `enable_versioning` in the plan properties or
+  in the service instance create request.
 
 ### Resolved Issue
 
 This release has the following fix:
 
-* **Redis display names are now correct:** Some display names were labeled incorrectly before.
+- **Redis display names are now correct:** Some display names were labeled incorrectly before.
 
 ### Known Issue
 
 This release has the following issue:
 
-* **PostgreSQL instances cannot be moved to smaller plans:**
-Because of a limitation with Amazon RDS for PostgreSQL, instance plans cannot be changed to smaller plans.
-For example, when using a `cf update-service -p` command.
-This restriction also applies to subsumed PostgreSQL instances.
-Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
-For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
-see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
-
+- **PostgreSQL instances cannot be moved to smaller plans:**
+  Because of a limitation with Amazon RDS for PostgreSQL, instance plans cannot be changed to
+  smaller plans. For example, when using a `cf update-service -p` command.
+  This restriction also applies to subsumed PostgreSQL instances.
+  Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
+  For information about decreasing the total provisioned storage size of an Amazon RDS database
+  instance, see the
+  [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
 
 ##<a id="1-1-2"></a> v1.1.2
 
@@ -46,37 +46,39 @@ see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-cent
 
 New features and changes in this release:
 
-* **Provision and update operations alert you if you attempt to override plan defined properties:**
-The attempt now returns an error. Previously these commands would accept the
-property change request, but override your change with the plan defined value.
+- **Provision and update operations alert you if you attempt to override plan defined properties:**
+  The attempt now returns an error. Previously these commands would accept the property change
+  request, but override your change with the plan defined value.
 
-* **Validation of parameters:** When additional JSON parameters are supplied as part of a `cf create-service`,
-`cf update-service`, `cf bind-service`, or `cf create-service-key`, they are now validated against the list of
-supported parameters. The operation fails with an error if a parameter is unknown.
+- **Validation of parameters:**
+  When additional JSON parameters are supplied as part of a `cf create-service`, `cf update-service`,
+  `cf bind-service`, or `cf create-service-key`, they are now validated against the list of supported
+  parameters. The operation fails with an error if a parameter is unknown.
 
 ### Resolved Issues
 
 This release has the following fixes:
 
-* **Parameters now persist through multiple updates:** Parameters sent when updating a
-service are stored, and do not need to be sent again in subsequent updates.
+- **Parameters now persist through multiple updates:**
+  Parameters sent when updating a service are stored, and do not need to be sent again in subsequent
+  updates.
 
 ### Known Issues
 
 This release has the following issues:
 
-* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
-  PostgreSQL, instance plans cannot be changed to smaller plans.
-  For example, when using a `cf update-service -p` command.
+- **PostgreSQL instances cannot be moved to smaller plans:**
+  Because of a limitation with Amazon RDS for PostgreSQL, instance plans cannot be changed to smaller
+  plans. For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
   see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
 
-* **Some Redis display names are incorrect:** This issue is fixed in <%= vars.product_short %> v1.1.3.
+- **Some Redis display names are incorrect:**
+  This issue is fixed in <%= vars.product_short %> v1.1.3.
 
-
-##<a id="1-1-1"></a> v1.1.1
+## <a id="1-1-1"></a> v1.1.1
 
 **Release Date:** November 19, 2021
 
@@ -84,24 +86,28 @@ This release has the following issues:
 
 New features and changes in this release:
 
-* **Support for encryption of sensitive data:** <%= vars.product_short %> can now encrypt sensitive
-data that is provided or generated during provisioning and binding and stored in the state database.
-A key generated from the password you configure in the tile is used for the encryption.
-For how to configure encryption, see <a href="installing-with-aws.html#state-db">Configure a State Database</a>.
+- **Support for encryption of sensitive data:**
+  <%= vars.product_short %> can now encrypt sensitive data that is provided or generated during
+  provisioning and binding and stored in the state database.
+  A key generated from the password you configure in the tile is used for the encryption.
+  For how to configure encryption, see
+  <a href="installing-with-aws.html#state-db">Configure a State Database</a>.
 
 ### Resolved Issues
 
 This release has the following fixes:
 
-* **Use restricted user to connect to CredHub:** The broker uses `cf.uaa.services_credhub_credentials`
-instead of `cf.uaa.credhub_admin_client_client_credentials` to communicate with CredHub.
-The new credentials have restricted access.
+- **Use restricted user to connect to CredHub:**
+  The broker uses `cf.uaa.services_credhub_credentials` instead of
+  `cf.uaa.credhub_admin_client_client_credentials` to communicate with CredHub.
+  The new credentials have restricted access.
 
 ### Known Issues
 
 This release has the following issues:
 
-* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+- **PostgreSQL instances cannot be moved to smaller plans:**
+  Because of a limitation with Amazon RDS for
   PostgreSQL, instance plans cannot be changed to smaller plans.
   For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
@@ -109,12 +115,23 @@ This release has the following issues:
   For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
   see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
 
-* **Parameters specified during service instance updates are not persisted by subsequent updates:**
-If you update a service instance and change a parameter,
-then the next time that you update the service instance, you must specify the same parameter again.
-Otherwise, the parameters revert to the values that they had when the service instance was created.
+- **Parameters specified during service instance updates are not persisted by subsequent updates:**
+  If you update a service instance and change a parameter, then the next time that you update the
+  service instance, you must specify the same parameter again.
+  Otherwise, the parameters revert to the values that they had when the service instance was created.
 
-* **Some Redis display names are incorrect:** This issue is fixed in <%= vars.product_short %> v1.1.3.
+- **Some Redis display names are incorrect:**
+  This issue is fixed in <%= vars.product_short %> v1.1.3.
+
+- **Failure to create or update Redis instances:**
+  It has not been possible to update existing instances or create new instances since AWS added
+  support for Redis v7.
+  Defining the `redis_version` in the plan does not have any effect on the engine version of Redis
+  created in AWS. AWS always uses its default version, which is now v7.
+  The `redis_version` is, however, used to define the parameter group name.
+  This triggers an error message similar to
+  `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
+  This issue is resolved in <%= vars.product_full %> v1.3.0.
 
 ## <a id="view"></a> View Release Notes for Another Version
 
