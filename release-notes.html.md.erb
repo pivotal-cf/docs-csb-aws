@@ -292,14 +292,15 @@ This release has the following fixes:
   By default, RDS for MySQL uses and expects all clients to connect using SSL or TLS.
   Therefore, the value of the SSL parameter in the MySQL JDBC URL is always set to `true`.
 
-- **RDS VPC security group IDs cannot up updated:**
-  Updating the `rds_vpc_security_group_ids` for any of the RDS services (MySQL, PostgreSQL, Aurora MySQL, Aurora PostgreSQL)
-  would result on a DependencyViolation error after several minutes of attempting the update. Updating this property is prohibited
-  and would result in a more timely error message.
+- **RDS VPC security group IDs cannot be updated:**
+  Updating the `rds_vpc_security_group_ids` for any of the RDS services, MySQL,
+  PostgreSQL, Aurora MySQL, Aurora PostgreSQL, results in a DependencyViolation
+  error after several minutes of attempting the update.
+  Updating this property is prohibited.
 
 - **Amazon ElastiCache for Redis respects the selected Redis version:**
   Passing the redis version did not have any effect on the engine version selected in the IaaS and it would always use the AWS ElastiCache for Redis default version.
-  The version was however used to define the parameter group name which would couse an error message on create or update similar to `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
+  The version was however used to define the parameter group name which would course an error message on create or update similar to `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
   Now the version passed as part of `redis_version` plan property is respected and the correct version of Redis is created. Also, the versions list is no longer restricted and any version accepted by AWS is allowed.
 
 ### Known Issues
