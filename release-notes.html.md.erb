@@ -15,59 +15,63 @@ These are release notes for <%= vars.product_full %>.
 
 This release has the following breaking changes:
 
-- **Amazon RDS MySQL service:**
+#### Amazon RDS MySQL service
 
-  - **Amazon RDS MySQL pre-configured plans were removed**: From this version onwards,
-    plans are no longer provided with the brokerpak. If you have RDS MySQL service instances
-    that were using built-in plans and that you want to maintain, previously provided
-    plans must be added through the tile configuration. For more information, see
-    [Add previously provided pre-configured plans](reference/aws-mysql.html.md.erb#old-plans).
+This release has the following breaking changes for the Amazon RDS MySQL service:
 
-  - **The default storage type is now set as `io1` (provisioned IOPS SSD):**
-    Previously the default used `gp2` (general purpose SSD).
-    Users who previously had custom plans must add the property `"storage_type":"gp2"` to the plan
-    definition to ensure that the storage type is not amended on any update.
-    For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+- **Amazon RDS MySQL pre-configured plans were removed:**
+  From this version onwards, plans are no longer provided with the brokerpak.
+  If you have RDS MySQL service instances that were using built-in plans and that you want to
+  maintain, previously provided plans must be added through the tile configuration.
+  For more information, see
+  [Add previously provided pre-configured plans](reference/aws-mysql.html.md.erb#old-plans).
 
-  - **Defined production grade defaults:**
-    By default, all RDS MySQL instances created have encryption and Multi-AZ enabled.
-    You can change these properties by setting `storage_encrypted` or `multi_az` to `false`.
-    This change is applied to all existing instances unless the custom plans are updated
-    before the broker upgrade to include setting `storage_encrypted` or `multi_az` to `false`.
-    For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+- **The default storage type is now set as `io1` (provisioned IOPS SSD):**
+  Previously the default used `gp2` (general purpose SSD). Users who previously had custom plans must
+  add the property `"storage_type":"gp2"` to the plan definition to ensure that the storage type is
+  not amended on any update. For more information, see
+  [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
-  - **Insecure connections are no longer supported:**
-    Every connection in RDS MySQL instances must use TLS encryption.
-    This change is applied to previously existing instances after upgrading or binding recreation.
-    The property `use_tls` is now removed.
-    The old custom plans containing the property `use_tls` must be changed. For more information, see
-    [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
-    The AWS certificate bundle must be installed in <%= vars.ops_manager %>.
+- **Defined production grade defaults:**
+  By default, all RDS MySQL instances created have encryption and Multi-AZ enabled.
+  You can change these properties by setting `storage_encrypted` or `multi_az` to `false`.
+  This change is applied to all existing instances unless the custom plans are updated before the
+  broker upgrade to include setting `storage_encrypted` or `multi_az` to `false`.
+  For more information, see
+  [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
+
+- **Insecure connections are no longer supported:**
+  Every connection in RDS MySQL instances must use
+  TLS encryption. This change is applied to previously existing instances after upgrading or binding
+  recreation. The property `use_tls` is now removed. The old custom plans containing the property
+  `use_tls` must be changed. For more information, see
+  [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans). The AWS certificate bundle
+  must be installed in <%= vars.ops_manager %>.
 
 ### Features
 
 New features and changes in this release:
 
-**Amazon RDS MySQL service offering is generally available:**
-  The Amazon RDS MySQL service offering is no longer in beta and can be used in production.
-  As part of this the following RDS MySQL features are introduced:
+#### Amazon RDS MySQL service offering is generally available
+
+The Amazon RDS MySQL service offering is no longer in beta and can be used in production.
+As part of this the following RDS MySQL features are introduced:
 
 - **MySQL version is no longer restricted:**
-  Previously the parameter `mysql_version` was restricted to a list of supported values.
-  You can now choose the version you want when creating a plan.
-  To view the supported versions, see the
+  Previously the parameter `mysql_version` was restricted
+  to a list of supported values. You can now choose the version you want when creating a plan. To
+  view the supported versions, see the
   [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html#MySQL.Concepts.VersionMgmt.Supported).
 
 - **The default maintenance window can be set more easily:**
-  To use the AWS default maintenance window when provisioning, the properties related to the
+    To use the AWS default maintenance window when provisioning, the properties related to the
   maintenance window can all be set to null instead of empty strings.
 
 - **Automated backups:**
   Automated backups can now be scheduled through `backup_window`.
   The `backup_window` configuration uses a AWS default value for the region if the value is null when
-  provisioning the instance.
-  By default, automated backups are enabled. This feature can be customized through the following
-  properties:
+  provisioning the instance. By default, automated backups are enabled.
+  This feature can be customized through the following properties:
 
   - `delete_automated_backups`: Delete backups when deleting the instance. It is `true` by default.
   - `copy_tags_to_snapshot`: Copy all instance tags to snapshots. It is `true` by default.
@@ -75,20 +79,19 @@ New features and changes in this release:
     Set the value to `0` to deactivate automated backups. It is `7` by default.
 
 - **`db_name` property can no longer be updated:**
-  Updating the `db_name` property causes a destructive action because Terraform recreates the
-  database. This change fails the update quickly for improved user experience.
+  Updating the `db_name` property causes a destructive action because Terraform recreates the database.
+  This change fails the update quickly for improved user experience.
 
 - **`deletion_protection` can be configured and updated:**
-  Added a property that enables you to configure the deletion protection for the MySQL database
-  in the plan configuration or during provision or update operations. By default, the protection is
-  deactivated.
+  Added a property that enables you to configure the deletion protection for the MySQL database in
+  the plan configuration or during provision or update operations.
+  By default the protection is deactivated.
 
 - **`storage_type` and `iops` can be configured and updated:**
-  New added property that enables you to configure the storage type in both the provisioning and
-  the updating phase of the instance.
-  In addition, if using the provisioned IOPS SSD (io1) storage type, then the `iops` value
-  can also be defined through the property `iops`. The default `storage_type` is `io1` if none is
-  defined.
+  New added property that enables you to configure the storage type in both the provisioning and the
+  updating phase of the instance.
+  In addition, if using the provisioned IOPS SSD (io1) storage type, then the `iops` value can also
+  be defined through the property `iops`. The default `storage_type` is `io1` if none is defined.
 
 - **Added deprecation warning to `cores` property:**
   The `cores` property is now deprecated and optional if you use the `instance_class` property.
@@ -129,9 +132,9 @@ New features and changes in this release:
 
   - `monitoring_interval`: The interval, in seconds, between points when Enhanced Monitoring metrics
     are collected for the database instance. To deactivate collecting Enhanced Monitoring metrics,
-    specify `0`.
-    Valid values are `0`, `1`, `5`, `10`, `15`, `30`, and `60`. It is `0` by default.
-    A `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than `0`.
+    specify `0`. Valid values are `0`, `1`, `5`, `10`, `15`, `30`, and `60`. It is `0` by default. A
+    `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than
+    `0`.
 
   - `monitoring_role_arn`: Enhanced Monitoring requires permission to act on your behalf to send OS
     metric information to CloudWatch Logs. This property represents the ARN for the IAM role that
@@ -142,17 +145,17 @@ New features and changes in this release:
   to illustrate the database performance and help you analyze it.
   By default, Performance Insights are deactivated. To activate this feature, configure these properties:
 
-  - `performance_insights_enabled`: Specifies whether Performance Insights are enabled.
-    It is `false` by default.
+  - `performance_insights_enabled`: Specifies whether Performance Insights are enabled. It is
+    `false` by default.
 
   - `performance_insights_kms_key_id`: The ARN for the KMS key to encrypt Performance Insights data.
-    When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled` as
-    `true`.
-    After the KMS key is set, it can never be changed.
+    When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled`
+    as `true`. After the KMS key is set, it can never be changed.
 
   - `performance_insights_retention_period`: The number of days to retain Performance Insights data.
-    When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
-    The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
+    When specifying `performance_insights_retention_period`, you must set
+    `performance_insights_enabled` as `true`. The following values are valid: 7, month * 31, where
+    month is a number of months from 1-23, 731.
 
 - **KMS encryption key for encrypting the storage:**
   By default, an AWS managed key for Amazon RDS is used to encrypt the database instance.
@@ -160,16 +163,23 @@ New features and changes in this release:
   You must enable the `storage_encrypted` property if the key is specified.
   Use the ARN in this field and not the ID as the name might suggest.
 
-**Amazon RDS PostgreSQL service:**
+#### Amazon RDS PostgreSQL service
+
+This release has the following changes for the Amazon RDS PostgreSQL service:
 
 - **Performance Insights retention period:**
-  The number of days to retain Performance Insights data can be configured through `performance_insights_retention_period`.
+  The number of days to retain Performance Insights data can be configured through
+  `performance_insights_retention_period`.
   By default, when Performance Insights is enabled, this value is 7 days.
   The value must be `7`, `NUMBER-OF-MONTHS` * 31 (where `NUMBER-OF-MONTHS` is `1`-`23`), or `731`.
-  For example, the following values are valid: `93` (3 months * 31), `341` (11 months * 31), `589` (19 months * 31), and `731`.
+  For example, the following values are valid:
+  `93` (3 months * 31), `341` (11 months * 31), `589` (19 months * 31), and `731`.
   If you specify an invalid retention period, such as `94`, RDS issues an error.
 
-**Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition services:**
+#### Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition services
+
+This release has the following changes for the Amazon Aurora MySQL-Compatible Edition and
+Amazon Aurora PostgreSQL-Compatible Edition services:
 
 - **Added Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition (Beta) services:**
   For more information about how to create and manage these services, see
@@ -183,8 +193,8 @@ New features and changes in this release:
   Moreover, you can define your own RDS subnet group when creating a plan or instance.
 
 - **Instances are tagged with TAS IDs:**
-  All created instances are tagged with `pcf-organization-guid`, `pcf-space-guid`, and `pcf-instance-id`
-  on provision.
+    All created instances are tagged with `pcf-organization-guid`, `pcf-space-guid`, and
+  `pcf-instance-id` on provision.
 
 - **Bind and unbind are now performed over TLS:**
   For these operations to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
@@ -207,14 +217,15 @@ New features and changes in this release:
 
 - **Enhanced Monitoring:**
   Enhanced Monitoring can now be activated to enable all the system metrics and process information
-  for the RDS database instances on the console.
-  By default, enhanced monitoring is deactivated. To enable this feature, configure these properties:
+  for the RDS database instances on the console. By default, enhanced monitoring is deactivated.
+  To enable this feature, configure these properties:
 
   - `monitoring_interval`: The interval, in seconds, between points when Enhanced Monitoring metrics
-    are collected for the database instance. To deactivate collecting Enhanced Monitoring metrics,
-    specify `0`.
+    are collected for the database instance.
+    To deactivate collecting Enhanced Monitoring metrics, specify `0`.
     Valid values are `0`, `1`, `5`, `10`, `15`, `30`, and `60`. It is `0` by default.
-    A `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than `0`.
+    A `monitoring_role_arn` value is required if you specify a `monitoring_interval` value other than
+    `0`.
 
   - `monitoring_role_arn`: Enhanced Monitoring requires permission to act on your behalf to send OS
     metric information to CloudWatch Logs. This property represents the ARN for the IAM role that
@@ -225,19 +236,21 @@ New features and changes in this release:
   illustrate the database performance and help you analyze it.
   By default, Performance Insights is deactivated. To enable this feature, configure these properties:
 
-  - `performance_insights_enabled`: Specifies whether Performance Insights are enabled.
-    It is `false` by default.
+  - `performance_insights_enabled`: Specifies whether Performance Insights are enabled. It is
+    `false` by default.
 
   - `performance_insights_kms_key_id`: The ARN for the KMS key to encrypt Performance Insights data.
-    When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled` as
-    `true`.
-    After the KMS key is set, it can never be changed.
+    When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled`
+    as `true`. After the KMS key is set, it can never be changed.
 
   - `performance_insights_retention_period`: The number of days to retain Performance Insights data.
-    When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
+    When specifying `performance_insights_retention_period`, you must set
+    `performance_insights_enabled` as `true`.
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
 
-**Amazon Aurora PostgreSQL-Compatible Edition services:**
+#### Amazon Aurora PostgreSQL-Compatible Edition services
+
+This release has the following changes for Amazon Aurora PostgreSQL-Compatible Edition services:
 
 - **You can configure a database cluster parameter group name:**
   The `db_cluster_parameter_group_name` sets the database cluster parameter group name.
@@ -255,7 +268,9 @@ New features and changes in this release:
 - **Bind and unbind are now performed over TLS:**
   For these operations to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
-**Amazon Aurora MySQL-Compatible Edition services:**
+#### Amazon Aurora MySQL-Compatible Edition services
+
+This release has the following changes for Amazon Aurora MySQL-Compatible Edition services:
 
 - **Insecure connections are no longer supported:** Every connection in Aurora MySQL instances must use TLS encryption.
   The AWS certificate bundle must be installed in <%= vars.ops_manager %>.
@@ -312,9 +327,8 @@ This release has the following issue:
   If you attempt to deactivate versioning for an instance created before upgrading to this version,
   it is recorded as an `update succeeded` operation at the first attempt.
   However, this value is not updated in the broker or in AWS because deactivating versioning is not
-  supported in the IaaS.
-  Subsequent attempts cause an error message that states that versioning can't be deactivated, as
-  expected.
+  supported in the IaaS. Subsequent attempts cause an error message that states that versioning
+  can't be deactivated, as expected.
 
 ## <a id="view"></a> View release notes for another version
 
