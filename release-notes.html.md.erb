@@ -314,15 +314,15 @@ This release has the following fixes:
   error after several minutes of attempting the update.
   Updating this property is now prohibited and causes a more timely error message.
 
-- **Amazon ElastiCache for Redis respects the selected Redis version:**
+- **Amazon ElastiCache for Redis is configured for the selected Redis version:**
   Passing the Redis version did not have any effect on the engine version selected in the IaaS and
   it always used the AWS ElastiCache for Redis default version.
   The version was, however, used to define the parameter group name. This triggered an error message
   when creating or updating similar to
   `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
-  Now the version passed as part of the `redis_version` plan property is respected and the
-  correct version of Redis is created. Also, the versions list is no longer restricted and any
-  version that AWS accepts is allowed.
+  Now the version passed as part of the `redis_version` plan property is factored into configuration,
+  and the correct version of Redis is created. Also, the versions list is no longer restricted and
+  any version that AWS accepts is allowed.
 
 ### Known Issues
 
