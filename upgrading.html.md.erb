@@ -48,7 +48,7 @@ cf purge-service-instance
 
 Make the following changes to existing custom plans before upgrading.
 
-#### <a id="storage-type"></a> `storage_type`
+#### <a id="storage-type"></a> Set `storage_type`
 
 If you have custom plans already configured for MySQL, you must change the configuration.
 This is because the new `storage_type` property is `io1` by default, which attempts to move all
@@ -56,7 +56,7 @@ service instances into a new storage type from the general purpose (gp2) type th
 currently.
 
 To ensure that no unintended changes happen to your existing instances, add the `storage_type`
-property to your plan. For example:
+property to your plan with value `gp2`. For example:
 
 ```json
   {
@@ -74,13 +74,14 @@ If you decide to change your old plans to use the io1 value, set `storage_gb` to
 because this is the minimum value that this type of disk supports.
 For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
 
-#### <a id="new-defaults"></a> `storage_encrypted`, `multi_az`, and `storage_autoscale`
+#### <a id="new-defaults"></a> Set `storage_encrypted`, `multi_az`, and `storage_autoscale`
 
 When you update to the latest broker, all existing instances are upgraded to have storage encryption,
 Multi-AZ, and storage autoscaling activated.
 
-To deactivate these settings, edit the custom plans configured for MySQL to add the `storage_encrypted`,
-`multi_az`, and `storage_autoscale` properties with the value `false` before you upgrade the broker. For example:
+To deactivate these settings, add `storage_encrypted`, `multi_az`, and `storage_autoscale`
+properties with the value `false` to existing custom plans before you upgrade the broker.
+For example:
 
 ```json
   {
@@ -96,7 +97,7 @@ To deactivate these settings, edit the custom plans configured for MySQL to add 
   }
 ```
 
-#### <a id="remove-use-tls"></a> `use_tls`
+#### <a id="remove-use-tls"></a> Remove `use_tls`
 
 If you have plans with the property `use_tls` configured, you must remove the property.
 This is because TLS connections are always enabled.
