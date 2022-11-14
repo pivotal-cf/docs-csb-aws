@@ -144,11 +144,13 @@ This release has the following issue:
   versioning is not supported in the IaaS. Subsequent attempts cause an error message that states
   that versioning can't be deactivated as expected.
 
-- **Creating and updating Redis instances fails:**
-  Since AWS had added support for Redis version 7, updating existing instances or creating new instances will fail. 
-  Defining the `redis_version` in the plan does not have any effect on the engine version of the Redis created in AWS. AWS will always 
-  use their default version, which is now version 7. 
-  The `redis_version` is however used to define the parameter group name which will cause an error message similar to 
+- **Failure to create or update Redis instances:**
+  It has not been possible to update existing instances or create new instances since AWS added
+  support for Redis v7.
+  Defining the `redis_version` in the plan does not have any effect on the engine version of Redis
+  created in AWS. AWS always uses its default version, which is now v7.
+  The `redis_version` is, however, used to define the parameter group name.
+  This triggers an error message similar to
   `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
   This issue is resolved in <%= vars.product_full %> v1.3.0.
 
