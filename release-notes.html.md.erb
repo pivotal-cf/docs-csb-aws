@@ -294,9 +294,9 @@ This release has the following fixes:
 
 - **RDS VPC security group IDs cannot be updated:**
   Updating the `rds_vpc_security_group_ids` for any of the RDS services, MySQL,
-  PostgreSQL, Aurora MySQL, Aurora PostgreSQL, results in a DependencyViolation
+  PostgreSQL, Aurora MySQL, Aurora PostgreSQL, resulted in a DependencyViolation
   error after several minutes of attempting the update.
-  Updating this property is prohibited.
+  Updating this property is now prohibited and causes a more timely error message.
 
 - **Amazon ElastiCache for Redis respects the selected Redis version:**
   Passing the redis version did not have any effect on the engine version selected in the IaaS and it would always use the AWS ElastiCache for Redis default version.
