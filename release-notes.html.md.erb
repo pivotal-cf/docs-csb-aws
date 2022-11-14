@@ -286,7 +286,7 @@ This release has the following changes for Amazon Aurora MySQL-Compatible Editio
   You can now activate audit-logging by setting `db_cluster_parameter_group_name` with a pre-created
   database cluster parameter group that fulfils requirements for audit log exports.
   By default, audit-logging is deactivated.
-  When activated, the default number of log retention days is 30. These properties can be configured:
+  When activated, the default number of log retention days is 30. You can configure these properties:
 
   - `cloudwatch_log_group_retention_in_days`: This is used in conjunction with `enable_audit_logging`.
     If provided, it sets the retention days for the log group containing the cluster audit logs.
