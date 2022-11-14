@@ -9,7 +9,7 @@ These are release notes for <%= vars.product_full %>.
 
 ## <a id="1-3-0"></a> v1.3.0
 
-**Release Date:** MMM DD, YYYY
+**Release Date:** November 14, 2022
 
 ### Breaking Changes
 
@@ -315,9 +315,14 @@ This release has the following fixes:
   Updating this property is now prohibited and causes a more timely error message.
 
 - **Amazon ElastiCache for Redis respects the selected Redis version:**
-  Passing the redis version did not have any effect on the engine version selected in the IaaS and it would always use the AWS ElastiCache for Redis default version.
-  The version was however used to define the parameter group name which would course an error message on create or update similar to `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
-  Now the version passed as part of `redis_version` plan property is respected and the correct version of Redis is created. Also, the versions list is no longer restricted and any version accepted by AWS is allowed.
+  Passing the Redis version did not have any effect on the engine version selected in the IaaS and
+  it always used the AWS ElastiCache for Redis default version.
+  The version was, however, used to define the parameter group name. This triggered an error message
+  when creating or updating similar to
+  `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
+  Now the version passed as part of the `redis_version` plan property is respected and the
+  correct version of Redis is created. Also, the versions list is no longer restricted and any
+  version that AWS accepts is allowed.
 
 ### Known Issues
 
