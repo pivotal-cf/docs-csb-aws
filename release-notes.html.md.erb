@@ -109,7 +109,7 @@ New features and changes in this release:
   database or to provide additional security for the database.
   RDS uses option groups to enable and configure these features.
 
-- **Exposed audit-logging:**
+- **Audit-logging:**
   You can now activate audit-logging by setting `option_group_name` with a pre-created
   Option Group that fulfils the requirements for audit log exports.
   By default, audit-logging is deactivated.
@@ -122,8 +122,8 @@ New features and changes in this release:
     If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is created
     for the RDS audit logs.
 
-- **Exposed Enhanced Monitoring:**
-  Enhanced Monitoring can now be activated to enable all the system metrics and process information
+- **Enhanced Monitoring:**
+  You can activate Enhanced Monitoring to enable all the system metrics and process information
   for the RDS database instances on the console.
   By default, enhanced monitoring is deactivated. To enable this feature, configure these properties:
 
@@ -137,7 +137,7 @@ New features and changes in this release:
     metric information to CloudWatch Logs. This property represents the ARN for the IAM role that
     permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs.
 
-- **Exposed Performance Insights:**
+- **Performance Insights:**
   Performance insights can now be enabled to expand on existing Amazon RDS monitoring features to
   illustrate the database performance and help you analyze it.
   By default, Performance Insights is deactivated. To enable this feature, configure these properties:
@@ -267,8 +267,8 @@ New features and changes in this release:
   The database cluster parameter group also contains default settings for the database
   parameter group for the DB instances that make up the cluster.
 
-- **Exposed audit-logging:**
-  Audit-logging can now be activated. It requires setting `db_cluster_parameter_group_name` with a pre-created
+- **Audit-logging:**
+  You can now activate audit-logging by setting `db_cluster_parameter_group_name` with a pre-created
   database cluster parameter group that fulfils requirements for audit log exports.
   By default, audit-logging is deactivated.
   When activated, the default number of log retention days is 30. These properties can be configured:
