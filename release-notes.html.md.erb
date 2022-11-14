@@ -62,7 +62,7 @@ New features and changes in this release:
   To use the AWS default maintenance window when provisioning, the properties related to the
   maintenance window can all be set to null instead of empty strings.
 
-- **Exposed automated backups:**
+- **Automated backups:**
   Automated backups can now be scheduled through `backup_window`.
   The `backup_window` configuration uses a AWS default value for the region if the value is null when
   provisioning the instance.
@@ -103,7 +103,7 @@ New features and changes in this release:
   The old custom plans that contained this property must be modified or deleted.
   For more information, see [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
-- **Exposed database option group association:**
+- **Database option group association:**
   A database option group can now be associated through `option_group_name`.
   MySQL offers additional features, such as the audit plug-in or Memcached to manage data and the
   database or to provide additional security for the database.
@@ -138,9 +138,9 @@ New features and changes in this release:
     permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs.
 
 - **Performance Insights:**
-  Performance insights can now be enabled to expand on existing Amazon RDS monitoring features to
-  illustrate the database performance and help you analyze it.
-  By default, Performance Insights is deactivated. To enable this feature, configure these properties:
+  You can now enable Performance Insights that expand on existing Amazon RDS monitoring features
+  to illustrate the database performance and help you analyze it.
+  By default, Performance Insights are deactivated. To activate this feature, configure these properties:
 
   - `performance_insights_enabled`: Specifies whether Performance Insights are enabled.
     It is `false` by default.
@@ -154,7 +154,7 @@ New features and changes in this release:
     When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
 
-- **Exposed the KMS encryption key for encrypting the storage:**
+- **KMS encryption key for encrypting the storage:**
   By default, an AWS managed key for Amazon RDS is used to encrypt the database instance.
   You can use the `kms_key_id` property to define a customer managed key.
   You must enable the `storage_encrypted` property if the key is specified.
@@ -162,7 +162,7 @@ New features and changes in this release:
 
 **Amazon RDS PostgreSQL service:**
 
-- **Exposed Performance Insights retention period:**
+- **Performance Insights retention period:**
   The number of days to retain Performance Insights data can be configured through `performance_insights_retention_period`.
   By default, when Performance Insights is enabled, this value is 7 days.
   The value must be `7`, `NUMBER-OF-MONTHS` * 31 (where `NUMBER-OF-MONTHS` is `1`-`23`), or `731`.
@@ -194,7 +194,7 @@ New features and changes in this release:
   in the plan configuration or during provision or update operations. By default, the protection is
   deactivated.
 
-- **Exposed automated backups:**
+- **Automated backups:**
   You can schedule automated backups by using `preferred_backup_window`.
   The `preferred_backup_window` configuration uses an AWS default value for the region if the value
   is null when provisioning the instance.
@@ -205,7 +205,7 @@ New features and changes in this release:
   - `backup_retention_period`: The backup retention period property sets the period in which you can
     perform a point-in-time recovery. It is `1` by default.
 
-- **Exposed Enhanced Monitoring:**
+- **Enhanced Monitoring:**
   Enhanced Monitoring can now be activated to enable all the system metrics and process information
   for the RDS database instances on the console.
   By default, enhanced monitoring is deactivated. To enable this feature, configure these properties:
@@ -220,7 +220,7 @@ New features and changes in this release:
     metric information to CloudWatch Logs. This property represents the ARN for the IAM role that
     permits RDS to send Enhanced Monitoring metrics to CloudWatch Logs.
 
-- **Exposed Performance Insights:**
+- **Performance Insights:**
   Performance insights can now be enabled to expand on existing Amazon RDS monitoring features to
   illustrate the database performance and help you analyze it.
   By default, Performance Insights is deactivated. To enable this feature, configure these properties:
