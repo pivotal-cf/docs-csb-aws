@@ -294,7 +294,7 @@ This release has the following fixes:
 
 - **RDS VPC security group IDs cannot be updated:**
   Updating the `rds_vpc_security_group_ids` for any of the RDS services, MySQL,
-  PostgreSQL, Aurora MySQL, Aurora PostgreSQL, resulted in a DependencyViolation
+  PostgreSQL, Aurora MySQL, Aurora PostgreSQL, caused a DependencyViolation
   error after several minutes of attempting the update.
   Updating this property is now prohibited and causes a more timely error message.
 
