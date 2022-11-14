@@ -4,23 +4,20 @@ owner: Cloud Service Broker
 ---
 
 This topic describes how to upgrade <%= vars.product_full %>.
-
-## <a id="upgrade-to-1-2-0"></a> Upgrading to v1.3.0
-
 The following sections have information about upgrading to v1.3.0.
 
-### <a id="rds-mysql"></a> Amazon RDS for MySQL
+## <a id="rds-mysql"></a> Amazon RDS for MySQL
 
 The following sections describe changes for Amazon RDS for MySQL.
 
-#### <a id="rds-mysql-ssl"></a> Insecure connections are no longer supported
+### <a id="rds-mysql-ssl"></a> Insecure connections are no longer supported
 
 All connections in RDS MySQL instances must use TLS encryption.
 This change is applied to previously existing instances after upgrading or binding recreation.
 For connections, including binding creation, to continue working the AWS certificate bundle must be
 installed in <%= vars.ops_manager %>.
 
-#### <a id="rds-mysql-old-plans"></a> Restoring brokerpak-provided plans
+### <a id="rds-mysql-old-plans"></a> Restoring brokerpak-provided plans
 
 From this version onwards, MySQL plans are no longer provided with the brokerpak.
 If you have Amazon RDS for MySQL instances that you want to maintain, you must add previously
@@ -47,7 +44,11 @@ cf purge-service-instance
   <strong>Caution:</strong> You cannot edit plan properties during a provision or update operation.
 </p>
 
-#### <a id="rds-mysql-custom-plans"></a> Changing custom plans
+### <a id="rds-mysql-custom-plans"></a> Changing custom plans
+
+Make the following changes to existing custom plans before upgrading.
+
+#### <a id="storage-type"></a> `storage_type`
 
 If you have custom plans already configured for MySQL, you must change the configuration.
 This is because the new `storage_type` property is `io1` by default, which attempts to move all
@@ -73,7 +74,11 @@ If you decide to change your old plans to use the io1 value, set `storage_gb` to
 because this is the minimum value that this type of disk supports.
 For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
 
-When you update to the latest broker, all existing instances are upgraded to have storage encryption, Multi-AZ, and storage autoscaling activated.
+#### <a id="new-defaults"></a> `storage_encrypted`, `multi_az`, and `storage_autoscale`
+
+When you update to the latest broker, all existing instances are upgraded to have storage encryption,
+Multi-AZ, and storage autoscaling activated.
+
 To deactivate these settings, edit the custom plans configured for MySQL to add the `storage_encrypted`,
 `multi_az`, and `storage_autoscale` properties with the value `false` before you upgrade the broker. For example:
 
@@ -91,9 +96,12 @@ To deactivate these settings, edit the custom plans configured for MySQL to add 
   }
 ```
 
-Finally, if you have configured old plans where the property `use_tls` was included, the plans must be modified removing the property.
+#### <a id="remove-use-tls"></a> `use_tls`
 
-### <a id="aurora-postgres"></a> Amazon Aurora PostgreSQL-Compatible Edition (Beta)
+If you have plans with the property `use_tls` configured, you must remove the property.
+This is because TLS connections are always enabled.
+
+## <a id="aurora-postgres"></a> Amazon Aurora PostgreSQL-Compatible Edition (Beta)
 
 The following sections describe changes for Amazon Aurora PostgreSQL-Compatible Edition (Beta).
 
