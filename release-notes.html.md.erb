@@ -110,10 +110,10 @@ New features and changes in this release:
   RDS uses option groups to enable and configure these features.
 
 - **Exposed audit-logging:**
-  Audit-logging can now be activated. It requires setting `option_group_name` with a pre-created
-  Option Group that fulfils requirements for audit log exports.
+  You can now activate audit-logging by setting `option_group_name` with a pre-created
+  Option Group that fulfils the requirements for audit log exports.
   By default, audit-logging is deactivated.
-  When activated, the default number of log retention days is 30. These properties can be configured:
+  When activated, the default number of log retention days is 30. You can configure these properties:
 
   - `cloudwatch_log_group_retention_in_days`: This is used in conjunction with `enable_audit_logging`.
     If provided, it sets the retention days for the log group containing the RDS audit logs.
@@ -239,7 +239,7 @@ New features and changes in this release:
 
 **Amazon Aurora PostgreSQL-Compatible Edition services:**
 
-- **A database cluster parameter group name can be configured:**
+- **You can configure a database cluster parameter group name:**
   The `db_cluster_parameter_group_name` sets the database cluster parameter group name.
   If not set, a database cluster parameter group is created.
   The database cluster parameter group contains the set of engine configuration parameters
@@ -260,7 +260,7 @@ New features and changes in this release:
 - **Insecure connections are no longer supported:** Every connection in Aurora MySQL instances must use TLS encryption.
   The AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
-- **A DB cluster parameter group name can be configured:**
+- **You can configure a database cluster parameter group name:**
   The `db_cluster_parameter_group_name` sets the database cluster parameter group name.
   The database cluster parameter group contains the set of engine configuration parameters
   that apply throughout the Aurora PostgreSQL database cluster.
@@ -269,11 +269,12 @@ New features and changes in this release:
 
 - **Exposed audit-logging:**
   Audit-logging can now be activated. It requires setting `db_cluster_parameter_group_name` with a pre-created
-  DB cluster parameter group that fulfils requirements for audit log exports. By default, audit-logging is deactivated.
+  database cluster parameter group that fulfils requirements for audit log exports.
+  By default, audit-logging is deactivated.
   When activated, the default number of log retention days is 30. These properties can be configured:
 
   - `cloudwatch_log_group_retention_in_days`: This is used in conjunction with `enable_audit_logging`.
-  If provided, it sets the retention days for the log group containing the cluster audit logs.
+    If provided, it sets the retention days for the log group containing the cluster audit logs.
 
   - `cloudwatch_log_group_kms_key_id`: This is used in conjunction with `enable_audit_logging`.
     If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is created

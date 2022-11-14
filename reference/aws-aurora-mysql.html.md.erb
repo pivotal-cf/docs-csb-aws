@@ -241,7 +241,7 @@ provision only:
       <td><code>db_cluster_parameter_group_name</code></td>
       <td>String</td>
       <td>
-        The Aurora MySQL DB cluster parameter group name for the service.
+        The Aurora MySQL database cluster parameter group name for the service.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -251,17 +251,17 @@ provision only:
       <td>Boolean</td>
       <td>
         If <code>true</code>, it enables the <code>audit</code> <code>cloud_watch_log_export</code>
-        on the DB cluster instances.
-        It requires setting <code>db_cluster_parameter_group_name</code> with a pre-created DB cluster parameter group that fulfils
-        requirements for audit log exports.
-        For config options, see the
+        on the database cluster instances.
+        It requires setting <code>db_cluster_parameter_group_name</code> with a pre-created database
+        cluster parameter group that fulfils requirements for audit log exports.
+        For configuration options, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Auditing.html">AWS documentation</a>.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>cloudwatch_log_group_retention_in_days</code></td>
+      <td><code>cloudwatch_log_group_retention_in_days </code></td>
       <td>Integer</td>
       <td>
         If provided, it sets the retention days for the log group that contains the cluster audit logs.
