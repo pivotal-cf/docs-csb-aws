@@ -37,7 +37,7 @@ The following table lists parameters which can only be configured for additional
 | `bindable`        | Specifies whether service instances of the service plan can bind to applications.                                        | true    | No       |
 | `plan_updateable` | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.                                     | true    | No       |
 | `cores`           | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
-| `mysql_version`   | The version for the MySQL instance, either major (e.g "8.0"), or full version (e.g. "8.0.30").                           | _n/a_   | Yes      |
+| `mysql_version`   | The version of the MySQL instance. Either major version, for example, `8.0`, or full version, for example, `8.0.30`.                           | _n/a_   | Yes      |
 | `storage_gb`      | Size of storage volume for service instance. 5&ndash;4096.                                                               | _n/a_   | Yes      |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
