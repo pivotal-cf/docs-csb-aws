@@ -7,23 +7,23 @@ owner: Cloud Service Broker
 
 These are release notes for <%= vars.product_full %>.
 
-
-##<a id="1-0-2"></a> v1.0.2
+## <a id="1-0-2"></a> v1.0.2
 
 **Release Date:** April 8, 2021
 
 ### Resolved Issues
+
 This release has the following fixes:
 
-* **Secret issue in test logs:** <%= vars.product_short %> no longer emits secrets in test logs.
-* **AWS DynamoDB parameter typo:** AWS DynamoDB parameter `tabel_name` typo is fixed and now reads `table_name`.
-* **PostgreSQL permissions:** Postgres now has the correct permissions to generate database schemas.
+- **Secret issue in test logs:** <%= vars.product_short %> no longer emits secrets in test logs.
+- **AWS DynamoDB parameter typo:** AWS DynamoDB parameter `tabel_name` typo is fixed and now reads `table_name`.
+- **PostgreSQL permissions:** Postgres now has the correct permissions to generate database schemas.
 
 ### Known Issue
 
 This release has the following issue:
 
-* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+- **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
   PostgreSQL, instance plans cannot be changed to smaller plans.
   For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
@@ -33,9 +33,10 @@ This release has the following issue:
 
 ## <a id="view"></a> View Release Notes for Another Version
 
-To view the release notes for another product version, select the version from
-dropdown at the top of this page.
-##<a id="1-0-1"></a> v1.0.1
+To view the release notes for another product version, select the version from the dropdown at the
+top of this page.
+
+## <a id="1-0-1"></a> v1.0.1
 
 **Release Date:** December 10, 2020
 
@@ -43,47 +44,52 @@ dropdown at the top of this page.
 
 New features and changes in this release:
 
-* **Ability to specify PostgreSQL, MySQL, and Redis subnet group:**
-This is useful if your Virtual Private Cloud (VPC) has an existing subnet group that you want to use.
-You can configure this  in <%= vars.ops_manager %> in the **Config and Plans** panes for PostgreSQL, MySQL, and Redis.
+- **Ability to specify PostgreSQL, MySQL, and Redis subnet group:**
+  This is useful if your Virtual Private Cloud (VPC) has an existing subnet group that you want to use.
+  You can configure this  in <%= vars.ops_manager %> in the **Config and Plans** panes for PostgreSQL,
+  MySQL, and Redis.
 
-* **Improve legacy broker migration with additional properties for Amazon RDS PostegreSQL plans:**
-You can configure this in <%= vars.ops_manager %> in the **PostgresSQL Config and Plans** pane.
-<br>New fields include: `storage_encrypted`, `parameter_group_name`, `rds_subnet_group`,
-`rds_vpc_security_group_ids`, and `use_tls`.
-For more information, see the configuration parameters for your service on [Service Plan Reference](reference/index.html).
+- **Improve legacy broker migration with additional properties for Amazon RDS PostegreSQL plans:**
+  You can configure this in <%= vars.ops_manager %> in the **PostgresSQL Config and Plans** pane.
+  <br>New fields include: `storage_encrypted`, `parameter_group_name`, `rds_subnet_group`,
+  `rds_vpc_security_group_ids`, and `use_tls`.
+  For more information, see the configuration parameters for your service on
+  [Service Plan Reference](reference/index.html).
 
-* **Functionality to allow major or minor upgrade and specify maintenance window:**
-This feature is available for the Amazon RDS for MySQL and Amazon RDS for PostgreSQL plans.
-You can add these as JSON parameters in <%= vars.ops_manager %> in the **Additional Plans**
-field of the **Config and Plans** panes for PostgreSQL and MySQL.
-<br>For the parameters to add, see the `allow_major_version_upgrade`, `allow_minor_version_upgrade`,
-and `maintenance` configuration parameters for your service on [Service Plan Reference](reference/index.html).
+- **Functionality to allow major or minor upgrade and specify maintenance window:**
+  This feature is available for the Amazon RDS for MySQL and Amazon RDS for PostgreSQL plans.
+  You can add these as JSON parameters in <%= vars.ops_manager %> in the **Additional Plans** field
+  of the **Config and Plans** panes for PostgreSQL and MySQL.
+  <br>For the parameters to add, see the `allow_major_version_upgrade`, `allow_minor_version_upgrade`,
+  and `maintenance` configuration parameters for your service on [Service Plan Reference](reference/index.html).
 
 ### Resolved Issues
 
 This release has the following fixes:
 
-* **Added new and necessary IAM policies to the configuration documentation.**
-For more information, see [Prerequisites for Installing Cloud Service Broker for AWS](installing-with-aws.html#prereq).
+- **Added new and necessary IAM policies to the configuration documentation.**
+  For more information, see [Prerequisites for Installing Cloud Service Broker for AWS](installing-with-aws.html#prereq).
 
-* **Marked defaults and required parameters in DynamoDB.**
-This makes the errors that some customers are receiving more user-friendly.
+- **Marked defaults and required parameters in DynamoDB.**
+  This makes the errors that some customers are receiving more user-friendly.
 
 ### Known Issues
 
 This release has the following issues:
 
-* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
+- **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
   PostgreSQL, instance plans cannot be changed to smaller plans.
   For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
   see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
-* **Secret issue in test logs:** <%= vars.product_short %> emits secrets in test logs.
-* **AWS DynamoDB parameter has a typo:** Currently says `tabel_name`, but should be `table_name`.
-* **PostgreSQL permissions issue:** Postgres does not have the correct permissions to generate database schemas.
+
+- **Secret issue in test logs:** <%= vars.product_short %> emits secrets in test logs.
+
+- **AWS DynamoDB parameter has a typo:** Currently says `tabel_name`, but should be `table_name`.
+
+- **PostgreSQL permissions issue:** Postgres does not have the correct permissions to generate database schemas.
 
 ##<a id="1-0-0"></a> v1.0.0
 
@@ -93,19 +99,32 @@ This release has the following issues:
 
 New feature in this release:
 
-* **Initial release:** This is the initial release for the <%= vars.product_full %> tile.
+- **Initial release:** This is the initial release for the <%= vars.product_full %> tile.
 
 ### Known Issues
 
 This release has the following issues:
 
-* **PostgreSQL instances cannot be moved to smaller plans:** Because of a limitation with Amazon RDS for
-  PostgreSQL, instance plans cannot be changed to smaller plans.
-  For example, when using a `cf update-service -p` command.
+- **PostgreSQL instances cannot be moved to smaller plans:**
+  Because of a limitation with Amazon RDS for PostgreSQL, instance plans cannot be changed to smaller
+  plans.For example, when using a `cf update-service -p` command.
   This restriction also applies to subsumed PostgreSQL instances.
   Updates to a PostgreSQL instance fail if they attempt an update that decreases `storage_gb`.
   For information about decreasing the total provisioned storage size of an Amazon RDS database instance,
   see the [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/rds-db-storage-size/).
-* **Secret issue in test logs:** <%= vars.product_short %> emits secrets in test logs.
-* **AWS DynamoDB parameter has a typo:** Currently says `tabel_name`, but should be `table_name`.
-* **PostgreSQL permissions issue:** Postgres does not have the correct permissions to generate database schemas.
+
+- **Secret issue in test logs:** <%= vars.product_short %> emits secrets in test logs.
+
+- **AWS DynamoDB parameter has a typo:** Currently says `tabel_name`, but should be `table_name`.
+
+- **PostgreSQL permissions issue:** Postgres does not have the correct permissions to generate database schemas.
+
+- **Failure to create or update Redis instances:**
+  It has not been possible to update existing instances or create new instances since AWS added
+  support for Redis v7.
+  Defining the `redis_version` in the plan does not have any effect on the engine version of Redis
+  created in AWS. AWS always uses its default version, which is now v7.
+  The `redis_version` is, however, used to define the parameter group name.
+  This triggers an error message similar to
+  `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
+  This issue is resolved in <%= vars.product_full %> v1.3.0.
