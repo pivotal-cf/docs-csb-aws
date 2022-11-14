@@ -7,7 +7,6 @@ owner: Cloud Service Broker
 
 This documentation describes the <%= vars.product_full %>.
 
-
 ## <a id='overview'></a> Overview
 
 The <%= vars.product_full %> enables platform operators to easily expose services
@@ -34,7 +33,6 @@ everyone who uses <%= vars.product_short %> and vice versa. For more information
 [Brokerpak Introduction](https://github.com/pivotal/cloud-service-broker/blob/main/docs/brokerpak-intro.md)
 in GitHub.
 
-
 ## <a id="snapshot"></a> Product Snapshot
 
 The following table provides version and version-support information about <%= vars.product_short %>.
@@ -44,7 +42,7 @@ The following table provides version and version-support information about <%= v
     <th>Details</th>
     <tr>
         <td>Tile version</td>
-        <td>1.3.0</td>
+        <td>1.4.0</td>
     </tr>
     <tr>
         <td>Release date</td>
@@ -52,7 +50,7 @@ The following table provides version and version-support information about <%= v
     </tr>
     <tr>
         <td>Software component version</td>
-        <td>1.3</td>
+        <td>1.4</td>
     </tr>
     <tr>
         <td>Compatible <%= vars.ops_manager %> versions</td>
@@ -72,26 +70,24 @@ The following table provides version and version-support information about <%= v
     </tr>
 </table>
 
-
 ## <a id="reqs"></a> Requirements
 
 <%= vars.product_short %> has the following requirements:
 
-+ Access to the AWS Management Console.
-+ <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) installed on your platform of choice.
-+ A small MySQL database to use as the state database.
+- Access to the AWS Management Console.
+- <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) installed on your platform of choice.
+- A small MySQL database to use as the state database.
 
 ## <a id="limitations"></a> Limitations
 
 <%= vars.product_short %> has the following limitations:
 
-+ Currently the broker can only be extended to additional IaaS or services by pulling the broker
-from GitHub. The tiles do not support custom brokerpaks at this time.
-+ Currently the broker does not support cross-IaaS provisioning of service instances.
-
+- Currently the broker can only be extended to additional IaaS or services by pulling the broker
+  from GitHub. The tiles do not support custom brokerpaks at this time.
+- Currently the broker does not support cross-IaaS provisioning of service instances.
 
 ## <a id="feedback"></a> Feedback
 
-* Open an issue on the [cloud-service-broker](https://github.com/cloudfoundry/cloud-service-broker)
-or [aws-brokerpak](https://github.com/cloudfoundry/csb-brokerpak-aws) GitHub repository.
-* Post in the #cloudservicebroker [Cloud Foundry Slack](https://slack.cloudfoundry.org/) channel.
+- Open an issue on the [cloud-service-broker](https://github.com/cloudfoundry/cloud-service-broker)
+  or [aws-brokerpak](https://github.com/cloudfoundry/csb-brokerpak-aws) GitHub repository.
+- Post in the #cloudservicebroker [Cloud Foundry Slack](https://slack.cloudfoundry.org/) channel.
