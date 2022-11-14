@@ -17,7 +17,7 @@ This release has the following breaking changes:
 
 - **Amazon RDS MySQL service:**
 
-  - ** Amazon RDS MySQL pre-configured plans were removed: From this version onwards,
+  - **Amazon RDS MySQL pre-configured plans were removed**: From this version onwards,
     plans are no longer provided with the brokerpak. If you have RDS MySQL service instances
     that were using built-in plans and that you want to maintain, previously provided
     plans must be added through the tile configuration. For more information, see
@@ -48,8 +48,8 @@ This release has the following breaking changes:
 
 New features and changes in this release:
 
-**Amazon RDS MySQL service offering is generally available:** 
-  The Amazon RDS MySQL service offering is no longer in beta and can be used in production. 
+**Amazon RDS MySQL service offering is generally available:**
+  The Amazon RDS MySQL service offering is no longer in beta and can be used in production.
   As part of this the following RDS MySQL features are introduced:
 
 - **MySQL version is no longer restricted:**
@@ -80,7 +80,7 @@ New features and changes in this release:
 
 - **`deletion_protection` can be configured and updated:**
   Added a property that enables you to configure the deletion protection for the MySQL database
-  in the plan configuration or during provision or update operations. By default the protection is
+  in the plan configuration or during provision or update operations. By default, the protection is
   deactivated.
 
 - **`storage_type` and `iops` can be configured and updated:**
@@ -189,14 +189,10 @@ New features and changes in this release:
 - **Bind and unbind are now performed over TLS:**
   For these operations to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
-- **`deletion_protection` can be configured and updated:** New added property that enables you to configure the deletion protection for the Aurora databases
-  in the plan configuration or during provision or update operations. By default, the protection is deactivated.
-  If the protection is active and a deprovision operation is performed, all instances associated with the cluster will be erased,
-  leaving the system without computing capacity and therefore producing a service stop. The data remains safe, as they are associated with
-  the virtual volume associated with the cluster. In case you want to recover the computing capacity after performing
-  the deposition operation by accident with the active protection, you can modify the cluster by setting the desired value of number
-  of instances through the property `cluster_instances`. See documentation for more information about storage reliability https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html
-  or deleting Aurora DB cluster and DB instances https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection
+- **`deletion_protection` can be configured and updated:**
+  Added a property that enables you to configure the deletion protection for the Aurora databases
+  in the plan configuration or during provision or update operations. By default, the protection is
+  deactivated.
 
 - **Exposed automated backups:**
   You can schedule automated backups by using `preferred_backup_window`.
@@ -242,24 +238,34 @@ New features and changes in this release:
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
 
 **Amazon Aurora PostgreSQL-Compatible Edition services:**
-- **A DB cluster parameter group name can be configured:** The `db_cluster_parameter_group_name` sets the DB cluster parameter group name.
-  If not set, a DB cluster parameter group is created.
-  The DB cluster parameter group contains the set of engine configuration parameters that apply throughout the Aurora PostgreSQL DB cluster.
-  The DB cluster parameter group also contains default settings for the DB parameter group for the DB instances that make up the cluster.
 
-- **server rejects non-SSL connections by default:** The `require_ssl` property is true by default, and will make the
-  server require SSL connections. When false, the server will accept SSL and non-SSL connections.
-  Note that if "db_cluster_parameter_group_name" is specified then the "require_ssl" parameter will not take effect.
+- **A database cluster parameter group name can be configured:**
+  The `db_cluster_parameter_group_name` sets the database cluster parameter group name.
+  If not set, a database cluster parameter group is created.
+  The database cluster parameter group contains the set of engine configuration parameters
+  that apply throughout the Aurora PostgreSQL database cluster.
+  The database cluster parameter group also contains default settings for the database
+  parameter group for the database instances that make up the cluster.
 
-- **Bind and unbind are now performed over TLS:** For these operations to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
+- **Server rejects non-SSL connections by default:**
+  The `require_ssl` property is `true` by default, which makes the server require SSL connections.
+  When `false`, the server accepts SSL and non-SSL connections.
+  If `db_cluster_parameter_group_name` is specified then the `require_ssl` parameter dose not take effect.
+
+- **Bind and unbind are now performed over TLS:**
+  For these operations to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
 **Amazon Aurora MySQL-Compatible Edition services:**
+
 - **Insecure connections are no longer supported:** Every connection in Aurora MySQL instances must use TLS encryption.
   The AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
-- **A DB cluster parameter group name can be configured:** The `db_cluster_parameter_group_name` sets the DB cluster parameter group name.
-  The DB cluster parameter group contains the set of engine configuration parameters that apply throughout the Aurora PostgreSQL DB cluster.
-  The DB cluster parameter group also contains default settings for the DB parameter group for the DB instances that make up the cluster.
+- **A DB cluster parameter group name can be configured:**
+  The `db_cluster_parameter_group_name` sets the database cluster parameter group name.
+  The database cluster parameter group contains the set of engine configuration parameters
+  that apply throughout the Aurora PostgreSQL database cluster.
+  The database cluster parameter group also contains default settings for the database
+  parameter group for the DB instances that make up the cluster.
 
 - **Exposed audit-logging:**
   Audit-logging can now be activated. It requires setting `db_cluster_parameter_group_name` with a pre-created
@@ -286,13 +292,13 @@ This release has the following fixes:
   By default, RDS for MySQL uses and expects all clients to connect using SSL or TLS.
   Therefore, the value of the SSL parameter in the MySQL JDBC URL is always set to `true`.
 
-- **RDS VPC security group IDs cannot up updated:** 
+- **RDS VPC security group IDs cannot up updated:**
   Updating the `rds_vpc_security_group_ids` for any of the RDS services (MySQL, PostgreSQL, Aurora MySQL, Aurora PostgreSQL)
   would result on a DependencyViolation error after several minutes of attempting the update. Updating this property is prohibited
   and would result in a more timely error message.
 
-- **Amazon ElastiCache for Redis respects the selected Redis version:** 
-  Passing the redis version did not have any effect on the engine version selected in the IaaS and it would always use the AWS ElastiCache for Redis default version. 
+- **Amazon ElastiCache for Redis respects the selected Redis version:**
+  Passing the redis version did not have any effect on the engine version selected in the IaaS and it would always use the AWS ElastiCache for Redis default version.
   The version was however used to define the parameter group name which would couse an error message on create or update similar to `InvalidParameterCombination: Expected a parameter group of family redis7 but found one of family redis6.x`.
   Now the version passed as part of `redis_version` plan property is respected and the correct version of Redis is created. Also, the versions list is no longer restricted and any version accepted by AWS is allowed.
 

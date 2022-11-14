@@ -161,8 +161,20 @@ provision only:
       <td><code>deletion_protection</code></td>
       <td>Boolean</td>
       <td>
-        Whether deletion protection is enabled. The DB cluster cannot be deleted when this value is set, but you can delete DB instances within the cluster.
-        See documentation for more information about deleting Aurora DB cluster and DB instances https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection
+        Whether deletion protection is enabled. You cannot delete the database cluster when this value is set,
+        but you can delete database instances within the cluster.
+        For more information about deleting Aurora database cluster and database instances,
+        see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection">AWS documentation</a>.
+        For more information about storage reliability, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html">AWS documentation</a>.
+        <p class="note">
+          <strong>Note:</strong> If the protection is active and a deprovision operation is performed, all
+          instances associated with the cluster are erased.
+          This leaves the system without computing capacity, and the service will stop.
+          The data remains safe because it is associated with the virtual volume associated with the cluster.
+          To recover the computing capacity after an accidental deprovision operation,
+          set the number of instances that you want for the cluster through the property
+          <code>cluster_instances</code>.
+        </p>
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
@@ -171,9 +183,9 @@ provision only:
       <td><code>db_cluster_parameter_group_name</code></td>
       <td>String</td>
       <td>
-        The Aurora PostgreSQL DB cluster parameter group name for the service.
-        By default, a DB cluster parameter group is created, and used to apply security settings.
-        If you set a custom DB cluster parameter group, it might override other settings, including security settings.
+        The Aurora PostgreSQL database cluster parameter group name for the service.
+        By default, a database cluster parameter group is created and used to apply security settings.
+        If you set a custom database cluster parameter group, it might override other settings, including security settings.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -182,8 +194,9 @@ provision only:
       <td><code>require_ssl</code></td>
       <td>Boolean</td>
       <td>
-        Only allow secure database connections.
-        Note that if "db_cluster_parameter_group_name" is specified then the "require_ssl" parameter will not take effect.
+        Set to <code>true</code> to only allow secure database connections.
+        If you specify <code>db_cluster_parameter_group_name</code>, the <code>require_ssl</code>
+        parameter does not take effect.
       </td>
       <td><code>true</code></td>
       <td>provision and update</td>

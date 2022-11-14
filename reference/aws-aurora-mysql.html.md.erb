@@ -160,8 +160,20 @@ provision only:
       <td><code>deletion_protection</code></td>
       <td>Boolean</td>
       <td>
-        Whether deletion protection is enabled. The DB cluster cannot be deleted when this value is set, but you can delete DB instances within the cluster.
-        See documentation for more information about deleting Aurora DB cluster and DB instances https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection
+        Whether deletion protection is enabled. You cannot delete the database cluster when this value is set,
+        but you can delete database instances within the cluster.
+        For more information about deleting Aurora database cluster and database instances,
+        see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection">AWS documentation</a>.
+        For more information about storage reliability, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html">AWS documentation</a>.
+        <p class="note">
+          <strong>Note:</strong> If the protection is active and a deprovision operation is performed, all
+          instances associated with the cluster are erased.
+          This leaves the system without computing capacity, and the service will stop.
+          The data remains safe because it is associated with the virtual volume associated with the cluster.
+          To recover the computing capacity after an accidental deprovision operation,
+          set the number of instances that you want for the cluster through the property
+          <code>cluster_instances</code>.
+        </p>
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
