@@ -266,7 +266,7 @@ provision only:
       <td>Integer</td>
       <td>
         If provided, it sets the retention days for the log group that contains the cluster audit logs.
-        It is used in conjunction with <code>enable_audit_logging<code>.
+        It is used in conjunction with <code>enable_audit_logging</code>.
       </td>
       <td><code>30</code></td>
       <td>provision and update</td>
@@ -277,9 +277,20 @@ provision only:
       <td>
         If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is
         created for the cluster audit logs.
-        It is used in conjunction with <code>enable_audit_logging<code>.
+        It is used in conjunction with <code>enable_audit_logging</code>.
       </td>
       <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>instance_class</code></td>
+      <td>String</td>
+      <td>
+        The DB instance class determines the computation and memory capacity of an Amazon Aurora DB instance.
+        Review the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>
+        to understand the restrictions associated with the different types of instances accepted by Aurora.
+      </td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
