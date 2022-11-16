@@ -263,6 +263,56 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>preferred_maintenance_day</code></td>
+      <td>String</td>
+      <td>
+        The preferred maintenance day: <code>Sun</code>, <code>Mon</code>, <code>Tue</code>, <code>Wed</code>, <code>Thu</code>, <code>Fri</code>, or <code>Sat</code>.
+        It can only be updated to a non-null value.
+      </td>
+      <td>Uses AWS default value for the region if all <code>preferred_maintenance_*</code> properties are null when creating the instance</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>preferred_maintenance_start_hour</code></td>
+      <td>String</td>
+      <td>
+        The preferred maintenance start hour. Valid values are <code>00</code> through <code>23</code>.
+        It can only be updated to a non-null value.
+      </td>
+      <td>Uses AWS default value for the region if all <code>preferred_maintenance_*</code> properties are null when creating the instance</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>preferred_maintenance_start_min</code></td>
+      <td>String</td>
+      <td>
+        The preferred maintenance start minute. Valid values are <code>00</code>, <code>15</code>, <code>30</code>, <code>45</code>.
+        It can only be updated to a non-null value.
+      </td>
+      <td>Uses AWS default value for the region if all <code>preferred_maintenance_*</code> properties are null when creating the instance</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>preferred_maintenance_end_hour</code></td>
+      <td>String</td>
+      <td>
+        The preferred maintenance end hour. Valid values are <code>00</code> through <code>23</code>.
+        It can only be updated to a non-null value.
+      </td>
+      <td>Uses AWS default value for the region if all <code>preferred_maintenance_*</code> properties are null when creating the instance</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>preferred_maintenance_end_min</code></td>
+      <td>String</td>
+      <td>
+        The preferred maintenance end minute. Valid values are <code>00</code>, <code>15</code>, <code>30</code>, <code>45</code>.
+        It can only be updated to a non-null value.
+      </td>
+      <td>Uses AWS default value for the region if all <code>preferred_maintenance_*</code> properties are null when creating the instance</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
