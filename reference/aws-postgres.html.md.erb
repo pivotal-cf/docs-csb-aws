@@ -27,15 +27,15 @@ The following table lists parameters which can only be configured for additional
 
 | Parameter Name     | Description                                                                                                              | Default | Required |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------|---------|----------|
-| `name`             | The plan name.                                                                                                            | _n/a_   | Yes      |
-| `id`               | A unique GUID.                                                                                                            | _n/a_   | Yes      |
-| `description`      | Description of the new plan.                                                                                              | _n/a_   | Yes      |
-| `display_name`     | Name to use when displaying plan in the Marketplace.                                                                      | _n/a_   | No       |
-| `free`             | When false, service instances of this service plan have a cost.                                                           | true    | No       |
-| `bindable`         | Specifies whether service instances of the service plan can bind to applications.                                         | true    | No       |
-| `plan_updateable`  | Whether the plan supports upgrading, downgrading, or sidegrading to another version.                                      | true    | No       |
-| `postgres_version` | The version for the PostgreSQL instance. Can be any supported major or minor version.                          | _n/a_   | Yes      |
-| `storage_gb`       | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB.                                          | _n/a_   | Yes      |
+| `name`             | The plan name.                                                                                                           | _n/a_   | Yes      |
+| `id`               | A unique GUID.                                                                                                           | _n/a_   | Yes      |
+| `description`      | Description of the new plan.                                                                                             | _n/a_   | Yes      |
+| `display_name`     | Name to use when displaying plan in the Marketplace.                                                                     | _n/a_   | No       |
+| `free`             | When false, service instances of this service plan have a cost.                                                          | true    | No       |
+| `bindable`         | Specifies whether service instances of the service plan can bind to applications.                                        | true    | No       |
+| `plan_updateable`  | Whether the plan supports upgrading, downgrading, or sidegrading to another version.                                     | true    | No       |
+| `postgres_version` | The version for the PostgreSQL instance. Can be any supported major or minor version.                                    | _n/a_   | Yes      |
+| `storage_gb`       | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB.                                         | _n/a_   | Yes      |
 | `cores`            | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
@@ -435,6 +435,20 @@ provision only:
       <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %></td>
       <td>provision and update</td>
     </tr>
+    <tr>
+        <td><code>storage_encrypted</code></td>
+        <td>Boolean</td>
+        <td>Specifies whether a DB cluster is encrypted. For more details on DB cluster encryption, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Overview.Encryption.html#Overview.Encryption.Enabling">AWS documentation</a></td>
+        <td><code>true</code></td>
+        <td>provision</td>
+    </tr>
+    <tr>
+        <td><code>kms_key_id</code></td>
+        <td>String</td>
+        <td>The ARN for the user-managed KMS encryption key. When setting this value, <code>storage_encrypted</code> must be enabled. When not set, the AWS managed key will be used for encrypting the database.</td>
+        <td><code>null</code></td>
+        <td>provision</td>
+    </tr>
   </tbody>
 </table>
 
@@ -476,8 +490,8 @@ access to the data.
 
 The following table lists the previously provided plans for the Amazon RDS for PostgreSQL service:
 
-| Plan   | Description                                      |
-|--------|--------------------------------------------------|
+| Plan   | Description                                                |
+|--------|------------------------------------------------------------|
 | small  | PostgreSQL 11, 2 vCPUs, 8&nbsp;GB RAM, 5&nbsp;GB storage   |
 | medium | PostgreSQL 11, 4 vCPUs, 16&nbsp;GB RAM, 10&nbsp;GB storage |
 | large  | PostgreSQL 11, 8 vCPUs, 32&nbsp;GB RAM, 20&nbsp;GB storage |

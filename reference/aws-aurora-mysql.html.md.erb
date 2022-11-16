@@ -318,6 +318,20 @@ provision only:
       <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
       <td>provision and update</td>
     </tr>
+    <tr>
+        <td><code>storage_encrypted</code></td>
+        <td>Boolean</td>
+        <td>Specifies whether a DB cluster is encrypted. For more details on DB cluster encryption, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Overview.Encryption.html#Overview.Encryption.Enabling">AWS documentation</a></td>
+        <td><code>true</code></td>
+        <td>provision</td>
+    </tr>
+    <tr>
+        <td><code>kms_key_id</code></td>
+        <td>String</td>
+        <td>The ARN for the user-managed KMS encryption key. When setting this value, <code>storage_encrypted</code> must be enabled. When not set, the AWS managed key will be used for encrypting the database.</td>
+        <td><code>null</code></td>
+        <td>provision</td>
+    </tr>
   </tbody>
 </table>
 
