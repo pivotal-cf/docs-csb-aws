@@ -107,14 +107,25 @@ provision only:
       <td><code>serverless_min_capacity</code></td>
       <td>Number</td>
       <td>
-        The minimum capacity for the cluster. Must be less than or equal to <code>serverless_max_capacity</code>. Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.</td>
+        The minimum capacity for the cluster. Must be less than or equal to <code>serverless_max_capacity</code>. Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.
+        The `serverless_min_capacity` and `serverless_max_capacity` properties are ineffective without setting the `instance_class` property to a valid value for Aurora Serverless v2.
+        Review documentation to understand the restrictions associated with the different types of instances accepted by Aurora:
+        https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
+        At the time of writing, `db.serverless` is the special DB instance class used by Aurora Serverless v2.
+      </td>
       <td><code>null</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>serverless_max_capacity</code></td>
       <td>Number</td>
-      <td>The maximum capacity for the cluster. Must be greater than or equal to <code>serverless_min_capacity</code>. Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.</td>
+      <td>
+        The maximum capacity for the cluster. Must be greater than or equal to <code>serverless_min_capacity</code>. Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.
+        The `serverless_min_capacity` and `serverless_max_capacity` properties are ineffective without setting the `instance_class` property to a valid value for Aurora Serverless v2.
+        Review documentation to understand the restrictions associated with the different types of instances accepted by Aurora:
+        https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
+        At the time of writing, `db.serverless` is the special DB instance class used by Aurora Serverless v2.
+      </td>
       <td><code>null</code></td>
       <td>provision and update</td>
     </tr>
@@ -266,7 +277,7 @@ provision only:
       <td>Integer</td>
       <td>
         If provided, it sets the retention days for the log group that contains the cluster audit logs.
-        It is used in conjunction with <code>enable_audit_logging<code>.
+        It is used in conjunction with <code>enable_audit_logging</code>.
       </td>
       <td><code>30</code></td>
       <td>provision and update</td>
@@ -277,9 +288,20 @@ provision only:
       <td>
         If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is
         created for the cluster audit logs.
-        It is used in conjunction with <code>enable_audit_logging<code>.
+        It is used in conjunction with <code>enable_audit_logging</code>.
       </td>
       <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>instance_class</code></td>
+      <td>String</td>
+      <td>
+        (Required) The DB instance class determines the computation and memory capacity of an Amazon Aurora DB instance.
+        Review the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>
+        to understand the restrictions associated with the different types of instances accepted by Aurora.
+      </td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -295,6 +317,20 @@ provision only:
       <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
       <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
       <td>provision and update</td>
+    </tr>
+    <tr>
+        <td><code>storage_encrypted</code></td>
+        <td>Boolean</td>
+        <td>Specifies whether a DB cluster is encrypted. For more details on DB cluster encryption, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Overview.Encryption.html#Overview.Encryption.Enabling">AWS documentation</a></td>
+        <td><code>true</code></td>
+        <td>provision</td>
+    </tr>
+    <tr>
+        <td><code>kms_key_id</code></td>
+        <td>String</td>
+        <td>The ARN for the user-managed KMS encryption key. When setting this value, <code>storage_encrypted</code> must be enabled. When not set, the AWS managed key will be used for encrypting the database.</td>
+        <td><code>null</code></td>
+        <td>provision</td>
     </tr>
   </tbody>
 </table>

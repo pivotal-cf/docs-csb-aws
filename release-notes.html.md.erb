@@ -19,7 +19,21 @@ This release has the following breaking changes:
 
 New features and changes in this release:
 
-This release has the following changes for the Amazon RDS PostgreSQL service:
+#### Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition services
+
+This release has the following changes for the Amazon Aurora MySQL-Compatible Edition and
+Amazon Aurora PostgreSQL-Compatible Edition services:
+
+- **`instance_class` property exposed:**
+  The `instance_class` property is now configurable at plan creation or instance operations for
+  Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition. 
+  The database instance class determines the computation and memory capacity of an Amazon Aurora DB instance.
+  The database instance class you need depends on your processing power and memory requirements.
+  Use `instance_class` to adjust the database instance to your requirements.
+  This property is **required**.
+  The `serverless_min_capacity` and `serverless_max_capacity` properties are ineffective without setting the `instance_class` property to a valid value for Aurora Serverless v2.
+  Review documentation to understand the restrictions associated with the different types of instances accepted by Aurora:
+  https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
 
 ### Resolved Issues
 
