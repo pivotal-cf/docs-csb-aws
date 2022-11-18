@@ -107,11 +107,15 @@ provision only:
       <td><code>serverless_min_capacity</code></td>
       <td>Number</td>
       <td>
-        The minimum capacity for the cluster. Must be less than or equal to <code>serverless_max_capacity</code>. Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.
-        The `serverless_min_capacity` and `serverless_max_capacity` properties are ineffective without setting the `instance_class` property to a valid value for Aurora Serverless v2.
-        Review documentation to understand the restrictions associated with the different types of instances accepted by Aurora:
-        https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
-        At the time of writing, `db.serverless` is the special DB instance class used by Aurora Serverless v2.
+        The minimum capacity for the cluster. Must be less than or equal to <code>serverless_max_capacity</code>.
+        Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.
+        The <code>serverless_min_capacity</code> and <code>serverless_max_capacity</code> properties
+        are ineffective without setting the <code>instance_class</code> property to a valid value for
+        Aurora Serverless v2.
+        For information about restrictions associated with the different types of instances accepted
+        by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
+        Currently, <code>db.serverless</code> is the special database instance class that
+        Aurora Serverless v2 uses.
       </td>
       <td><code>null</code></td>
       <td>provision and update</td>
@@ -120,11 +124,15 @@ provision only:
       <td><code>serverless_max_capacity</code></td>
       <td>Number</td>
       <td>
-        The maximum capacity for the cluster. Must be greater than or equal to <code>serverless_min_capacity</code>. Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.
-        The `serverless_min_capacity` and `serverless_max_capacity` properties are ineffective without setting the `instance_class` property to a valid value for Aurora Serverless v2.
-        Review documentation to understand the restrictions associated with the different types of instances accepted by Aurora:
-        https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
-        At the time of writing, `db.serverless` is the special DB instance class used by Aurora Serverless v2.
+        The maximum capacity for the cluster. Must be greater than or equal to <code>serverless_min_capacity</code>.
+        Valid capacity values are in a range of 0.5 up to 128, in steps of 0.5.
+        The <code>serverless_min_capacity</code> and <code>serverless_max_capacity</code> properties
+        are ineffective without setting the <code>instance_class</code> property to a valid value for
+        Aurora Serverless v2.
+        For information about restrictions associated with the different types of instances accepted
+        by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
+        Currently, <code>db.serverless</code> is the special database instance class that
+        Aurora Serverless v2 uses.
       </td>
       <td><code>null</code></td>
       <td>provision and update</td>
@@ -297,9 +305,10 @@ provision only:
       <td><code>instance_class</code></td>
       <td>String</td>
       <td>
-        (Required) The DB instance class determines the computation and memory capacity of an Amazon Aurora DB instance.
-        Review the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>
-        to understand the restrictions associated with the different types of instances accepted by Aurora.
+        The database instance class determines the computation and memory capacity of an
+        Amazon Aurora database instance.
+        For information about the restrictions associated with the different types of instances
+        accepted by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
       </td>
       <td>None</td>
     </tr>
