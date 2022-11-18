@@ -24,11 +24,11 @@ New features and changes in this release:
 This release has the following changes for the Amazon Aurora MySQL-Compatible Edition and
 Amazon Aurora PostgreSQL-Compatible Edition services:
 
-- **The preferred maintenance window can be set:**
-  New exposed properties to set the preferred maintenance window (see preferred_maintenance_* properties in reference
-  section).
-  To use the AWS default preferred maintenance window when provisioning, the properties related to the
-  preferred maintenance window can all be set to null.
+- **You can choose a preferred maintenance window:**
+  There are new exposed properties to set the preferred maintenance window. For more information, see the
+  `preferred_maintenance_*` properties in the [reference topics](reference/index.html.md.erb).
+  To use the AWS default preferred maintenance window when provisioning, set all the properties
+  related to the preferred maintenance window to null.
 
 - **Database encryption:**
   By default, all new Aurora clusters are encrypted with an AWS managed encryption key. Alternatively, it's possible to
