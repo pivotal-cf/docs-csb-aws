@@ -74,6 +74,17 @@ provision only:
   </thead>
   <tbody>
     <tr>
+      <td><code>engine_version</code></td>
+      <td>String</td>
+      <td>
+        The Aurora PostgreSQL engine version, such as <code>14.4</code>. Some versions do not support some features.
+        For more information, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.Updates.20180305.html">AWS documentation</a>.
+        This parameter is required.
+      </td>
+      <td><code>null</code> which results in the AWS default</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>instance_name</code></td>
       <td>String</td>
       <td>The name of the AWS instance to create.</td>
@@ -122,7 +133,10 @@ provision only:
     <tr>
       <td><code>engine_version</code></td>
       <td>String</td>
-      <td>The Aurora engine version, e.g. "8.0.mysql_aurora.3.02.0". Not all features are supported by all versions. Refer to the AWS documentation for more details..</td>
+      <td>
+        The Aurora engine version, such as. <code>8.0.mysql_aurora.3.02.0</code>. Some versions do not support some features.
+        For more information, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.Updates.20180305.html">AWS documentation</a>.
+      </td>
       <td><code>null</code> which results in the AWS default</td>
       <td>provision and update</td>
     </tr>
