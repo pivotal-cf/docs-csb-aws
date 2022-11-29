@@ -171,9 +171,9 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
 
     RDS MySQL or RDS Aurora MySQL
     : The legacy binding exposes the database name in the credentials block as `database`, whereas
-    : the binding credentials received from <%= vars.product_short %> exposes the database name as
-    : `name`. You must update the consuming app to handle the `name` credential property.
-    : Push and start the app by running:
+      the binding credentials received from <%= vars.product_short %> exposes the database name as
+      `name`. You must update the consuming app to handle the `name` credential property.
+      Push and start the app by running:
 
        ```console
        cf push APP-NAME
