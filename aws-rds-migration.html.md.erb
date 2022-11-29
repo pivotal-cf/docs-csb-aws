@@ -1,17 +1,22 @@
 ---
-title: Migrating to an Amazon RDS for MySQL, PostgreSQL and Aurora MySQL Instance
+title: Migrating to an Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL Instance
 owner: Cloud Service Broker for AWS
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes migrating from an Amazon Relational Database Service (Amazon RDS) for MySQL, PostgreSQL and Aurora MySQL
-instance of the VMware Tanzu Service Broker for AWS tile to an instance of the <%= vars.product_full %> tile.
+This topic describes migrating to an instance of the <%= vars.product_full %> tile from any of the
+following:
 
-## <a id='about'></a> About Migrating Data to an Amazon RDS for MySQL, PostgreSQL and Aurora MySQL Instance
+- Amazon Relational Database Service (Amazon RDS) for MySQL instance of the VMware Tanzu Service Broker
+  for AWS tile
+- PostgreSQL instance of the VMware Tanzu Service Broker for AWS tile
+- Aurora MySQL instance of the VMware Tanzu Service Broker for AWS tile
+
+## <a id='about'></a> About Migrating Data to an Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL Instance
 
 Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
-is going out of support, you need to move from instances that the legacy broker created over to
+is going out of support, you must move from instances that the legacy broker created over to
 service instances that <%= vars.product_short %> created.
 
 The <%= vars.product_short %> plans are configurable.
@@ -21,7 +26,7 @@ matching plans in <%= vars.product_short %>.
 You can use the AWS Data Migration Service (DMS) to migrate data between Amazon RDS instances.
 The tool copies data from one database to another.
 Because the original database is not modified, you can reverse the migration if you detect any problems.
-It also allows migration to happen over time.
+It also enables migration to happen over time.
 
 The DMS is a tool provided as part of AWS.
 For more information about AWS DMS, see the [AWS documentation](https://aws.amazon.com/dms/).
@@ -29,20 +34,19 @@ For more information about AWS DMS, see the [AWS documentation](https://aws.amaz
 ### <a id='configuration'></a> Matching Configuration
 
 Both the legacy broker and <%= vars.product_short %> allow you to customize service plans.
+
 Create plans in <%= vars.product_short %> that match the plans used in the legacy broker.
 It might be useful to create a test service instance and compare the properties in the AWS console.
-For instructions on how to configure plans, see
+For how to configure plans, see
 [Configure Services with Cloud Service Broker for AWS](installing-with-aws.html.md.erb#services).
 
 ### <a id='migration'></a> Migrating Data
 
-You might want to migrate data from instances created with the legacy broker to instances
-created with <%= vars.product_short %>.
+You might want to migrate data from instances created with the legacy broker to instances created
+with <%= vars.product_short %>.
 
-<p class="note important">
-  <strong>Important:</strong> Migration of data might incur app downtime.
-  The amount of downtime depends on the method chosen.
-</p>
+> **Important** Migration of data might incur app downtime. The amount of downtime depends on the
+> method chosen.
 
 There are many methods for performing data migration, including [AWS DMS](https://aws.amazon.com/dms/),
 manual data migration, and methods available from other vendors.
@@ -55,7 +59,9 @@ In general, to migrate data:
 2. Create an Amazon RDS instance using <%= vars.product_short %>.
 3. Replicate the data from a legacy broker instance into the newly created instance.
 4. Unbind apps from the legacy broker instance and bind them to the newly created instance.
-5. After the migration is completed you can stop ongoing migration, and delete the legacy broker instance if you want to.
+
+After the migration is completed you can stop ongoing migration and, if you want, delete the legacy
+broker instance.
 
 For more detailed steps showing the Cloud Foundry commands necessary to use AWS DMS,
 see [Migrate Data from a Legacy MySQL Instance](#steps).
@@ -69,13 +75,13 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
 2. Get credentials for the legacy RDS instance details by running:
 
     ```console
-    cf env APP-USING-LEGACY-SERVICE-INSTANCE
+    cf env APP-USING-LEGACY-SERVICE-INSTANCE-NAME
     ```
 
-    Where `APP-USING-LEGACY-SERVICE-INSTANCE` is the name of an app that is bound to a
-    service instance from the legacy broker.
+    Where `APP-USING-LEGACY-SERVICE-INSTANCE-NAME` is the name of an app that is bound to a service
+    instance from the legacy broker.
 
-3. Inspect the `VCAP_SERVICES` JSON output to see the host name, database, username, password, and
+3. Inspect the `VCAP_SERVICES` JSON output to see the host name, database, user name, password, and
    port required to configure DMS.
 
 4. Create a new RDS service instance using <%= vars.product_short %> by running:
@@ -87,7 +93,8 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
     Where:
 
     - `SERVICE-OFFERING` is the name of the RDS service offer selected to match the legacy instance
-    - `SERVICE-PLAN` is the name of the RDS service plan created to match the legacy instance configuration
+    - `SERVICE-PLAN` is the name of the RDS service plan created to match the legacy instance
+      configuration
     - `NEW-SERVICE-INSTANCE-NAME` is the name of the new RDS service instance
 
 5. Create a service key in the new RDS service by running:
@@ -107,42 +114,41 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
     cf service-key NEW-SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
     ```
 
-7. Inspect the JSON output for the host name, name, username, password, and port required to
+7. Inspect the JSON output for the host name, name, user name, password, and port required to
    configure the data migration.
 
 8. Configure and run data migration, for example, by using AWS DMS.
    For how to configure data migration, see the documentation for the method you have chosen.
 
-    <p class="note">
-      <strong>Note:</strong> A data migration process might create schemas and tables without
-      granting access for other users to work with that data.
-      You can resolve this by connecting to the database with the credentials used for DMS,
-      and granting <code>binding_user_group</code> access to the schemas and tables.<br><br>
-
-      Alternatively if you are not using a continuous migration method, such as
-      AWS DMS change data capture (CDC), delete the service key used for data migration.
-      This re-assigns data ownership to the <code>binding_user_group</code> role, automatically
-      giving access to other users.
-    </p>
+    > **Important** The data migration process might create schemas and tables without granting
+    > access for other users to work with that data.
+    > You can resolve this by connecting to the database with the credentials used for DMS,
+    > and granting `binding_user_group` access to the schemas and tables.
+    >
+    > Alternatively if you are not using a continuous migration method, such as
+    > AWS DMS change data capture (CDC), delete the service key used for data migration.
+    > This re-assigns data ownership to the `binding_user_group` role, automatically
+    > giving access to other users.
 
 9. Disconnect the app from the legacy service binding by running:
 
     ```console
-    cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE
+    cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE-NAME
     ```
 
     Where:
 
     - `APP-NAME` is the app using the old AWS RDS instance.
-    - `LEGACY-SERVICE-INSTANCE` is the name of the VMware Tanzu Service Broker for AWS-brokered RDS instance.
+    - `LEGACY-SERVICE-INSTANCE-NAME` is the name of the VMware Tanzu Service Broker for AWS-brokered RDS
+      instance.
 
 10. Bind the app to the new service instance by running:
 
      ```console
-     cf bind-service APP-NAME NEW-SERVICE-INSTANCE
+     cf bind-service APP-NAME NEW-SERVICE-INSTANCE-NAME
      ```
 
-     Where `NEW-SERVICE-INSTANCE` is the name of the <%= vars.product_short %> service instance
+     Where `NEW-SERVICE-INSTANCE-NAME` is the name of the <%= vars.product_short %> service instance
      that you created earlier.
 
      For example:
@@ -154,29 +160,32 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
      Because <%= vars.product_short %> creates new credentials at bind time, this creates new binding
      credentials for the app.
 
-11. Update the app to consume the new binding credential format.
-    1. For RDS PostgreSQL:
-       Re-stage the app by executing this command:
+11. Update the app to consume the new binding credential format:
+
+    RDS PostgreSQL
+    : Restage the app by running:
+
        ```console
        cf restage APP-NAME
        ```
-    2. For RDS MySQL and RDS Aurora MySQL:
-       The legacy binding exposes the database name in the credentials block as `database`, whereas the
-       binding credentials received from <%= vars.product_short %> exposes the database name as `name`.
-       You must update the consuming app to handle the `name` credential property.
 
-       1. Push and start the app by running:
+    RDS MySQL or RDS Aurora MySQL
+    : The legacy binding exposes the database name in the credentials block as `database`, whereas
+    : the binding credentials received from <%= vars.product_short %> exposes the database name as
+    : `name`. You must update the consuming app to handle the `name` credential property.
+    : Push and start the app by running:
 
-          ```console
-          cf push APP-NAME
-          ```
+       ```console
+       cf push APP-NAME
+       ```
 
 12. After the migration finishes, you can stop continuous migration and remove the legacy service
     instance.
 
-## Important notes
-1. The legacy broker does not support the aurora-postgresql engine, therefore it is not mentioned in this tutorial.
-2. The migration between the same flavours of RDS instances but different services has not been tested.
-In other words, the migration between an Amazon RDS for MySQL Instance and an Amazon RDS for Aurora MySQL has not been tested,
-and such testing is beyond the scope of this writing.
-
+> **Important** The legacy broker does not support the `aurora-postgresql` engine, therefore it is not
+> mentioned in this tutorial.
+> The migration between the same flavors of RDS instances but different services has not been
+> tested.
+> In other words, the migration between an Amazon RDS for MySQL Instance and an
+> Amazon RDS for Aurora MySQL has not been tested, and such testing is beyond the scope of this
+> topic.

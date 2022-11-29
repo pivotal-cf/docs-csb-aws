@@ -1,7 +1,7 @@
 * [Tanzu Cloud Service Broker for AWS](index.html)
 * [Release Notes](release-notes.html)
 * [Installing and Configuring](installing-with-aws.html)
-* [Migrating Data to Amazon RDS for MySQL, PostgreSQL and Aurora MySQL Instance](aws-rds-migration.html)
+* [Migrating Data to Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL Instance](aws-rds-migration.html)
 * [Migrating an Amazon S3 Instance](aws-s3-migration.html)
 * [Upgrading](upgrading.html)
 * [Service Plan Reference](reference/index.html)
