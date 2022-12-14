@@ -205,9 +205,6 @@ To configure AWS credentials:
 ### <a id="state-db"></a> Configure a State Database
 
 This section describes how to associate <%= vars.product_short %> with the MySQL state database.
-The state database stores text information about each state change of each service instance,
-so it does not have to be large.
-For most use cases, 10&nbsp;GB is more than enough to cover the needs of <%= vars.product_short %>.
 
 #### <a id="encrypt-state-db"></a> About Encrypting the State Database
 
@@ -227,13 +224,19 @@ encryption password.
 
 #### <a id="state-db-prereq"></a> Prerequisite
 
-You must have a small MySQL database to use as the state database.
+You must have a small MySQL database to use as the state database. The state database stores text information about each
+state change of each service instance, so it does not have to be large. For most use cases, 10&nbsp;GB is more than 
+enough to cover the needs of <%= vars.product_short %>.
+
 
 #### <a id="configure-state-db"></a> Procedure: Configure a State Database
 
 To configure <%= vars.product_short %> with a database:
 
 1. Click **Service Broker Config**.
+
+   <%= image_tag("images/service-broker-config-pane.png", :alt => "Fields for configuring the service broker. See the following steps for detailed descriptions of the configurable fields.", :width => "400") %>
+
 1. Configure the text boxes as follows:
 
    | Text box | Instructions |
@@ -314,7 +317,7 @@ supply the credentials as properties to a plan instance in the additional plans 
 
 1. Click **Apply changes**.
 
-1. Review your Cloud Foundry Marketplace to see the new plan sizes.
+1. Review your Cloud Foundry Marketplace to see the new plans.
 
 ### <a id="config-flags"></a> Configure Feature Flags
 
@@ -328,6 +331,12 @@ To configure feature flags:
    To enable all service offerings tagged as beta, select the check box.
 
 1. Click **Save**.
+
+1. Return to the <%= vars.ops_manager %> Installation Dashboard and click **Review Pending Changes**.
+
+1. Click **Apply changes**.
+
+1. Review your Cloud Foundry Marketplace to see the new services.
 
 ## <a id="rotate-password"></a>Rotate the Encryption Password on the State Database
 
