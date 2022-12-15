@@ -224,10 +224,10 @@ encryption password.
 
 #### <a id="state-db-prereq"></a> Prerequisite
 
-You must have a small MySQL database to use as the state database. The state database stores text information about each
-state change of each service instance, so it does not have to be large. For most use cases, 10&nbsp;GB is more than 
-enough to cover the needs of <%= vars.product_short %>.
-
+You must have a small MySQL database to use as the state database.
+The state database stores text information about each state change of each service instance, so it
+does not have to be large. For most use cases, 10&nbsp;GB is more than enough to cover the needs of
+<%= vars.product_short %>.
 
 #### <a id="configure-state-db"></a> Procedure: Configure a State Database
 
@@ -235,9 +235,9 @@ To configure <%= vars.product_short %> with a database:
 
 1. Click **Service Broker Config**.
 
-   <%= image_tag("images/service-broker-config-pane.png", :alt => "Fields for configuring the service broker. See the following steps for detailed descriptions of the configurable fields.", :width => "400") %>
+   <%= image_tag("images/service-broker-config-pane.png", :alt => "Fields for configuring the service broker.", :width => "400") %>
 
-1. Configure the text boxes as follows:
+2. Configure the text boxes as follows:
 
    | Text box | Instructions |
    |-------|--------------|
@@ -251,18 +251,18 @@ To configure <%= vars.product_short %> with a database:
    | **Password**| Enter a secure password that is at least 20 characters long. You cannot change this password after you save.|
    | **Primary**| Select this check box if this is the password that you want to use to encrypt the data. You must mark one and only one password as primary.|
 
-1. Click **Save**.
+3. Click **Save**.
 
-1. If upgrading from a previous tile version, service instances might need upgrading.
+4. If upgrading from a previous tile version, service instances might need upgrading.
 By default, the tile upgrades all instances during installation.
 To configure the upgrade task, see [Upgrade All Service Instances Configuration](#upgrade-all-config).
 For version-specific upgrade instructions, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
 
 1. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
-1. Click **Review Pending Changes**.
+2. Click **Review Pending Changes**.
 
-1. Click **Apply changes** to install the <%= vars.product_short %> tile.
+3. Click **Apply changes** to install the <%= vars.product_short %> tile.
 
 If you later want to change the password on the state database,
 see [Rotate the Encryption Password on the State Database](#rotate-password) later in the topic.
