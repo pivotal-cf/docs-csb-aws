@@ -55,7 +55,7 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The table below lists the parameters adaptor that you can configure in <%= vars.ops_manager %>.
+The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
 You can also configure these parameters using the `-c` flag when provisioning a `aws-rds-postgres` service:
 
 <table class="nice">
@@ -136,7 +136,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     <tr>
       <td><code>allow_minor_version_upgrade</code></td>
       <td>Boolean</td>
-      <td>(Optional) Indicates adaptor that minor engine upgrades will be applied automatically
+      <td>(Optional) Indicates that minor engine upgrades will be applied automatically
         to the database instance during the maintenance window.</td>
       <td><code>true</code></td>
     </tr>
