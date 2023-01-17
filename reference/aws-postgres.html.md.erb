@@ -1,17 +1,18 @@
 ---
-title: Amazon RDS for PosgreSQL (Beta)
+title: Amazon RDS for PostgreSQL (Beta)
 owner: Cloud Service Broker
 ---
 
 <strong><%= modified_date %></strong>
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon RDS for PosgreSQL service is currently in beta and is intended for
+  <strong>Important:</strong> The Amazon RDS for PostgreSQL service is in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
 This topic provides reference information about the <a href="https://aws.amazon.com/rds/postgresql/">Amazon RDS for
-PostgreSQL</a> (aws-rds-postgres) service. It details the plans, configuration parameters, and binding credentials.
+PostgreSQL</a> (aws-rds-postgres) service. It describes the plans, configuration parameters, and
+binding credentials.
 
 ## <a id="plans"></a> Plans
 
@@ -44,17 +45,17 @@ For more information about database instance classes, see the
 
 You can provision a service by running:
 
-```
+```console
 cf create-service aws-rds-postgres PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
 
-```
+```console
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The table below lists the parameters that you can configure in <%= vars.ops_manager %>.
+The table below lists the parameters adaptor that you can configure in <%= vars.ops_manager %>.
 You can also configure these parameters using the `-c` flag when provisioning a `aws-rds-postgres` service:
 
 <table class="nice">
@@ -135,7 +136,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     <tr>
       <td><code>allow_minor_version_upgrade</code></td>
       <td>Boolean</td>
-      <td>(Optional) Indicates that minor engine upgrades will be applied automatically
+      <td>(Optional) Indicates adaptor that minor engine upgrades will be applied automatically
         to the database instance during the maintenance window.</td>
       <td><code>true</code></td>
     </tr>

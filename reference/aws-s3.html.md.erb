@@ -6,12 +6,12 @@ owner: Cloud Service Broker
 <strong><%= modified_date %></strong>
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon S3 Bucket service is currently in beta and is intended for
+  <strong>Important:</strong> The Amazon S3 Bucket service is in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
 This topic provides reference information about the <a href="https://aws.amazon.com/s3/">Amazon S3</a> (csb-aws-s3-bucket) service.
-It details the plans, configuration parameters, and binding credentials.
+It describes the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
 
@@ -26,13 +26,13 @@ The table below lists the plans for the `csb-aws-s3-bucket` service:
 
 You can provision a service by running:
 
-```
+```console
 cf create-service csb-aws-s3-bucket PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
 
-```
+```console
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
@@ -83,7 +83,7 @@ You can also configure these parameters using the `-c` flag when provisioning a 
 
 The format for binding credentials for Amazon S3 Bucket is as follows:
 
-```
+```json
 {
     "arn" : "BUCKET-ARN",
     "bucket_domain_name" : "BUCKET-FQDN",

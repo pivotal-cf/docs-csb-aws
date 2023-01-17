@@ -6,12 +6,13 @@ owner: Cloud Service Broker
 <strong><%= modified_date %></strong>
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon ElastiCache for Redis service is currently in beta and is intended for
+  <strong>Important:</strong> The Amazon ElastiCache for Redis service is in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
-This topic provides reference information about the <a href="https://aws.amazon.com/elasticache/redis">Amazon ElastiCache for Redis</a> (csb-aws-redis) service.
-It details the plans, configuration parameters, and binding credentials.
+This topic provides reference information about the
+<a href="https://aws.amazon.com/elasticache/redis">Amazon ElastiCache for Redis</a> (csb-aws-redis)
+service. It describes the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
 
@@ -51,13 +52,13 @@ Tables for cache sizes and plans are below:
 
 You can provision a service by running:
 
-```
+```console
 cf create-service csb-aws-redis PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 You can update the configuration parameters for a service instance by running:
 
-```
+```console
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
