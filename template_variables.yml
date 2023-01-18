@@ -5,6 +5,7 @@ template_variables:
   title: <span class="title-deemph">VMware Tanzu</span> Documentation
   title_image: images/icon-p-green.jpg
   hero_text: "Detailed documentation to help you install, understand, and succeed with VMware's enterprise-grade software."
+  hide_content: true
 
   tile_name: Cloud Service Broker
 
