@@ -9,7 +9,7 @@ This includes:
 * Doc error fixes
 * Doc reorganization or enhancement
 
-Then, if necessary, immediately cherry-pick/copy any changes that you want to push immediately to
+Then, if necessary, immediately cherry-pick or copy any changes that you want to push immediately to
 production into the appropriate branches listed below:
 
 | Branch Name| Staging | Production |
