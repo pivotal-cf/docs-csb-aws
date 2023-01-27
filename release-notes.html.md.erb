@@ -11,15 +11,17 @@ These are release notes for <%= vars.product_full %>.
 
 ## <a id="1-4-1"></a> v1.4.1
 
-**Release Date:** MMMM DD, 2023
+**Release Date:** January 27, 2023
 
 ### Resolved issues
 
 This release has the following fixes:
 
 - **JDBC URL for Postgres:** has been fixed to use the standard Java location for TLS certificate
-  authorities (CAs). This fix is applicable both to RDS Postgres and
-  Amazon Aurora PostgreSQL-Compatible edition services.
+  authorities (CAs). This fix is applicable both to RDS Postgres and Amazon Aurora PostgreSQL-Compatible edition
+  services.
+- **JDBC URL for MySQL:** has been fixed to include SSL parameters compatible with the Java buildpack. This fix is
+  applicable both to RDS MySQL and Amazon Aurora MySQL-Compatible edition services.
 
 <% end %>
 
