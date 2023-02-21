@@ -13,38 +13,6 @@ owner: Cloud Service Broker
 This topic provides reference information about the <a href="https://aws.amazon.com/elasticache/redis">Amazon ElastiCache for Redis</a> (csb-aws-redis) service.
 It details the plans, configuration parameters, and binding credentials.
 
-## <a id="plans"></a> Plans
-
-Tables for cache sizes and plans are below:
-
-### Cache Size to AWS Node Type Mapping
-
-| cache_size | node type         |
-|------------|-------------------|
-| 1          | cache.t2.small    |
-| 2          | cache.t3.medium   |
-| 4          | cache.m5.large    |
-| 8          | cache.m5.xlarge   |
-| 16         | cache.r4.xlarge   |
-| 32         | cache.r4.2xlarge  |
-| 64         | cache.r4.4xlarge  |
-| 128        | cache.r4.8xlarge  |
-| 256        | cache.r5.12xlarge |
-
-## <a id="plans"></a> Plans
-
-The default plans for Amazon ElastiCache for Redis are in the table below:
-
-| Plan      | Cache Size         | AWS Cache Node Type | HA  |
-|-----------|--------------------|---------------------|-----|
-| small     | minimum 1&nbsp;GB  | cache.t2.small      | no  |
-| medium    | minimum 4&nbsp;GB  | cache.m5.large      | no  |
-| large     | minimum 16&nbsp;GB | cache.r4.xlarge     | no  |
-| small-ha  | minimum 1&nbsp;GB  | cache.t2.small      | yes |
-| medium-ha | minimum 4&nbsp;GB  | cache.m5.large      | yes |
-| large-ha  | minimum 16&nbsp;GB | cache.r4.xlarge     | yes |
-
-
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
@@ -195,5 +163,91 @@ The format for binding credentials for Redis is as follows:
     "host" : "REDIS-SERVER-HOSTNAME",
     "password" : "AUTHENTICATION-PASSWORD",
     "tls_port" : "REDIS-TLS-PORT"
+}
+```
+
+## <a id="old-plans"></a> Add previously provided pre-configured plans
+
+The following table lists the previously provided plans for Amazon ElastiCache for Redis service:
+For how to configure plans through the tile, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+
+ Add the following block to keep the `small` plan:
+
+ ```json
+ {
+  "name": "small",
+  "id": "ad963fcd-19f7-4b79-8e6d-645756e84f7a",
+  "description": "Beta - Redis 6.0 with 1GB cache and 1 node.",
+  "display_name": "Small (Beta)",
+  "cache_size": 2,
+  "redis_version": "6.0",
+  "node_count": 1
+ }
+ ```
+
+ Add the following block to keep the `medium` plan:
+
+ ```json
+ {
+  "name": "medium",
+  "id": "df41095a-43e8-4be4-b4d6-ae2d8a35068d",
+  "description": "Beta - Redis 6.0 with at least 4GB cache and 1 node.",
+  "display_name": "Medium (Beta)",
+  "cache_size": 4,
+  "redis_version": "6.0",
+  "node_count": 1
+}
+```
+
+Add the following block to keep the `large` plan:
+```json
+{
+  "name": "large",
+  "id": "da4dc49c-a64f-4d2a-8490-5e456cbb0577",
+  "description": "Beta - Redis 6.0 with at least 16 GB cache and 1 node.",
+  "display_name": "Large (Beta)",
+  "cache_size": 16,
+  "redis_version": "6.0",
+  "node_count": 1
+}
+```
+
+
+Add the following block to keep the `small-ha` plan:
+```json
+{
+  "name": "small-ha",
+  "id": "70544df7-0ac4-4580-ba51-c1fbdd6fdfd0",
+  "description": "Beta - Redis 6.0 with 1GB cache and 2 nodes.",
+  "display_name": "Small HA (Beta)",
+  "cache_size": 2,
+  "redis_version": "6.0"
+}
+```
+
+
+Add the following block to keep the `medium-ha` plan:
+```json
+{
+  "name": "medium-ha",
+  "id": "a4235008-80f4-4053-924b-defcce17cb63",
+  "description": "Beta - Redis 6.0 with at least 4GB cache and 2 nodes.",
+  "display_name": "Medium HA (Beta)",
+  "cache_size": 4,
+  "redis_version": "6.0"
+}
+```
+
+
+Add the following block to keep the `large-ha` plan:
+```json
+{
+  "name": "large-ha",
+  "id": "f26cda6f-d4b4-473a-966c-32d238f723ef",
+  "description": "Beta - Redis 6.0 with at least 16 GB cache and 2 nodes.",
+  "display_name": "Large HA (Beta)",
+  "cache_size": 16,
+  "redis_version": "6.0"
 }
 ```
