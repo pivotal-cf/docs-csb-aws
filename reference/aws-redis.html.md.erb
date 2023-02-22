@@ -13,6 +13,15 @@ owner: Cloud Service Broker
 This topic provides reference information about the <a href="https://aws.amazon.com/elasticache/redis">Amazon ElastiCache for Redis</a> (csb-aws-redis) service.
 It details the plans, configuration parameters, and binding credentials.
 
+<p class="note">
+  <strong>Note:</strong> Release v1.5.0 removes brokerpak pre-configured plans for Amazon ElastiCache for Redis.
+  All plans must be configured through the tile.
+  If you have instances of Amazon ElastiCache for Redis that were created in previous versions and that you want to
+  maintain, see <a id="#old-plans">Previously Provided Pre-configured Plans</a>.
+  For more information about upgrade steps, see
+  <a href="../upgrading.html.md.erb">Upgrading <%= vars.product_full %></a>.
+</p>
+
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
@@ -166,16 +175,27 @@ The format for binding credentials for Redis is as follows:
 }
 ```
 
-## <a id="old-plans"></a> Add previously provided pre-configured plans
+## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 
 The following table lists the previously provided plans for Amazon ElastiCache for Redis service:
+
+| Plan      | Cache Size         | AWS Cache Node Type | HA  |
+|-----------|--------------------|---------------------|-----|
+| small     | minimum 1&nbsp;GB  | cache.t2.small      | no  |
+| medium    | minimum 4&nbsp;GB  | cache.m5.large      | no  |
+| large     | minimum 16&nbsp;GB | cache.r4.xlarge     | no  |
+| small-ha  | minimum 1&nbsp;GB  | cache.t2.small      | yes |
+| medium-ha | minimum 4&nbsp;GB  | cache.m5.large      | yes |
+| large-ha  | minimum 16&nbsp;GB | cache.r4.xlarge     | yes |
+
+To keep these plans in this version of the broker, add them through the tile as custom plans.
 For how to configure plans through the tile, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+[Configure Services with <%= vars.product_short %>](../installing-with-aws.html#services).
 
- Add the following block to keep the `small` plan:
+Add the following block to keep the `small` plan:
 
- ```json
- {
+```json
+{
   "name": "small",
   "id": "ad963fcd-19f7-4b79-8e6d-645756e84f7a",
   "description": "Beta - Redis 6.0 with 1GB cache and 1 node.",
@@ -183,13 +203,13 @@ For how to configure plans through the tile, see
   "cache_size": 2,
   "redis_version": "6.0",
   "node_count": 1
- }
- ```
+}
+```
 
- Add the following block to keep the `medium` plan:
+Add the following block to keep the `medium` plan:
 
- ```json
- {
+```json
+{
   "name": "medium",
   "id": "df41095a-43e8-4be4-b4d6-ae2d8a35068d",
   "description": "Beta - Redis 6.0 with at least 4GB cache and 1 node.",
@@ -201,6 +221,7 @@ For how to configure plans through the tile, see
 ```
 
 Add the following block to keep the `large` plan:
+
 ```json
 {
   "name": "large",
@@ -215,6 +236,7 @@ Add the following block to keep the `large` plan:
 
 
 Add the following block to keep the `small-ha` plan:
+
 ```json
 {
   "name": "small-ha",
@@ -228,6 +250,7 @@ Add the following block to keep the `small-ha` plan:
 
 
 Add the following block to keep the `medium-ha` plan:
+
 ```json
 {
   "name": "medium-ha",
@@ -241,6 +264,7 @@ Add the following block to keep the `medium-ha` plan:
 
 
 Add the following block to keep the `large-ha` plan:
+
 ```json
 {
   "name": "large-ha",
