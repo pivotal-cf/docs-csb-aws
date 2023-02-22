@@ -5,12 +5,12 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-Release v1.3.0 and later does not support insecure connections to
-Amazon Aurora PostgreSQL-Compatible Edition instances when binding or unbinding.
-For secure connections to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
-
 This topic provides reference information about the <a href="https://aws.amazon.com/rds/aurora/">Amazon Aurora MySQL-Compatible Edition</a> (csb-aws-aurora-mysql) service.
 It details the plans, configuration parameters, and binding credentials.
+
+Release v1.3.0 and later does not support unsecured connections to
+Amazon Aurora PostgreSQL-Compatible Edition instances when binding or unbinding.
+For secure connections to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
