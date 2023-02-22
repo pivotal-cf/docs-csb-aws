@@ -11,9 +11,9 @@ service. It details the plan and service instance configuration parameters, and 
 
 <p class="note">
   <strong>Note:</strong> Release v1.2.0 removed brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
-  Since then all plans must be configured through the tile.
+  All plans must be configured through the tile.
   If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
-  maintain, see <a href="#old-plans">Add previously pre-configured plans</a>.
+  maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
   For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
 </p>.
 
@@ -472,7 +472,7 @@ When a binding or service key is deleted, data owned by the PostgreSQL user is r
 called `binding_user_group` before the user is deleted. This ensures that other bindings still have
 access to the data.
 
-## <a id="old-plans"></a> Add previously provided pre-configured plans
+## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 
 The following table lists the previously provided plans for the Amazon RDS for PostgreSQL service:
 
@@ -482,9 +482,9 @@ The following table lists the previously provided plans for the Amazon RDS for P
 | medium | PostgreSQL 11, 4 vCPUs, 16&nbsp;GB RAM, 10&nbsp;GB storage |
 | large  | PostgreSQL 11, 8 vCPUs, 32&nbsp;GB RAM, 20&nbsp;GB storage |
 
-To keep these plans in later versions of the broker, add them through the tile as custom plans.
+To keep these plans in this version of the broker, add them through the tile as custom plans.
 For how to configure plans through the tile, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+[Configure Services with <%= vars.product_short %>](../installing-with-aws.html#services).
 
 Add the following block to keep the `small` plan:
 
