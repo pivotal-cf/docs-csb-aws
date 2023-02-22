@@ -40,7 +40,7 @@ This release has the following breaking changes for the Amazon RDS MySQL service
   For more information, see
   [Changing custom plans](upgrading.html.md.erb#rds-mysql-custom-plans).
 
-- **Insecure connections are no longer supported:**
+- **Unsecured connections are no longer supported:**
   Every connection in RDS MySQL instances must use
   TLS encryption. This change is applied to previously existing instances after upgrading or binding
   recreation. The property `use_tls` is now removed. The old custom plans containing the property
@@ -272,7 +272,7 @@ This release has the following changes for Amazon Aurora PostgreSQL-Compatible E
 
 This release has the following changes for Amazon Aurora MySQL-Compatible Edition services:
 
-- **Insecure connections are no longer supported:** Every connection in Aurora MySQL instances must use TLS encryption.
+- **Unsecured connections are no longer supported:** Every connection in Aurora MySQL instances must use TLS encryption.
   The AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
 - **You can configure a database cluster parameter group name:**
