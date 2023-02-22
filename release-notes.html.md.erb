@@ -15,6 +15,16 @@ These are release notes for <%= vars.product_full %>.
 
 This release has the following breaking changes:
 
+
+#### Amazon ElastiCache for Redis
+
+- **Removed Amazon ElastiCache for Redis pre-configured plans:**
+  From this version onwards, plans are no longer provided with the brokerpak.
+  If you have ElastiCache for Redis service instances that were using built-in plans and that you want to
+  maintain, you must add them through the tile configuration.
+  For more information, see
+  [Previously Provided Pre-configured Plans](reference/aws-redis.html#old-plans) in _Amazon ElastiCache for Redis Reference_.
+
 ### Features
 
 New features and changes in this release:
