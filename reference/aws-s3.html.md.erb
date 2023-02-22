@@ -10,10 +10,10 @@ This topic provides reference information about the <a href="https://aws.amazon.
 It details the plans, configuration parameters, and binding credentials.
 
 <p class="note"><strong>Note:</strong>
-  Release v1.2.0 removed brokerpak pre-configured plans for the Amazon S3 bucket.
-  Since then, all plans must be configured through the tile.
+  Release v1.2.0 removes brokerpak pre-configured plans for the Amazon S3 bucket.
+  All plans must be configured through the tile.
   If you have instances of the S3 bucket that were created in previous versions and that you want to
-  maintain, see <a href="#old-plans">Add previously pre-configured plans</a> later in this topic.
+  maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a> later in this topic.
   For more information on upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>.
 </p>
 
@@ -345,7 +345,7 @@ The format for binding credentials for Amazon S3 Bucket is as follows:
 }
 ```
 
-## <a id="old-plans"></a> Add previously provided pre-configured plans
+## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 
 The following table lists the previously provided plans for the `csb-aws-s3-bucket` service:
 
@@ -354,9 +354,9 @@ The following table lists the previously provided plans for the `csb-aws-s3-buck
 | private       | Private S3 bucket|
 | public-read      | Publicly readable S3 bucket|
 
-To keep these plans in later versions of the broker, add them through the tile as custom plans.
+To keep these plans in this version of the broker, add them through the tile as custom plans.
 For how to configure plans through the tile, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
+[Configure Services with <%= vars.product_short %>](../installing-with-aws.html.md.erb#services).
 
 Add the following block to keep the `private` plan:
 

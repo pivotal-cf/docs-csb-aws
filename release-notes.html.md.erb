@@ -15,13 +15,13 @@ These are release notes for <%= vars.product_full %>.
 
 This release has the following breaking changes:
 
-- **Amazon S3 and RDS PostgreSQL pre-configured plans were removed:** From this version onwards,
+- **Removed Amazon S3 and RDS PostgreSQL pre-configured plans:** From this version onwards,
   plans are no longer provided with the brokerpak.
-  If you have S3 or RDS PostgreSQL service instances that were using build-in plans and that you want
-  to maintain, previously provided plans must be added through the tile configuration.
+  If you have S3 or RDS PostgreSQL service instances  that you want to maintain that use the former built-in plans,
+  you must add the plans through the tile configuration.
   For more information, see
-  [Add S3 previously provided pre-configured plans](reference/aws-s3.html.md.erb#old-plans) and
-  [Add RSD Postgres previously provided pre-configured plans](reference/aws-postgres.html.md.erb#old-plans).
+  [S3 Previously Provided Pre-configured Plans](reference/aws-s3.html.md.erb#old-plans) and
+  [RDS PostgresSQL Previously Provided Pre-configured Plans](reference/aws-postgres.html.md.erb#old-plans).
 - **RDS PostgreSQL new default storage type:** The default storage type is now set as io1
   (provisioned IOPS SSD). Previously the default used gp2 (general purpose SSD).
   Users who previously had custom plans must add the property `"storage_type":"gp2"` to the plan
