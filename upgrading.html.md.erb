@@ -10,9 +10,9 @@ The following sections have information about upgrading to v1.4.0.
 
 The following sections describe changes for Amazon Aurora PostgreSQL-Compatible Edition.
 
-### <a id="aurora-postgres-ssl"></a> Insecure connections from the broker are no longer supported
+### <a id="aurora-postgres-ssl"></a> Unsecured connections from the broker are no longer supported
 
-Cloud Service Broker connections to Aurora PostgreSQL instances must use TLS encryption.
+<%= vars.product_short %> connections to Aurora PostgreSQL instances must use TLS encryption.
 For bind and unbind to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
 
 ## <a id="procedure"></a> Upgrade procedure
