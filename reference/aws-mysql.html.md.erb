@@ -39,6 +39,8 @@ The following table lists parameters which can only be configured for additional
 | `cores`           | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
 | `mysql_version`   | The version of the MySQL instance. Either major version, for example, `8.0`, or full version, for example, `8.0.30`.                           | _n/a_   | Yes      |
 | `storage_gb`      | Size of storage volume for service instance. 5&ndash;4096.                                                               | _n/a_   | Yes      |
+| `metadata.displayName`    | Name to use when displaying plan in Marketplace.                                     | _n/a_   | No       |
+| `metadata.bullets`        | List of bullet points to display in Apps Manager.                                    | _n/a_   | No       |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
 
@@ -503,14 +505,17 @@ Add the following block to keep the `small` plan:
     "name": "small",
     "id": "2268ce43-7fd7-48dc-be2f-8611e11fb12e",
     "description": "MySQL v5.7, minimum 2 cores, minimum 4GB ram, 5GB storage",
-    "display_name": "small",
     "cores": 2,
     "storage_gb": 5,
     "storage_type": "gp2",
     "mysql_version": 5.7,
     "storage_encrypted": false,
     "multi_az": false,
-    "storage_autoscale": false
+    "storage_autoscale": false,
+    "metadata": {
+      "displayName": "small",
+      "bullets": [MySQL v5.7", "minimum 2 cores", "minimum 4GB ram", "5GB storage"]
+    }       
 }
 ```
 
@@ -521,14 +526,18 @@ Add the following block to keep the `medium` plan:
     "name": "medium",
     "id": "f2ae0bb7-6921-43b7-bae7-6d1fe1c5d1c6",
     "description": "MySQL 5.7, minimum 4 cores, minimum 8GB ram, 10GB storage",
-    "display_name": "medium",
     "cores": 4,
     "storage_gb": 10,
     "storage_type": "gp2",
     "mysql_version": 5.7,
     "storage_encrypted": false,
     "multi_az": false,
-    "storage_autoscale": false
+    "storage_autoscale": false,
+    "metadata": {
+      "displayName": "medium",
+      "bullets": [MySQL v5.7", "minimum 4 cores", "minimum 8GB ram", "10GB storage"]
+    }       
+
 }
 ```
 
@@ -539,13 +548,17 @@ Add the following block to keep the `large` plan:
     "name": "large",
     "id": "a5fea013-e87f-488f-969d-1cf038881b57",
     "description": "MySQL 5.7, minimum 8 cores, minimum 16GB ram, 20GB storage",
-    "display_name": "large",
     "cores": 8,
     "storage_gb": 20,
     "storage_type": "gp2",
     "mysql_version": 5.7,
     "storage_encrypted": false,
     "multi_az": false,
-    "storage_autoscale": false
+    "storage_autoscale": false,
+    "metadata": {
+      "displayName": "large",
+      "bullets": [MySQL v5.7", "minimum 8 cores", "minimum 16GB ram", "20GB storage"]
+    }       
+
 }
 ```
