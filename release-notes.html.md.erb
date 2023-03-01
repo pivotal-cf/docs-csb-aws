@@ -24,6 +24,11 @@ This release has the following breaking changes:
   For more information, see
   [Previously Provided Pre-configured Plans](reference/aws-redis.html#old-plans) in _Amazon ElastiCache for Redis Reference_.
 
+- **Changes are now applied immediately:**
+  From this version onwards, changes done with `cf update-service` are applied immediately
+  instead of being queued to be applied during the maintenance window.
+  This can result in a brief downtime as the server reboots.
+
 ### Features
 
 New features and changes in this release:
