@@ -22,6 +22,12 @@ It details the plans, configuration parameters, and binding credentials.
   <a href="../upgrading.html.md.erb">Upgrading <%= vars.product_full %></a>.
 </p>
 
+<p class="note">
+  <strong>Note:</strong> From release v1.5.0 onwards changes done with <code>cf update-service</code> are applied immediately for Amazon ElastiCache for Redis,
+  instead of being queued to be applied during the maintenance window.
+  This can result in a brief downtime as the server reboots.
+</p>
+
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
