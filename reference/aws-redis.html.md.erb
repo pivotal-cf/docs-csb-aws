@@ -109,9 +109,8 @@ provision only:
       <td><code>node_type</code></td>
       <td>String</td>
       <td>Specifying the node type overrides the `cache-size` conversion to node type that is
-        described in the <strong>Cache Size to AWS Node Type Mapping</strong> table in the
-        <a href="#aws-redis-plans">Plans for Amazon ElastiCache</a> section above.<br><br>
-        For more information about node types and pricing, see the
+        described in the <strong>Cache Size to AWS Node Type Mapping</strong> <a href="#cache-size-node-type">table</a>.
+       <br><br> For more information about node types and pricing, see the
         <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a>.</td>
       <td><em>n/a</em></td>
       <td>provision and update</td>
@@ -121,6 +120,21 @@ provision only:
       <td>Integer</td>
       <td>Number of nodes (primary and replicas) in the cluster</td>
       <td><code>2</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>redis_version</code></td>
+      <td>String</td>
+      <td>
+        The version for the redis instance.
+        For more information about upgrading engine versions, see the 
+        <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/VersionManagement.html">AWS documentation</a>
+        <br><br>
+        The downgrade of the version is not allowed as it involves the recreation of the instance.
+        If you try to perform the operation, the Cloud Service Broker will throw an error thanks to the mechanism
+        established to prevent the destruction of the instance.
+      </td>
+      <td><code>None</code></td>
       <td>provision and update</td>
     </tr>
     <tr>

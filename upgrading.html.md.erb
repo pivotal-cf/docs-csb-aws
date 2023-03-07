@@ -4,14 +4,56 @@ owner: Cloud Service Broker
 ---
 
 This topic describes how to upgrade <%= vars.product_full %>.
-The following sections have information about upgrading to vX.Y.Z.
+The following sections have information about upgrading to v1.5.0.
+
+
+## <a id="aws-redis"></a> Amazon ElasticCache for Redis
+
+The following sections describe changes for Amazon ElastiCache for Redis.
+
+### <a id="aws-redis-old-plans"></a> Restoring brokerpak-provided plans
+
+From this version onwards, Amazon ElasticCache for Redis plans are no longer provided with the brokerpak.
+If you have instances that you want to maintain, you must add previously provided plans through the
+tile. For more information, see
+[Add previously provided pre-configured plans](reference/aws-redis.html.md.erb#old-plans).
+
+### <a id="aws-redis-chng-cust-plns"></a> Changing custom plans
+
+Make the following changes to existing custom plans before upgrading.
+
+#### <a id="aws-redis-chng-cust-plns-redis-version"></a> Set `redis_version` for the service.
+
+If you have custom plans already configured for Redis, you will have to review the configuration.
+The property `redis_version` was moved from the parameters plan to the required user input parameters, and you have to maintain the
+property with the previous value established in your custom plans.
+
+To ensure that no unintended changes happen to your existing instances, maintain the `redis_version` property using
+the same value previously defined.
+For example, if you created an instance using version 6.0 of Redis, your plan must look like this:
+
+```json
+    {
+        "name": "my-custom-plan",
+        "id": "5d1763cb-2a39-48c6-955d-ff519cf16d6c",
+        "description": "My custom plan Redis 6.0 with cache.t3.medium and 1 node.",
+        "cache_size": 2,
+        "redis_version": "6.0",
+        "node_count": 1,
+        "metadata": {
+            "displayName": "My Custom Plan",
+            "bullets": ["Redis 6.0", "cache.t3.medium", "1 node"]
+        }
+    }
+```
 
 ## <a id="procedure"></a> Upgrade procedure
 
 To upgrade the <%= vars.product_short %> to a later version:
 
 1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
-1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
-1. If you are upgrading to a version later than v1.0, service instances might need to be upgraded.
+2. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
+3. Make all the changes described in this topic that are required for the new version.
+4. If you are upgrading to a version later than v1.0, service instances might need to be upgraded.
 Before installing the new version, see
 [Upgrade All Service Instances Config](installing-with-aws.html#upgrade-all-config).
