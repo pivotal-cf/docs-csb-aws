@@ -126,7 +126,12 @@ provision only:
       <td><code>redis_version</code></td>
       <td>String</td>
       <td>
-        The version for the redis instance.
+        The version for the redis instance to be used in the replication group.
+        If the version is 6 or higher, the major and minor version can be set, e.g., <code>6.2</code>,
+        or the minor version can be unspecified which will use the latest version at creation time, e.g., <code>6.x</code>.
+        Otherwise, specify the full version desired, e.g., <code>5.0.6</code>.
+        In other words, <code>redis_version</code> must match <code>major.minor</code> when using version <code>6</code>
+        or higher, or <code>major.minor.patch</code>.
         For more information about upgrading engine versions, see the 
         <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/VersionManagement.html">AWS documentation</a>
         <br><br>
