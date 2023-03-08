@@ -30,7 +30,7 @@ property with the previous value established in your custom plans.
 
 To ensure that no unintended changes happen to your existing instances, maintain the `redis_version` property using
 the same value previously defined.
-For example, if you created an instance using version 6.0 of Redis, your plan must look like this:
+For example, if you created an instance using version 6.0 of Redis, your plan should specify version 6.0 as in this example plan:
 
 ```json
     {
@@ -39,7 +39,6 @@ For example, if you created an instance using version 6.0 of Redis, your plan mu
         "description": "My custom plan Redis 6.0 with cache.t3.medium and 1 node.",
         "cache_size": 2,
         "redis_version": "6.0",
-        "node_count": 1,
         "metadata": {
             "displayName": "My Custom Plan",
             "bullets": ["Redis 6.0", "cache.t3.medium", "1 node"]
