@@ -165,6 +165,20 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>at_rest_encryption_enabled</code></td>
+      <td>Boolean</td>
+      <td>Whether to enable encryption at rest</td>
+      <td><code>true</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>kms_key_id</code></td>
+      <td>String</td>
+      <td>The ARN of the key to use if encrypting at rest. Defaults to AWS managed key</td>
+      <td><code>""</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance</td>
@@ -291,6 +305,7 @@ Add the following block to keep the `small-ha` plan:
   "description": "Beta - Redis 6.0 with 1GB cache and 2 nodes.",
   "cache_size": 2,
   "redis_version": "6.0",
+  "at_rest_encryption_enabled": false,
   "metadata": {
     "displayName": "Small HA (Beta)",
     "bullets": ["Redis 6.0", "1GB Cache", "2 nodes"]
@@ -308,6 +323,7 @@ Add the following block to keep the `medium-ha` plan:
   "description": "Beta - Redis 6.0 with at least 4GB cache and 2 nodes.",
   "cache_size": 4,
   "redis_version": "6.0",
+  "at_rest_encryption_enabled": false,
   "metadata": {
     "displayName": "Medium HA (Beta)",
     "bullets": ["Redis 6.0", "4GB Cache", "2 nodes"]
@@ -325,6 +341,7 @@ Add the following block to keep the `large-ha` plan:
   "description": "Beta - Redis 6.0 with at least 16 GB cache and 2 nodes.",
   "cache_size": 16,
   "redis_version": "6.0",
+  "at_rest_encryption_enabled": false,
   "metadata": {
     "displayName": "Large HA (Beta)",
     "bullets": ["Redis 6.0", "16GB Cache", "2 nodes"]
