@@ -40,6 +40,7 @@ For example, if you created an instance using version 6.0 of Redis, your plan mu
         "cache_size": 2,
         "redis_version": "6.0",
         "node_count": 1,
+        "at_rest_encryption_enabled": false,
         "metadata": {
             "displayName": "My Custom Plan",
             "bullets": ["Redis 6.0", "cache.t3.medium", "1 node"]
@@ -57,6 +58,12 @@ When in doubt keep using `cache_size` for existing plans and start using `node_t
 
 For more information about node types and pricing, see the [AWS documentation](https://aws.amazon.com/elasticache/pricing/).
 You can also check: [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
+
+#### <a id="aws-redis-chng-cust-plns-at-rest-encryption"></a> Set `at_rest_encryption_enabled` to false.
+
+The newly-added `at_rest_encryption_enabled` property defaults to `true`. Because previously created instances cannot be modified to
+use encryption at rest, the property `at_rest_encryption_enabled` should be set to `false` in existing plans in order to match
+services instances that have already been created.
 
 ## <a id="procedure"></a> Upgrade procedure
 
