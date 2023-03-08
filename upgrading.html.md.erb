@@ -47,6 +47,17 @@ For example, if you created an instance using version 6.0 of Redis, your plan mu
     }
 ```
 
+#### <a id="aws-redis-chng-cust-plns-cache-size"></a> Consider replacing `cache_size` with `node_type`.
+
+Property `cache_size` is now deprecated.
+Consider replacing it with its equivalent `node_type`. [See Table of equivalents for `cache_size` and `node_type`](reference/aws-redis.html.md.erb#cache-size-node-type).
+Notice that specifying `node_type` in a plan prevents any existing or future service from passing `node_type` as a service-specific configuration parameter.
+This has strong implications for existing plans since existing services might become unmanageable if they specified a custom `node_type` when they were created.
+When in doubt keep using `cache_size` for existing plans and start using `node_type` for any new plans.
+
+For more information about node types and pricing, see the [AWS documentation](https://aws.amazon.com/elasticache/pricing/).
+You can also check: [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
+
 ## <a id="procedure"></a> Upgrade procedure
 
 To upgrade the <%= vars.product_short %> to a later version:
