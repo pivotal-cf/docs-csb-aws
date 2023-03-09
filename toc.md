@@ -13,3 +13,4 @@
     * [Amazon Aurora MySQL-Compatible Edition](reference/aws-aurora-mysql.html)
     * [Amazon Aurora PostgreSQL-Compatible Edition](reference/aws-aurora-postgresql.html)
 * [Uninstalling](uninstall.html)
+* [Troubleshooting](troubleshooting.html)
