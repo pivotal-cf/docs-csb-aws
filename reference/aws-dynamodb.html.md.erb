@@ -222,6 +222,27 @@ provision only:
       <td><em>n/a</em></td>
       <td>provision and update</td>
     </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>The AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+        <td><code>aws_vpc_id</code></td>
+        <td>String</td>
+        <td>The Virtual Private Cloud (VPC) to connect the instance to</td>
+        <td>The default VPC</td>
+        <td>provision and update</td>
+    </tr>
   </tbody>
 </table>
 
