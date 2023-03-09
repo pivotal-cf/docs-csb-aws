@@ -13,47 +13,56 @@ Start here if you are responding to a specific error or error messages.
 
 The following errors can occur in multiple services:
 
-<table class="nice">
-    <tbody>
-     <tr>
-        <td>Error</td>
-        <td>Broker tries to recreate the instance</td>
-     </tr>
-     <tr>
-        <td>Operation</td>
-        <td>update</td>
-     </tr>
-     <tr>
-        <td>Symptom</td>
-        <td>Instance status is "update failed" and message contains a message similar 
-                  to "update failed: Error: Instance cannot be destroyed on main.tf **** has 
-                  lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed" </td>
-    </tr>
-    <tr>
-        <td>Cause</td>
-        <td>the update request is trying to update a field which is not updateable, or with a value for
-              a property/combination of properties which would cause an instance recreation. 
-              This may be an indication of an out-of-band update perfomed on the instance or an attempt to
-              change plans that contain incompatible property values</td>
-    </tr>
-     <tr><td>Examples</td><td>out-of-band upgrade of redis version to a newer major version would cause the broker to try to downgrade 
-               to the previous version, which causes recreation</td>
-    </tr>
-    <tr>
-        <td>Solution</td>
-        <td>
-            <ul>
-                <li>If the property is updateable, then pass the parameter in the update request to match the IaaS configuration</li>
-                <li>if the property is updateable but specified in the instance plan, then possible solutions include: <br>
-                    * rollbacking the change in the IaaS<br>
-                    * changing the value in the instance's plan<br>
-                    * updating the instance to a plan with the correct values<br>
-                </li>
-            </ul>
-        </td>
-    </tr>          
-    </tbody>
-  </table>
+<div class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Broker tries to recreate the instance</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>Instance status is "update failed" and message contains a message similar 
+                          to "update failed: Error: Instance cannot be destroyed on main.tf **** has 
+                          lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed" </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>the update request is trying to update a field which is not updateable, or with a value for
+                      a property/combination of properties which would cause an instance recreation. 
+                      This may be an indication of an out-of-band update performed on the instance or an attempt to
+                      change plans that contain incompatible property values
+                </td>
+            </tr>
+             <tr>
+                <td>Examples</td>
+                <td>out-of-band upgrade of redis version to a newer major version would cause the broker to try to downgrade 
+                       to the previous version, which causes recreation
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    <ul>
+                        <li>If the property is updateable, then pass the parameter in the update request to match the IaaS configuration</li>
+                        <li>if the property is updateable but specified in the instance plan, then possible solutions include: <br>
+                            <ul>
+                                <li>rollbacking the change in the IaaS</li>
+                                <li>changing the value in the instance's plan</li>
+                                <li>updating the instance to a plan with the correct values</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>          
+        </tbody>
+    </table>
+</div>
+
 
 ### <a id="redis-errors"></a> Amazon ElastiCache for Redis Errors
 
