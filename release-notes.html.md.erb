@@ -22,7 +22,7 @@ This release has the following breaking changes:
   If you have ElastiCache for Redis service instances that you want to maintain that use the formerly built-in plans,
   you must add the plans through the tile configuration.
   For more information, see
-  [Previously Provided Pre-configured Plans](reference/aws-redis.html#old-plans) in _Amazon ElastiCache for Redis Reference_.
+  [Previously Provided Pre-configured Plans](reference/aws-redis.html.md.erb#old-plans) in _Amazon ElastiCache for Redis Reference_.
 
 - **Changes are now applied immediately:**
   From this version onwards, changes made using the `cf update-service` command are applied immediately
@@ -55,10 +55,16 @@ New features and changes in this release:
   This property is no longer a plan parameter adding more flexibility when creating plans.
   From now on, the `redis_version` is updatable if it has not been defined as a property in a custom plan.
   For more information, see
-  [the Amazon ElastiCache for Redis Reference](reference/aws-redis.html) and the 
+  [the Amazon ElastiCache for Redis Reference](reference/aws-redis.html.md.erb) and the
   [upgrade steps](upgrading.html.md.erb).
 - **Encryption of data at rest is enabled by default:**
   New properties `at_rest_encryption_enabled` and `kms_key_id` can be used to control encryption at rest.
+
+- **Added support for specifying a maintenance window:**
+  You can now specify the weekly time range for when maintenance on the cache cluster is performed.
+  The minimum maintenance window is a 60 minute period.
+  For more information, see
+  [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
 ### Resolved Issues
 
