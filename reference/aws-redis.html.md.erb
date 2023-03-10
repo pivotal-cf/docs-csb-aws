@@ -127,18 +127,19 @@ provision only:
       <td><code>redis_version</code></td>
       <td>String</td>
       <td>
-        The version for the redis instance to be used in the replication group.
-        If the version is 6 or higher, the major and minor version can be set, e.g., <code>6.2</code>,
-        or the minor version can be unspecified which will use the latest version at creation time, e.g., <code>6.x</code>.
-        Otherwise, specify the full version desired, e.g., <code>5.0.6</code>.
-        In other words, <code>redis_version</code> must match <code>major.minor</code> when using version <code>6</code>
-        or higher, or <code>major.minor.patch</code>.
+        The version for the Redis instance to be used in the replication group.
+        If the version is 6 or later, you can set the major and minor version. For example,
+        <code>6.2</code>. Alternatively, the minor version can be unspecified, which uses the latest
+        version at creation time. For example, <code>6.x</code>.
+        Otherwise, specify the full version that you want. For example, <code>5.0.6</code>.
+        In other words, <code>redis_version</code> must match <code>major.minor</code> when using
+        version <code>6</code> or higher, or <code>major.minor.patch</code>.
         For more information about upgrading engine versions, see the
         <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/VersionManagement.html">AWS documentation</a>
         <br><br>
-        The downgrade of the version is not allowed as it involves the recreation of the instance.
-        If you try to perform the operation, the Cloud Service Broker will throw an error thanks to the mechanism
-        established to prevent the destruction of the instance.
+        The downgrade of the version is not allowed because it involves the recreation of the instance.
+        If you try to perform the operation, the Cloud Service Broker incurs an error because of
+        the mechanism established to prevent the destruction of the instance.
       </td>
       <td><code>None</code></td>
       <td>provision and update</td>

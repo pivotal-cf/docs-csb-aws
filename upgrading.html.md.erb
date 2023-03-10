@@ -6,7 +6,6 @@ owner: Cloud Service Broker
 This topic describes how to upgrade <%= vars.product_full %>.
 The following sections have information about upgrading to v1.5.0.
 
-
 ## <a id="aws-redis"></a> Amazon ElasticCache for Redis
 
 The following sections describe changes for Amazon ElastiCache for Redis.
@@ -22,15 +21,15 @@ tile. For more information, see
 
 Make the following changes to existing custom plans before upgrading.
 
-#### <a id="aws-redis-chng-cust-plns-redis-version"></a> Set `redis_version` for the service.
+#### <a id="chng-cust-plns-redis-ver"></a> Set `redis_version` for the service
 
-If you have custom plans already configured for Redis, you will have to review the configuration.
-The property `redis_version` was moved from the parameters plan to the required user input parameters, and you have to maintain the
-property with the previous value established in your custom plans.
+If you have custom plans already configured for Redis, you have to review the configuration.
+The property `redis_version` was moved from the parameters plan to the required user input parameters,
+and you have to maintain the property with the previous value established in your custom plans.
 
-To ensure that no unintended changes happen to your existing instances, maintain the `redis_version` property using
-the same value previously defined.
-For example, if you created an instance using version 6.0 of Redis, your plan must look like this:
+To ensure that no unintended changes happen to your existing instances, maintain the `redis_version`
+property using the same value previously defined.
+For example, if you created an instance using v6.0 of Redis, your plan must look like this:
 
 ```json
     {
@@ -48,30 +47,40 @@ For example, if you created an instance using version 6.0 of Redis, your plan mu
     }
 ```
 
-#### <a id="aws-redis-chng-cust-plns-cache-size"></a> Consider replacing `cache_size` with `node_type`.
+#### <a id="chng-cust-plns-cache-size"></a> Consider replacing `cache_size` with `node_type`
 
-Property `cache_size` is now deprecated.
-Consider replacing it with its equivalent `node_type`. [See Table of equivalents for `cache_size` and `node_type`](reference/aws-redis.html.md.erb#cache-size-node-type).
-Notice that specifying `node_type` in a plan prevents any existing or future service from passing `node_type` as a service-specific configuration parameter.
-This has strong implications for existing plans since existing services might become unmanageable if they specified a custom `node_type` when they were created.
-When in doubt keep using `cache_size` for existing plans and start using `node_type` for any new plans.
+The property `cache_size` is now deprecated.
+Consider replacing it with its equivalent `node_type`. For more information, see
+[Configuration Parameters](reference/aws-redis.html.md.erb#cache-size-node-type).
 
-For more information about node types and pricing, see the [AWS documentation](https://aws.amazon.com/elasticache/pricing/).
-You can also check: [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
+Specifying `node_type` in a plan prevents any existing or future service from passing `node_type` as
+a service-specific configuration parameter.
+This has strong implications for existing plans because existing services might become unmanageable
+if they specified a custom `node_type` when they were created.
 
-#### <a id="aws-redis-chng-cust-plns-at-rest-encryption"></a> Set `at_rest_encryption_enabled` to false.
+When in doubt, keep using `cache_size` for existing plans and start using `node_type` for any new
+plans.
 
-The newly-added `at_rest_encryption_enabled` property defaults to `true`. Because previously created instances cannot be modified to
-use encryption at rest, the property `at_rest_encryption_enabled` should be set to `false` in existing plans in order to match
-services instances that have already been created.
+For more information about node types and pricing, see the
+[AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
+[Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
+
+#### <a id="chng-cust-plns-rest-encry"></a> Set `at_rest_encryption_enabled` to `false`
+
+The recently added `at_rest_encryption_enabled` property is `true` by default.
+
+Because previously created instances cannot be modified to use encryption at rest, set the property
+`at_rest_encryption_enabled` to `false` in existing plans to match service instances that have already
+been created.
 
 ## <a id="procedure"></a> Upgrade procedure
 
 To upgrade the <%= vars.product_short %> to a later version:
 
-1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
+1. Download the new version of <%= vars.product_short %> from
+   [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
 2. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
 3. Make all the changes described in this topic that are required for the new version.
-4. If you are upgrading to a version later than v1.0, service instances might need to be upgraded.
-Before installing the new version, see
-[Upgrade All Service Instances Config](installing-with-aws.html#upgrade-all-config).
+4. If you are upgrading to a version later than v1.0, you might need to upgrade service instances.
+   Before installing the new version, see
+   [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config).

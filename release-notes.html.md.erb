@@ -51,12 +51,15 @@ New features and changes in this release:
 #### Amazon ElastiCache for Redis
 
 - **`redis_version` is a required user input parameter:**
-  From this version onwards, the property `redis_version` is a required user input parameter without a default value. 
-  This property is no longer a plan parameter adding more flexibility when creating plans.
-  From now on, the `redis_version` is updatable if it has not been defined as a property in a custom plan.
+  From this version onwards, the property `redis_version` is a required user input parameter without
+  a default value.
+  This property is no longer a plan parameter, adding more flexibility when creating plans.
+  From now on, the `redis_version` is updatable if it has not been defined as a property in a custom
+  plan.
   For more information, see
   [the Amazon ElastiCache for Redis Reference](reference/aws-redis.html.md.erb) and the
   [upgrade steps](upgrading.html.md.erb).
+
 - **Encryption of data at rest is enabled by default:**
   New properties `at_rest_encryption_enabled` and `kms_key_id` can be used to control encryption at rest.
 
