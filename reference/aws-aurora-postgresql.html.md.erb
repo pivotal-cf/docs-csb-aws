@@ -5,7 +5,7 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-This topic provides reference information about the <a href="https://aws.amazon.com/rds/aurora/">Amazon Aurora MySQL-Compatible Edition</a> (csb-aws-aurora-mysql) service.
+This topic provides reference information about the <a href="https://aws.amazon.com/rds/aurora/">Amazon Aurora MySQL-Compatible Edition</a> (csb-aws-aurora-postgresql) service.
 It details the plans, configuration parameters, and binding credentials.
 
 <%= vars.product_full %> v1.3.0 and later does not support unsecured connections to
@@ -234,7 +234,7 @@ provision only:
     </tr>
     <tr>
       <td><code>monitoring_role_arn</code></td>
-      <td>Integer</td>
+      <td>String</td>
       <td>
         Enhanced Monitoring requires permission to act on your behalf to send OS metric information to CloudWatch Logs.
         This property represents the Amazon Resource Names (ARN) for the Identity and Access Management
