@@ -5,7 +5,7 @@
 * [Migrating an Amazon S3 Instance](aws-s3-migration.html)
 * [Upgrading](upgrading.html)
 * [Service Plan Reference](reference/index.html)
-    * [Amazon S3 Bucket](reference/aws-s3.html)
+    * [Amazon S3 Bucket](reference/aws-s3-bucket.html)
     * [Amazon RDS for MySQL](reference/aws-mysql.html)
     * [Amazon RDS for PostgreSQL](reference/aws-postgres.html)
     * [Amazon ElastiCache for Redis (Beta)](reference/aws-redis.html)
