@@ -7,7 +7,7 @@
 * [Service Plan Reference](reference/index.html)
     * [Amazon S3 Bucket](reference/aws-s3-bucket.html)
     * [Amazon RDS for MySQL](reference/aws-mysql.html)
-    * [Amazon RDS for PostgreSQL](reference/aws-postgres.html)
+    * [Amazon RDS for PostgreSQL](reference/aws-postgresql.html)
     * [Amazon ElastiCache for Redis (Beta)](reference/aws-redis.html)
     * [Amazon DynamoDB (Beta)](reference/aws-dynamodb.html)
     * [Amazon Aurora MySQL-Compatible Edition](reference/aws-aurora-mysql.html)
