@@ -29,15 +29,20 @@ This release has the following breaking changes:
   instead of being queued to be applied during the maintenance window.
   This might result in brief downtime while the server reboots.
 
-- **Property <code>cache_size</code> is now deprecated:**
-  Consider replacing it with its equivalent `node_type`. [See Table of equivalents for `node_type` and `cache_size`](reference/aws-redis.html.md.erb#cache-size-node-type).
-  Notice that specifying `node_type` in a plan prevents any existing or future service from specifying `node_type` as a service-specific configuration parameter.
-  This has strong implications for existing plans since existing services might become unmanageable if they specified a custom `node_type` when they were created.
-  When in doubt keep using `cache_size` for existing plans and start using `node_type` for any new plans.
+- **Property `cache_size` is now deprecated:**
+  Consider replacing it with its equivalent `node_type`. For more information, see
+  [Equivalence of cache_size and node_type](reference/aws-redis.html.md.erb#cache-size-node-type).
+  Specifying `node_type` in a plan prevents any existing or future service from specifying `node_type`
+  as a service-specific configuration parameter.
 
-  For more information about node types and pricing, see the [AWS documentation](https://aws.amazon.com/elasticache/pricing/).
-  You can also check: [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
+  This has strong implications for existing plans because existing services might become unmanageable
+  if they specified a custom `node_type` when they were created.
+  When in doubt, keep using `cache_size` for existing plans and start using `node_type` for any new
+  plans.
 
+  For more information about node types and pricing, see the
+  [AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
+  [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
 ### Features
 

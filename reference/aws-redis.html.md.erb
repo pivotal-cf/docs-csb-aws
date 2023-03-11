@@ -44,7 +44,7 @@ The following table lists parameters that can only be configured for additional 
 | `free`            | When false, service instances of this service plan have a cost.                      | true    | No       |
 | `bindable`        | Specifies whether service instances of the service plan can bind to applications.    | true    | No       |
 | `plan_updateable` | Whether the plan supports upgrading, downgrading, or sidegrading to another version. | true    | No       |
-| `cache_size`      | Deprecated. Use `node_type` instead - Cache size in GB. 2&ndash;256, multiples of 2. | _n/a_   | Yes      |
+| `cache_size`      | Deprecated. Use `node_type` instead. The cache size is in GB. 2&ndash;256, multiples of 2. | _n/a_   | Yes      |
 | `redis_version`   | The version for the Redis instance. It can be any AWS-supported Redis version.      | _n/a_   | Yes      |
 | `metadata.displayName`    | Name to use when displaying the plan in the Marketplace.                                     | _n/a_   | No       |
 | `metadata.bullets`        | List of bullet points to display in Apps Manager.                                    | _n/a_   | No       |
@@ -110,8 +110,8 @@ provision only:
       <td>String</td>
       <td>The AWS instance class to be used. The node_type you select impacts costs, performance, and fault tolerance.
        <br><br> For more information about node types and pricing, see the
-        <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a>.
-       <br> You can also check: <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html">Choosing your node size</a>.
+        <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a> and
+       <br><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html">Choosing your node size</a>.
       </td>
       <td><em>n/a</em></td>
       <td>provision and update</td>
@@ -284,16 +284,21 @@ To keep these plans in this version of the broker, add them through the tile as 
 For how to configure plans through the tile, see
 [Configure Services with <%= vars.product_short %>](../installing-with-aws.html#services).
 
-<p class="note important">
-<strong>Important:</strong> Property <code>cache_size</code> is now deprecated.
-Consider replacing it with its equivalent <code>node_type</code>. <a href="#cache-size-node-type">See Table of equivalents for <code>node_type</code> and <code>cache_size</code></a>.
-Notice that specifying <code>node_type</code> in a plan prevents any existing or future service from specifying <code>node_type</code> as a service-specific configuration parameter.
-<strong>This has strong implications for existing plans since existing services might become unmanageable if they specified a custom <code>node_type</code> when they were created.</strong>
-<strong>When in doubt keep using <code>cache_size</code> for existing plans and start using <code>node_type</code> for any new plans.</strong>
-<br><br> For more information about node types and pricing, see the
-  <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a>.
-<br> You can also check: <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html">Choosing your node size</a>.
-</p>
+> **Important** Property `cache_size` is now deprecated.
+> Consider replacing it with its equivalent `node_type`. For more information, see
+> [Equivalence of cache_size and node_type](#cache-size-node-type).
+> Specifying `node_type` in a plan prevents any existing or future service from specifying `node_type`
+> as a service-specific configuration parameter.
+
+This has strong implications for existing plans since existing services might become unmanageable
+if they specified a custom `node_type` when they were created.
+
+When in doubt, keep using `cache_size` for existing plans and start using `node_type` for any new
+plans.
+
+For more information about node types and pricing, see the
+[AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
+[Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
 Add the following block to keep the `small` plan:
 
@@ -415,7 +420,6 @@ Table of equivalents for `cache_size` and `node_type` for the previously pre-con
 | small-ha  | 1   | minimum 1&nbsp;GB  | cache.t2.small      | yes |
 | medium-ha | 4   | minimum 4&nbsp;GB  | cache.m5.large      | yes |
 | large-ha  | 16  | minimum 16&nbsp;GB | cache.r4.xlarge     | yes |
-
 
 Table of equivalents for `cache_size` and `node_type` not used by any of the previously pre-configured plans:
 
