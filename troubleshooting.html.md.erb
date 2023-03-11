@@ -2,12 +2,13 @@
 title: Troubleshooting Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
+
 <strong><%= modified_date %></strong>
 This topic lists troubleshooting information for <%= vars.product_full %>.
 
 ## <a id="troubleshoot-errors"></a> Troubleshoot errors
 
-Start here if you are responding to a specific error or error messages.
+Start here if you have a specific error or error messages.
 
 ### <a id="common-services-errors"></a> Common Services Errors
 
@@ -18,7 +19,7 @@ The following errors can occur in multiple services:
         <tbody>
              <tr>
                 <td>Error</td>
-                <td>Broker tries to recreate the instance</td>
+                <td>Broker trying to recreate the instance</td>
              </tr>
              <tr>
                 <td>Operation</td>
@@ -26,53 +27,48 @@ The following errors can occur in multiple services:
              </tr>
              <tr>
                 <td>Symptom</td>
-                <td>Instance status is "update failed" and message contains a message similar 
-                          to "update failed: Error: Instance cannot be destroyed on main.tf **** has 
-                          lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed" </td>
+                <td>The instance status is <code>update failed</code> and the message is similar to<br>
+                <code>update failed: Error: Instance cannot be destroyed on main.tf **** has
+                lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code>.</td>
             </tr>
             <tr>
                 <td>Cause</td>
-                <td>the update request is trying to update a field which is not updateable, or with a value for
-                      a property/combination of properties which would cause an instance recreation. 
-                      This may be an indication of an out-of-band update performed on the instance or an attempt to
-                      change plans that contain incompatible property values
+                <td>The update request for a field is failing because one of the following is true:
+                <ul>
+                <li>The field cannot be updated</li>
+                <li>The new value for a property, or combination of properties, would cause an instance recreation</li>
+                </ul>
+                The failing update request might be an indication of an out-of-band update performed
+                on the instance or an attempt to change plans that contain incompatible property values.
                 </td>
             </tr>
              <tr>
                 <td>Examples</td>
-                <td>out-of-band upgrade of redis version to a newer major version would cause the broker to try to downgrade 
-                       to the previous version, which causes recreation
+                <td>An out-of-band upgrade of the Redis version to a newer major version causes the
+                broker to try to downgrade to the previous version, which causes instance recreation.
                 </td>
             </tr>
             <tr>
                 <td>Solution</td>
                 <td>
                     <ul>
-                        <li>If the property is updateable, then pass the parameter in the update request to match the IaaS configuration</li>
-                        <li>if the property is updateable but specified in the instance plan, then possible solutions include: <br>
+                        <li>If the property can be updated, pass the parameter in the update
+                        request to match the IaaS configuration.</li>
+                        <li>If the property can be updated, but specified in the instance plan, then
+                        possible solutions include:<br>
                             <ul>
-                                <li>rollbacking the change in the IaaS</li>
-                                <li>changing the value in the instance's plan</li>
-                                <li>updating the instance to a plan with the correct values</li>
+                                <li>Rolling back the change in the IaaS</li>
+                                <li>Changing the value in the instance plan</li>
+                                <li>Updating the instance to a plan with the correct values</li>
                             </ul>
                         </li>
                     </ul>
                 </td>
-            </tr>          
+            </tr>
         </tbody>
     </table>
 </div>
 
-
 ### <a id="redis-errors"></a> Amazon ElastiCache for Redis Errors
 
 The following errors can occur in Amazon ElastiCache for Redis:
-
-
-
-
-
-
-               
-
-        
