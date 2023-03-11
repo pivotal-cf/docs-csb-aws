@@ -317,6 +317,45 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+        <td><code>aws_vpc_id</code></td>
+        <td>String</td>
+        <td>The Virtual Private Cloud (VPC) to connect the instance to</td>
+        <td>The default VPC</td>
+        <td>provision and update</td>
+    </tr>
+    <tr>
+        <td><code>copy_tags_to_snapshot</code></td>
+        <td>Boolean</td>
+        <td>Copy all instance tags to snapshots</td>
+        <td><code>true</code></td>
+        <td>provision and update</td>
+    </tr>
+    <tr>
+        <td><code>preferred_backup_window</code></td>
+        <td>String</td>
+        <td>
+          The daily time range in UTC during which automated backups are created. For example,
+          <code>09:46-10:16</code>.
+          It must not overlap with the maintenance window. If not set, it uses the default for the
+          region. For more information, see the
+          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow">AWS documentation</a>.
+        </td>
+        <td><code>null</code></td>
+        <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>backup_retention_period</code></td>
+      <td>Integer</td>
+      <td>
+        The number of days for which automatic backups are kept.
+        Set the value to <code>0</code> to deactivate automated backups. An outage
+        occurs if you change the backup retention period from <code>0</code> to
+        a nonzero value or the reverse.
+      </td>
+      <td><code>7</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
