@@ -108,7 +108,7 @@ provision only:
     <tr>
       <td><code>node_type</code></td>
       <td>String</td>
-      <td>The AWS instance class to be used. The node_type you select impacts costs, performance, and fault tolerance.
+      <td>The AWS instance class to be used. The <code>node_type</code> you select impacts costs, performance, and fault tolerance.
        <br><br> For more information about node types and pricing, see the
         <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a> and
        <br><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html">Choosing your node size</a>.
@@ -130,7 +130,7 @@ provision only:
         The version for the Redis instance to be used in the replication group.
         If the version is 6 or later, you can set the major and minor version. For example,
         <code>6.2</code>. Alternatively, the minor version can be unspecified, which uses the latest
-        version at creation time. For example, <code>6.x</code>.
+        version at creation time. For example, <code>6.x</code>.<br><br>
         Otherwise, specify the full version that you want. For example, <code>5.0.6</code>.
         In other words, <code>redis_version</code> must match <code>major.minor</code> when using
         version <code>6</code> or higher, or <code>major.minor.patch</code>.
@@ -175,7 +175,7 @@ provision only:
     <tr>
       <td><code>kms_key_id</code></td>
       <td>String</td>
-      <td>The ARN of the key to use if encrypting at rest. Defaults to AWS managed key</td>
+      <td>The ARN of the key to use if encrypting at rest. Defaults to AWS-managed key.</td>
       <td><code>""</code></td>
       <td>provision</td>
     </tr>
