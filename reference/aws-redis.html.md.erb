@@ -290,7 +290,7 @@ For how to configure plans through the tile, see
 > Specifying `node_type` in a plan prevents any existing or future service from specifying `node_type`
 > as a service-specific configuration parameter.
 
-This has strong implications for existing plans since existing services might become unmanageable
+This has strong implications for existing plans because existing services might become unmanageable
 if they specified a custom `node_type` when they were created.
 
 When in doubt, keep using `cache_size` for existing plans and start using `node_type` for any new
