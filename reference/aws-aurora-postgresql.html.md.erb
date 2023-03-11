@@ -407,10 +407,11 @@ provision only:
         <td><code>preferred_backup_window</code></td>
         <td>String</td>
         <td>
-          The daily time range in UTC during which automated backups are created, e.g.: "09:46-10:16".
-          Must not overlap with the maintenance window. If not set, uses the default for the region
-          For more information, see the
-          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow">AWS documentation</a>
+          The daily time range in UTC during which automated backups are created. For example,
+          <code>09:46-10:16</code>.
+          It must not overlap with the maintenance window. If not set, it uses the default for the
+          region. For more information, see the
+          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow">AWS documentation</a>.
         </td>
         <td><code>null</code></td>
         <td>provision and update</td>
