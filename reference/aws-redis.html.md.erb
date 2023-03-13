@@ -314,6 +314,14 @@ For more information about node types and pricing, see the
 [AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
 [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
+<p class="note">
+  <strong>Note:</strong> <%= vars.product_full %> v1.5.0 sets the default values to true for
+  `at_rest_encryption_enabled` and `multi_az_enabled`.
+  Because previously created instances cannot be modified to use Multi-AZ or encryption at rest, set the properties
+  `multi_az_enabled` and `at_rest_encryption_enabled` to `false` when replicating the old plans to match service
+  instances that have already been created.
+</p>
+
 Add the following block to keep the `small` plan:
 
 ```json
@@ -325,6 +333,7 @@ Add the following block to keep the `small` plan:
   "redis_version": "6.0",
   "node_count": 1,
   "at_rest_encryption_enabled": false,
+  "multi_az_enabled": false,
   "metadata": {
     "displayName": "Small (Beta)",
     "bullets": ["Redis 6.0", "1GB Cache", "1 node"]
@@ -343,6 +352,7 @@ Add the following block to keep the `medium` plan:
   "redis_version": "6.0",
   "node_count": 1,
   "at_rest_encryption_enabled": false,
+  "multi_az_enabled": false,
   "metadata": {
     "displayName": "Medium (Beta)",
     "bullets": ["Redis 6.0", "4GB Cache", "1 node"]
@@ -360,7 +370,8 @@ Add the following block to keep the `large` plan:
   "cache_size": 16,
   "redis_version": "6.0",
   "node_count": 1,
-  "at_rest_encryption_enabled": false,
+  "at_rest_encryption_enabled": false, 
+  "multi_az_enabled": false,
   "metadata": {
     "displayName": "Large (Beta)",
     "bullets": ["Redis 6.0", "16GB Cache", "1 node"]
@@ -379,6 +390,7 @@ Add the following block to keep the `small-ha` plan:
   "cache_size": 2,
   "redis_version": "6.0",
   "at_rest_encryption_enabled": false,
+  "multi_az_enabled": false,
   "metadata": {
     "displayName": "Small HA (Beta)",
     "bullets": ["Redis 6.0", "1GB Cache", "2 nodes"]
@@ -397,6 +409,7 @@ Add the following block to keep the `medium-ha` plan:
   "cache_size": 4,
   "redis_version": "6.0",
   "at_rest_encryption_enabled": false,
+  "multi_az_enabled": false,
   "metadata": {
     "displayName": "Medium HA (Beta)",
     "bullets": ["Redis 6.0", "4GB Cache", "2 nodes"]
@@ -415,6 +428,7 @@ Add the following block to keep the `large-ha` plan:
   "cache_size": 16,
   "redis_version": "6.0",
   "at_rest_encryption_enabled": false,
+  "multi_az_enabled": false,
   "metadata": {
     "displayName": "Large HA (Beta)",
     "bullets": ["Redis 6.0", "16GB Cache", "2 nodes"]
