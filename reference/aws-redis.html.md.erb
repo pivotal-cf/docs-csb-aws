@@ -108,8 +108,11 @@ provision only:
     <tr>
       <td><code>node_type</code></td>
       <td>String</td>
-      <td>The AWS instance class to be used. The <code>node_type</code> you select impacts costs, performance, and fault tolerance.
-       <br><br> For more information about node types and pricing, see the
+      <td>
+        The AWS instance class to be used. The <code>node_type</code> you select impacts costs, performance, and fault tolerance.
+       <br><br>
+        The `node_type` cannot be updated from a family of type `r6gd` to all other families and vice versa.
+        For more information about node types and pricing, see the
         <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a> and
        <br><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html">Choosing your node size</a>.
       </td>
@@ -143,6 +146,19 @@ provision only:
       </td>
       <td><code>None</code></td>
       <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>data_tiering_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Enables data tiering. Data tiering is only supported for replication groups using the `r6gd` node type.
+        This parameter must be set to true when using `r6gd` nodes. See `node_type` for more information.
+        Not all versions of Redis support this feature. Check supported versions.
+        For more information about Node Types and supported Redis versions see the
+        <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html">AWS documentation</a>
+      </td>
+      <td><code>false</code></td>
+      <td>provision</td>
     </tr>
     <tr>
       <td><code>aws_vpc_id</code></td>

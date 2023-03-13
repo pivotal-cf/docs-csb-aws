@@ -74,6 +74,13 @@ New features and changes in this release:
   For more information, see
   [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
+- **Data tiering and node types from `r6gd` family available:**
+  From this version onwards, you can use the node types from the `r6gd` family.
+  This node type family needs data tiering, so you must set true the property `data_tiering_enabled`.
+  This configuration must be applied only in the provisioning phase.
+  For more information, see
+  [the Amazon ElastiCache for Redis Reference](reference/aws-redis.html.md.erb).
+
 ### Resolved Issues
 
 This release has the following fixes:
