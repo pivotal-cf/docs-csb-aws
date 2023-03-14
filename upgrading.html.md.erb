@@ -73,6 +73,14 @@ Because previously created instances cannot be modified to use encryption at res
 `at_rest_encryption_enabled` to `false` in existing plans to match service instances that have already
 been created.
 
+#### <a id="chng-cust-plns-rest-encry"></a> Set `multi_az_enabled` to `false`
+
+The recently added `multi_az_enabled` property is `true` by default.
+
+Because previously created instances cannot be modified to use Multi-AZ, set the property
+`multi_az_enabled` to `false` in existing custom plans to match service instances that have already
+been created.
+
 ## <a id="procedure"></a> Upgrade procedure
 
 To upgrade the <%= vars.product_short %> to a later version:
