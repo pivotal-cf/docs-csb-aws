@@ -138,7 +138,7 @@ provision only:
         In other words, <code>redis_version</code> must match <code>major.minor</code> when using
         version <code>6</code> or higher, or <code>major.minor.patch</code>.
         For more information about upgrading engine versions, see the
-        <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/VersionManagement.html">AWS documentation</a>
+        <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/VersionManagement.html">AWS documentation</a>.
         <br><br>
         The downgrade of the version is not allowed because it involves the recreation of the instance.
         If you try to perform the operation, the Cloud Service Broker incurs an error because of
@@ -155,7 +155,7 @@ provision only:
         This parameter must be set to true when using `r6gd` nodes. See `node_type` for more information.
         Not all versions of Redis support this feature. Check supported versions.
         For more information about Node Types and supported Redis versions see the
-        <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html">AWS documentation</a>
+        <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html">AWS documentation</a>.
       </td>
       <td><code>false</code></td>
       <td>provision</td>
@@ -192,12 +192,14 @@ provision only:
       <td><code>multi_az_enabled</code></td>
       <td>Boolean</td>
       <td>
-        Whether to enable Multi-AZ Support for the replication group. If true, `node_count` must be greater than 2.
+        Whether to enable Multi-AZ support for the replication group. If <code>true</code>,
+        <code>node_count</code> must be greater than 2.
         <br><br>
-        If you enable Multi-AZ and then try to reduce the number of nodes to 1, the result of the operation will produce an
-        error since setting the number of nodes to 1 implies that you disable the automatic failover.
-        `automatic_failover_enabled` must be <code>true</code> if `multi_az_enabled` is <code>true</code>, in other 
-        words, `node_count` cannot be less than 2.
+        Enabling Multi-AZ and then trying to reduce the number of nodes to 1 causes an error.
+        This is because setting the number of nodes to 1 implies that you deactivated the automatic
+        failover.
+        <code>automatic_failover_enabled</code> must be <code>true</code> if <code>multi_az_enabled</code>
+        is <code>true</code>.
       </td>
       <td><code>true</code></td>
       <td>provision and update</td>
@@ -330,13 +332,11 @@ For more information about node types and pricing, see the
 [AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
 [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
-<p class="note">
-  <strong>Note:</strong> <%= vars.product_full %> v1.5.0 sets the default values to true for
-  `at_rest_encryption_enabled` and `multi_az_enabled`.
-  Because previously created instances cannot be modified to use Multi-AZ or encryption at rest, set the properties
-  `multi_az_enabled` and `at_rest_encryption_enabled` to `false` when replicating the old plans to match service
-  instances that have already been created.
-</p>
+<%= vars.product_full %> v1.5.0 sets the default values to `true` for `at_rest_encryption_enabled` and
+`multi_az_enabled`.
+Because previously created instances cannot be modified to use Multi-AZ or encryption at rest, set the
+properties `multi_az_enabled` and `at_rest_encryption_enabled` to `false` when replicating the old
+plans to match service instances that have already been created.
 
 Add the following block to keep the `small` plan:
 
@@ -386,7 +386,7 @@ Add the following block to keep the `large` plan:
   "cache_size": 16,
   "redis_version": "6.0",
   "node_count": 1,
-  "at_rest_encryption_enabled": false, 
+  "at_rest_encryption_enabled": false,
   "multi_az_enabled": false,
   "metadata": {
     "displayName": "Large (Beta)",
