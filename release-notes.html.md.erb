@@ -74,12 +74,13 @@ New features and changes in this release:
   For more information, see
   [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
-- **Data tiering and node types from `r6gd` family available:**
+- **Data tiering and node types from the `r6gd` family are available:**
   From this version onwards, you can use the node types from the `r6gd` family.
-  This node type family needs data tiering, so you must set true the property `data_tiering_enabled`.
+  Because this node type family needs data tiering, you must set the property `data_tiering_enabled`
+  as `true`.
   This configuration must be applied only in the provisioning phase.
   For more information, see
-  [the Amazon ElastiCache for Redis Reference](reference/aws-redis.html.md.erb).
+  [Amazon ElastiCache for Redis](reference/aws-redis.html.md.erb).
 
 - **Multi-AZ is enabled by default:**
   You can use the new property `multi_az_enabled` to control Multi-AZ.
