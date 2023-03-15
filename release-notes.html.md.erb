@@ -84,6 +84,12 @@ New features and changes in this release:
 
 - **Multi-AZ is enabled by default:**
   You can use the new property `multi_az_enabled` to control Multi-AZ.
+  To enable Multi-AZ automatic failover must also be enabled.
+  For more information, see
+  [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
+
+- **Automatic failover is now customizable:**
+  Allows automatically replacing the existing primary with a replica in case of failures.
   For more information, see
   [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
