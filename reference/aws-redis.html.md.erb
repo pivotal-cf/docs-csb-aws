@@ -278,6 +278,27 @@ provision only:
       <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
     </tr>
+    <tr>
+      <td><code>backup_retention_limit</code></td>
+      <td>Integer</td>
+      <td>
+        Number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them.
+        If set to zero (0), backups are turned off.
+      </td>
+      <td><code>1</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>final_backup_identifier</code></td>
+      <td>String</td>
+      <td>
+        The name of the final node group (shard) snapshot.
+        ElastiCache creates the snapshot from the primary node in the cluster.
+        If omitted, no final snapshot will be made.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
   </tbody>
 </table>
 
