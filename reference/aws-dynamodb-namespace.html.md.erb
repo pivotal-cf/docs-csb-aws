@@ -1,0 +1,56 @@
+---
+title: Amazon DynamoDB Namespace
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+
+This topic provides reference information about the <a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB</a> (csb-aws-dynamodb-namespace) service.
+
+## <a id="plans"></a> Plans
+
+The default plan for Amazon DynamoDB provides credentials for managing DynamoDB tables in the default region set for
+the <%= vars.product_short %>. At this moment, the service does not support any additional plans, and there is no
+additional configuration available.
+
+
+## <a id="provisioning"></a> Provisioning
+
+You can provision an Amazon DynamoDB table by running:
+
+```console
+cf create-service csb-aws-dynamodb PLAN-NAME SERVICE-INSTANCE-NAME
+```
+
+For example:
+
+<pre class="terminal">
+$ cf create-service csb-aws-dynamodb default my-service
+</pre>
+
+## <a id="binding"></a> Binding
+
+You can bind a service by running:
+
+```bash
+cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
+```
+
+Creating bindings and service keys does not support any configuration parameters.
+
+## <a id="binding-creds"></a> Binding Credentials
+
+The format for binding credentials for DynamoDB is as follows:
+
+```json
+{
+    "region" : "AWS-REGION",
+    "prefix": "DYNAMODB-TABLE-NAME-PREFIX",
+    "access_key_id" : "IAM-USER-KEY-ID",
+    "secret_access_key" : "IAM-USER-SECRET-KEY"
+}
+```
+
+The bound application can use IAM user with the supplied credentials in order to
+create, update or delete any DynamoDB with names starting with the `DYNAMODB-TABLE-NAME-PREFIX`
+within the `AWS-REGION` region.
