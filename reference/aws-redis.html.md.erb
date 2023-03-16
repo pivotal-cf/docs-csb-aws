@@ -282,8 +282,8 @@ provision only:
       <td><code>backup_retention_limit</code></td>
       <td>Integer</td>
       <td>
-        Number of days for which ElastiCache will retain automatic cache cluster snapshots before deleting them.
-        If set to zero (0), backups are turned off.
+        Number of days for which ElastiCache retains automatic cache cluster snapshots before deleting them.
+        If set to <code>0</code>, backups are deactivated.
       </td>
       <td><code>1</code></td>
       <td>provision and update</td>
@@ -294,7 +294,7 @@ provision only:
       <td>
         The name of the final node group (shard) snapshot.
         ElastiCache creates the snapshot from the primary node in the cluster.
-        If omitted, no final snapshot will be made.
+        If omitted, no final snapshot is made.
       </td>
       <td><code>null</code></td>
       <td>provision and update</td>
