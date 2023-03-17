@@ -106,11 +106,11 @@ This release has the following fixes:
 #### Amazon ElastiCache for Redis
 
 - **Inconsistent design in the format accepted in the `redis_version` property:**
-  If the version is 6 or later, you can set the major and minor version. For example,
-  <code>6.2</code>. Alternatively, the minor version can be unspecified, which uses the latest
-  version at creation time. For example, <code>6.x</code>.
-  This design does not apply for <code>7.x</code> versions. In other words, you need to specify
-  the minor version, for example, <code>7.0</code>. 
+
+  If the version is 6 or later you can set the major and minor version, such as `6.2`.
+  Alternatively, you can leave the minor version unspecified in order to use the latest
+  version at creation time. For example, `6.x`.
+  For `7.x` versions, however, you must specify the minor version. For example, `7.0`.
 
 ## <a id="view"></a> View release notes for another version
 
