@@ -263,6 +263,7 @@ provision only:
       <td>
         The preferred maintenance end hour. Valid values are <code>00</code> through <code>23</code>.
         It can only be updated to a non-null value.
+        The minimum maintenance window is a 60 minute period.
       </td>
       <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
@@ -273,6 +274,7 @@ provision only:
       <td>
         The preferred maintenance end minute. Valid values are <code>00</code>, <code>15</code>, <code>30</code>, <code>45</code>.
         It can only be updated to a non-null value.
+        The minimum maintenance window is a 60 minute period.
       </td>
       <td>Uses AWS default value for the region if all <code>maintenance_*</code> properties are null when creating the instance</td>
       <td>provision and update</td>
@@ -326,6 +328,7 @@ provision only:
       <td>
         The preferred backup start minute. Valid values are <code>00</code>, <code>15</code>,
         <code>30</code>, <code>45</code>. It can only be updated to a non-null value.
+        The minimum backup window is a 60 minute period.
       </td>
       <td>
         Uses AWS default value for the region if all <code>backup_*</code> properties are null when
@@ -339,6 +342,7 @@ provision only:
       <td>
         The preferred backup end hour. Valid values are <code>00</code> to <code>23</code>.
         It can only be updated to a non-null value.
+        The minimum backup window is a 60 minute period.
       </td>
       <td>
         Uses AWS default value for the region if all <code>backup_*</code> properties are null when
