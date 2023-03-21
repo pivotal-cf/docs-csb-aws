@@ -44,6 +44,17 @@ This release has the following breaking changes:
   [AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
   [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
+#### Amazon DynamoDB
+
+- **Renaned `csb-aws-dynamodb` service to `csb-aws-dynamodb-table`:**
+  Because a new `csb-aws-dynamodb-namespace` service has been added, the existing Beta `csb-aws-dynamodb` service has
+  been renamed to `csb-aws-dynamodb-table` for differentiation. Any existing service instances will continue to work.
+  When a new binding is created, credentials will stored in CredHub under the path
+  `/c/csb/csb-aws-dynamodb-table/`. Existing bindings will continue to have their credentials stored at the
+  path `/c/csb/csb-aws-dynamodb/`. When existing bindings are deleted, <%= vars.product_short %> will not remove
+  credentials from CredHub. The credentials can be removed manually using the CredHub CLI, or they can be
+  left in situ as they are will no longer allow access to the service instance.
+
 ### Features
 
 New features and changes in this release:

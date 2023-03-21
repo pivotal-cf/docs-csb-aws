@@ -1,21 +1,21 @@
 ---
-title: Amazon DynamoDB (Beta)
+title: Amazon DynamoDB Table (Beta)
 owner: Cloud Service Broker
 ---
 
 <strong><%= modified_date %></strong>
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon DynamoDB service is currently in beta and is intended for evaluation and
+  <strong>Important:</strong> The Amazon DynamoDB Table service is currently in beta and is intended for evaluation and
   test purposes only. Do not use this service in a production environment.
 </p>
 
-This topic provides reference information about the <a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB</a> (csb-aws-dynamodb) service.
+This topic provides reference information about the <a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB Table</a> (csb-aws-dynamodb-table) service.
 It details the plans, configuration parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
 
-The default plans for Amazon DynamoDB are in the table below:
+The default plans for Amazon DynamoDB Table are in the table below:
 
 | Plan | Billing Mode |
 |------|--------------|
@@ -58,13 +58,13 @@ You can also add any of the parameters listed in the [Configuration Parameters](
 You can provision an Amazon DynamoDB table by running:
 
 ```console
-cf create-service csb-aws-dynamodb PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+cf create-service csb-aws-dynamodb-table PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 For example:
 
 <pre class="terminal">
-$ cf create-service csb-aws-dynamodb ondemand my-service -c '
+$ cf create-service csb-aws-dynamodb-table ondemand my-service -c '
 {
   "attributes": [
     {"name":"id","type":"S"},
@@ -93,7 +93,7 @@ cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"
 ```
 
 The following table lists the parameters that you can configure, by using the `-c` flag, when
-provisioning or updating a `csb-aws-dynamodb` service.
+provisioning or updating a `csb-aws-dynamodb-table` service.
 The Operation column displays whether a parameter is supported for both provision and update, or for
 provision only:
 
@@ -257,7 +257,7 @@ cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME -c '{"PARA
 ```
 
 The table below lists the parameters that you can configure, using the `-c` flag, when
-binding to a `csb-aws-dynamodb` service:
+binding to a `csb-aws-dynamodb-table` service:
 
 <table>
   <thead>
