@@ -381,6 +381,17 @@ provision only:
       <td><code>""</code></td>
       <td>provision and update</td>
     </tr>
+    <tr>
+      <td><code>preferred_azs</code></td>
+      <td>Array of String</td>
+      <td>
+        List of EC2 availability zones in which the nodes will be created.
+        The first item in the list will be the primary node.
+        Number of entries must equal node_count.
+      </td>
+      <td><code>[]</code></td>
+      <td>provision</td>
+    </tr>
   </tbody>
 </table>
 
