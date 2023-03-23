@@ -375,8 +375,12 @@ provision only:
       <td><code>parameter_group_name</code></td>
       <td>String</td>
       <td>
-        Name of the parameter group to associate with this instance.
-        If unset or empty, the default cache parameter group for the specified engine is used.
+        Name of the custom parameter group to associate with this instance.
+        If unset or empty, the default parameter group for the specified redis_version is used.
+        If this parameter is in use, make sure that it is updated to an appropriate value
+        when updating the redis_version.
+        For more information about parameter groups, see the
+        <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroups.Redis.html">AWS documentation</a>.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
