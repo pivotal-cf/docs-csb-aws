@@ -1,14 +1,9 @@
 ---
-title: Amazon ElastiCache for Redis (Beta)
+title: Amazon ElastiCache for Redis
 owner: Cloud Service Broker
 ---
 
 <strong><%= modified_date %></strong>
-
-<p class="note important">
-  <strong>Important:</strong> The Amazon ElastiCache for Redis service is currently in beta and is intended for
-  evaluation and test purposes only. Do not use this service in a production environment.
-</p>
 
 This topic provides reference information about the <a href="https://aws.amazon.com/elasticache/redis">Amazon ElastiCache for Redis</a> (csb-aws-redis) service.
 It details the plans, configuration parameters, and binding credentials.
@@ -466,14 +461,14 @@ Add the following block to keep the `small` plan:
 {
   "name": "small",
   "id": "ad963fcd-19f7-4b79-8e6d-645756e84f7a",
-  "description": "Beta - Redis 6.0 with 1GB cache and 1 node.",
+  "description": "Redis 6.0 with 1GB cache and 1 node.",
   "cache_size": 2,
   "redis_version": "6.0",
   "node_count": 1,
   "at_rest_encryption_enabled": false,
   "multi_az_enabled": false,
   "metadata": {
-    "displayName": "Small (Beta)",
+    "displayName": "Small",
     "bullets": ["Redis 6.0", "1GB Cache", "1 node"]
   }
 }
@@ -485,14 +480,14 @@ Add the following block to keep the `medium` plan:
 {
   "name": "medium",
   "id": "df41095a-43e8-4be4-b4d6-ae2d8a35068d",
-  "description": "Beta - Redis 6.0 with at least 4GB cache and 1 node.",
+  "description": "Redis 6.0 with at least 4GB cache and 1 node.",
   "cache_size": 4,
   "redis_version": "6.0",
   "node_count": 1,
   "at_rest_encryption_enabled": false,
   "multi_az_enabled": false,
   "metadata": {
-    "displayName": "Medium (Beta)",
+    "displayName": "Medium",
     "bullets": ["Redis 6.0", "4GB Cache", "1 node"]
   }
 }
@@ -504,14 +499,14 @@ Add the following block to keep the `large` plan:
 {
   "name": "large",
   "id": "da4dc49c-a64f-4d2a-8490-5e456cbb0577",
-  "description": "Beta - Redis 6.0 with at least 16 GB cache and 1 node.",
+  "description": "Redis 6.0 with at least 16 GB cache and 1 node.",
   "cache_size": 16,
   "redis_version": "6.0",
   "node_count": 1,
   "at_rest_encryption_enabled": false,
   "multi_az_enabled": false,
   "metadata": {
-    "displayName": "Large (Beta)",
+    "displayName": "Large",
     "bullets": ["Redis 6.0", "16GB Cache", "1 node"]
   }
 }
@@ -524,13 +519,13 @@ Add the following block to keep the `small-ha` plan:
 {
   "name": "small-ha",
   "id": "70544df7-0ac4-4580-ba51-c1fbdd6fdfd0",
-  "description": "Beta - Redis 6.0 with 1GB cache and 2 nodes.",
+  "description": "Redis 6.0 with 1GB cache and 2 nodes.",
   "cache_size": 2,
   "redis_version": "6.0",
   "at_rest_encryption_enabled": false,
   "multi_az_enabled": false,
   "metadata": {
-    "displayName": "Small HA (Beta)",
+    "displayName": "Small HA",
     "bullets": ["Redis 6.0", "1GB Cache", "2 nodes"]
   }
 }
@@ -543,13 +538,13 @@ Add the following block to keep the `medium-ha` plan:
 {
   "name": "medium-ha",
   "id": "a4235008-80f4-4053-924b-defcce17cb63",
-  "description": "Beta - Redis 6.0 with at least 4GB cache and 2 nodes.",
+  "description": "Redis 6.0 with at least 4GB cache and 2 nodes.",
   "cache_size": 4,
   "redis_version": "6.0",
   "at_rest_encryption_enabled": false,
   "multi_az_enabled": false,
   "metadata": {
-    "displayName": "Medium HA (Beta)",
+    "displayName": "Medium HA",
     "bullets": ["Redis 6.0", "4GB Cache", "2 nodes"]
   }
 }
@@ -562,13 +557,13 @@ Add the following block to keep the `large-ha` plan:
 {
   "name": "large-ha",
   "id": "f26cda6f-d4b4-473a-966c-32d238f723ef",
-  "description": "Beta - Redis 6.0 with at least 16 GB cache and 2 nodes.",
+  "description": "Redis 6.0 with at least 16 GB cache and 2 nodes.",
   "cache_size": 16,
   "redis_version": "6.0",
   "at_rest_encryption_enabled": false,
   "multi_az_enabled": false,
   "metadata": {
-    "displayName": "Large HA (Beta)",
+    "displayName": "Large HA",
     "bullets": ["Redis 6.0", "16GB Cache", "2 nodes"]
   }
 }
