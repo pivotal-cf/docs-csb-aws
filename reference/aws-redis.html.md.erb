@@ -383,12 +383,12 @@ provision only:
     </tr>
     <tr>
       <td><code>preferred_azs</code></td>
-      <td>Array of String</td>
+      <td>Array</td>
       <td>
-        List of EC2 availability zones in which the nodes will be created.
-        The first item in the list will be the primary node.
-        Number of entries must equal node_count.
-        If this property is set, the node_count will become immutable.
+        List of EC2 availability zones in which the nodes are created.
+        The first item in the list is the primary node.
+        The number of entries must equal <code>node_count</code>.
+        After this property is set, <code>node_count</code> cannot be changed.
       </td>
       <td><code>[]</code></td>
       <td>provision</td>
