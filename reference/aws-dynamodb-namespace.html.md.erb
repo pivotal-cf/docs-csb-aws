@@ -54,3 +54,8 @@ The format for binding credentials for DynamoDB is as follows:
 
 The bound application can use an IAM user with the supplied credentials to create, update, or delete
 any DynamoDB with names starting with the `DYNAMODB-TABLE-NAME-PREFIX` within the `AWS-REGION` region.
+
+<p class="note caution">
+Please note that all the tables created in the designated namespace will be destroyed when
+the service instance is deleted.
+</p>
