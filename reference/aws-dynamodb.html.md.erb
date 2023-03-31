@@ -110,42 +110,42 @@ provision only:
       <td><code>table_name</code></td>
       <td>String</td>
       <td>(Required) The name of the table</td>
-      <td><em>n/a</em></td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>hash_key</code></td>
       <td>String</td>
       <td>(Required) The key to use as the hash key</td>
-      <td><em>n/a</em></td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>range_key</code></td>
       <td>String</td>
       <td>(Required) The key to use as the range key</td>
-      <td><em>n/a</em></td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>attributes</code></td>
       <td>Array</td>
       <td>(Required) A list of attributes and their types, for example: <code>[{"name":"id", "type":"S"}, {"name":"value", "type":"S"}]</code></td>
-      <td><em>n/a</em></td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>global_secondary_indexes</code></td>
       <td>Array</td>
       <td>(Required) A list of global secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
-      <td><em>n/a</em></td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>local_secondary_indexes</code></td>
       <td>Array</td>
       <td>A list of local secondary indexes, for example: <code>[{"name":"KeyIndex", "hash_key":"key", "range_key":"value", "projection_type":"INCLUDE", "non_key_attributes":["id"]}]</code></td>
-      <td><em>n/a</em></td>
+      <td><code>[]</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -212,14 +212,14 @@ provision only:
       <td><code>write_capacity</code></td>
       <td>Number</td>
       <td>The number of write units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
-      <td><em>n/a</em></td>
+      <td><code>0</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>read_capacity</code></td>
       <td>Number</td>
       <td>The number of read units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
-      <td><em>n/a</em></td>
+      <td><code>0</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
