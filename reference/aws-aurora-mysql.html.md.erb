@@ -70,7 +70,7 @@ provision only:
       <td><code>instance_name</code></td>
       <td>String</td>
       <td>The name of the AWS instance to create.</td>
-      <td><code>csb-auroramy-INSTANCE-ID</code></td>
+      <td><code>csb-auroramysql-INSTANCE-ID</code></td>
       <td>provision</td>
     </tr>
     <tr>
@@ -416,7 +416,7 @@ provision only:
           When setting this value, <code>storage_encrypted</code> must be enabled.
           When not set, the AWS-managed key is used for encrypting the database.
         </td>
-        <td><code>null</code></td>
+        <td><code>""</code></td>
         <td>provision</td>
     </tr>
     <tr>
@@ -455,7 +455,7 @@ provision only:
         An outage occurs if you change the backup retention period from <code>0</code> to
         a nonzero value or the reverse.
       </td>
-      <td><code>7</code></td>
+      <td><code>1</code></td>
       <td>provision and update</td>
     </tr>
   </tbody>
