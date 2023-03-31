@@ -395,6 +395,78 @@ provision only:
       <td><code>[]</code></td>
       <td>provision</td>
     </tr>
+    <tr>
+      <td><code>logs_slow_log_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Enable the streaming of Redis Slow Log to CloudWatch in JSON format. 
+        Slow Log is supported for Redis replication groups using version 6.0 onward.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>logs_slow_log_loggroup_retention_in_days</code></td>
+      <td>Number</td>
+      <td>
+        Specifies the number of days you want to retain log events in the specified log group. 
+        If 0 is specified, the events in the log group are always retained and never expire.
+        When specifying `logs_slow_log_loggroup_retention_in_days`, `logs_slow_log_enabled` needs to be set to true.
+        For more information and the list of valid values, see
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax">AWS Documentation</a>
+      </td>
+      <td><code>0</code></td>
+      <td>provision and update</td>
+    </tr>    
+    <tr>
+      <td><code>logs_slow_log_loggroup_kms_key_id</code></td>
+      <td>String</td>
+      <td>
+        The ARN for the KMS key to encrypt Slow logs CloudWatch logs.
+        When specifying `logs_slow_log_loggroup_kms_key_id`, `logs_slow_log_enabled` needs to be set to true.
+        If omitted, CloudWatch default encryption will apply.
+        For information on CloudWatch log data encryption and how to configure a KMS key, see 
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">AWS Documentation</a>
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>    
+    <tr>
+      <td><code>logs_engine_log_enabled</code></td>
+      <td>Boolean</td>
+      <td>
+        Enable the streaming of Redis Engine Log to CloudWatch in JSON format. 
+        Engine Log is supported for Redis replication groups using version 6.2 onward.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>   
+    <tr>
+      <td><code>logs_engine_log_loggroup_retention_in_days</code></td>
+      <td>Number</td>
+      <td>
+        Specifies the number of days you want to retain log events in the specified log group. 
+        If 0 is specified, the events in the log group are always retained and never expire.
+        When specifying `logs_engine_log_loggroup_retention_in_days`, `logs_engine_log_enabled` needs to be set to true.
+        For more information and the list of valid values, see
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax">AWS Documentation</a>
+      </td>
+      <td><code>0</code></td>
+      <td>provision and update</td>
+    </tr>    
+    <tr>
+      <td><code>logs_engine_log_loggroup_kms_key_id</code></td>
+      <td>String</td>
+      <td>
+        The ARN for the KMS key to encrypt Engine logs CloudWatch logs.
+        When specifying `logs_engine_log_loggroup_kms_key_id`, `logs_engine_log_enabled` needs to be set to true.
+        If omitted, CloudWatch default encryption will apply.
+        For information on CloudWatch log data encryption and how to configure a KMS key, see 
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">AWS Documentation</a>
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>           
   </tbody>
 </table>
 
