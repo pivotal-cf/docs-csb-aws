@@ -484,6 +484,13 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
+The <%= vars.product_short %> will return the Redis Auth Token created at provision time alongside endpoints information to connect to 
+the service instance.
+
+> **Note** As the <%= vars.product_short %> configures Redis Auth as authentication mechanism, all bindings will share the same Redis
+> Auth Token. Deleting the binding does not revoke the credentials. 
+
+
 ## <a id="binding-creds"></a> Binding Credentials
 
 The format for binding credentials for Redis is as follows:
@@ -491,12 +498,18 @@ The format for binding credentials for Redis is as follows:
 ```json
 {
     "name" : "REDIS-CLUSTER-NAME",
-    "host" : "REDIS-SERVER-HOSTNAME",
+    "host" : "REDIS-PRIMARY-ENDPOINT-ADDRESS",
     "password" : "AUTHENTICATION-PASSWORD",
     "tls_port" : "REDIS-TLS-PORT",
     "reader_endpoint" : "REDIS-READER-ENDPOINT-ADDRESS"
 }
 ```
+
+Where `host` is the primary node endpoint address. This endpoint can be used both for writing and reading. 
+`reader_endpoint` is the IaaS recommended enpoint to use for reads whenever eventual consistency is acceptable. 
+The reader endpoint will evenly split incoming connections to the endpoint between all read replicas.
+For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Endpoints.html">AWS Documentation</a>.
+
 
 ## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 
