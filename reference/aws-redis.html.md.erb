@@ -417,7 +417,7 @@ provision only:
         When specifying <code>logs_slow_log_loggroup_retention_in_days</code>,
         set <code>logs_slow_log_enabled</code> as <code>true</code>.
         For more information and the list of valid values, see the
-        <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax">AWS Documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax">AWS documentation</a>.
       </td>
       <td><code>0</code></td>
       <td>provision and update</td>
@@ -431,7 +431,7 @@ provision only:
         <code>logs_slow_log_enabled</code> as <code>true</code>.
         If omitted, CloudWatch default encryption applies.
         For information about CloudWatch log data encryption and how to configure a KMS key, see the
-        <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">AWS Documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">AWS documentation</a>.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -458,7 +458,7 @@ provision only:
         When specifying <code>logs_engine_log_loggroup_retention_in_days</code>,
         set <code>logs_engine_log_enabled</code> to <code>true</code>.
         For more information and the list of valid values, see the
-        <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax">AWS Documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html#API_PutRetentionPolicy_RequestSyntax">AWS documentation</a>.
       </td>
       <td><code>0</code></td>
       <td>provision and update</td>
@@ -472,7 +472,7 @@ provision only:
         <code>logs_engine_log_enabled</code> to <code>true</code>.
         If omitted, CloudWatch default encryption applies.
         For information about CloudWatch log data encryption and how to configure a KMS key, see the
-        <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">AWS Documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html">AWS documentation</a>.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -488,12 +488,11 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
-The <%= vars.product_short %> will return the Redis Auth Token created at provision time alongside endpoints information to connect to 
-the service instance.
+The <%= vars.product_short %> returns the Redis Auth Token created at provision time alongside
+endpoints information to connect to the service instance.
 
-> **Note** As the <%= vars.product_short %> configures Redis Auth as authentication mechanism, all bindings will share the same Redis
-> Auth Token. Deleting the binding does not revoke the credentials. 
-
+> **Note** Because the <%= vars.product_short %> configures Redis Auth as the authentication mechanism,
+> all bindings share the same Redis Auth Token. Deleting the binding does not revoke the credentials.
 
 ## <a id="binding-creds"></a> Binding Credentials
 
@@ -509,11 +508,13 @@ The format for binding credentials for Redis is as follows:
 }
 ```
 
-Where `host` is the primary node endpoint address. This endpoint can be used both for writing and reading. 
-`reader_endpoint` is the IaaS recommended enpoint to use for reads whenever eventual consistency is acceptable. 
-The reader endpoint will evenly split incoming connections to the endpoint between all read replicas.
-For more information, see <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Endpoints.html">AWS Documentation</a>.
+`host` is the primary node endpoint address. This endpoint can be used both for writing and reading.
 
+`reader_endpoint` is the IaaS-recommended endpoint to use for reads whenever eventual consistency is
+acceptable.
+The reader endpoint evenly splits incoming connections to the endpoint between all read replicas.
+For more information, see the
+<a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Endpoints.html">AWS documentation</a>.
 
 ## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 
