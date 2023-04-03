@@ -44,12 +44,6 @@ This release has the following breaking changes:
   [AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
   [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
-- **Slow and Engine logs can now be streamed to CloudWatch:**
-  You can now configure `logs_slow_log_enabled` and `logs_engine_log_enabled`.
-  Logs are sent to CloudWatch in JSON format.
-  You can perform other CloudWatch log configurations, too.
-  For a complete set of properties, see [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
-
 #### Amazon DynamoDB
 
 - **Renamed `csb-aws-dynamodb` service as `csb-aws-dynamodb-table`:**
@@ -130,6 +124,12 @@ New features and changes in this release:
 - **New field in binding format:**
   Bindings can now use the `reader_endpoint` address to evenly split read operations between all read
   replicas. For more information, see [Binding](reference/aws-redis.html.md.erb#binding).
+
+- **Slow and Engine logs can now be streamed to CloudWatch:**
+  You can now configure `logs_slow_log_enabled` and `logs_engine_log_enabled`.
+  Logs are sent to CloudWatch in JSON format.
+  You can perform other CloudWatch log configurations, too.
+  For a complete set of properties, see [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).  
 
 ### Resolved Issues
 

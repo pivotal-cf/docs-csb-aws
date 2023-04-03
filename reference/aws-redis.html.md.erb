@@ -401,6 +401,8 @@ provision only:
       <td>
         Enable the streaming of Redis Slow Log to CloudWatch in JSON format.
         Slow Log is supported for Redis replication groups using v6.0 and later.
+        A new Cloudwatch log group will be created with the name `/aws/elasticache/cluster/<SERVICE-INSTANCE-NAME>/slow-log`
+        Deleting the instance also deletes the log group and permanently deletes all the archived log events associated with it.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
@@ -440,6 +442,8 @@ provision only:
       <td>
         Enable the streaming of Redis Engine Log to CloudWatch in JSON format.
         Engine Log is supported for Redis replication groups using v6.2 and later.
+        A new Cloudwatch log group will be created with the name `/aws/elasticache/cluster/<SERVICE-INSTANCE-NAME>/engine-log`
+        Deleting the instance also deletes the log group and permanently deletes all the archived log events associated with it.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
