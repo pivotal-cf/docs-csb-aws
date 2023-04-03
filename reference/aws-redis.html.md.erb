@@ -112,7 +112,7 @@ provision only:
         <a href="https://aws.amazon.com/elasticache/pricing/">AWS documentation</a> and
        <br><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html">Choosing your node size</a>.
       </td>
-      <td><em>n/a</em></td>
+      <td><code>""</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -168,14 +168,18 @@ provision only:
       <td><code>elasticache_subnet_group</code></td>
       <td>String</td>
       <td>Pre-existing AWS Elasticache subnet group to use</td>
-      <td><em>n/a</em></td>
+      <td>The value the operator entered for <strong>Subnet group</strong> in <%= vars.ops_manager %>.
+      <br/>A new one will be created if none is specified in <%= vars.ops_manager %> or provision parameters.
+      </td>
       <td>provision</td>
     </tr>
     <tr>
       <td><code>elasticache_vpc_security_group_ids</code></td>
       <td>String</td>
       <td>Comma-delimited list of security group IDs for the instance</td>
-      <td><em>n/a</em></td>
+      <td>The value the operator entered for <strong>Security group IDs</strong> in <%= vars.ops_manager %>.
+      <br/>A new one will be created if none is specified in <%= vars.ops_manager %> or provision parameters.
+      </td>
       <td>provision</td>
     </tr>
     <tr>
