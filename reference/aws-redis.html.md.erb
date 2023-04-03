@@ -168,8 +168,9 @@ provision only:
       <td><code>elasticache_subnet_group</code></td>
       <td>String</td>
       <td>Pre-existing AWS Elasticache subnet group to use</td>
-      <td>The value the operator entered for <strong>Subnet group</strong> in <%= vars.ops_manager %>.
-      <br/>A new one will be created if none is specified in <%= vars.ops_manager %> or provision parameters.
+      <td>
+        The value the operator entered for <strong>Subnet group</strong> in <%= vars.ops_manager %>.<br>
+        A new one is created if none is specified in <%= vars.ops_manager %> or provision parameters.
       </td>
       <td>provision</td>
     </tr>
@@ -177,8 +178,9 @@ provision only:
       <td><code>elasticache_vpc_security_group_ids</code></td>
       <td>String</td>
       <td>Comma-delimited list of security group IDs for the instance</td>
-      <td>The value the operator entered for <strong>Security group IDs</strong> in <%= vars.ops_manager %>.
-      <br/>A new one will be created if none is specified in <%= vars.ops_manager %> or provision parameters.
+      <td>
+        The value the operator entered for <strong>Security group IDs</strong> in <%= vars.ops_manager %>.<br>
+        A new one is created if none is specified in <%= vars.ops_manager %> or provision parameters.
       </td>
       <td>provision</td>
     </tr>
