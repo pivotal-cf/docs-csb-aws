@@ -488,7 +488,7 @@ The <%= vars.product_short %> will return the Redis Auth Token created at provis
 the service instance.
 
 > **Note** As the <%= vars.product_short %> configures Redis Auth as authentication mechanism, all bindings will share the same Redis
-> Auth Token. Deleting the binding is a no-op on the IaaS side. 
+> Auth Token. Deleting the binding does not revoke the credentials. 
 
 
 ## <a id="binding-creds"></a> Binding Credentials
