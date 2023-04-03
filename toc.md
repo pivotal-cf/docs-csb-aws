@@ -3,6 +3,7 @@
 * [Installing and Configuring](installing-with-aws.html)
 * [Migrating Data to Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL Instance](aws-rds-migration.html)
 * [Migrating an Amazon S3 Instance](aws-s3-migration.html)
+* [Migrating an Amazon DynamoDB Namespace Instance](aws-dynamodb-namespace-migration.html)
 * [Upgrading](upgrading.html)
 * [Service Plan Reference](reference/index.html)
     * [Amazon S3 Bucket](reference/aws-s3.html)
