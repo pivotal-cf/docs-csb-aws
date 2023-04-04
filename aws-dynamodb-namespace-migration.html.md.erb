@@ -67,7 +67,7 @@ To migrate data from an existing legacy instance to the <%= vars.product_short %
 1. Restore the tables backups, choosing a name that replaces the prefix from the
    legacy broker service instance with the prefix of the new service instance.
    For example, the table `LEGACY-GUID_example_table` could be restored as
-   `csb-NEW-GUID-example_table`.
+`csb-NEW-GUID-example_table` where `csb-NEW-GUID-` is the prefix obtained in the previous step.
    You can restore tables using the `aws dynamodb restore-table-from-backup`
 
 1. Disconnect the app from the legacy service binding by running:
