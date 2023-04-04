@@ -55,7 +55,7 @@ To migrate data from an existing legacy instance to the <%= vars.product_short %
 
 1. Create a backup of the DynamoDB tables that you want to migrate.
    You can create a backup using the `aws dynamodb create-backup` command.
-
+The command will be similar to: `aws dynamodb create-backup --table-name legacyTableName --backup-name backupName --region regionName`
 1. Create a new DynamoDB Namespace service instance using <%= vars.product_short %>.
 
 1. Determine the prefix of the new service instance.
