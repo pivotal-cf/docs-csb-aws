@@ -69,7 +69,7 @@ The command will be similar to: `aws dynamodb create-backup --table-name legacyT
    For example, the table `LEGACY-GUID_example_table` could be restored as
 `csb-NEW-GUID-example_table` where `csb-NEW-GUID-` is the prefix obtained in the previous step.
    You can restore tables using the `aws dynamodb restore-table-from-backup`
-
+The command will be similar to: `aws dynamodb restore-table-from-backup --target-table-name newTableName ----backup-arn backupARN --region regionName`
 1. Disconnect the app from the legacy service binding by running:
 
    ```console
