@@ -122,7 +122,7 @@ The following errors can occur in multiple services:
 
 The following errors can occur in Amazon ElastiCache for Redis:
 
-<div class="wrap-table-overflow">
+<div id="redis-invalid-paramteter-group" class="wrap-table-overflow">
     <table class="table">
         <tbody>
              <tr>
@@ -157,6 +157,40 @@ The following errors can occur in Amazon ElastiCache for Redis:
                     <li>Set the <code>parameter_group_name</code> to <code>""</code> so that the default is used.</li>
                     <li>Set the <code>parameter_group_name</code> to a parameter group whose family matches the Redis version.</li>
                     </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="redis-scale-nodes-snapshotting" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>"snapshotting" state while adding or removing nodes</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:<br>
+                  <code>unexpected state 'snapshotting', wanted target 'available'.</code>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  An AWS snapshot was started during the operation.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                  Retry the operation.
                 </td>
             </tr>
         </tbody>
