@@ -195,9 +195,9 @@ provision only:
       <td><code>multi_az_enabled</code></td>
       <td>Boolean</td>
       <td>
-        Whether to enable Multi-AZ support for the replication group. If <code>true</code>,
-        <code>automatic_failover_enabled</code> must also be <code>true</code>,
-        and <code>node_count</code> must be greater than 1.
+        Whether to enable Multi-AZ support for the replication group.
+        Only applies when <code>node_count</code> is greater than 1.
+        If <code>true</code>, <code>automatic_failover_enabled</code> must also be <code>true</code>.
         <br><br>
         Enabling Multi-AZ and then trying to deactivate the automatic failover causes an error.
       </td>
@@ -209,7 +209,7 @@ provision only:
       <td>Boolean</td>
       <td>
         Automatically promote a replica to primary if the existing primary fails.
-        If <code>true</code>, <code>node_count</code> must be greater than 1.
+        Only applies when <code>node_count</code> is greater than 1.
         You can't set this property to <code>false</code> unless you also deactivate Multi-AZ.
         <br><br>
         Enabling automatic failover and then trying to reduce the number of nodes to 1 causes an error.
