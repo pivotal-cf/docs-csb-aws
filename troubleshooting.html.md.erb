@@ -14,12 +14,21 @@ Start here if you have a specific error or error messages.
 
 The following errors can occur in multiple services:
 
-<div class="wrap-table-overflow">
+<ul>
+    <li>
+        <a href="#recreate-instance-update-operation">Broker trying to recreate the instance when updating it</a>
+    </li>
+    <li>
+        <a href="#recreate-instance-plan-change">Broker trying to recreate the instance when changing plan</a>
+    </li>
+</ul>
+
+<div id="recreate-instance-update-operation" class="wrap-table-overflow">
     <table class="table">
         <tbody>
              <tr>
                 <td>Error</td>
-                <td>Broker trying to recreate the instance</td>
+                <td>Broker trying to recreate the instance when updating it</td>
              </tr>
              <tr>
                 <td>Operation</td>
@@ -39,7 +48,7 @@ The following errors can occur in multiple services:
                 <li>The new value for a property, or combination of properties, would cause an instance recreation</li>
                 </ul>
                 The failing update request might be an indication of an out-of-band update performed
-                on the instance or an attempt to change plans that contain incompatible property values.
+                on the instance.
                 </td>
             </tr>
              <tr>
@@ -59,10 +68,50 @@ The following errors can occur in multiple services:
                             <ul>
                                 <li>Rolling back the change in the IaaS</li>
                                 <li>Changing the value in the instance plan</li>
-                                <li>Updating the instance to a plan with the correct values</li>
                             </ul>
                         </li>
                     </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="recreate-instance-plan-change" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Broker trying to recreate the instance when changing plan</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>update plan</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>The instance status is <code>update failed</code> and the message is similar to<br>
+                <code>update failed: Error: Instance cannot be destroyed on main.tf **** has
+                lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code>.</td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                    The update request for the plan is failing because the new plan contains incompatible property values.
+                </td>
+            </tr>
+             <tr>
+                <td>Examples</td>
+                <td>
+                    Execute the plan update operation for Redis by setting a version of Redis lower than
+                    the previously created instance. The downgrade of the version is not allowed because
+                    it involves the recreation of the instance.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    Updating the instance to a plan with the compatible values.
                 </td>
             </tr>
         </tbody>
