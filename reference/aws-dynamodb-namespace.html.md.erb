@@ -55,5 +55,11 @@ The format for binding credentials for DynamoDB is as follows:
 The bound application can use an IAM user with the supplied credentials to create, update, or delete
 any DynamoDB with names starting with the `DYNAMODB-TABLE-NAME-PREFIX` within the `AWS-REGION` region.
 
+The prefix is of the form `csb-GUID-` where `GUID` is the globally unique identifier of the service instance
+that can be obtained by running the command `cf service SERVICE-INSTANCE-NAME --guid` where
+`SERVICE-INSTANCE-NAME` is the name of the service instance. The prefix cannot be configured in order
+to ensure that every service instance has a unique prefix that does not allow access to tables created
+by any other service instance.
+
 > **Caution** All the tables created in the designated namespace are destroyed when the service
 > instance is deleted.
