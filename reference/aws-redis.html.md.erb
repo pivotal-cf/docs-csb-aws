@@ -407,8 +407,10 @@ provision only:
       <td>
         Enable the streaming of Redis Slow Log to CloudWatch in JSON format.
         Slow Log is supported for Redis replication groups using v6.0 and later.
-        A new CloudWatch log group is created with the name <code>/aws/elasticache/cluster/SERVICE-INSTANCE-NAME/slow-log</code>.
-        Deleting the instance also deletes the log group and permanently deletes all the archived log events associated with it.
+        A new CloudWatch log group is created with the name
+        <code>/aws/elasticache/cluster/SERVICE-INSTANCE-NAME/slow-log</code>.
+        Deleting the instance also deletes the log group and permanently deletes all the archived log
+        events associated with it.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
@@ -496,11 +498,11 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
-The <%= vars.product_short %> returns the Redis Auth Token created at provision time alongside
-endpoints information to connect to the service instance.
+<%= vars.product_short %> returns the Redis AUTH token created at provision time alongside endpoints
+information to connect to the service instance.
 
-> **Note** Because the <%= vars.product_short %> configures Redis Auth as the authentication mechanism,
-> all bindings share the same Redis Auth Token. Deleting the binding does not revoke the credentials.
+> **Note** Because the <%= vars.product_short %> configures Redis AUTH as the authentication mechanism,
+> all bindings share the same Redis AUTH token. Deleting the binding does not revoke the credentials.
 
 ## <a id="binding-creds"></a> Binding Credentials
 

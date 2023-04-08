@@ -5,72 +5,91 @@ owner: Cloud Service Broker for AWS
 
 <strong><%= modified_date %></strong>
 
-This topic describes migrating from an Amazon DynamoDB instance of the VMware Tanzu Service Broker for AWS
-tile to the <%= vars.product_full %> tile.
+This topic describes migrating from an Amazon DynamoDB instance of the VMware Tanzu Service Broker
+for AWS tile to the <%= vars.product_full %> tile.
 
 ## <a id='overview'></a> About Migrating a DynamoDB Instance
 
 Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
-is going out of support, it is important to move from DynamoDB instances that were created by the legacy
-broker over to the <%= vars.product_short %>.
+is going out of support, you must move from DynamoDB instances that were created by the
+legacy broker over to <%= vars.product_short %>.
 
 You can use any compatible migration tool for migration.
 
 ### <a id='migration'></a> Migrating Data
 
-You might want to migrate data from instances created with the legacy broker to instances
-created with the <%= vars.product_short %>.
+You might want to migrate data from instances created with the legacy broker to instances created with
+<%= vars.product_short %>.
 
 Both the legacy broker and <%= vars.product_short %> create an IAM user with the
 authority to create, update, or delete any DynamoDB with names starting with
-a prefix. The prefix is not configurable for security reasons, so in order to
-migrate data from a legacy broker instance to a <%= vars.product_short %> instance,
-the DynamoDB tables need to be renamed to match the prefix of the new service instance.
+a prefix.
+
+The prefix is not configurable for security reasons, so, to migrate data from a legacy broker instance
+to a <%= vars.product_short %> instance, the DynamoDB tables must be renamed to match the prefix of
+the new service instance.
 
 <p class="note important">
-  <strong>Important:</strong>Migration of data might incur app downtime.
+  <strong>Important:</strong> Migration of data might incur app downtime.
   The amount of downtime depends on the method chosen.
 </p>
-
 
 In general, to migrate data:
 
 1. Create a backup of each DynamoDB table.
-2. Create a DynamoDB Namespace instance using the <%= vars.product_short %>.
-3. Restore the DynamoDB tables using the prefix of the new DynamoDB Namespace instance.
+2. Create a DynamoDB namespace instance using the <%= vars.product_short %>.
+3. Restore the DynamoDB tables using the prefix of the new DynamoDB namespace instance.
 4. Unbind apps from the legacy broker DynamoDB instance and bind them to the newly created instance.
 5. (Optional) After migration is complete, delete the legacy broker DynamoDB instance.
 
 ## <a id='steps'></a> Migrate Data from a Legacy Amazon DynamoDB Instance
 
-The following steps have the Cloud Foundry commands necessary to
-migrate data from an existing legacy instance to the <%= vars.product_short %>:
+The following steps have the Cloud Foundry commands necessary to migrate data from an existing legacy
+instance to <%= vars.product_short %>:
 
-1. Determine the prefix of the legacy broker DynamoDB service instance.
-   The prefix will be of the form `GUID_` where GUID is the globally unique
-   identifier of the service instance that can be obtained by running the command
-   `cf service SERVICE-INSTANCE-NAME --guid` where SERVICE-INSTANCE-NAME is the name
-   of the service instance. The prefix allows you to identify which
-   tables in DynamoDB are associated with this service instance.
+1. Learn the prefix of the legacy broker DynamoDB service instance by running:
 
-1. Create a backup of the DynamoDB tables that you want to migrate.
-   You can create a backup using the `aws dynamodb create-backup` command.
-The command will be similar to: `aws dynamodb create-backup --table-name legacyTableName --backup-name backupName --region regionName`
-1. Create a new DynamoDB Namespace service instance using <%= vars.product_short %>.
+   ```console
+   cf service SERVICE-INSTANCE-NAME --guid
+   ```
 
-1. Determine the prefix of the new service instance.
-   The prefix will be of the form `csb-GUID-` where GUID is the globally unique
-   identifier of the service instance that can be obtained by running the command
-   `cf service SERVICE-INSTANCE-NAME --guid` where SERVICE-INSTANCE-NAME is the name
-   of the service instance.
+   The prefix is of the form `GUID_` where `GUID` is the globally unique identifier of the service
+   instance. The prefix enables you to identify which tables in DynamoDB are associated with this
+   service instance.
 
-1. Restore the tables backups, choosing a name that replaces the prefix from the
-   legacy broker service instance with the prefix of the new service instance.
-   For example, the table `LEGACY-GUID_example_table` could be restored as
-`csb-NEW-GUID-example_table` where `csb-NEW-GUID-` is the prefix obtained in the previous step.
-   You can restore tables using the `aws dynamodb restore-table-from-backup`
-The command will be similar to: `aws dynamodb restore-table-from-backup --target-table-name newTableName ----backup-arn backupARN --region regionName`
-1. Disconnect the app from the legacy service binding by running:
+2. Create a backup of the DynamoDB tables that you want to migrate by running the
+   `aws dynamodb create-backup` command. See the following example:
+
+   ```console
+   $ aws dynamodb create-backup --table-name legacyTableName --backup-name backupName \
+   --region regionName
+   ```
+
+3. Create a new DynamoDB namespace service instance using <%= vars.product_short %>.
+
+4. Learn the prefix of the new service instance by running:
+
+   ```console
+   cf service SERVICE-INSTANCE-NAME --guid
+   ```
+
+   The prefix is of the form `csb-GUID-` where `GUID` is the globally unique identifier of the service
+   instance.
+
+5. Restore the tables backups, choosing a name that replaces the prefix from the legacy broker service
+   instance with the prefix of the new service instance.
+
+   For example, you can restore the table `LEGACY-GUID_example_table` as `csb-NEW-GUID-example_table`,
+   where `csb-NEW-GUID-` is the prefix obtained in the earlier step.
+   You can restore tables by running the `aws dynamodb restore-table-from-backup` command.
+   See the following example:
+
+   ```console
+   $ aws dynamodb restore-table-from-backup --target-table-name newTableName ----backup-arn backupARN \
+   --region regionName
+   ```
+
+6. Disconnect the app from the legacy service binding by running:
 
    ```console
    cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE-NAME
@@ -78,8 +97,9 @@ The command will be similar to: `aws dynamodb restore-table-from-backup --target
 
    Where:
 
-   * `APP-NAME` is the app using the service instance.
-   * `LEGACY-SERVICE-INSTANCE-NAME` is the name of the VMware Tanzu Service Broker for the AWS-brokered DynamoDB instance.
+   - `APP-NAME` is the app using the service instance.
+   - `LEGACY-SERVICE-INSTANCE-NAME` is the name of the VMware Tanzu Service Broker for the
+     AWS-brokered DynamoDB instance.
 
    For example:
 
@@ -87,7 +107,7 @@ The command will be similar to: `aws dynamodb restore-table-from-backup --target
    $ cf unbind-service my-app my-old-instance
    ```
 
-1. Bind the app to the new service instance by running:
+7. Bind the app to the new service instance by running:
 
    ```console
    cf bind-service APP-NAME NEW-SERVICE-INSTANCE-NAME
@@ -102,13 +122,13 @@ The command will be similar to: `aws dynamodb restore-table-from-backup --target
    $ cf bind-service my-app my-csb-aws-instance
    ```
 
-   Because <%= vars.product_short %> creates new credentials at bind time,
-   this creates new binding credentials for the app.
+   Because <%= vars.product_short %> creates new credentials at bind time, this creates new binding
+   credentials for the app.
 
-1. Restage the app by running:
+8. Restage the app by running:
 
    ```console
    cf restage APP-NAME
    ```
 
-1. (Optional) After the migration has finished, remove the legacy service instance.
+9. (Optional) After the migration has finished, remove the legacy service instance.
