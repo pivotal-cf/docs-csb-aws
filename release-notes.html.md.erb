@@ -55,6 +55,13 @@ This release has the following breaking changes:
   path `/c/csb/csb-aws-dynamodb/`. When existing bindings are deleted, <%= vars.product_short %> will not remove the
   credentials from CredHub. You can remove the credentials manually using the CredHub CLI, or you can leave the credentials in situ because they will no longer allow access to the service instance.
 
+#### Amazon Aurora for MySQL && Amazon Aurora for PostgreSQL
+
+- **Changes are now applied immediately:**
+  From this version onwards, changes made using the `cf update-service` command are applied immediately
+  instead of being queued to be applied during the maintenance window.
+  This might result in brief downtime while the server reboots.
+
 ### Features
 
 New features and changes in this release:
@@ -134,6 +141,11 @@ New features and changes in this release:
 ### Resolved Issues
 
 This release has the following fixes:
+
+- **The upgrade operation in Aurora instances allowed:**
+  The upgrade operation threw an error due to an inconsistency between values of the involved instances since,
+  the operation was marked for the next maintenance period. From now on the operation runs synchronously
+  allowing the updating of instances.
 
 ### Known Issues
 
