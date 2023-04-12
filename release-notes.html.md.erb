@@ -62,7 +62,14 @@ Amazon Aurora PostgreSQL-Compatible Edition services:
 
 ### Known Issues
 
-There are no known issues for this release.
+- **Aurora service instance engine upgrade version:**
+  The engine upgrade version operation threw an error due to an inconsistency between the values of the
+  involved instances since, the operation is marked for the next maintenance period instead of performing it
+  after the execution of the command. In other words, an upgrade operation, for example, the aurora-postgresql
+  version going from version `13.10` to version `14.7` by running the following command
+  `csb update-service <SERVICE INSTANCE NAME> -c '{"engine_version": "14.7"}'` will fail.
+  Minor version updates are done automatically if the `auto_minor_version_upgrade` parameter is true.
+  For more information about `auto_minor_version_upgrade`, see service plan references.
 
 ## <a id="view"></a> View release notes for another version
 
