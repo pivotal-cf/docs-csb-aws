@@ -150,6 +150,11 @@ This release has the following fixes:
   the operation was marked for the next maintenance period. From now on the operation runs synchronously
   allowing the updating of instances.
 
+- **The upgrade operation for a major version using the default DB Cluster Parameter Group for aurora-postgreSQL instances allowed:**
+  The engine upgrade operation for a major version of aurora-postgreSQL using the default DB Cluster Parameter Group
+  threw an error due to the collision of names in the DB Cluster Parameter Groups involved in the operation.
+  From now on the parameter group is created with a unique name beginning with a prefix that represents the name of the instance.
+
 ### Known Issues
 
 #### Amazon ElastiCache for Redis
