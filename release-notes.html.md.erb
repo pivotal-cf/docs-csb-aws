@@ -326,7 +326,7 @@ This release has the following fixes:
 
 ### Known Issues
 
-This release has the following issue:
+This release has the following issues:
 
 - **S3 bucket service instance update:**
   If you attempt to deactivate versioning for an instance created before upgrading to this version,
@@ -344,7 +344,7 @@ This release has the following issue:
   Minor version updates are done automatically if the `auto_minor_version_upgrade` parameter is true.
   For more information about `auto_minor_version_upgrade`, see service plan references.
 
-- **Aurora-PostgreSQL service instance upgrade for a major version using default DB Cluster Parameter Group:**
+- **Aurora-PostgreSQL service instance upgrade for a major version can fail:**
   The engine upgrade operation for a major version of aurora-postgreSQL using the default DB Cluster Parameter Group
   throws an error due to the collision of names in the DB Cluster Parameter Groups involved in the operation.
 
