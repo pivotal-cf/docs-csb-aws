@@ -55,12 +55,12 @@ This release has the following breaking changes:
   path `/c/csb/csb-aws-dynamodb/`. When existing bindings are deleted, <%= vars.product_short %> will not remove the
   credentials from CredHub. You can remove the credentials manually using the CredHub CLI, or you can leave the credentials in situ because they will no longer allow access to the service instance.
 
-#### Amazon Aurora for MySQL && Amazon Aurora for PostgreSQL
+#### Amazon Aurora for MySQL and Amazon Aurora for PostgreSQL
 
 - **Changes are now applied immediately:**
-  From this version onwards, changes made using the `cf update-service` command are applied immediately
+  Changes made using the `cf update-service` command are now applied immediately
   instead of being queued to be applied during the maintenance window.
-  This might result in brief downtime while the server reboots.
+  This might cause brief downtime while the server reboots.
 
 ### Features
 
@@ -145,15 +145,19 @@ New features and changes in this release:
 
 This release has the following fixes:
 
-- **The upgrade operation in Aurora instances allowed:**
-  The upgrade operation threw an error due to an inconsistency between values of the involved instances since,
-  the operation was marked for the next maintenance period. From now on the operation runs synchronously
-  allowing the updating of instances.
+- **Fixes the upgrade operation in Aurora instances:**
+  The upgrade operation in Aurora instances is now allowed.
+  The upgrade operation threw an error due to an inconsistency between the values of the involved instances
+  because the operation was marked for the next maintenance period. From now on, the operation runs
+  synchronously, which allows the instances to be updated.
 
-- **The upgrade operation for a major version using the default DB Cluster Parameter Group for aurora-postgreSQL instances allowed:**
-  The engine upgrade operation for a major version of aurora-postgreSQL using the default DB Cluster Parameter Group
-  threw an error due to the collision of names in the DB Cluster Parameter Groups involved in the operation.
-  From now on the parameter group is created with a unique name beginning with a prefix that represents the name of the instance.
+- **Fixes the upgrade operation for a major version for Aurora PostgreSQL instances:**
+  The upgrade operation for a major version using the default database cluster parameter group for
+  aurora-postgreSQL instances is now allowed.
+  The engine upgrade operation threw an error due to the collision of names in the database
+  cluster parameter groups involved in the operation.
+  From now on, the parameter group is created with a unique name that begins with a prefix that
+  represents the name of the instance.
 
 ### Known Issues
 
