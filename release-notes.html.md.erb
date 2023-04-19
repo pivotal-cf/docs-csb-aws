@@ -9,158 +9,32 @@ These are release notes for <%= vars.product_full %>.
 
 ## <a id="1-5-0"></a> v1.5.0
 
-**Release Date:** 19 April 2023
+**Release Date:** DD MMM YYYY
 
 ### Breaking Changes
 
 This release has the following breaking changes:
 
-#### Amazon ElastiCache for Redis
-
-- **Removed Amazon ElastiCache for Redis pre-configured plans:**
-  From this version onwards, plans are no longer provided with the brokerpak.
-  If you have ElastiCache for Redis service instances that you want to maintain that use the formerly built-in plans,
-  you must add the plans through the tile configuration.
-  For more information, see
-  [Previously Provided Pre-configured Plans](reference/aws-redis.html.md.erb#old-plans) in _Amazon ElastiCache for Redis Reference_.
-
-- **Changes are now applied immediately:**
-  From this version onwards, changes made using the `cf update-service` command are applied immediately
-  instead of being queued to be applied during the maintenance window.
-  This might result in brief downtime while the server reboots.
-
-- **Property `cache_size` is now deprecated:**
-  Consider replacing it with its equivalent `node_type`. For more information, see
-  [Equivalence of cache_size and node_type](reference/aws-redis.html.md.erb#cache-size-node-type).
-  Specifying `node_type` in a plan prevents any existing or future service from specifying `node_type`
-  as a service-specific configuration parameter.
-
-  This has strong implications for existing plans because existing services might become unmanageable
-  if they specified a custom `node_type` when they were created.
-  When in doubt, keep using `cache_size` for existing plans and start using `node_type` for any new
-  plans.
-
-  For more information about node types and pricing, see the
-  [AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
-  [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
-
-#### Amazon DynamoDB
-
-- **Renamed `csb-aws-dynamodb` service as `csb-aws-dynamodb-table`:**
-  The existing beta `csb-aws-dynamodb` service has
-  been renamed to `csb-aws-dynamodb-table` to differentiate it from the new service `csb-aws-dynamodb-namespace`. Any existing `csb-aws-dynamodb` service instances will continue to work.
-
-  When a new binding is created, credentials are stored in CredHub under the path
-  `/c/csb/csb-aws-dynamodb-table/`. Existing bindings  continue to have their credentials stored at the
-  path `/c/csb/csb-aws-dynamodb/`. When existing bindings are deleted, <%= vars.product_short %> will not remove the
-  credentials from CredHub. You can remove the credentials manually using the CredHub CLI, or you can leave the credentials in situ because they will no longer allow access to the service instance.
-
-#### Amazon Aurora for MySQL and Amazon Aurora for PostgreSQL
-
-- **Changes are now applied immediately:**
-  Changes made using the `cf update-service` command are now applied immediately
-  instead of being queued to be applied during the maintenance window.
-  This might cause brief downtime while the server reboots.
+- **Run-in header:** Description.
+- **Run-in header:** Description.
 
 ### Features
 
 New features and changes in this release:
 
-#### General
-
-- **Terraform upgraded to v1.4.4**: The tŸerraform version used to apply changes is upgraded from
-  v1.1.9 to v1.4.4. You must upgrade all service instances.
-  When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
-
-- **Increased memory and disk space quota:** This version increases both the broker memory and disk
-  quota from 1&nbsp;GB to 2&nbsp;GB to enable a larger number of operations to happen simultaneously.
-
-#### Amazon DynamoDB Namespace
-
-- **New service:** This new service provides credentials for managing DynamoDB tables in the default
-  region set for <%= vars.product_short %>.
-
-#### Amazon ElastiCache for Redis
-
-- **Amazon ElastiCache for Redis is ready for production use:**
-  The Amazon ElastiCache for Redis service is no longer in beta and can be used in production.
-
-- **`redis_version` is a required user input parameter:**
-  From this version onwards, the property `redis_version` is a required user input parameter without
-  a default value.
-  This property is no longer a plan parameter, adding more flexibility when creating plans.
-  From now on, the `redis_version` is updatable if it has not been defined as a property in a custom
-  plan.
-  For more information, see
-  [the Amazon ElastiCache for Redis Reference](reference/aws-redis.html.md.erb) and the
-  [upgrade steps](upgrading.html.md.erb).
-  The AWS automatic upgrade of minor versions is now deactivated so that the
-  Redis version is controlled exclusively through the `redis_version` property.
-
-- **Encryption of data at rest is enabled by default:**
-  New properties `at_rest_encryption_enabled` and `kms_key_id` can be used to control encryption at rest.
-
-- **Added support for specifying a maintenance window:**
-  You can now specify the weekly time range for when maintenance on the cache cluster is performed.
-  The minimum maintenance window is 1 hour.
-  For more information, see
-  [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
-
-- **Data tiering and node types from the `r6gd` family are available:**
-  From this version onwards, you can use the node types from the `r6gd` family.
-  Because this node type family needs data tiering, you must set the property `data_tiering_enabled`
-  as `true`.
-  This configuration must be applied only in the provisioning phase.
-  For more information, see
-  [Amazon ElastiCache for Redis](reference/aws-redis.html.md.erb).
-
-- **Multi-AZ is enabled by default:**
-  You can use the new property `multi_az_enabled` to control Multi-AZ.
-  To enable Multi-AZ, you must also enable automatic failover.
-  For more information, see
-  [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
-
-- **Automatic failover is now customizable:**
-  Enables the existing primary to be automatically replaced with a replica in the case of a failure.
-  It is `true` by default. For more information, see
-  [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
-
-- **New configuration properties available:**
-  You can configure `backup_retention_limit`, `final_backup_identifier`, `backup_name`,
-  `backup_start_hour`, `backup_start_min`, `backup_end_hour`, `backup_end_min`,
-  `parameter_group_name`, and `preferred_azs`.
-  For more information, see
-  [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
-
-- **New field in binding format:**
-  Bindings can now use the `reader_endpoint` address to evenly split read operations between all read
-  replicas. For more information, see [Binding](reference/aws-redis.html.md.erb#binding).
-
-- **Slow and Engine logs can now be streamed to CloudWatch:**
-  You can now configure `logs_slow_log_enabled` and `logs_engine_log_enabled`.
-  Logs are sent to CloudWatch in JSON format.
-  You can perform other CloudWatch log configurations, too.
-  For the complete set of properties, see [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
+- **Run-in header:** Description.
+- **Run-in header:** Description.
 
 ### Resolved Issues
 
 This release has the following fixes:
 
-- **Fixes the upgrade operation in Aurora instances:**
-  The upgrade operation in Aurora instances is now allowed.
-  The upgrade operation threw an error due to an inconsistency between the values of the involved instances
-  because the operation was marked for the next maintenance period. From now on, the operation runs
-  synchronously, which allows the instances to be updated.
-
-- **Fixes the upgrade operation for a major version for Aurora PostgreSQL instances:**
-  The upgrade operation for a major version using the default database cluster parameter group for
-  aurora-postgreSQL instances is now allowed.
-  The engine upgrade operation threw an error due to the collision of names in the database
-  cluster parameter groups involved in the operation.
-  From now on, the parameter group is created with a unique name that begins with a prefix that
-  represents the name of the instance.
+- **Run-in header:** Description.
+- **Run-in header:** Description.
 
 ### Known Issues
+
+This release has the following issues:
 
 #### Amazon ElastiCache for Redis
 
