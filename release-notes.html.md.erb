@@ -144,6 +144,13 @@ This release has the following issue:
   versioning is not supported in the IaaS. Subsequent attempts cause an error message that states
   that versioning can't be deactivated as expected.
 
+- **Random failure when creating S3 buckets:**
+  Since April 2023, a change in the AWS disables ACLs by setting the bucket owner to `enforced`.
+  It is possible to reactivate the ACLs, but for this, the bucket ownership must be previously modified
+  to Bucket owner preferred or Object writer. However, new logic to control interactions between ACLs and bucket
+  ownership must be added to ensure the correct execution order. Meanwhile, random errors can occur in the
+  creation of the bucket.
+
 - **Failure to create or update Redis instances:**
   It has not been possible to update existing instances or create new instances since AWS added
   support for Redis v7.
