@@ -160,6 +160,12 @@ This release has the following fixes:
   From now on, the parameter group is created with a unique name that begins with a prefix that
   represents the name of the instance.
 
+- **Fixes random error in S3 buckets creation operation:**
+  Since April 2023, a change in the AWS disables ACLs by setting the bucket owner to `enforced`.
+  It is possible to reactivate the ACLs, but for this, the bucket ownership must be previously modified
+  to Bucket owner preferred or Object writer. Added logic to control interactions between ACLs and bucket
+  ownership.
+
 ### Known Issues
 
 This release has the following issues:
