@@ -351,12 +351,13 @@ This release has the following issues:
   throws an error due to the collision of names in the database cluster parameter groups involved in the operation.
 
 - **Random failure when creating S3 buckets:**
-  Since April 2023, a change in the AWS deactivates ACLs by setting the bucket owner to `enforced`.
-  It is possible to reactivate the ACLs if the bucket ownership is changed to `Bucket owner preferred`
-  or `Object writer`.
-  However, new logic to control interactions between ACLs and bucket ownership must be added to
-  ensure that the correct execution order. Meanwhile, random errors can occur in the creation of the
-  bucket.
+  Since April 2023, a change in AWS deactivates ACLs by setting the object ownership to
+  `bucket owner enforced`.
+  If using ACLs and therefore setting object ownership to a different value
+  (`bucket owner preferred` or `object writer`), random errors when provisioning can occur.
+  This is due to an unspecified order of execution of the operations that edit the object ownership
+  and the ACL type, causing the broker to sometimes attempt the ACL configuration with an incompatible
+  value of object ownership.
 
 ## <a id="view"></a> View release notes for another version
 
