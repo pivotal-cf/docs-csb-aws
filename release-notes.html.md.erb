@@ -161,10 +161,10 @@ This release has the following fixes:
   represents the name of the instance.
 
 - **Fixes random error in S3 buckets creation operation:**
-  Since April 2023, a change in the AWS deactivates ACLs by setting the bucket owner to `enforced`.
-  It is possible to reactivate the ACLs if the bucket ownership is changed to
-  `Bucket owner preferred` or `Object writer`.
-  Logic was added to control interactions between ACLs and bucket ownership.
+  Logic was added to control interactions between ACLs and bucket ownership preventing random failures
+  provisioning a bucket when using ACLs. Since April 2023, a change in the AWS deactivates ACLs by setting object 
+  ownership to `bucket owner enforced` by default, causing a random error when creating a bucket with ACLs. This is now fixed.
+  
 
 ### Known Issues
 
