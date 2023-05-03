@@ -9,7 +9,7 @@ This topic provides reference information about the <a href="https://aws.amazon.
 It details the plans, configuration parameters, and binding credentials.
 
 <p class="note">
-  <strong>Note:</strong> <%= vars.product_full %> v1.5.0 removes brokerpak pre-configured plans for Amazon ElastiCache for Redis.
+  <strong>Note:</strong> <%= vars.product_full %> v1.5 removes brokerpak pre-configured plans for Amazon ElastiCache for Redis.
   All plans must be configured through the tile.
   If you have instances of Amazon ElastiCache for Redis that were created in previous versions and that you want to
   maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
@@ -18,7 +18,7 @@ It details the plans, configuration parameters, and binding credentials.
 </p>
 
 <p class="note">
-  <strong>Note:</strong> In <%= vars.product_full %> v1.5.0 and later, changes made to this service using the <code>cf update-service</code> command are applied immediately.
+  <strong>Note:</strong> In <%= vars.product_full %> v1.5 and later, changes made to this service using the <code>cf update-service</code> command are applied immediately.
   This is instead of being queued to be applied during the maintenance window.
   This might result in brief downtime while the server reboots.
 </p>
@@ -559,7 +559,7 @@ For more information about node types and pricing, see the
 [AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
 [Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
-<%= vars.product_full %> v1.5.0 sets the default values to `true` for `at_rest_encryption_enabled` and
+<%= vars.product_full %> v1.5 sets the default values to `true` for `at_rest_encryption_enabled` and
 `multi_az_enabled`.
 Because previously created instances cannot be modified to use Multi-AZ or encryption at rest, set the
 properties `multi_az_enabled` and `at_rest_encryption_enabled` to `false` when replicating the old
