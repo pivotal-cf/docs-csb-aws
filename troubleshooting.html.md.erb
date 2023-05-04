@@ -198,3 +198,57 @@ The following errors can occur in Amazon ElastiCache for Redis:
         </tbody>
     </table>
 </div>
+
+<div id="redis-module-not-installed" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Unbind or Upgrade consistently fail</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:<br>
+                  <code>unexpected state 'Error: Module not installed'.</code>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  Misconfiguration on the tile causes the service offering to be incompatible with the terraform 
+                  version installed for this broker.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    From the command line, target the organisation and space where the broker application is deployed
+                    <code>cf t -o system -s cloud-service-broker-space</code>
+
+                    Just to ensure you are in the right place, locate the app with the command <code>cf apps</code>.
+                    It should be named cloud-service-broker-aws-1.5.1 
+
+                    Modify the environment variable for the app with
+                    <code>cf set-env cloud-service-broker-aws-1.5.1 CSB_DISABLE_TF_UPGRADE_PROVIDER_RENAMES true</code>
+
+                    Restage the app as advised by the CLI
+                    <code>cf restage cloud-service-broker-aws-1.5.1</code>
+
+                    After that, they can try the desired operation again, this should now work. 
+                    Applying changes from Ops Manager will NOT overwrite this change.
+                    If you have instances of Redis created with previous versions of the broker, you will need to 
+                    run the upgrade process again as they have probably failed to upgrade when installing the tile. 
+                    This can be fixed by either:
+
+                    1. Applying changes again from Ops Manager. See [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config) for more information
+                    2. Running the [upgrade-all-services CLI plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices) from the command line
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
