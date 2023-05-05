@@ -180,6 +180,13 @@ This release has the following issues:
   version at creation time. For example, `6.x`.
   For `7.x` versions, however, you must specify the minor version. For example, `7.0`.
 
+- **Unable to perform upgrade and unbind operations**:
+
+  Terraform version has been bumped with this release and due to a misconfiguration in the tile it causes
+  a terraform error of the form `Error: Module not installed` on unbind and upgrade operations.
+  This will be fixed in the next release and there is a workaround available for this version to work correctly
+  for Redis for all operations. For more information on the workaround, see [troubleshooting](troubleshooting.html.md.erb#redis-module-not-installed)
+
 ## <a id="view"></a> View release notes for another version
 
 To view the release notes for another product version, select the version from drop-down menu at the
