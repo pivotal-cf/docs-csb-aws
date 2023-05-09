@@ -68,17 +68,19 @@ New features and changes in this release:
 
 #### General
 
-- **Terraform upgraded to v1.4.4**: The Terraform version used to apply changes is upgraded from
+- **Terraform upgraded to v1.4.4:** The Terraform version used to apply changes is upgraded from
   v1.1.9 to v1.4.4. You must upgrade all service instances.
   When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
 
 - **Increased memory and disk space quota:** This version increases both the broker memory and disk
   quota from 1&nbsp;GB to 2&nbsp;GB to enable a larger number of operations to happen simultaneously.
 
-- **The region is no longer a select list in the tile:**
-  From now on, the region is a text field where the operators can input any valid value admitted by the AWS provider.
+- **The region is no longer a selection list in the tile:**
+  From now on, the region is a text field where the operator can input any valid value that the AWS
+  provider accepts.
   There are some limited regions associated with the AWS account configuration.
-  See [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) for more information.
+  For more information, see the
+  [AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html).
 
 #### Amazon DynamoDB Namespace
 
