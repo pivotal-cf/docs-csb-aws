@@ -72,8 +72,6 @@ New features and changes in this release:
   v1.1.9 to v1.4.4. You must upgrade all service instances.
   When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
 
-- **Increased memory and disk space quota:** This version increases both the broker memory and disk
-  quota from 1&nbsp;GB to 2&nbsp;GB to enable a larger number of operations to happen simultaneously.
 
 - **The region is no longer a selection list in the tile:**
   From now on, the region is a text field where the operator can input any valid value that the AWS
@@ -173,6 +171,10 @@ This release has the following fixes:
   Since April 2023, a change in AWS deactivates ACLs by setting object ownership to
   `bucket owner enforced` by default, which caused a random error when creating a bucket with ACLs.
   This is now fixed.
+
+- **Fix issue with insufficient resources preventing the broker to start:** This version increases both the broker memory and disk
+  quota from 1&nbsp;GB to 2&nbsp;GB to enable a larger number of operations to happen simultaneously and prevent broker being unable to start
+  due to lack of disk space.
 
 ### Known Issues
 
