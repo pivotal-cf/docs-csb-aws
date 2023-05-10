@@ -1,0 +1,170 @@
+---
+title: Troubleshooting Cloud Service Broker for AWS
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+This topic lists troubleshooting information for <%= vars.product_full %>.
+
+## <a id="troubleshoot-errors"></a> Troubleshoot errors
+
+Start here if you have a specific error or error messages.
+
+### <a id="installation-errors"></a> Tile installation errors
+
+The following errors can occur during the `apply changes` stage
+
+<ul>
+    <li>
+        <a href="#insufficient-memory-disk">Failure to start the application due to insufficient memory or disk space</a>
+    </li>
+</ul>
+<div id="insufficient-memory-disk" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Failure to start the application due to insufficient memory or disk space</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>Tile installation</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>Application fails to start during the `Running errand deploy-all for Cloud Service Broker for Amazon AWS` step when applying changes</td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>Insufficient resources in the app container</td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    <ul>
+                        <li>Update default application memory and disk quota for all applications deployed by
+                        TAS from within the TAS tile configuration (App Developer Controls->Default app memory/Default disk quota per app )</li>
+                        <li>Scale the current deployed application to use 1 GB of memory and 2 GB of disk from either 
+                        apps manager or command line
+                        From apps manager navigate to System->cloud-service-broker-space->cloud-service-broker-aws-<VERSION> and click on the `scale` button
+                        Command line: 
+                        <code>
+                        cf target -o system -s cloud-service-broker-space
+                        cf scale cloud-service-broker-aws-1.4.1 -m 1G -k 2G
+                        </code> 
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+### <a id="common-services-errors"></a> Common Services Errors
+
+The following errors can occur in multiple services:
+
+<ul>
+    <li>
+        <a href="#recreate-instance-update-operation">Broker trying to recreate the instance when updating it</a>
+    </li>
+    <li>
+        <a href="#recreate-instance-plan-change">Broker trying to recreate the instance when changing plan</a>
+    </li>
+</ul>
+
+<div id="recreate-instance-update-operation" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Broker trying to recreate the instance when updating it</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>The instance status is <code>update failed</code> and the message is similar to<br>
+                <code>update failed: Error: Instance cannot be destroyed on main.tf **** has
+                lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code>.</td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>The update request for a field is failing because one of the following is true:
+                <ul>
+                <li>The field cannot be updated</li>
+                <li>The new value for a property, or combination of properties, would cause an instance recreation</li>
+                </ul>
+                The failing update request might be an indication of an out-of-band update performed
+                on the instance.
+                </td>
+            </tr>
+             <tr>
+                <td>Examples</td>
+                <td>An out-of-band upgrade of the Redis version to a newer major version causes the
+                broker to try to downgrade to the previous version, which causes instance recreation.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    <ul>
+                        <li>If the property can be updated, pass the parameter in the update
+                        request to match the IaaS configuration.</li>
+                        <li>If the property can be updated, but specified in the instance plan, then
+                        possible solutions include:<br>
+                            <ul>
+                                <li>Rolling back the change in the IaaS</li>
+                                <li>Changing the value in the instance plan</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="recreate-instance-plan-change" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Broker trying to recreate the instance when changing plan</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>update plan</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>The instance status is <code>update failed</code> and the message is similar to<br>
+                <code>update failed: Error: Instance cannot be destroyed on main.tf **** has
+                lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code>.</td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                    The update request for the plan is failing because the new plan contains
+                    incompatible property values.
+                </td>
+            </tr>
+             <tr>
+                <td>Examples</td>
+                <td>
+                    Execute the plan update operation for Redis by setting a version of Redis earlier
+                    than the previously created instance.
+                    The downgrade of the version is not allowed because it involves the recreation of
+                    the instance.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    Update the instance to a plan with the compatible values.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
