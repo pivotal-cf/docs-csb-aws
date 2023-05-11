@@ -4,21 +4,19 @@ owner: Cloud Service Broker
 ---
 
 <strong><%= modified_date %></strong>
+
 This topic lists troubleshooting information for <%= vars.product_full %>.
 
-## <a id="troubleshoot-errors"></a> Troubleshoot errors
+## <a id="install-errors"></a> Tile installation errors
 
-Start here if you have a specific error or error messages.
-
-### <a id="installation-errors"></a> Tile installation errors
-
-The following errors can occur during the `apply changes` stage
+The following error can occur during the `apply changes` stage:
 
 <ul>
     <li>
         <a href="#insufficient-memory-disk">Failure to start the application due to insufficient memory or disk space</a>
     </li>
 </ul>
+
 <div id="insufficient-memory-disk" class="wrap-table-overflow">
     <table class="table">
         <tbody>
@@ -32,7 +30,7 @@ The following errors can occur during the `apply changes` stage
              </tr>
              <tr>
                 <td>Symptom</td>
-                <td>Application fails to start during the `Running errand deploy-all for Cloud Service Broker for Amazon AWS` step when applying changes</td>
+                <td>Application fails to start during the <code>Running errand deploy-all for Cloud Service Broker for Amazon AWS</code> step when applying changes</td>
             </tr>
             <tr>
                 <td>Cause</td>
@@ -43,15 +41,15 @@ The following errors can occur during the `apply changes` stage
                 <td>
                     <ul>
                         <li>Update default application memory and disk quota for all applications deployed by
-                        TAS from within the TAS tile configuration (App Developer Controls->Default app memory/Default disk quota per app )</li>
-                        <li>Scale the current deployed application to use 1 GB of memory and 2 GB of disk from either 
-                        apps manager or command line
-                        From apps manager navigate to System->cloud-service-broker-space->cloud-service-broker-aws-<VERSION> and click on the `scale` button
-                        Command line: 
+                        TAS from within the TAS tile configuration. Go to <strong>App Developer Controls</strong> > <strong>Default app memory</strong> or <strong>App Developer Controls</strong> > <strong>Default disk quota per app</strong>.</li>
+                        <li>Scale the current deployed application to use 1&nbsp;GB of memory and 2&nbsp;GB of disk from either
+                        apps manager or the command line interface (CLI).
+                        From apps manager, go to <strong>System</strong> > <strong>cloud-service-broker-space</strong> > <strong>cloud-service-broker-aws-VERSION</strong> and click the <strong>scale</strong> button.
+                        From the CLI run:<br>
                         <code>
                         cf target -o system -s cloud-service-broker-space
                         cf scale cloud-service-broker-aws-1.4.1 -m 1G -k 2G
-                        </code> 
+                        </code>
                         </li>
                     </ul>
                 </td>
@@ -59,7 +57,8 @@ The following errors can occur during the `apply changes` stage
         </tbody>
     </table>
 </div>
-### <a id="common-services-errors"></a> Common Services Errors
+
+## <a id="common-services-errors"></a> Common Services Errors
 
 The following errors can occur in multiple services:
 
@@ -94,7 +93,7 @@ The following errors can occur in multiple services:
                 <td>The update request for a field is failing because one of the following is true:
                 <ul>
                 <li>The field cannot be updated</li>
-                <li>The new value for a property, or combination of properties, would cause an instance recreation</li>
+                <li>The new value for a property, or combination of properties, can cause an instance recreation</li>
                 </ul>
                 The failing update request might be an indication of an out-of-band update performed
                 on the instance.
@@ -102,7 +101,7 @@ The following errors can occur in multiple services:
             </tr>
              <tr>
                 <td>Examples</td>
-                <td>An out-of-band upgrade of the Redis version to a newer major version causes the
+                <td>An out-of-band upgrade of the Redis version to a later major version causes the
                 broker to try to downgrade to the previous version, which causes instance recreation.
                 </td>
             </tr>
@@ -141,7 +140,7 @@ The following errors can occur in multiple services:
                 <td>Symptom</td>
                 <td>The instance status is <code>update failed</code> and the message is similar to<br>
                 <code>update failed: Error: Instance cannot be destroyed on main.tf **** has
-                lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code>.</td>
+                lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code></td>
             </tr>
             <tr>
                 <td>Cause</td>

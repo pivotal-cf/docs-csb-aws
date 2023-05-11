@@ -26,21 +26,25 @@ This release has the following fixes:
 This release has the following issues:
 
 - **Aurora service instance engine upgrade version can fail:**
+
   The engine upgrade version operation throws an error due to an inconsistency between the values of the
   involved instances because the operation is marked for the next maintenance period instead of performing it
   after the execution of the command.
 
-   For example, an upgrade operation for the aurora-postgresql version going from version `13.10` to version `14.7`
-   fails when you run the command `csb update-service SERVICE-INSTANCE-NAME -c '{"engine_version": "14.7"}'`.
-   Minor version updates are done automatically if you set the `auto_minor_version_upgrade` parameter to `true`.
-   For more information about `auto_minor_version_upgrade`, see
-   [Configuration Parameters](reference/aws-aurora-postgresql.html#parameters).
+  For example, an upgrade operation for the aurora-postgresql version going from version `13.10` to version `14.7`
+  fails when you run the command `csb update-service SERVICE-INSTANCE-NAME -c '{"engine_version": "14.7"}'`.
+  Minor version updates are done automatically if you set the `auto_minor_version_upgrade` parameter to `true`.
+  For more information about `auto_minor_version_upgrade`, see
+  [Configuration Parameters](reference/aws-aurora-postgresql.html.md.erb#parameters).
 
 - **Aurora PostgreSQL service instance upgrade for a major version can fail:**
-  The engine upgrade operation for a major version of aurora-postgreSQL using the default database cluster parameter group
-  throws an error due to the collision of names in the database cluster parameter groups involved in the operation.
+
+  The engine upgrade operation for a major version of aurora-postgreSQL using the default database
+  cluster parameter group throws an error due to the collision of names in the database cluster
+  parameter groups involved in the operation.
 
 - **Random failure when creating S3 buckets:**
+
   Since April 2023, a change in AWS deactivates ACLs by setting the object ownership to
   `bucket owner enforced`.
   If using ACLs and therefore setting object ownership to a different value
@@ -63,21 +67,25 @@ This release has the following changes for the Amazon Aurora MySQL-Compatible Ed
 Amazon Aurora PostgreSQL-Compatible Edition services:
 
 - **Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition are generally available:**
+
   The Amazon Aurora MySQL and Amazon Aurora PostgreSQL services are no longer in beta and can be used
   in production.
 
 - **You can choose a preferred maintenance window:**
+
   There are new exposed properties to set the preferred maintenance window. For more information, see
   the `preferred_maintenance_*` properties in the [reference topics](reference/index.html.md.erb).
   To use the AWS default preferred maintenance window when provisioning, set all the properties
   related to the preferred maintenance window to null.
 
 - **Database encryption:**
+
   By default, all new Aurora clusters are encrypted with an AWS-managed encryption key.
   Alternatively, it's possible to provide a custom KMS encryption key ARN, or deactivate encryption
   altogether.
 
 - **`instance_class` property exposed:**
+
   The `instance_class` property is now configurable at plan creation or instance operations for
   Amazon Aurora MySQL-Compatible Edition and Amazon Aurora PostgreSQL-Compatible Edition.
   The database instance class determines the computation and memory capacity of an Amazon Aurora
@@ -89,21 +97,25 @@ Amazon Aurora PostgreSQL-Compatible Edition services:
 This release has the following issues:
 
 - **Aurora service instance engine upgrade version can fail:**
+
   The engine upgrade version operation throws an error due to an inconsistency between the values of the
-  involved instances becuase the operation is marked for the next maintenance period instead of performing it
+  involved instances because the operation is marked for the next maintenance period instead of performing it
   after the execution of the command.
 
-   For example, an upgrade operation for the aurora-postgresql version going from version `13.10` to version `14.7`
-   fails when you run the command `csb update-service SERVICE-INSTANCE-NAME -c '{"engine_version": "14.7"}'`.
-   Minor version updates are done automatically if you set the `auto_minor_version_upgrade` parameter to `true`.
-   For more information about `auto_minor_version_upgrade`, see
-   [Configuration Parameters](reference/aws-aurora-postgresql.html#parameters).
+  For example, an upgrade operation for the aurora-postgresql version going from version `13.10` to version `14.7`
+  fails when you run the command `csb update-service SERVICE-INSTANCE-NAME -c '{"engine_version": "14.7"}'`.
+  Minor version updates are done automatically if you set the `auto_minor_version_upgrade` parameter to `true`.
+  For more information about `auto_minor_version_upgrade`, see
+  [Configuration Parameters](reference/aws-aurora-postgresql.html.md.erb#parameters).
 
 - **Aurora PostgreSQL service instance upgrade for a major version can fail:**
-  The engine upgrade operation for a major version of aurora-postgreSQL using the default database cluster parameter group
-  throws an error due to the collision of names in the database cluster parameter groups involved in the operation.
+
+  The engine upgrade operation for a major version of aurora-postgreSQL using the default database
+  cluster parameter group throws an error due to the collision of names in the database cluster
+  parameter groups involved in the operation.
 
 - **Random failure when creating S3 buckets:**
+
   Since April 2023, a change in AWS deactivates ACLs by setting the object ownership to
   `bucket owner enforced`.
   If using ACLs and therefore setting object ownership to a different value
@@ -112,11 +124,13 @@ This release has the following issues:
   and the ACL type, causing the broker to sometimes attempt the ACL configuration with an incompatible
   value of object ownership.
 
-- **Tile installation fails on `apply changes` with `cannot allocate memory` error**:
-  The tile deploys the broker as an app during `apply changes`. The application manifest does not
-  specifies required memory and disk space and will therefore use the default values specified in the 
-  TAS configuration (TAS tile->App Developer Controls). Depending on that configuration the app might
-  fail to start up with insuficcient memory or disk space errors.
+- **Tile installation can fail during `apply changes` with `cannot allocate memory` error:**
+
+  The tile deploys the broker as an app during `apply changes`.
+  The application manifest does not specify required memory and disk space, and therefore uses the
+  default values specified in the TAS configuration.
+  Depending on that configuration, the app might fail to start up because of insufficient
+  memory or disk space errors.
 
 ## <a id="view"></a> View release notes for another version
 
