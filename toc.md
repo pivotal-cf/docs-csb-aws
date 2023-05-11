@@ -12,4 +12,5 @@
     * [Amazon DynamoDB (Beta)](reference/aws-dynamodb.html)
     * [Amazon Aurora MySQL-Compatible Edition](reference/aws-aurora-mysql.html)
     * [Amazon Aurora PostgreSQL-Compatible Edition](reference/aws-aurora-postgresql.html)
+* [Troubleshooting](troubleshooting.html.md.erb)
 * [Uninstalling](uninstall.html)
