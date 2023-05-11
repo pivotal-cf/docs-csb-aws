@@ -9,6 +9,7 @@
     * [Amazon S3 Bucket](reference/aws-s3.html)
     * [Amazon RDS for MySQL](reference/aws-mysql.html)
     * [Amazon RDS for PostgreSQL](reference/aws-postgres.html)
+    * [Amazon RDS for MSSQL](reference/aws-mssql.html)
     * [Amazon ElastiCache for Redis](reference/aws-redis.html)
     * [Amazon DynamoDB Namespace](reference/aws-dynamodb-namespace.html)
     * [Amazon DynamoDB Table (Beta)](reference/aws-dynamodb.html)
