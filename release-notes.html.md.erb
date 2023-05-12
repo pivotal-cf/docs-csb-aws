@@ -7,6 +7,21 @@ owner: Cloud Service Broker
 
 These are release notes for <%= vars.product_full %>.
 
+## <a id="1-5-2"></a> v1.5.2
+
+**Release Date:** 12 May 2023
+
+### Resolved Issues
+
+This release has the following fixes:
+
+#### Amazon ElastiCache for Redis
+
+- **The broker is now able to perform upgrade and unbind operations**:
+
+  The misconfiguration causing terraform errors when operating on redis instances created by previous versions
+  of the broker has been now fixed. For more information on the fixed error, see [Troubleshooting](troubleshooting.html.md.erb#redis-mdl-not-installed).
+
 ## <a id="1-5-1"></a> v1.5.1
 
 **Release Date:** 3 May 2023
