@@ -6,59 +6,59 @@ owner: Cloud Service Broker
 <strong><%= modified_date %></strong>
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon DynamoDB Table service is currently in beta and is intended for evaluation and
-  test purposes only. Do not use this service in a production environment.
+  <strong>Important:</strong> The Amazon DynamoDB Table service is in beta and is intended
+  for evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
-This topic provides reference information about the <a href="https://aws.amazon.com/dynamodb/">Amazon DynamoDB Table</a> (csb-aws-dynamodb-table, formerly csb-aws-dynamodb) service.
-It details the plans, configuration parameters, and binding credentials.
+This topic gives you reference information about the [Amazon DynamoDB Table](https://aws.amazon.com/dynamodb/)
+(csb-aws-dynamodb-table, formerly csb-aws-dynamodb) service. It details the plans, configuration
+parameters, and binding credentials.
 
 ## <a id="plans"></a> Plans
 
-The default plans for Amazon DynamoDB Table are in the table below:
+The default plans for Amazon DynamoDB Table are in the following table:
 
-| Plan | Billing Mode |
-|------|--------------|
-| ondemand | With on-demand capacity mode, DynamoDB is charged for the data reads and writes the application performs on the table. |
-| provisioned | With provisioned capacity mode, specify the number of reads and writes per second that the application is expected to require. |
+| Plan        | Billing Mode                                                                                                                   |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------|
+| ondemand    | With on-demand capacity mode, DynamoDB is charged for the data reads and writes the application performs on the table          |
+| provisioned | With provisioned capacity mode, specify the number of reads and writes per second that the application is expected to require  |
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   |
-|----------------------|--------------------------------|-----------|
-| `name`*              | The plan name.                  | _n/a_     |
-| `id`*                | A unique GUID.                  | _n/a_     |
-| `description`*       | Description of the new plan.    | _n/a_     |
-| `display_name`       | Name to use when displaying the plan in marketplace.    | _n/a_     |
-| `free`               | When false, service instances of this service plan have a cost.    | true     |
-| `bindable`           | Specifies whether service instances of the service plan can bind to applications.    | true     |
-| `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version.    | true     |
-| `billing_mode`*      | Controls how you are billed for read/write throughput and how you manage capacity.  | PAY_PER_REQUEST     |
-| `metadata.displayName`    | Name to use when displaying the plan in the Marketplace.                                     | _n/a_   | No       |
-| `metadata.bullets`        | List of bullet points to display in Apps Manager.                                    | _n/a_   | No       |
+| Parameter Name    | Values                                                                               | Default         | Required |
+|-------------------|--------------------------------------------------------------------------------------|-----------------|----------|
+| `name`            | The plan name                                                                        | _n/a_           | Yes      |
+| `id`              | A unique GUID                                                                        | _n/a_           | Yes      |
+| `description`     | Description of the new plan                                                          | _n/a_           | Yes      |
+| `display_name`    | Name to use when displaying the plan in Marketplace                                  | _n/a_           | No       |
+| `free`            | When false, service instances of this service plan have a cost                       | true            | No       |
+| `bindable`        | Specifies whether service instances of the service plan can bind to applications     | true            | No       |
+| `plan_updateable` | Whether the plan supports upgrading, downgrading, or sidegrading to another version  | true            | No       |
+| `billing_mode`    | Controls how you are billed for read/write throughput and how you manage capacity    | PAY_PER_REQUEST | Yes      |
+| `metadata.displayName`    | Name to use when displaying the plan in Marketplace                          | _n/a_           | No       |
+| `metadata.bullets`        | List of bullet points to display in Apps Manager                             | _n/a_           | No       |
 
-<sup>*</sup> Required
-
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+to your plan.
 
 <p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
-  change the value when creating or updating service instances.
+  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value when
+  creating or updating service instances.
 </p>
-
 
 ## <a id="parameters"></a> Configuration Parameters
 
 You can provision an Amazon DynamoDB table by running:
 
 ```console
-cf create-service csb-aws-dynamodb-table PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}
+cf create-service csb-aws-dynamodb-table PLAN-NAME SERVICE-INSTANCE-NAME -c \
+'{"PARAMETER-NAME": "PARAMETER-VALUE"}
 ```
 
 For example:
@@ -185,7 +185,7 @@ provision only:
     <tr>
       <td><code>stream_enabled</code></td>
       <td>Boolean</td>
-      <td>Indicates whether Streams are to be enabled</td>
+      <td>Indicates whether to enable streams</td>
       <td><code>false</code></td>
       <td>provision and update</td>
     </tr>
@@ -199,28 +199,28 @@ provision only:
     <tr>
       <td><code>server_side_encryption_enabled</code></td>
       <td>Boolean</td>
-      <td>Whether or not to enable encryption at rest using an AWS-managed KMS customer master key (CMK).</td>
+      <td>Whether to enable encryption at rest using an AWS-managed KMS customer master key (CMK).</td>
       <td><code>false</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>server_side_encryption_kms_key_arn</code></td>
       <td>String</td>
-      <td>The ARN of the CMK that should be used for the AWS KMS encryption. This attribute should only be specified if the key is different from the default DynamoDB CMK, alias/aws/dynamodb.</td>
+      <td>The ARN of the CMK that is used for the AWS KMS encryption. Only specify this attribute if the key is different from the default DynamoDB CMK, alias/aws/dynamodb.</td>
       <td><code>null</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>write_capacity</code></td>
       <td>Number</td>
-      <td>The number of write units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
+      <td>The number of write units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, make this number greater than 0.</td>
       <td><code>0</code></td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>read_capacity</code></td>
       <td>Number</td>
-      <td>The number of read units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, this field should be greater than 0.</td>
+      <td>The number of read units for this table. If <code>billing_mode</code> is <code>PROVISIONED</code>, make this number greater than 0.</td>
       <td><code>0</code></td>
       <td>provision and update</td>
     </tr>
@@ -252,12 +252,13 @@ provision only:
 
 You can bind a service by running:
 
-```bash
-cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```console
+cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME -c \
+'{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The table below lists the parameters that you can configure, using the `-c` flag, when
-binding to a `csb-aws-dynamodb-table` service:
+The following table lists the parameters that you can configure, using the `-c` flag, when binding
+to a `csb-aws-dynamodb-table` service:
 
 <table>
   <thead>
