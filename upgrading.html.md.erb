@@ -4,9 +4,34 @@ owner: Cloud Service Broker
 ---
 
 This topic describes how to upgrade <%= vars.product_full %>.
-The following sections have information about upgrading to v1.5.
 
-## <a id="aws-redis"></a> Amazon ElasticCache for Redis
+The following sections have information about the [upgrade procedure](#procedure) and [specific details about upgrading to v1.5](#upgrading-specifics).
+
+## <a id="procedure"></a> Upgrade procedure
+
+<p class="note">
+  <strong>Note:</strong>If you are upgrading to a version later than v1.0, you might need to upgrade service instances.
+   Failure upgrading one or more instances will not result in failure to install the tile. Make sure you check the `deploy-all` errand logs in the
+   Change Log to verify no errors occured. See [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config)
+   for more information on service instance upgrades procedure and troubleshooting.
+</p>.
+
+To upgrade the <%= vars.product_short %>:
+
+1. Download the new version of <%= vars.product_short %> from
+   [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
+2. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
+3. Make all the changes described in this topic that are required for the new version.
+4. If you are upgrading to a version later than v1.0, you might need to upgrade service instances.
+   Before installing the new version, see
+   [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config).
+5. Apply changes
+6. Check `deploy-all` errand logs for any errors when upgrading the instaces.
+
+
+## <a id="upgrading-specifics"></a> Upgrading to 1.5
+
+### <a id="aws-redis"></a> Amazon ElasticCache for Redis
 
 The following sections describe changes for Amazon ElastiCache for Redis.
 
@@ -81,14 +106,3 @@ Because previously created instances cannot be modified to use Multi-AZ, set the
 `multi_az_enabled` to `false` in existing custom plans to match service instances that have already
 been created.
 
-## <a id="procedure"></a> Upgrade procedure
-
-To upgrade the <%= vars.product_short %> to a later version:
-
-1. Download the new version of <%= vars.product_short %> from
-   [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
-2. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
-3. Make all the changes described in this topic that are required for the new version.
-4. If you are upgrading to a version later than v1.0, you might need to upgrade service instances.
-   Before installing the new version, see
-   [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config).
