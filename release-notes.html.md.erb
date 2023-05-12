@@ -13,14 +13,15 @@ These are release notes for <%= vars.product_full %>.
 
 ### Resolved Issues
 
-This release has the following fixes:
+This release has the following fix:
 
 #### Amazon ElastiCache for Redis
 
-- **The broker is now able to perform upgrade and unbind operations**:
+- **The broker is now able to perform upgrade and unbind operations:**
 
-  The misconfiguration causing terraform errors when operating on redis instances created by previous versions
-  of the broker has been now fixed. For more information on the fixed error, see [Troubleshooting](troubleshooting.html.md.erb#redis-mdl-not-installed).
+  The misconfiguration causing Terraform errors, because of operating on Redis instances created by
+  previous versions of the broker, is now fixed. For more information about the fixed error, see
+  [Troubleshooting](troubleshooting.html.md.erb#redis-mdl-not-installed).
 
 ## <a id="1-5-1"></a> v1.5.1
 
@@ -33,6 +34,7 @@ This release has the following breaking changes:
 #### Amazon ElastiCache for Redis
 
 - **Removed Amazon ElastiCache for Redis pre-configured plans:**
+
   From this version onwards, plans are no longer provided with the brokerpak.
   If you have ElastiCache for Redis service instances that you want to maintain that use the formerly built-in plans,
   you must add the plans through the tile configuration.
@@ -40,11 +42,13 @@ This release has the following breaking changes:
   [Previously Provided Pre-configured Plans](reference/aws-redis.html.md.erb#old-plans) in _Amazon ElastiCache for Redis Reference_.
 
 - **Changes are now applied immediately:**
+
   From this version onwards, changes made using the `cf update-service` command are applied immediately
   instead of being queued to be applied during the maintenance window.
   This might result in brief downtime while the server reboots.
 
 - **Property `cache_size` is now deprecated:**
+
   Consider replacing it with its equivalent `node_type`. For more information, see
   [Equivalence of cache_size and node_type](reference/aws-redis.html.md.erb#cache-size-node-type).
   Specifying `node_type` in a plan prevents any existing or future service from specifying `node_type`
@@ -62,6 +66,7 @@ This release has the following breaking changes:
 #### Amazon DynamoDB
 
 - **Renamed `csb-aws-dynamodb` service as `csb-aws-dynamodb-table`:**
+
   The existing beta `csb-aws-dynamodb` service has
   been renamed to `csb-aws-dynamodb-table` to differentiate it from the new service `csb-aws-dynamodb-namespace`. Any existing `csb-aws-dynamodb` service instances will continue to work.
 
@@ -73,6 +78,7 @@ This release has the following breaking changes:
 #### Amazon Aurora for MySQL and Amazon Aurora for PostgreSQL
 
 - **Changes are now applied immediately:**
+
   Changes made using the `cf update-service` command are now applied immediately
   instead of being queued to be applied during the maintenance window.
   This might cause brief downtime while the server reboots.
@@ -83,12 +89,14 @@ New features and changes in this release:
 
 #### General
 
-- **Terraform upgraded to v1.4.4:** The Terraform version used to apply changes is upgraded from
+- **Terraform upgraded to v1.4.4:**
+
+  The Terraform version used to apply changes is upgraded from
   v1.1.9 to v1.4.4. You must upgrade all service instances.
   When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
 
-
 - **The region is no longer a selection list in the tile:**
+
   From now on, the region is a text field where the operator can input any valid value that the AWS
   provider accepts.
   There are some limited regions associated with the AWS account configuration.
@@ -97,15 +105,19 @@ New features and changes in this release:
 
 #### Amazon DynamoDB Namespace
 
-- **New service:** This new service provides credentials for managing DynamoDB tables in the default
+- **New service:**
+
+  This new service provides credentials for managing DynamoDB tables in the default
   region set for <%= vars.product_short %>.
 
 #### Amazon ElastiCache for Redis
 
 - **Amazon ElastiCache for Redis is ready for production use:**
+
   The Amazon ElastiCache for Redis service is no longer in beta and can be used in production.
 
 - **`redis_version` is a required user input parameter:**
+
   From this version onwards, the property `redis_version` is a required user input parameter without
   a default value.
   This property is no longer a plan parameter, adding more flexibility when creating plans.
@@ -118,15 +130,18 @@ New features and changes in this release:
   Redis version is controlled exclusively through the `redis_version` property.
 
 - **Encryption of data at rest is enabled by default:**
+
   New properties `at_rest_encryption_enabled` and `kms_key_id` can be used to control encryption at rest.
 
 - **Added support for specifying a maintenance window:**
+
   You can now specify the weekly time range for when maintenance on the cache cluster is performed.
   The minimum maintenance window is 1 hour.
   For more information, see
   [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
 - **Data tiering and node types from the `r6gd` family are available:**
+
   From this version onwards, you can use the node types from the `r6gd` family.
   Because this node type family needs data tiering, you must set the property `data_tiering_enabled`
   as `true`.
@@ -135,17 +150,20 @@ New features and changes in this release:
   [Amazon ElastiCache for Redis](reference/aws-redis.html.md.erb).
 
 - **Multi-AZ is enabled by default:**
+
   You can use the new property `multi_az_enabled` to control Multi-AZ.
   To enable Multi-AZ, you must also enable automatic failover.
   For more information, see
   [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
 - **Automatic failover is now customizable:**
+
   Enables the existing primary to be automatically replaced with a replica in the case of a failure.
   It is `true` by default. For more information, see
   [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
 - **New configuration properties available:**
+
   You can configure `backup_retention_limit`, `final_backup_identifier`, `backup_name`,
   `backup_start_hour`, `backup_start_min`, `backup_end_hour`, `backup_end_min`,
   `parameter_group_name`, and `preferred_azs`.
@@ -153,10 +171,12 @@ New features and changes in this release:
   [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
 - **New field in binding format:**
+
   Bindings can now use the `reader_endpoint` address to evenly split read operations between all read
   replicas. For more information, see [Binding](reference/aws-redis.html.md.erb#binding).
 
 - **Slow and Engine logs can now be streamed to CloudWatch:**
+
   You can now configure `logs_slow_log_enabled` and `logs_engine_log_enabled`.
   Logs are sent to CloudWatch in JSON format.
   You can perform other CloudWatch log configurations, too.
@@ -167,12 +187,14 @@ New features and changes in this release:
 This release has the following fixes:
 
 - **Fixes the upgrade operation in Aurora instances:**
+
   The upgrade operation in Aurora instances is now allowed.
   The upgrade operation threw an error due to an inconsistency between the values of the involved instances
   because the operation was marked for the next maintenance period. From now on, the operation runs
   synchronously, which allows the instances to be updated.
 
 - **Fixes the upgrade operation for a major version for Aurora PostgreSQL instances:**
+
   The upgrade operation for a major version using the default database cluster parameter group for
   aurora-postgreSQL instances is now allowed.
   The engine upgrade operation threw an error due to the collision of names in the database
@@ -181,13 +203,16 @@ This release has the following fixes:
   represents the name of the instance.
 
 - **Fixes random error in S3 buckets creation operation:**
+
   Logic was added to control interactions between ACLs and bucket ownership to prevent random failures
   to provision a bucket when using ACLs.
   Since April 2023, a change in AWS deactivates ACLs by setting object ownership to
   `bucket owner enforced` by default, which caused a random error when creating a bucket with ACLs.
   This is now fixed.
 
-- **Fix issue with insufficient resources preventing the broker to start:** This version increases both the broker memory and disk
+- **Fix issue with insufficient resources preventing the broker to start:**
+
+  This version increases both the broker memory and disk
   quota from 1&nbsp;GB to 2&nbsp;GB to enable a larger number of operations to happen simultaneously and prevent broker being unable to start
   due to lack of disk space.
 
