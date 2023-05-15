@@ -18,15 +18,67 @@ The following sections have information about the [upgrade procedure](#procedure
 
 To upgrade the <%= vars.product_short %>:
 
-1. Download the new version of <%= vars.product_short %> from
-   [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
-2. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
-3. Make all the changes described in this topic that are required for the new version.
-4. If you are upgrading to a version later than v1.0, you might need to upgrade service instances.
+1. If you are upgrading to a version later than v1.0, you might need to upgrade service instances.
    Before installing the new version, see
    [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config).
+2. Download the new version of <%= vars.product_short %> from
+   [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
+3. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
+4. Make all the changes described in this topic that are required for the new version, see [Upgrading to 1.5](#upgrading-specifics).
 5. Apply changes
-6. Check `deploy-all` errand logs for any errors when upgrading the instaces.
+6. Check `deploy-all` errand logs for any errors when upgrading the instances.
+
+
+## <a id="upgrading-instances-instructions"> Upgrading instances
+
+The upgrade has to be performed in each tile upgrade. Instances that haven't been upgraded with this version might not be upgradeable with upcoming versions. For that
+reason, it is recommended you check there are no instances pending upgrade before upgrading the tile. You can check instances pending upgrade by checking the last `deploy-all` errand log for the  <%= vars.product_short %>.
+Alternatively running the CLI plugin with a --dry-run will output the list of instances pending upgrade. 
+If you find instances pending upgrade with any method mentioned above, you can apply the upgrade before trying to upgrade the tile itself. 
+For this, simply apply changes (ensure you haven't staged the new version yet) or run the CLI Plugin.
+
+A few notes before commencing instance upgrades:
+
+If **Upgrade all services** is unchecked, service instances are not upgraded during installation, and
+the broker might be unable to manage these service instances anymore.
+In this case, any operations on those instances (update/bind/unbind/delete) are blocked until the
+upgrade is performed. You can run the upgrade task at any time.
+
+If you delete custom plans before upgrading all instances, instaces from those plans won't be upgraded and therefore will become
+unmanageable for the broker.
+Delete plans at a later step or see [Release Notes for Cloud Service Broker for AWS](release-notes.html)
+and [Upgrading Cloud Service Broker for AWS](upgrading.html) to prevent conflicting upgrades.
+
+If **Enable Beta offerings** is unchecked when applying changes, instances from those service offerings will also not be upgraded and therefore will
+become unmanageable by the broker. Ensure the **Enable Beta offerings** offering is checked if you have instances from those
+offerings you intend to keep updated. 
+
+Once confident all instances are up to date, stage the new version of the tile and make sure you perform all the changes described in [Upgrading to 1.5](#upgrading-specifics).
+Check the [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config) is correct.
+
+After that, you are ready to upgrade the tile. You can go to Step 5. Apply changes.
+
+The Upgrade all instances task can be perform as many times as needed. Failure to upgrade one or more instances won't result in 
+a failure in the tile installation. Review the `deploy all` errand logs to ensure all instances have been upgraded successfully.
+
+If preferred, the task can be run through the CF CLI instead of or in addition to running it through the tile.
+
+### <a id="upgrading-instances-task"> Upgrading instances through the tile
+
+1. Configure the **Upgrade All Servie Instances** task, see [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config) for more information
+2. Apply Changes
+3. Check `deploy-all` logs for failures
+
+
+### <a id="upgrading-cli-plugin"> Upgrading instances through CLI Plugin
+
+To run the CF CLI plugin:
+
+1. Install the [CF CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices)
+2. Follow the [instructions](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage) to run the upgrade
+
+It is recommended that you perform a -dry-run before applying the upgrade to understand what instances are pending upgrade.
+
 
 
 ## <a id="upgrading-specifics"></a> Upgrading to 1.5
