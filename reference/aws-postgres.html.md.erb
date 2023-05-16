@@ -10,6 +10,10 @@ PostgreSQL</a> (csb-aws-postgresql)
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
 <p class="note">
+  <strong>Note:</strong> PostgreSQL version 15 is not yet supported by <%= vars.product_full %>.
+</p>.
+
+<p class="note">
   <strong>Note:</strong> Release v1.2.0 removed brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
   All plans must be configured through the tile.
   If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
@@ -25,19 +29,19 @@ For instructions on how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name     | Description                                                                                                              | Default | Required |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------|---------|----------|
-| `name`             | The plan name.                                                                                                           | _n/a_   | Yes      |
-| `id`               | A unique GUID.                                                                                                           | _n/a_   | Yes      |
-| `description`      | Description of the new plan.                                                                                             | _n/a_   | Yes      |
-| `free`             | When false, service instances of this service plan have a cost.                                                          | true    | No       |
-| `bindable`         | Specifies whether service instances of the service plan can bind to applications.                                        | true    | No       |
-| `plan_updateable`  | Whether the plan supports upgrading, downgrading, or sidegrading to another version.                                     | true    | No       |
-| `postgres_version` | The version for the PostgreSQL instance. Can be any supported major or minor version. PostgreSQL 15 is not supported.    | _n/a_   | Yes      |
-| `storage_gb`       | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB.                                         | _n/a_   | Yes      |
-| `cores`            | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
-| `metadata.displayName`    | Name to use when displaying the plan in the Marketplace.                                     | _n/a_   | No       |
-| `metadata.bullets`        | List of bullet points to display in Apps Manager.                                    | _n/a_   | No       |
+| Parameter Name            | Description                                                                                                              | Default | Required |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------|---------|----------|
+| `name`                    | The plan name.                                                                                                           | _n/a_   | Yes      |
+| `id`                      | A unique GUID.                                                                                                           | _n/a_   | Yes      |
+| `description`             | Description of the new plan.                                                                                             | _n/a_   | Yes      |
+| `free`                    | When false, service instances of this service plan have a cost.                                                          | true    | No       |
+| `bindable`                | Specifies whether service instances of the service plan can bind to applications.                                        | true    | No       |
+| `plan_updateable`         | Whether the plan supports upgrading, downgrading, or sidegrading to another version.                                     | true    | No       |
+| `postgres_version`        | The version for the PostgreSQL instance. Can be any supported major or minor version. PostgreSQL 15 is not supported.    | _n/a_   | Yes      |
+| `storage_gb`              | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB.                                         | _n/a_   | Yes      |
+| `cores`                   | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
+| `metadata.displayName`    | Name to use when displaying the plan in the Marketplace.                                                                 | _n/a_   | No       |
+| `metadata.bullets`        | List of bullet points to display in Apps Manager.                                                                        | _n/a_   | No       |
 
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section

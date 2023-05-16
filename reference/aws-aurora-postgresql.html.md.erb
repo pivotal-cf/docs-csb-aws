@@ -12,6 +12,11 @@ It details the plans, configuration parameters, and binding credentials.
 Amazon Aurora PostgreSQL-Compatible Edition instances when binding or unbinding.
 For secure connections to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
+<p class="note">
+  <strong>Note:</strong> PostgreSQL version 15 is not yet supported by <%= vars.product_full %>. Even when instance creation will
+  succeed, unbinding and multiple bindings will not work as expected as a consequence of changes in PostgreSQL v15 user management. 
+</p>.
+
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
@@ -20,15 +25,16 @@ For how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                                                                                | Default   | Required |
-|----------------------|---------------------------------------------------------------------------------------|-----------|----------|
-| `name`               | The plan name.                                                                        | _n/a_     | Yes      |
-| `id`                 | A unique GUID.                                                                        | _n/a_     | Yes      |
-| `description`        | Description of the new plan.                                                          | _n/a_     | Yes      |
-| `display_name`       | Name to use when displaying the plan in the Marketplace.                                      | _n/a_     | No       |
-| `free`               | When false, service instances of this service plan have a cost.                       | true      | No       |
-| `bindable`           | Specifies whether service instances of the service plan can bind to applications.     | true      | No       |
-| `plan_updateable`    | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true      | No       |
+| Parameter Name         | Values                                                                                | Default   | Required |
+|------------------------|---------------------------------------------------------------------------------------|-----------|----------|
+| `name`                 | The plan name.                                                                        | _n/a_     | Yes      |
+| `id`                   | A unique GUID.                                                                        | _n/a_     | Yes      |
+| `description`          | Description of the new plan.                                                          | _n/a_     | Yes      |
+| `free`                 | When false, service instances of this service plan have a cost.                       | true      | No       |
+| `bindable`             | Specifies whether service instances of the service plan can bind to applications.     | true      | No       |
+| `plan_updateable`      | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.  | true      | No       |
+| `metadata.displayName` | Name to use when displaying the plan in Marketplace                                   | _n/a_     | No       |
+| `metadata.bullets`     | List of bullet points to display in Apps Manager                                      | _n/a_     | No       |
 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
