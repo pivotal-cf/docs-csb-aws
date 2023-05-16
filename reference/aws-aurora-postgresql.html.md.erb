@@ -13,8 +13,9 @@ Amazon Aurora PostgreSQL-Compatible Edition instances when binding or unbinding.
 For secure connections to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
 <p class="note">
-  <strong>Note:</strong> PostgreSQL version 15 is not yet supported by <%= vars.product_full %>. Even when instance creation will
-  succeed, unbinding and multiple bindings will not work as expected as a consequence of changes in PostgreSQL v15 user management. 
+  <strong>Note:</strong> PostgreSQL v15 is not yet supported by <%= vars.product_full %>.
+  If you create an instance, unbinding and multiple bindings will not work as expected due to
+  changes to PostgreSQL v15 user management.
 </p>.
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
