@@ -17,6 +17,11 @@ service. It details the plan and service instance configuration parameters, and 
   For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
 </p>.
 
+<p class="note">
+  <strong>Note:</strong> PostgreSQL version 15 is not yet supported by <%= vars.product_full %>. Even when instance creation will
+  succeed, unbinding and multiple bindings will not work as expected as a consequence of changes in PostgreSQL v15 user management. 
+</p>.
+
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
