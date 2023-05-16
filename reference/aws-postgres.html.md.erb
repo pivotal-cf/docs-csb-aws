@@ -5,8 +5,7 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-This topic provides reference information about the
-<a href="https://aws.amazon.com/rds/postgresql/">Amazon RDS for PostgreSQL</a> (csb-aws-postgresql)
+This topic provides reference information about the <a href="https://aws.amazon.com/rds/postgresql/">Amazon RDS for PostgreSQL</a> (csb-aws-postgres)
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
 <p class="note">
@@ -15,7 +14,7 @@ service. It details the plan and service instance configuration parameters, and 
   If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
   maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
   For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
-</p>.
+</p>
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -324,7 +323,7 @@ provision only:
     <tr>
       <td><code>rds_subnet_group</code></td>
       <td>String</td>
-       <td>The name of the subnet to attach the database instance to.
+       <td>The name of subnet to attach the database instance to.
          This overrides <code>aws_vpc_id</code>.</td>
       <td><code>""<code></td>
       <td>provision and update</td>
@@ -383,7 +382,7 @@ provision only:
     </tr>
     <tr>
       <td><code>monitoring_role_arn</code></td>
-      <td>String</td>
+      <td>Integer</td>
       <td>
         Enhanced Monitoring requires permission to act on your behalf to send OS metric information to CloudWatch Logs.
         This property represents the ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs.
