@@ -10,7 +10,9 @@ PostgreSQL</a> (csb-aws-postgresql)
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
 <p class="note">
-  <strong>Note:</strong> PostgreSQL version 15 is not yet supported by <%= vars.product_full %>.
+  <strong>Note:</strong> PostgreSQL v15 is not yet supported by <%= vars.product_full %>.
+  If you create an instance, unbinding and multiple bindings will not work as expected due to
+  changes to PostgreSQL v15 user management.
 </p>
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
