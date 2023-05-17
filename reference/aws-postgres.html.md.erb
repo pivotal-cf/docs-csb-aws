@@ -10,17 +10,10 @@ PostgreSQL</a> (csb-aws-postgresql)
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
 <p class="note">
-  <strong>Note:</strong> Release v1.2.0 removed brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
-  All plans must be configured through the tile.
-  If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
-  maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
-  For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
+  <strong>Note:</strong> PostgreSQL v15 is not yet supported by <%= vars.product_full %>.
+  If you create an instance, unbinding and multiple bindings will not work as expected due to
+  changes to PostgreSQL v15 user management.
 </p>
-
-<p class="note">
-  <strong>Note:</strong> PostgreSQL version 15 is not yet supported by <%= vars.product_full %>. Even when instance creation will
-  succeed, unbinding and multiple bindings will not work as expected as a consequence of changes in PostgreSQL v15 user management. 
-</p>.
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
