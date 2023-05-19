@@ -22,7 +22,17 @@ This release has the following breaking changes:
 
 New features and changes in this release:
 
+#### Amazon RDS for MSSQL
+
 - **The Amazon RDS for MSSQL (Beta) service:**
+  An experimental foundation was added for development and test purposes only.
+  For more information about how to create and manage this service, see
+  [Amazon RDS for MSSQL (Beta)](reference/aws-mssql.html.md.erb).
+
+- **Basic properties exposed:**
+  Properties such as engine, MSSQL version, storage capacity, database name, instance name, VPC ID,
+  VPC security group IDs, and instance class are now configurable at plan creation or instance operations.
+  Moreover, you can define your own RDS subnet group when creating a plan or instance.
   For more information about how to create and manage this service, see
   [Amazon RDS for MSSQL (Beta)](reference/aws-mssql.html.md.erb).
 

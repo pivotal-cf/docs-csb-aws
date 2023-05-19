@@ -101,6 +101,81 @@ provision only:
       <td>provision</td>
     </tr>
     <tr>
+      <td><code>mssql_version</code></td>
+      <td>String</td>
+      <td>
+        (Required) The version for the MSSQL instance. Can be any version supported by the provider.
+        For more information about Microsoft SQL versions on Amazon RDS see
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport">SQL Server versions supported in RDS</a>.
+      </td>
+      <td>None</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>engine</code></td>
+      <td>String</td>
+      <td>
+        (Required) The edition for the MSSQL instance.
+        Amazon RDS supports the following Microsoft SQL Server editions:
+            <ul>
+                <li>Enterprise: <code>sqlserver-ee</code></li>
+                <li>Express: <code>sqlserver-ex</code></li>
+                <li>Standard: <code>sqlserver-se</code></li>
+                <li>Web: <code>sqlserver-web</code></li>
+            </ul>
+      </td>
+      <td>sqlserver-ee</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>storage_gb</code></td>
+      <td>Integer</td>
+      <td>
+        (Required) Size of storage volume for service instance.
+        Minimum admitted value: 20(GB).
+        For more information about Amazon RDS DB instance storage for MSSQL see
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html">AWS documentation</a>.
+      </td>
+      <td>20</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>instance_class</code></td>
+      <td>String</td>
+      <td>
+        (Required) The database instance class determines the computation and memory capacity of an
+        RDS MSSQL database instance.
+        Accepted values will depend on the selected `engine` and `mssql_version`.
+        For information about the restrictions associated with the different types of instances
+        accepted by RDS MSSQL, see the 
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.InstanceClasses">AWS documentation</a>.
+      </td>
+      <td>None</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_vpc_id</code></td>
+      <td>String</td>
+      <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
+      <td>The default VPC</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>rds_subnet_group</code></td>
+      <td>String</td>
+       <td>The name of the subnet to attach the database instance to.
+         This overrides <code>aws_vpc_id</code>.</td>
+      <td>None</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>rds_vpc_security_group_ids</code></td>
+      <td>Comma-separated String</td>
+      <td>Security group IDs to assign to the database instance.</td>
+      <td>None</td>
+      <td>provision</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
