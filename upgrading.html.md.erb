@@ -5,13 +5,13 @@ owner: Cloud Service Broker
 
 This topic describes how to upgrade <%= vars.product_full %>.
 
-The following sections have information about the [upgrade procedure](#procedure), [upgrading service instances](#upgrading-instances-instructions) and [specific details about upgrading to v1.5](#upgrading-specifics).
+The following sections have information about the [Upgrade procedure](#procedure), [Upgrading service instances](#upgrading-instances-instructions) and specific details about [Upgrading to v1.5](#upgrading-specifics).
 
 ## <a id="procedure"></a> Upgrade procedure
 
-<p class="note">
-  <strong>Note:</strong>When upgrading the <%= vars.product_short %>, service instances might need upgrading.
-   Failure upgrading one or more instances will not result in failure to install the tile. Make sure you check the `deploy-all` errand logs in the
+<p class="note important">
+  <strong>Important:</strong>When upgrading the <%= vars.product_short %>, service instances might need upgrading.
+   Failure upgrading one or more instances will not result in failure to install the tile. Make sure you check the <code>deploy-all</code> errand logs in the
    Change Log to verify no errors occured. See below for more information on service instance upgrade procedure and troubleshooting.
 </p>.
 
@@ -29,7 +29,7 @@ To upgrade the <%= vars.product_short %>:
 8. Check `deploy-all` errand logs for any errors when upgrading the instances.
 
 
-## <a id="upgrading-instances-instructions"> Upgrading service instances
+## <a id="upgrading-instances-instructions"></a> Upgrading service instances
 
 Service instance upgrades have to be performed alongside the corresponding tile upgrade. Service instances that haven't been upgraded 
 with one version might not be upgradeable with upcoming versions. For that reason, it is recommended you check there are no instances
@@ -61,14 +61,14 @@ a failure in the tile installation. Review the `deploy all` errand logs to ensur
 
 If preferred, the task can be run through the CF CLI instead of or in addition to running it through the tile.
 
-### <a id="upgrading-instances-task"> Upgrading instances through the tile
+### <a id="upgrading-instances-task"></a> Upgrading instances through the tile
 
 1. Configure the **Upgrade All Servie Instances** task, see [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config) for more information
 2. Apply Changes
 3. Check `deploy-all` logs for failures
 
 
-### <a id="upgrading-cli-plugin"> Upgrading instances through CLI Plugin
+### <a id="upgrading-cli-plugin"></a> Upgrading instances through CLI Plugin
 
 First install the new version of the tile. If you don't want to run the upgrade during tile installation, follow instructions in [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config) 
 to disable the upgrade task.
