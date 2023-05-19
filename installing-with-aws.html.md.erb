@@ -427,16 +427,21 @@ remove encryption from the state database:
 
 If upgrading from a previous tile version, service instances might need upgrading.
 By default, the tile upgrades all instances from active service plans during installation.
-This section is about configuration of the Upgrade All Service Instances task. For the overall upgrade process and 
+
+This section is about configuration of the **Upgrade All Service Instances** task. For the overall upgrade process and 
 version-specific upgrade instructions, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
 
-If **Upgrade all services** is unchecked, service instances are not upgraded during installation, and
+If **Upgrade all services** is unchecked, service instances are **not** upgraded during installation, and
 the broker might be unable to manage these service instances anymore.
 In this case, any operations on that instance (update/bind/unbind/delete) are blocked until the
 upgrade is performed. You can run the upgrade task at any time.
 
-The Upgrade all instances task can be perform as many times as needed. Failure to upgrade one or more instances won't result in 
-a failure in the tile installation. Review the `deploy all` errand logs to ensure all instances have been upgraded successfully.
+The Upgrade all instances task can be perform as many times as needed. 
+
+<p class="note important">
+<strong>Important:</strong> Failure to upgrade one or more instances **will not** result in a failure in the tile installation.
+Review the <code>deploy all</code> errand logs to ensure all instances have been upgraded successfully.
+</p>
 
 To configure the upgrade task:
 
