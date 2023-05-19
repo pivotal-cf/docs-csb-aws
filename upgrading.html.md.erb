@@ -6,31 +6,42 @@ owner: Cloud Service Broker
 This topic describes how to upgrade <%= vars.product_full %>.
 The following sections have information about the [Upgrade procedure](#procedure), [Upgrading service instances](#upgrade-instances), and specific details about [Upgrading to v1.6](#upgrading-specifics).
 
-## <a id="procedure"></a> Upgrade procedure
+## <a id="procedure"></a> Upgrade Procedure
 
 <p class="note important">
-   <strong>Note:</strong> When upgrading the <%= vars.product_short %>, service instances might to be upgraded.
+   <strong>Note:</strong> When upgrading <%= vars.product_short %>, service instances might need to be upgraded.
    Failure to upgrade one or more instance does not cause the tile installation to fail.
-   Ensure that you review the <code>deploy-all</code> errand logs in the change log to verify that
-   no errors occurred. For more information about the service instance upgrade procedure and troubleshooting,
-   see <a href="#upgrade-instances">Upgrading service instances</a>.
-</p>.
 
-To upgrade the <%= vars.product_short %>:
+   Ensure that you review the <code>deploy-all</code> errand logs in the change log to verify that
+   no errors occurred when upgrading instances. For more information about the service instance
+   upgrade procedure, see <a href="#upgrade-instances">Upgrading service instances</a>.
+</p>
+
+To upgrade <%= vars.product_short %>:
 
 1. Before you install the new version, ensure that all service instances are up to date.
    For how to upgrade all service instances, see [Upgrade service instances](#upgrade-instances).
+
 2. Download the new version of <%= vars.product_short %> from
    [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
-3. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
-4. Make all the changes described in [Upgrading to v1.6](#upgrading-specifics).
-5. Verify that the Upgrade All Service Instances configuration is correct. See [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config).
-6. Verify that the configuration complies with [Upgrading service instances](#upgrade-instances). Especially regarding plans and beta offerings.
-7. Go to the Ops Manager Installation Dashboard.
-8. Click **Review Pending Changes**, then **Apply Changes**.
-9. Review the `deploy-all` errand logs for any errors when upgrading the instances.
 
-## <a id="upgrade-instances"></a> Upgrade service instances
+3. Configure the tile by following the instructions in [Installing with AWS](installing-with-aws.html.md.erb).
+
+4. Make all the changes described in [Upgrading to v1.6](#upgrading-specifics).
+
+5. Verify that the **Upgrade All Service Instances** task is configured as required.
+   See [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config).
+
+6. Verify that your configuration complies with the [Important notes about upgrading service instance](#upgrade-notes).
+   Especially regarding plans and beta offerings.
+
+7. Go to the <%= vars.ops_manager %> Installation Dashboard.
+
+8. Click **Review Pending Changes**, then **Apply Changes**.
+
+9. Review the `deploy-all` errand logs for any errors due to the upgrade instances task.
+
+## <a id="upgrade-instances"></a> Upgrade Service Instances
 
 Service instance upgrades must be performed alongside the corresponding tile upgrade.
 Service instances that haven't been upgraded with one version might not be upgradable with
@@ -43,11 +54,11 @@ log for <%= vars.product_short %>.
 Alternatively running the [CLI Plug-in](#upgrading-cli-plugin) with the `--dry-run` flag outputs the list
 of instances pending upgrade.
 
-If you find instances pending upgrade, reapply the upgrade before upgrading the tile itself.
-To reapply the upgrade, ensure that you haven't staged the new version yet then apply changes,
+If you find instances pending upgrade, reapply the service instance upgrade before upgrading the tile itself.
+To reapply the instance upgrade, ensure that you haven't staged the new version yet then apply changes,
 or run the CLI Plug-in from the command line.
 
-### <a id="upgrade-notes"></a> Important notes about upgrading service instances
+### <a id="upgrade-notes"></a> Important Notes about Upgrading Service Instances
 
 Before you start upgrading service instances, see the following notes:
 
@@ -77,16 +88,16 @@ Before you start upgrading service instances, see the following notes:
   Failure to upgrade one or more instance does not cause the tile installation to fail.
   Review the `deploy all` errand logs to ensure that all instances have upgraded.
 
-### <a id="upgrading-instances-task"></a> Upgrade instances through the tile
+### <a id="upgrading-instances-task"></a> Upgrade Instances through the Tile
 
 To upgrade service instances through the tile:
 
 1. Configure the **Upgrade All Service Instances** task. For more information, see
-   [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config).
+   [Upgrade All Service Instances Configuration](installing-with-aws.html.md.erb#upgrade-all-config).
 1. Apply Changes.
 1. Review the `deploy-all` logs for failures.
 
-### <a id="upgrading-cli-plugin"></a> Upgrade instances through CLI Plug-in
+### <a id="upgrading-cli-plugin"></a> Upgrade Instances through the CLI Plug-in
 
 <!-- I thought you are required to upgrade instances before installing the new version of the tile -->
 
@@ -100,9 +111,9 @@ To run the cf CLI plug-in:
 1. To run the upgrade, follow the instructions in the _Usage_ section of the README in the
    [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage) GitHub repository.
 
-<!-- is it -dry-run or --dry-run. The line below has the former, line 44 in this page has the latter. -->
+<!-- is it -dry-run or --dry-run. The line below has the former, line 54 in this page has the latter. -->
 
-VMware recommends that you run the CLI plug-in with the `-dry-run` flag before applying the upgrade
-to find out which instances are pending upgrade.
+VMware recommends that you run the CLI plug-in with the `-dry-run` flag before applying the
+service instance upgrade to find out which instances are pending upgrade.
 
 ## <a id="upgrading-specifics"></a> Upgrading to v1.6
