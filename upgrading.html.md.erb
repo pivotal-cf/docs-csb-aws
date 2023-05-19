@@ -89,6 +89,7 @@ To upgrade service instances through the tile:
 ### <a id="upgrading-cli-plugin"></a> Upgrade instances through CLI Plug-in
 
 <!-- I thought you are required to upgrade instances before installing the new version of the tile -->
+
 First install the new version of the tile. If you don't want to run the upgrade during tile installation, follow instructions in [Upgrade All Service Instances Config](installing-with-aws.html.md.erb#upgrade-all-config)
 to deactivate the upgrade task.
 
@@ -100,6 +101,7 @@ To run the cf CLI plug-in:
    [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage) GitHub repository.
 
 <!-- is it -dry-run or --dry-run. The line below has the former, line 44 in this page has the latter. -->
+
 VMware recommends that you run the CLI plug-in with the `-dry-run` flag before applying the upgrade
 to find out which instances are pending upgrade.
 
