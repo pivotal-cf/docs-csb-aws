@@ -426,21 +426,24 @@ remove encryption from the state database:
 ## <a id="upgrade-all-config"></a> Upgrade All Services Instances Configuration
 
 If upgrading from a previous tile version, service instances might need upgrading.
-By default, the tile upgrades all instances during installation.
-This section is about the general configuration of upgrades.
-For version-specific upgrade instructions, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
+By default, the tile upgrades all instances from active service plans during installation.
 
-If **Upgrade all services** is unchecked, service instances are not upgraded during installation, and
+This section is about configuration of the Upgrade All Service Instances task. For the overall upgrade process and 
+version-specific upgrade instructions, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
+
+If **Upgrade all services** is unchecked, service instances are **not** upgraded during installation, and
 the broker might be unable to manage these service instances anymore.
 In this case, any operations on that instance (update/bind/unbind/delete) are blocked until the
 upgrade is performed. You can run the upgrade task at any time.
 
-If you delete custom plans before upgrading all instances, you might cause some instances to become
-unmanageable for the broker.
-Delete plans at a later step or see [Release Notes for Cloud Service Broker for AWS](release-notes.html)
-and [Upgrading Cloud Service Broker for AWS](upgrading.html) to prevent conflicting upgrades.
+The Upgrade all instances task can be perform as many times as needed. 
 
-To perform the upgrade task:
+<p class="note important">
+<strong>Important:</strong> Failure to upgrade one or more instances **will not** result in a failure in the tile installation.
+Review the <code>deploy all</code> errand logs to ensure all instances have been upgraded successfully.
+</p>
+
+To configure the upgrade task:
 
 1. Go to the **Upgrade All Service Instances Config** tab.
 
@@ -455,8 +458,7 @@ To perform the upgrade task:
 
 3. Click **Save**.
 
-4. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
-5. Click **Review Pending Changes**.
+See [Upgrading Cloud Service Broker for AWS](upgrading.html) for instructions to ensure successful upgrade of service instances.
 
-6. Click **Apply changes** to install the <%= vars.product_short %> tile.
+
