@@ -104,9 +104,9 @@ provision only:
       <td><code>mssql_version</code></td>
       <td>String</td>
       <td>
-        (Required) The version for the MSSQL instance. Can be any version supported by the provider.
-        For more information about Microsoft SQL versions on Amazon RDS see
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport">SQL Server versions supported in RDS</a>.
+        (Required) The version for the MSSQL instance. It can be any version supported by the provider.
+        For more information about Microsoft SQL versions on Amazon RDS, see the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport">AWS documentation</a>.
       </td>
       <td>None</td>
       <td>provision and update</td>
@@ -132,8 +132,8 @@ provision only:
       <td>Integer</td>
       <td>
         (Required) Size of storage volume for service instance.
-        Minimum admitted value: 20(GB).
-        For more information about Amazon RDS DB instance storage for MSSQL see
+        Minimum admitted value: 20&nbsp;GB.
+        For more information about Amazon RDS DB instance storage for MSSQL, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html">AWS documentation</a>.
       </td>
       <td>20</td>
@@ -145,9 +145,9 @@ provision only:
       <td>
         (Required) The database instance class determines the computation and memory capacity of an
         RDS MSSQL database instance.
-        Accepted values will depend on the selected `engine` and `mssql_version`.
-        For information about the restrictions associated with the different types of instances
-        accepted by RDS MSSQL, see the 
+        Accepted values depend on the selected <code>engine</code> and <code>mssql_version</code>.
+        For information about the restrictions associated with the different types of instances that
+        RDS MSSQL accepts, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.InstanceClasses">AWS documentation</a>.
       </td>
       <td>None</td>
