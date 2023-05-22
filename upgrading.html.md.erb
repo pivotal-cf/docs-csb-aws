@@ -51,7 +51,7 @@ upgrading the tile.
 
 You can see if there are instances with a pending upgrade by reviewing the last `deploy-all` errand
 log for <%= vars.product_short %>.
-Alternatively running the [CLI Plug-in](#upgrading-cli-plugin) with the `--dry-run` flag outputs the list
+Alternatively running the [CLI Plug-in](#upgrading-cli-plugin) with the `-dry-run` flag outputs the list
 of instances pending upgrade.
 
 If you find instances pending upgrade, reapply the service instance upgrade before upgrading the tile itself.
@@ -110,8 +110,6 @@ To run the cf CLI plug-in:
 1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices)
 1. To run the upgrade, follow the instructions in the _Usage_ section of the `README` in the
    [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage) GitHub repository.
-
-<!-- is it -dry-run or --dry-run. The line below has the former, line 54 in this page has the latter. -->
 
 VMware recommends that you run the CLI plug-in with the `-dry-run` flag before applying the
 service instance upgrade to find out which instances are pending upgrade.
