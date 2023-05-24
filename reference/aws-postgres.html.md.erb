@@ -425,12 +425,12 @@ provision only:
       <td><code>enable_export_postgresql_logs</code></td>
       <td>Boolean</td>
       <td>
-        If <code>true</code>, it enables the <code>postgresql</code> <code>cloud_watch_log_export</code>
+        If <code>true</code>, it enables the postgresql <code>cloud_watch_log_export</code>
         on the RDS instance.
-        It requires setting <code>parameter_group_name</code> with a pre-created Parameter Group that fulfills requirements 
-        for PostgreSQL log exports.
+        It requires setting <code>parameter_group_name</code> with a pre-created Parameter Group that
+        fulfills requirements for PostgreSQL log exports.
         For config options, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.PostgreSQL.html#USER_LogAccess.Concepts.PostgreSQL.Query_Logging">AWS documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.PostgreSQL.html#USER_LogAccess.Concepts.PostgreSQL.Query_Logging">AWS documentation</a>.<br><br>
         When activated, it creates an associated postgresql CloudWatch log group.
         When deactivated, the associated audit CloudWatch log group is deleted.
       </td>
@@ -453,7 +453,8 @@ provision only:
       <td>
         If <code>true</code>, it enables the <code>upgrade</code> <code>cloud_watch_log_export</code>
         on the RDS instance.
-        The upgrade log group only receives logs once a major upgrade happens, in other words, when the `pgupgrade` module is invoked.
+        The upgrade log group only receives logs after a major upgrade happens (in other words, when
+        the <code>pgupgrade</code> module is invoked).<br><br>
         When activated, it creates an associated upgrade CloudWatch log group.
         When deactivated, the associated audit CloudWatch log group is deleted.
       </td>
@@ -476,7 +477,8 @@ provision only:
       <td>
         If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is
         created for the RDS postgresql and upgrade logs.
-        It is used in conjunction with <code>enable_export_postgresql_logs</code> and <code>enable_export_upgrade_logs</code>.
+        It is used in conjunction with <code>enable_export_postgresql_logs</code> and
+        <code>enable_export_upgrade_logs</code>.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -484,15 +486,15 @@ provision only:
     <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
-      <td>The AWS Access Key to use for an instance</td>
-      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %></td>
+      <td>The AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_secret_access_key</code></td>
       <td>String</td>
-      <td>The corresponding secret for the AWS Access Key to use for an instance</td>
-      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %></td>
+      <td>The corresponding secret for the AWS Access Key to use for an instance.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
       <td>provision and update</td>
     </tr>
   </tbody>
