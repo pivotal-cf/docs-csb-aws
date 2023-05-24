@@ -3,29 +3,32 @@ title: Upgrading Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
-This topic tells you how to upgrade <%= vars.product_full %>.
-The following sections have information about the [Upgrade procedure](#procedure), [Upgrading service instances](#upgrade-instances), and specific details about [Upgrading to v1.6](#upgrading-specifics).
+This topic tells you how to upgrade <%= vars.product_full %>. The following sections have
+information about the [Upgrade procedure](#procedure), [Upgrading service instances](#upgrade-instances),
+and specific details about [Upgrading to v1.6](#upgrading-specifics).
 
 ## <a id="procedure"></a> Upgrade Procedure
 
 <p class="note important">
-   <strong>Important:</strong> When upgrading <%= vars.product_short %>, service instances might need to be upgraded.
-   Failure to upgrade one or more instance does not cause the tile installation to fail.
-
+   <strong>Important:</strong> When upgrading <%= vars.product_short %>, service instances might need
+   to be upgraded.
+   Failure to upgrade one or more instance does not cause the tile installation to fail.<br><br>
    Ensure that you review the <code>deploy-all</code> errand logs in the change log to verify that
    no errors occurred when upgrading instances. For more information about the service instance
-   upgrade procedure, see <a href="#upgrade-instances">Upgrading service instances</a>.
+   upgrade procedure, see <a href="#upgrade-instances">Upgrading service instances</a> later in the
+   topic.
 </p>
 
 To upgrade <%= vars.product_short %>:
 
-1. Before you stage the new tile version, ensure that all service instances are up to date.
-   For how to ensure all service instances are up to date, see [Ensuring service instances are up to date before upgrading the tile](#upgrade-instances).
+1. Before you stage the new tile version,
+   [ensure that all service instances are up to date](#upgrade-instances).
 
 2. Download the new version of <%= vars.product_short %> from
-   [<%= vars.product_network %>](https://network.pivotal.io/products/cloud-service-broker-aws/).
+   [<%= vars.product_network %>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
 
-3. Stage and Configure the tile by following the instructions in [Installing with AWS](installing-with-aws.html.md.erb).
+3. Stage and configure the tile by following the instructions in
+   [Installing with AWS](installing-with-aws.html.md.erb).
 
 4. Make all the changes described in [Upgrading to v1.6](#upgrading-specifics).
 
@@ -33,43 +36,44 @@ To upgrade <%= vars.product_short %>:
    See [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config).
 
 6. Verify that your configuration complies with the
-   [Important notes about upgrading service instances](#upgrade-notes), especially regarding plans and beta offerings.
+   [important notes about upgrading service instances](#upgrade-notes), especially regarding plans
+   and beta offerings.
 
 7. Go to the <%= vars.ops_manager %> Installation Dashboard.
 
-8. Click **Review Pending Changes**, then **Apply Changes**.
+8. Click **Review Pending Changes** and then click **Apply Changes**.
 
-9. Review the `deploy-all` errand logs for any errors due to the upgrade instances task.
+9. Review the `deploy-all` errand logs for any errors created because of the upgrade instances task.
 
-## <a id="upgrade-instances"></a> Ensuring service instances are up to date before upgrading the tile
+## <a id="upgrade-instances"></a> Ensure that service instances are up to date before upgrading the tile
 
 Service instance upgrades must be performed alongside the corresponding tile upgrade.
 Service instances that haven't been upgraded with one version might not be upgradable with
 upcoming versions.
-For this reason, VMware recommends that you verify that there are no instances pending upgrade before
-upgrading the tile to a newer version.
+For this reason, verify that there are no instances pending upgrade before upgrading the tile to a
+later version.
 
 You can see if there are instances with a pending upgrade by reviewing the last `deploy-all` errand
-log for <%= vars.product_short %>.
-Alternatively, yout can [ensure all instances are up to date with the CLI Plug-in](#checking-cli-plugin) and the `-dry-run` flag, which will output the list
-of instances pending upgrade.
+log for <%= vars.product_short %>. Alternatively, you can
+[ensure all instances are up to date with the CLI plug-in](#checking-cli-plugin)
+and the `-dry-run` flag, which outputs the list of instances pending upgrade.
 
-If you find instances pending upgrade, reapply the service instance upgrade with the current version of the broker (before staging the new version of the tile).
-To reapply the instance upgrade, 
+If you find instances that are pending upgrade, reapply the service instance upgrade with the
+current version of the broker before staging the new version of the tile. To reapply the instance
+upgrade:
 
-1. Ensure that you haven't staged the new version of the tile yet. 
-2. Review [Important notes about upgrading service instances](#upgrade-notes).
+1. Ensure that you haven't staged the new version of the tile yet.
+2. Review the [important notes about upgrading service instances](#upgrade-notes).
 3. Follow the steps from either
    - [Upgrade instances through the tile](#upgrading-instances-task) or
-   - [Upgrade instances through the CLI Plug-in](#upgrading-cli-plugin) from the command line.
+   - [Upgrade instances through the CLI plug-in](#upgrading-cli-plugin) from the CLI.
 
-
-
-### <a id="upgrade-notes"></a> Important Notes about Upgrading Service Instances
+### <a id="upgrade-notes"></a> Important notes about upgrading service instances
 
 Before you start upgrading service instances, see the following notes:
 
 - **Enabling the Upgrade all services check box:**
+
   If the **Upgrade all services** check box is not selected, service instances are not upgraded
   during installation. These instances become unmanageable by the broker.
   Any operations on that instance, such as update, bind, unbind, or delete, are blocked
@@ -77,67 +81,72 @@ Before you start upgrading service instances, see the following notes:
   You can run the upgrade task at any time before upgrading the product to a later version.
 
 - **Enabling the Enable Beta offerings check box:**
+
   If the **Enable Beta offerings** check box is not selected when applying changes, instances from
   those service offerings are not upgraded. These instances become unmanageable by the broker.
   Ensure that the **Enable Beta offerings** check box is selected if you have instances from those
   offerings you intend to keep updated.
 
-- **Deleting custom plans:** If you delete custom plans before upgrading all instances,
-  instances from these plans are not upgraded. These instances become unmanageable by the broker.
-  Delete plans after upgrading all instances, or see
-  [Release Notes for Cloud Service Broker for AWS](release-notes.html)
-  and [Upgrading to v1.6](#upgrading-specifics) to prevent conflicting upgrades.
+- **Deleting custom plans:**
 
-- **Only upgrade the tile when you are confident all service instances are up to date:**
+  If you delete custom plans before upgrading all instances, instances from these plans are not
+  upgraded. These instances become unmanageable by the broker. Delete plans after upgrading all
+  instances, or see [Release Notes for Cloud Service Broker for AWS](release-notes.html.md.erb) and
+  [Upgrading to v1.6](#upgrading-specifics) to prevent conflicting upgrades.
+
+- **Only upgrade the tile after all service instances are up to date:**
+
   You can run the upgrade all instances task as many times as needed.
-  If preferred, you can run the upgrade all instances task using the cf CLI instead of,
+  If preferred, you can run the upgrade all instances task by using the cf CLI instead of,
   or in addition to, running it through the tile.
-  Failure to upgrade one or more instance does not cause the tile installation to fail.
+  Failure to upgrade one or more instances does not cause the tile installation to fail.
   Review the `deploy all` errand logs to ensure that all instances have upgraded.
 
+### <a id="checking-cli-plugin"></a> Ensure that all instances are up to date with the CLI plug-in
 
-### <a id="checking-cli-plugin"></a> Ensuring all instances are up to date with the CLI Plug-in
+To verify that no instances are pending upgrade:
 
-To check if there are instances pending upgrade :
+1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
+1. Follow the instructions in the **Usage** section of the `README` in the
+   [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage)
+   GitHub repository to perform a dry run.
 
-1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices)
-1. Follow the instructions in the _Usage_ section of the `README` in the
-   [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage) GitHub repository to perform a dry run.
+   For example:
 
-   For example: 
    <code>
-      cf upgrade-all-services <BROKER_NAME> -dry-run 
+      cf upgrade-all-services BROKER-NAME -dry-run
    </code>
 
-This command will provide a list of instances (from enabled plans) pending upgrade. If the list is no empty, you should upgrade the instances listed
-prior to attempting a tile upgrade.
+This command provides a list of instances from enabled plans pending upgrade. If the list is not
+empty, upgrade the instances listed before attempting a tile upgrade.
 
-
-### <a id="upgrading-instances-task"></a> Upgrade Instances through the Tile
+### <a id="upgrading-instances-task"></a> Upgrade instances through the tile
 
 To upgrade service instances through the tile:
 
 1. Configure the **Upgrade All Service Instances** task. For more information, see
    [Upgrade All Service Instances Configuration](installing-with-aws.html.md.erb#upgrade-all-config).
-1. Apply Changes.
-1. Review the `deploy-all` logs for failures.
+1. Apply the changes.
+1. Review the `deploy-all` log entries for failures.
 
-### <a id="upgrading-cli-plugin"></a> Upgrade Instances through the CLI Plug-in
+### <a id="upgrading-cli-plugin"></a> Upgrade instances through the CLI plug-in
 
 To run the cf CLI plug-in:
 
-1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices)
-1. To run the upgrade, follow the instructions in the _Usage_ section of the `README` in the
-   [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage) GitHub repository.
+1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
+1. To run the upgrade, follow the instructions in the **Usage** section of the `README` in the
+   [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage)
+   GitHub repository.
 
-   For example: 
+   For example:
+
    <code>
-      cf upgrade-all-services <BROKER_NAME>
+      cf upgrade-all-services BROKER-NAME
    </code>
 
-VMware recommends that you run the CLI plug-in with the `-dry-run` flag before applying the
-service instance upgrade to find out which instances are pending upgrade.
+Run the CLI plug-in with the `-dry-run` flag before applying the service instance upgrade to find
+out which instances are pending upgrade.
 
-## <a id="upgrading-specifics"></a> Upgrading to v1.6
+## <a id="upgrading-specifics"></a> Upgrade to v1.6
 
 There are currently no notes for upgrading to v1.6.
