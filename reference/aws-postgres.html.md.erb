@@ -425,13 +425,13 @@ provision only:
       <td><code>enable_export_postgresql_logs</code></td>
       <td>Boolean</td>
       <td>
-        If <code>true</code>, it enables the postgresql <code>cloud_watch_log_export</code>
+        If <code>true</code>, it enables the PostgreSQL <code>cloud_watch_log_export</code>
         on the RDS instance.
         It requires setting <code>parameter_group_name</code> with a pre-created Parameter Group that
         fulfills requirements for PostgreSQL log exports.
         For config options, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.PostgreSQL.html#USER_LogAccess.Concepts.PostgreSQL.Query_Logging">AWS documentation</a>.<br><br>
-        When activated, it creates an associated postgresql CloudWatch log group.
+        When activated, it creates an associated PostgreSQL CloudWatch log group.
         When deactivated, the associated audit CloudWatch log group is deleted.
       </td>
       <td><code>false</code></td>
@@ -441,7 +441,7 @@ provision only:
       <td><code>cloudwatch_postgresql_log_group_retention_in_days</code></td>
       <td>Integer</td>
       <td>
-        If provided, it sets the retention days for the log group that contains the RDS postgresql logs.
+        If provided, it sets the retention days for the log group that contains the RDS PostgreSQL logs.
         It is used in conjunction with <code>enable_export_postgresql_logs</code>.
       </td>
       <td><code>30</code></td>
@@ -475,11 +475,12 @@ provision only:
       <td><code>cloudwatch_log_groups_kms_key_id</code></td>
       <td>String</td>
       <td>
-        Log group data is always encrypted in CloudWatch Logs. By default, CloudWatch Logs uses server-side encryption
-        for the log data at rest. As an alternative, you can use AWS Key Management Service for this encryption.
-        If you do, the encryption is done using an AWS KMS customer managed key.
-        This property if provided, will set the customer managed key to use for encrypting the Cloudwatch log group
-        created for the RDS PostgreSQL and upgrade logs.
+        Log group data is always encrypted in CloudWatch Logs. By default, CloudWatch Logs uses
+        server-side encryption for the log data at rest.
+        As an alternative, you can use AWS Key Management Service (AWS KMS) for this encryption.
+        If you use AWS KMS, the encryption is done by using an AWS KMS customer-managed key.<br><br>
+        This property, if provided, sets the customer-managed key to use for encrypting the CloudWatch
+        log group created for the RDS PostgreSQL and upgrade logs.
         It is used in conjunction with <code>enable_export_postgresql_logs</code> and
         <code>enable_export_upgrade_logs</code>.
       </td>
