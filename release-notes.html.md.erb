@@ -64,6 +64,16 @@ New features and changes in this release:
   For more information about how to create and manage this service, see
   [Amazon RDS for MSSQL (Beta)](reference/aws-mssql.html.md.erb).
 
+#### Amazon S3 Bucket
+
+- **`restrict_to_tls_requests_only` exposed:**
+
+  New property exposed that allows you to configure whether the bucket explicitly denies access to HTTP requests,
+  in other words, the bucket only accepts requests sent through HTTPS if enabled.
+
+  For more information about how to create and manage this service, see
+  [Amazon S3 Bucket](reference/aws-s3.html.md.erb).
+
 ### Resolved Issues
 
 This release has the following fixes:

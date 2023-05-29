@@ -264,6 +264,16 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>restrict_to_tls_requests_only</code></td>
+      <td>Boolean</td>
+      <td>
+        Whether the bucket explicitly denies access to HTTP requests, in other words, the bucket only accepts
+        requests sent through HTTPS if enabled.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_access_key_id</code></td>
       <td>String</td>
       <td>The AWS Access Key to use for an instance.</td>
@@ -360,7 +370,7 @@ Add the following block to keep the `private` plan:
     "id": "8938b4c0-d67f-4c34-9f68-a66deef99b4e",
     "description": "Private S3 bucket",
     "acl": "private",
-    "boc_object_ownership": "ObjectWriter"
+    "boc_object_ownership": "ObjectWriter",
     "metadata": {
         "displayName": "Private",
         "bullets": ["Private ACL", "ObjectWriter ownership"]
