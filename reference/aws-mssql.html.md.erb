@@ -124,7 +124,7 @@ provision only:
                 <li>Web: <code>sqlserver-web</code></li>
             </ul>
       </td>
-      <td>sqlserver-ee</td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -136,7 +136,7 @@ provision only:
         For more information about Amazon RDS DB instance storage for MSSQL, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html">AWS documentation</a>.
       </td>
-      <td>20</td>
+      <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
@@ -164,14 +164,21 @@ provision only:
       <td><code>rds_subnet_group</code></td>
       <td>String</td>
        <td>The name of the subnet to attach the database instance to.
-         This overrides <code>aws_vpc_id</code>.</td>
+       When set, you also need to specify the corresponding <code>aws_vpc_id</code>.
+       When both <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code>
+       are provided, they need to be coherent and depend on the same <code>aws_vpc_id</code>.
+       </td>
       <td>None</td>
       <td>provision and update</td>
     </tr>
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
       <td>Comma-separated String</td>
-      <td>Security group IDs to assign to the database instance.</td>
+      <td>Security group IDs to assign to the database instance.
+      When set, you also need to specify the corresponding <code>aws_vpc_id</code>.
+      When both <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code>
+      are provided, they need to be coherent and depend on the same <code>aws_vpc_id</code>.
+      </td>
       <td>None</td>
       <td>provision</td>
     </tr>
