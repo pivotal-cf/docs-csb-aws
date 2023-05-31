@@ -438,11 +438,22 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>skip_destroy_postgresql_logs</code></td>
+      <td>Boolean</td>
+      <td>
+        Set to <code>true</code> if you do not wish the log group postgresql (and any logs it may contain) to be deleted at a
+        disabling log time or destroy instance time.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>cloudwatch_postgresql_log_group_retention_in_days</code></td>
       <td>Integer</td>
       <td>
-        If provided, it sets the retention days for the log group that contains the RDS PostgreSQL logs.
+        If provided, it specifies the number of days you want to retain log events in the postgresql log group.
         It is used in conjunction with <code>enable_export_postgresql_logs</code>.
+        If you select 0, the events in the log group are always retained and never expire.
       </td>
       <td><code>30</code></td>
       <td>provision and update</td>
@@ -462,11 +473,22 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>skip_destroy_upgrade_logs</code></td>
+      <td>Boolean</td>
+      <td>
+        Set to <code>true</code> if you do not wish the log group upgrade (and any logs it may contain) to be deleted at a
+        disabling log time or destroy instance time.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>cloudwatch_upgrade_log_group_retention_in_days</code></td>
       <td>Integer</td>
       <td>
-        If provided, it sets the retention days for the log group that contains the RDS upgrade logs.
+        If provided, it specifies the number of days you want to retain log events in the upgrade log group.
         It is used in conjunction with <code>enable_export_upgrade_logs</code>.
+        If you select 0, the events in the log group are always retained and never expire.
       </td>
       <td><code>30</code></td>
       <td>provision and update</td>
