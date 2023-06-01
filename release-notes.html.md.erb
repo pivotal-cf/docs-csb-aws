@@ -29,7 +29,8 @@ New features and changes in this release:
   You can now turn on query logging by setting `parameter_group_name` with a pre-created Parameter Group
   that fulfills requirements for PostgreSQL log exports and the property `enable_export_postgresql_logs`.
   By default, query logging is deactivated.
-  When activated, the default number of log retention days is 30.
+  When activated, the default number of log retention days is 30 and the log group will be deleted
+  by disabling the log or deleting the instance.
   For how to configure, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
 
 - **Turn on upgrade logging for your RDS for PostgreSQL DB instance:**
@@ -38,7 +39,8 @@ New features and changes in this release:
   The upgrade log group only receives logs after a major upgrade happens (in other words, when the
   `pgupgrade` module is invoked).
   By default, upgrade logging is deactivated.
-  When activated, the default number of log retention days is 30.
+  When activated, the default number of log retention days is 30 and the log group will be deleted
+  by disabling the log or deleting the instance.
   For how to configure, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
 
 - **Encrypting CloudWatch Logs:**
