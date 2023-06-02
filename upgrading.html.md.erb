@@ -113,9 +113,9 @@ To verify that no instances are pending upgrade:
 
    For example:
 
-   <code>
-      cf upgrade-all-services BROKER-NAME -dry-run
-   </code>
+   ```
+   cf upgrade-all-services BROKER-NAME -dry-run
+   ```
 
 This command provides a list of instances from enabled plans pending upgrade. If the list is not
 empty, upgrade the instances listed before attempting a tile upgrade.
@@ -147,9 +147,9 @@ To run the cf CLI plug-in:
 
    For example:
 
-   <code>
-      cf upgrade-all-services BROKER-NAME
-   </code>
+   ```
+   cf upgrade-all-services BROKER-NAME
+   ```
 
 Run the CLI plug-in with the `-dry-run` flag before applying the service instance upgrade to find
 out which instances are pending upgrade.
