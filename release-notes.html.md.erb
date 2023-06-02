@@ -31,6 +31,7 @@ New features and changes in this release:
   By default, query logging is deactivated.
   When activated, the default number of log retention days is 30 and the log group is deleted
   by deactivating the log or deleting the instance.
+
   For how to configure, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
 
 - **Enabling upgrade logging for your RDS for PostgreSQL DB instance:**
@@ -41,13 +42,16 @@ New features and changes in this release:
   By default, upgrade logging is deactivated.
   When activated, the default number of log retention days is 30 and the log group is deleted
   by deactivating the log or deleting the instance.
+
   For how to configure, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
 
 - **Encrypting CloudWatch Logs:**
 
   A new property, `cloudwatch_log_groups_kms_key_id`, is exposed, and enables you to configure your
   AWS KMS customer-managed key to encrypt the logs generated when activating PostgreSQL or upgrade
-  logs. For more information, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
+  logs.
+
+  For more information, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
 
 #### Amazon RDS for MSSQL
 
