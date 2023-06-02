@@ -163,10 +163,11 @@ provision only:
     <tr>
       <td><code>rds_subnet_group</code></td>
       <td>String</td>
-       <td>The name of the subnet to attach the database instance to.
-       When set, you also need to specify the corresponding <code>aws_vpc_id</code>.
+       <td>
+       The name of the subnet to attach the database instance to.
+       When set, you must also specify the corresponding <code>aws_vpc_id</code>.
        When both <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code>
-       are provided, they need to be coherent and depend on the same <code>aws_vpc_id</code>.
+       are provided, they must be coherent and depend on the same <code>aws_vpc_id</code>.
        </td>
       <td>None</td>
       <td>provision and update</td>
@@ -174,10 +175,11 @@ provision only:
     <tr>
       <td><code>rds_vpc_security_group_ids</code></td>
       <td>Comma-separated String</td>
-      <td>Security group IDs to assign to the database instance.
-      When set, you also need to specify the corresponding <code>aws_vpc_id</code>.
+      <td>
+      Security group IDs to assign to the database instance.
+      When set, you must also specify the corresponding <code>aws_vpc_id</code>.
       When both <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code>
-      are provided, they need to be coherent and depend on the same <code>aws_vpc_id</code>.
+      are provided, they must be coherent and depend on the same <code>aws_vpc_id</code>.
       </td>
       <td>None</td>
       <td>provision</td>
