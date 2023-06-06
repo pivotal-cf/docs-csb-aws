@@ -432,17 +432,7 @@ provision only:
         For config options, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.PostgreSQL.html#USER_LogAccess.Concepts.PostgreSQL.Query_Logging">AWS documentation</a>.<br><br>
         When activated, it creates an associated PostgreSQL CloudWatch log group.
-        When deactivated, the associated audit CloudWatch log group is deleted.
-      </td>
-      <td><code>false</code></td>
-      <td>provision and update</td>
-    </tr>
-    <tr>
-      <td><code>skip_destroy_postgresql_logs</code></td>
-      <td>Boolean</td>
-      <td>
-        Set to <code>true</code> if you do not want the log group <code>postgresql</code>,
-        and any logs that it contains, to be deleted when deactivating logs or deleting instances.
+        When deactivated, the associated PostgreSQL CloudWatch log group is deleted.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
@@ -468,17 +458,7 @@ provision only:
         The upgrade log group only receives logs after a major upgrade happens (in other words, when
         the <code>pgupgrade</code> module is invoked).<br><br>
         When activated, it creates an associated upgrade CloudWatch log group.
-        When deactivated, the associated audit CloudWatch log group is deleted.
-      </td>
-      <td><code>false</code></td>
-      <td>provision and update</td>
-    </tr>
-    <tr>
-      <td><code>skip_destroy_upgrade_logs</code></td>
-      <td>Boolean</td>
-      <td>
-        Set to <code>true</code> if you do not want the log group <code>upgrade</code>,
-        and any logs that it contains, to be deleted when deactivating logs or deleting instances.
+        When deactivated, the associated upgrade CloudWatch log group is deleted.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
