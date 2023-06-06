@@ -438,16 +438,6 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
-      <td><code>skip_destroy_postgresql_logs</code></td>
-      <td>Boolean</td>
-      <td>
-        Set to <code>true</code> if you do not want the log group <code>postgresql</code>,
-        and any logs that it contains, to be deleted when deactivating logs or deleting instances.
-      </td>
-      <td><code>false</code></td>
-      <td>provision and update</td>
-    </tr>
-    <tr>
       <td><code>cloudwatch_postgresql_log_group_retention_in_days</code></td>
       <td>Integer</td>
       <td>
@@ -469,16 +459,6 @@ provision only:
         the <code>pgupgrade</code> module is invoked).<br><br>
         When activated, it creates an associated upgrade CloudWatch log group.
         When deactivated, the associated audit CloudWatch log group is deleted.
-      </td>
-      <td><code>false</code></td>
-      <td>provision and update</td>
-    </tr>
-    <tr>
-      <td><code>skip_destroy_upgrade_logs</code></td>
-      <td>Boolean</td>
-      <td>
-        Set to <code>true</code> if you do not want the log group <code>upgrade</code>,
-        and any logs that it contains, to be deleted when deactivating logs or deleting instances.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
