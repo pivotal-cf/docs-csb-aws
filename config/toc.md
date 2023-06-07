@@ -15,6 +15,6 @@
     * [Amazon DynamoDB Table (Beta)](../reference/aws-dynamodb.html)
     * [Amazon Aurora MySQL-Compatible Edition](../reference/aws-aurora-mysql.html)
     * [Amazon Aurora PostgreSQL-Compatible Edition](../reference/aws-aurora-postgresql.html)
-* [Uninstalling](../uninstall.html)
 * [Troubleshooting](../troubleshooting.html)
+* [Uninstalling](../uninstall.html)
 * [Back to Cloud Service Broker landing page](https://docs.vmware.com/en/Cloud-Service-Broker-for-VMware-Tanzu/index.html)
