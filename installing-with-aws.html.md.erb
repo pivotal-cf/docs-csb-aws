@@ -363,6 +363,9 @@ To rotate the password on the state database:
 9. (Recommended) After the apply changes process completes, delete the non-primary label and password
    pair and apply changes again.
 
+   <%= image_tag("images/rotate-password.png", :alt => "Screenshot of Rotate the Encryption Password on the State Database. The Enable encryption of the Cloud Service Broker database checkbox is checked. There are two sections that represent the old password and the new one respectively. In each section there are two text boxes and a checkbox. The first text box represents the password name and the second represents the password value. The checkbox represents that the password is marked as primary. The password marked as primary is the new password.", :width => "400") %>
+
+
 ## <a id="remove-encryption"></a> Remove Encryption from the State Database
 
 If the data in the state database was previously encrypted and you want to deactivate encryption,
@@ -384,6 +387,8 @@ remove encryption from the state database:
 
 8. (Recommended) After the apply changes process completes, delete all label and password pairs and
    apply changes again.
+
+   <%= image_tag("images/remove-encryption.png", :alt => "Screenshot of Remove Encryption from the State Database. The Enable encryption of the Cloud Service Broker database checkbox is not checked. There is one section that represents the old password. There are two text boxes and a checkbox. The first text box represents the password name and the second represents the password value. The checkbox is not checked.", :width => "400") %>
 
 ## <a id="upgrade-all-config"></a> Upgrade All Services Instances Configuration
 
