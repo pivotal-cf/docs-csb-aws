@@ -35,9 +35,9 @@ template_variables:
   service_name: Cloud Service Broker
   service_name_article: the Cloud Service Broker
   service_name_article_full: Cloud Service Broker service
-  support_link: <a href="http://support.pivotal.io" target="_blank">Support</a>
-  support_call_to_action: <a href="http://support.pivotal.io" target="_blank">Need Support?</a>
-  support_url: http://support.pivotal.io
+  support_link: <a href="http://tanzu.vmware.com/support" target="_blank">Support</a>
+  support_call_to_action: <a href="http://tanzu.vmware.com/support" target="_blank">Need Support?</a>
+  support_url: http://tanzu.vmware.com/support
 
 
   api_version: 235
