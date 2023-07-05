@@ -205,7 +205,7 @@ provision only:
       <td><code>storage_type</code></td>
       <td>String</td>
       <td>
-        Type of storage to be used. 
+        Type of storage to be used.
         One of <code>standard</code> (magnetic), <code>gp2</code> (general purpose SSD), <code>gp3</code>
         (general purpose SSD), or <code>io1</code> (provisioned IOPS SSD).
       </td>
@@ -219,9 +219,8 @@ provision only:
         The amount of provisioned IOPS. For this property to take effect, <code>storage_type</code>
         must be set to <code>io1</code> or <code>gp3</code>.
         Cannot be specified for <code>gp3</code> storage if the <code>storage_gb</code> value is below a per-engine threshold.
-        See the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage">RDS User Guide</a>
-        for details.
+        For more information, see the
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage">Amazon RDS User Guide</a>.
       </td>
       <td><code>3000</code></td>
       <td>provision and update</td>
