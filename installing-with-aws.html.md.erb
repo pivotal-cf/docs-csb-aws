@@ -20,15 +20,15 @@ Before you install <%= vars.product_short %>, you must have:
   - Access Key ID
   - Secret Access Key
 
-- **IAM Policies:**
-  The AWS account needs the following IAM policies:
+  - **IAM Policies:**
+    The AWS account needs the following IAM policies:
 
-   ```json
-   {
-      "Version": "2012-10-17",
-      "Statement": [
-         {
-            "Action": [
+     ```json
+     {
+        "Version": "2012-10-17",
+        "Statement": [
+           {
+              "Action": [
                   "dynamodb:CreateTable",
                   "dynamodb:CreateTableReplica",
                   "dynamodb:DeleteTable",
@@ -39,6 +39,7 @@ Before you install <%= vars.product_short %>, you must have:
                   "dynamodb:ListTables",
                   "dynamodb:ListTagsOfResource",
                   "dynamodb:TagResource",
+                  "dynamodb:UntagResource",
                   "ec2:AuthorizeSecurityGroupIngress",
                   "ec2:CreateSecurityGroup",
                   "ec2:DeleteSecurityGroup",
@@ -52,6 +53,8 @@ Before you install <%= vars.product_short %>, you must have:
                   "ec2:RevokeSecurityGroupEgress",
                   "ec2:RevokeSecurityGroupIngress",
                   "elasticache:AddTagsToResource",
+                  "elasticache:RemoveTagsFromResource",
+                  "elasticache:ListTagsForResource",
                   "elasticache:CreateCacheSubnetGroup",
                   "elasticache:CreateReplicationGroup",
                   "elasticache:DeleteCacheSubnetGroup",
@@ -61,7 +64,6 @@ Before you install <%= vars.product_short %>, you must have:
                   "elasticache:DescribeReplicationGroups",
                   "elasticache:IncreaseReplicaCount",
                   "elasticache:DecreaseReplicaCount",
-                  "elasticache:ListTagsForResource",
                   "elasticache:ModifyReplicationGroup",
                   "elasticache:ModifyReplicationGroupShardConfiguration",
                   "iam:CreateAccessKey",
@@ -88,10 +90,18 @@ Before you install <%= vars.product_short %>, you must have:
                   "logs:DeleteLogGroup",
                   "logs:ListLogDeliveries",
                   "logs:ListTagsLogGroup",
+                  "logs:ListTagsForResource",
+                  "logs:UntagLogGroup",
+                  "logs:UntagResource",
+                  "logs:TagResource",
+                  "logs:TagLogGroup",
+                  "logs:ListTagsForResource",
                   "logs:PutResourcePolicy",
                   "logs:PutRetentionPolicy",
                   "logs:UpdateLogDelivery",
                   "rds:AddTagsToResource",
+                  "rds:RemoveTagsFromResource",
+                  "rds:ListTagsForResource",
                   "rds:CreateDBCluster",
                   "rds:CreateDBClusterParameterGroup",
                   "rds:CreateDBInstance",
@@ -112,7 +122,6 @@ Before you install <%= vars.product_short %>, you must have:
                   "rds:DescribeDBSnapshots",
                   "rds:DescribeDBSubnetGroups",
                   "rds:DescribeGlobalClusters",
-                  "rds:ListTagsForResource",
                   "rds:ModifyDBClusterParameterGroup",
                   "rds:ModifyDBCluster",
                   "rds:ModifyDBInstance",
@@ -167,13 +176,13 @@ Before you install <%= vars.product_short %>, you must have:
                   "sqs:CreateQueue",
                   "sqs:DeleteQueue",
                   "dms:CreateReplicationSubnetGroup"
-            ],
-            "Effect": "Allow",
-            "Resource": "*"
-         }
-      ]
-   }
-   ```
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+           }
+        ]
+     }
+     ```
 
   To enable the Enhanced Monitoring feature for Amazon RDS, it's necessary to grant additional permissions.
   To read about setting up and enabling Enhanced Monitoring
