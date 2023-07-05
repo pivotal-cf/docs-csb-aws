@@ -59,6 +59,20 @@ New features and changes in this release:
 
   For more information, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
 
+- **Set I/O operations per seconds (IOPS) when storage type is `gp3`:**
+
+  By using General Purpose SSD gp3 storage volumes, you can customize storage performance.
+  IOPS cannot be specified for `gp3` storage if the `storage_gb` value is below a per-engine threshold.
+  For more information, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
+
+#### Amazon RDS for MySQL
+
+- **Set I/O operations per seconds (IOPS) when storage type is `gp3`:**
+
+  By using General Purpose SSD gp3 storage volumes, you can customize storage performance.
+  IOPS cannot be specified for `gp3` storage if the `storage_gb` value is below a per-engine threshold.
+  For more information, see [Configuration Parameters](reference/aws-mysql.html.md.erb#parameters).
+
 #### Amazon RDS for MSSQL
 
 - **The Amazon RDS for MSSQL (Beta) service:**
@@ -89,6 +103,11 @@ New features and changes in this release:
 ### Resolved Issues
 
 This release has the following fixes:
+
+- **Fixed set I/O operations per seconds (IOPS) when storage type is `gp3`:**
+
+  By using General Purpose SSD gp3 storage volumes, we did not allow you to customize storage performance.
+  From now on, this configuration is no longer blocked.
 
 #### General
 
