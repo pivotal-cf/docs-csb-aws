@@ -14,9 +14,7 @@ and specific details about [Upgrading to v1.6](#upgrading-specifics).
    to be upgraded.
    Failure to upgrade one or more instance does not cause the tile installation to fail.<br><br>
    Ensure that you review the <code>deploy-all</code> errand logs in the change log to verify that
-   no errors occurred when upgrading instances. For more information about the service instance
-   upgrade procedure, see <a href="#upgrade-instances">Upgrading service instances</a> later in the
-   topic.
+   no errors occurred when upgrading instances.
 </p>
 
 To upgrade <%= vars.product_short %>:
@@ -32,11 +30,8 @@ To upgrade <%= vars.product_short %>:
 
 4. Make all the changes described in [Upgrading to v1.6](#upgrading-specifics).
 
-5. Verify that the **Upgrade All Service Instances** task is configured as required.
-   See [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config).
-
-6. Verify that your configuration complies with the
-   [important notes about upgrading service instances](#upgrade-notes), especially regarding plans
+5. Verify that your configuration complies with the
+   [important notes about upgrading service instances](#upgrade-notes), especially regarding upgrade all instances config, plans
    and beta offerings.
 
 7. Go to the <%= vars.ops_manager %> Installation Dashboard.
@@ -47,26 +42,16 @@ To upgrade <%= vars.product_short %>:
 
 ## <a id="upgrade-instances"></a> Ensure that service instances are up to date before upgrading the tile
 
-Service instance upgrades must be performed alongside the corresponding tile upgrade.
-Service instances that haven't been upgraded with one version might not be upgradable with
-upcoming versions.
-For this reason, verify that there are no instances pending upgrade before upgrading the tile to a
-later version.
+Service instances that haven't been upgraded with one version of the tile might not be upgradable by
+a newer version.
+For this reason, ensure there are no service instances pending upgrade before staging the new version of the tile.
 
-You can see if there are instances with a pending upgrade by reviewing the last `deploy-all` errand
+You can see if there are instances with a pending upgrade by reviewing the `deploy-all` errand
 log for <%= vars.product_short %>. Alternatively, you can
 [ensure all instances are up to date with the CLI plug-in](#checking-cli-plugin)
 and the `-dry-run` flag, which outputs the list of instances pending upgrade.
 
-If you find instances that are pending upgrade, reapply the service instance upgrade with the
-current version of the broker before staging the new version of the tile. To reapply the instance
-upgrade:
-
-1. Ensure that you haven't staged the new version of the tile yet.
-2. Review the [important notes about upgrading service instances](#upgrade-notes).
-3. Follow the steps from either
-   - [Upgrade instances through the tile](#upgrading-instances-task) or
-   - [Upgrade instances through the CLI plug-in](#upgrading-cli-plugin) from the CLI.
+If you find instances that are pending upgrade, follow the upgrading instructions for your current version.
 
 ### <a id="upgrade-notes"></a> Important notes about upgrading service instances
 
@@ -79,6 +64,9 @@ Before you start upgrading service instances, see the following notes:
   Any operations on that instance, such as update, bind, unbind, or delete, are blocked
   until you run the upgrade task.
   You can run the upgrade task at any time before upgrading the product to a later version.
+  See [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config) for information
+  on how to configure this task.
+  Alternatively you can run the upgrade at a later stage using the [CLI plug-in](#upgrading-cli-plugin)
 
 - **Enabling the Enable Beta offerings check box:**
 
@@ -119,15 +107,6 @@ To verify that no instances are pending upgrade:
 
 This command provides a list of instances from enabled plans pending upgrade. If the list is not
 empty, upgrade the instances listed before attempting a tile upgrade.
-
-### <a id="upgrading-instances-task"></a> Upgrade instances through the tile
-
-To upgrade service instances through the tile:
-
-1. Configure the **Upgrade All Service Instances** task. For more information, see
-   [Upgrade All Service Instances Configuration](installing-with-aws.html.md.erb#upgrade-all-config).
-1. Apply the changes.
-1. Review the `deploy-all` log entries for failures.
 
 ### <a id="upgrading-cli-plugin"></a> Upgrade instances through the CLI plug-in
 
