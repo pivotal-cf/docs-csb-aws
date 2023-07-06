@@ -3,11 +3,19 @@ title: Upgrading Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
-This topic tells you how to upgrade <%= vars.product_full %>. The following sections have
+This topic tells you how to upgrade <%= vars.product_full %>. The following sections include
 information about the [Upgrade procedure](#procedure), [Upgrading service instances](#upgrade-instances),
-and specific details about [Upgrading to v1.4](#upgrading-specifics).
+and details about [Upgrading to v1.4](#upgrading-specifics).
 
 ## <a id="procedure"></a> Upgrade procedure
+
+>**Important**
+>When upgrading <%= vars.product_short %>, service instances might need
+   to be upgraded.
+   Failure to upgrade one or more instance does not cause the tile installation to fail.
+
+>Review the `deploy-all` errand logs in the change log to verify that
+   no errors occurred when upgrading instances.
 
 <p class="note important">
    <strong>Important:</strong> When upgrading <%= vars.product_short %>, service instances might need
