@@ -9,18 +9,18 @@ and specific details about [Upgrading to v1.5](#upgrading-specifics).
 
 ## <a id="procedure"></a> Upgrade procedure
 
-<p class="note important">
-   <strong>Important:</strong> When upgrading <%= vars.product_short %>, service instances might need
+>**Important**
+>When upgrading <%= vars.product_short %>, service instances might need
    to be upgraded.
-   Failure to upgrade one or more instance does not cause the tile installation to fail.<br><br>
-   Ensure that you review the <code>deploy-all</code> errand logs in the change log to verify that
+   Failure to upgrade one or more instance does not cause the tile installation to fail.
+
+>Review the `deploy-all` errand logs in the change log to verify that
    no errors occurred when upgrading instances.
-</p>
 
 To upgrade <%= vars.product_short %>:
 
 1. Before you stage the new tile version,
-   [ensure that all service instances are up to date](#upgrade-instances).
+   [verify that all service instances are up to date](#upgrade-instances).
 
 2. Download the new version of <%= vars.product_short %> from
    [<%= vars.product_network %>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
@@ -40,15 +40,15 @@ To upgrade <%= vars.product_short %>:
 
 8. Review the `deploy-all` errand logs for any errors created because of the upgrade instances task.
 
-## <a id="upgrade-instances"></a> Ensure that service instances are up to date before upgrading the tile
+## <a id="upgrade-instances"></a> Verify that service instances are up to date before upgrading the tile
 
 Service instances that haven't been upgraded with one version of the tile might not be upgradable by
 a newer version.
-For this reason, ensure there are no service instances pending upgrade before staging the new version of the tile.
+For this reason, verify that there are no service instances pending upgrade before staging the new version of the tile.
 
 You can see if there are instances with a pending upgrade by reviewing the `deploy-all` errand
 log for <%= vars.product_short %>. Alternatively, you can
-[ensure all instances are up to date with the CLI plug-in](#checking-cli-plugin)
+[verify that all instances are up to date with the CLI plug-in](#checking-cli-plugin)
 and the `-dry-run` flag, which outputs the list of instances pending upgrade.
 
 If you find instances that are pending upgrade, follow the upgrading instructions for your current version.
@@ -72,8 +72,8 @@ Before you start upgrading service instances, see the following notes:
 
   If the **Enable Beta offerings** check box is not selected when applying changes, instances from
   those service offerings are not upgraded. These instances become unmanageable by the broker.
-  Ensure that the **Enable Beta offerings** check box is selected if you have instances from those
-  offerings you intend to keep updated.
+  Verify that the **Enable Beta offerings** check box is selected if you have instances from those
+  offerings that you intend to keep updated.
 
 - **Deleting custom plans:**
 
@@ -88,9 +88,9 @@ Before you start upgrading service instances, see the following notes:
   If preferred, you can run the upgrade all instances task by using the cf CLI instead of,
   or in addition to, running it through the tile.
   Failure to upgrade one or more instances does not cause the tile installation to fail.
-  Review the `deploy all` errand logs to ensure that all instances have upgraded.
+  Review the `deploy all` errand logs to verify that all instances have upgraded.
 
-### <a id="checking-cli-plugin"></a> Ensure that all instances are up to date with the CLI plug-in
+### <a id="checking-cli-plugin"></a> Verify that all instances are up to date with the CLI plug-in
 
 To verify that no instances are pending upgrade:
 
@@ -149,7 +149,7 @@ If you have custom plans already configured for Redis, you have to review the co
 The property `redis_version` was moved from the parameters plan to the required user input parameters,
 and you have to maintain the property with the previous value established in your custom plans.
 
-To ensure that no unintended changes happen to your existing instances, maintain the `redis_version`
+So there are no unintended changes to your existing instances, maintain the `redis_version`
 property using the same value previously defined.
 For example, if you created an instance using v6.0 of Redis, your plan must look like this:
 
