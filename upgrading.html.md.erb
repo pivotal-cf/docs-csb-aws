@@ -3,24 +3,136 @@ title: Upgrading Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
-This topic tells you how to upgrade <%= vars.product_full %>.
-The following sections have information about upgrading to v1.4.0.
-
-## <a id="aurora-postgres"></a> Amazon Aurora PostgreSQL-Compatible Edition
-
-The following sections describe changes for Amazon Aurora PostgreSQL-Compatible Edition.
-
-### <a id="aurora-postgres-ssl"></a> Unsecured connections from the broker are no longer supported
-
-<%= vars.product_short %> connections to Aurora PostgreSQL instances must use TLS encryption.
-For bind and unbind to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
+This topic tells you how to upgrade <%= vars.product_full %>. The following sections have
+information about the [Upgrade procedure](#procedure), [Upgrading service instances](#upgrade-instances),
+and specific details about [Upgrading to v1.4](#upgrading-specifics).
 
 ## <a id="procedure"></a> Upgrade procedure
 
-To upgrade the <%= vars.product_short %> to a later version:
+<p class="note important">
+   <strong>Important:</strong> When upgrading <%= vars.product_short %>, service instances might need
+   to be upgraded.
+   Failure to upgrade one or more instance does not cause the tile installation to fail.<br><br>
+   Ensure that you review the <code>deploy-all</code> errand logs in the change log to verify that
+   no errors occurred when upgrading instances.
+</p>
 
-1. Download the new version of <%= vars.product_short %> from [<%= vars.product_network %>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
-1. Follow the procedure in [Installing with AWS](installing-with-aws.html.md.erb) to configure the tile.
-1. If you are upgrading to a version later than v1.0, service instances might need to be upgraded.
-Before installing the new version, see
-[Upgrade All Service Instances Config](installing-with-aws.html#upgrade-all-config).
+To upgrade <%= vars.product_short %>:
+
+1. Before you stage the new tile version,
+   [ensure that all service instances are up to date](#upgrade-instances).
+
+2. Download the new version of <%= vars.product_short %> from
+   [<%= vars.product_network %>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
+
+3. Stage and configure the tile by following the instructions in
+   [Installing with AWS](installing-with-aws.html.md.erb).
+
+4. Make all the changes described in [Upgrading to v1.4](#upgrading-specifics).
+
+5. Verify that your configuration complies with the
+   [important notes about upgrading service instances](#upgrade-notes), especially regarding upgrade all instances config, plans
+   and beta offerings.
+
+6. Go to the <%= vars.ops_manager %> Installation Dashboard.
+
+7. Click **Review Pending Changes** and then click **Apply Changes**.
+
+8. Review the `deploy-all` errand logs for any errors created because of the upgrade instances task.
+
+## <a id="upgrade-instances"></a> Ensure that service instances are up to date before upgrading the tile
+
+Service instances that haven't been upgraded with one version of the tile might not be upgradable by
+a newer version.
+For this reason, ensure there are no service instances pending upgrade before staging the new version of the tile.
+
+You can see if there are instances with a pending upgrade by reviewing the `deploy-all` errand
+log for <%= vars.product_short %>. Alternatively, you can
+[ensure all instances are up to date with the CLI plug-in](#checking-cli-plugin)
+and the `-dry-run` flag, which outputs the list of instances pending upgrade.
+
+If you find instances that are pending upgrade, follow the upgrading instructions for your current version.
+
+### <a id="upgrade-notes"></a> Important notes about upgrading service instances
+
+Before you start upgrading service instances, see the following notes:
+
+- **Enabling the Upgrade all services check box:**
+
+  If the **Upgrade all services** check box is not selected, service instances are not upgraded
+  during installation. These instances become unmanageable by the broker.
+  Any operations on that instance, such as update, bind, unbind, or delete, are blocked
+  until you run the upgrade task.
+  You can run the upgrade task at any time before upgrading the product to a later version.
+  See [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config) for information
+  on how to configure this task.
+  Alternatively you can run the upgrade at a later stage using the [CLI plug-in](#upgrading-cli-plugin)
+
+- **Enabling the Enable Beta offerings check box:**
+
+  If the **Enable Beta offerings** check box is not selected when applying changes, instances from
+  those service offerings are not upgraded. These instances become unmanageable by the broker.
+  Ensure that the **Enable Beta offerings** check box is selected if you have instances from those
+  offerings you intend to keep updated.
+
+- **Deleting custom plans:**
+
+  If you delete custom plans before upgrading all instances, instances from these plans are not
+  upgraded. These instances become unmanageable by the broker. Delete plans after upgrading all
+  instances, or see [Release Notes for Cloud Service Broker for AWS](release-notes.html.md.erb) and
+  [Upgrading to v1.4](#upgrading-specifics) to prevent conflicting upgrades.
+
+- **Only upgrade the tile after all service instances are up to date:**
+
+  You can run the upgrade all instances task as many times as needed.
+  If preferred, you can run the upgrade all instances task by using the cf CLI instead of,
+  or in addition to, running it through the tile.
+  Failure to upgrade one or more instances does not cause the tile installation to fail.
+  Review the `deploy all` errand logs to ensure that all instances have upgraded.
+
+### <a id="checking-cli-plugin"></a> Ensure that all instances are up to date with the CLI plug-in
+
+To verify that no instances are pending upgrade:
+
+1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
+1. Follow the instructions in the **Usage** section of the `README` in the
+   [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage)
+   GitHub repository to perform a dry run.
+
+   For example:
+
+   ```
+   cf upgrade-all-services BROKER-NAME -dry-run
+   ```
+
+This command provides a list of instances from enabled plans pending upgrade. If the list is not
+empty, upgrade the instances listed before attempting a tile upgrade.
+
+### <a id="upgrading-cli-plugin"></a> Upgrade instances through the CLI plug-in
+
+To run the cf CLI plug-in:
+
+1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
+1. To run the upgrade, follow the instructions in the **Usage** section of the `README` in the
+   [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage)
+   GitHub repository.
+
+   For example:
+
+   ```
+   cf upgrade-all-services BROKER-NAME
+   ```
+
+Run the CLI plug-in with the `-dry-run` flag before applying the service instance upgrade to find
+out which instances are pending upgrade.
+
+## <a id="upgrading-specifics"></a> Upgrading to 1.4
+
+### <a id="aurora-postgres"></a> Amazon Aurora PostgreSQL-Compatible Edition
+
+The following sections describe changes for Amazon Aurora PostgreSQL-Compatible Edition.
+
+#### <a id="aurora-postgres-ssl"></a> Unsecured connections from the broker are no longer supported
+
+<%= vars.product_short %> connections to Aurora PostgreSQL instances must use TLS encryption.
+For bind and unbind to work, the AWS certificate bundle must be installed in <%= vars.ops_manager %>.
