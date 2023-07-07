@@ -132,6 +132,14 @@ This release has the following issues:
   version at creation time. For example, `6.x`.
   For `7.x` versions, however, you must specify the minor version. For example, `7.0`.
 
+#### Amazon RDS
+
+- **Reaching AWS subnets quota in a DB subnet group:**
+  When creating an RDS instance, you can receive an error that says 
+  `DBSubnetQuotaExceededFault: Your specified number of subnets is greater than the limit of 20 DB subnets per group`,
+  due to the incorrect configuration associated with the DB subnet group.
+  See the [troubleshooting page](troubleshooting.html.md.erb#reaching-aws-subnets-quota) to know how to deal with it.
+
 ## <a id="view"></a> View release notes for another version
 
 To view the release notes for another product version, select the version from drop-down menu at the
