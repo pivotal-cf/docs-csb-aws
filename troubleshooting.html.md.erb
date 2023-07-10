@@ -237,22 +237,22 @@ The following errors can occur in any Amazon RDS instance:
                   number of subnets per DB subnet group to each supported region to 20.
                   <br>
                   When operators/developers do not supply an existing subnet group in the plan or provision time,
-                  the CSB will create a subnet group. The CSB adds all the present subnets in the specified VPC
+                  the CSB creates a subnet group. The CSB adds all the present subnets in the specified VPC
                   to the new subnet group. For example, let’s say the operator:
                     <ul>
-                        <li>specifies a VPC with 25 subnets via the tile</li> 
-                        <li>does not specify a DB subnet group in the plan</li>
-                        <li>the developer does not specify a DB subnet group at provisioning time</li>
+                        <li>Specifies a VPC with 25 subnets through the tile.</li>
+                        <li>Does not specify a DB subnet group in the plan.</li>
+                        <li>Does not specify a DB subnet group at provisioning time.</li>
                     </ul>
-                  Then the CSB will create a DB subnet group and add <strong>all</strong> subnets, 25 in this example,
+                  Then the CSB creates a DB subnet group and adds <strong>all</strong> subnets, 25 in this example,
                   to the DB subnet group. Hence, this operation breaches the AWS resource quota.
                 </td>
             </tr>
             <tr>
                 <td>Solution</td>
                 <td>
-                    Create a custom DB subnet group via the AWS console, and add the desired subnets for RDS
-                    instances to use, then use the DB subnet group name as a plan or provision parameter.
+                    Create a custom DB subnet group through the AWS console, and add the desired subnets for RDS
+                    instances to use. Then use the DB subnet group name as a plan or provision parameter.
                 </td>
             </tr>
         </tbody>
