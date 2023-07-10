@@ -249,3 +249,62 @@ The following errors can occur in Amazon ElastiCache for Redis:
         </tbody>
     </table>
 </div>
+
+### <a id="rds-general-errors"></a> Amazon general RDS Errors
+
+The following errors can occur in any Amazon RDS instance:
+
+<ul>
+    <li>
+        <a href="#reaching-aws-subnets-quota">Reaching AWS subnets quota in a subnet group for RDS</a>
+    </li>
+</ul>
+
+<div id="reaching-aws-subnets-quota" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td></td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>create</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:
+                  <ul>
+                  <li><code>DBSubnetQuotaExceededFault</code></li>
+                  </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  There is a resource quota for AWS called Subnets per DB subnet group that establishes the maximum
+                  number of subnets per DB subnet group to each supported region to 20.
+                  <br>
+                  When operators/developers do not supply an existing subnet group in the plan or provision time,
+                  the CSB creates a subnet group. The CSB adds all the present subnets in the specified VPC
+                  to the new subnet group. For example, let’s say the operator:
+                    <ul>
+                        <li>Specifies a VPC with 25 subnets through the tile.</li>
+                        <li>Does not specify a DB subnet group in the plan.</li>
+                        <li>Does not specify a DB subnet group at provisioning time.</li>
+                    </ul>
+                  Then the CSB creates a DB subnet group and adds <strong>all</strong> subnets, 25 in this example,
+                  to the DB subnet group. Hence, this operation breaches the AWS resource quota.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    Create a custom DB subnet group through the AWS console, and add the desired subnets for RDS
+                    instances to use. Then use the DB subnet group name as a plan or provision parameter.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
