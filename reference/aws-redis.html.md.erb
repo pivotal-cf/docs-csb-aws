@@ -145,6 +145,16 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>auto_minor_version_upgrade</code></td>
+      <td>Boolean</td>
+      <td>(Optional) Indicates that minor engine upgrades are applied automatically
+        to the redis instance during the maintenance window. Only supported for redis version 6 and above.
+        When setting this parameter to `true`, `redis_version` must not specify minor version and must be in the form
+        `<MAJOR_VERSION>.x`. E.g `6.x` </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>    
+    <tr>
       <td><code>data_tiering_enabled</code></td>
       <td>Boolean</td>
       <td>
