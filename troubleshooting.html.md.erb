@@ -231,8 +231,7 @@ The following errors can occur in Amazon ElastiCache for Redis:
                 <td>Solution</td>
                 <td>
                     <ul>
-                    <li>Set the <code>parameter_group_name</code> to <code>""</code> so that the default is used.</li>
-                    <li>Set the <code>parameter_group_name</code> to a parameter group whose family matches the Redis version.</li>
+                    <li>Unfortunately there is no workaround. A minor version should be specified when using Redis version 7 and `auto_minor_version_upgrade` should be set to false.</li>
                     </ul>
                 </td>
             </tr>
