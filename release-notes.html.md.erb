@@ -30,6 +30,14 @@ New features and changes in this release:
   can now also configure default global tags to add for each AWS service.
 
 
+### Amazon ElastiCache for Redis
+
+- **Enabling automatic minor version upgrade is now possible:**
+ 
+ You can now enable automatic minor version upgrade by the IaaS. This can be set up by configuring the new 
+ `auto_minor_version_upgrade` parameter and specifying a major version for `redis_version`. This feature
+ is disabled by default. For more information, see [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
+
 #### Amazon RDS for PostgreSQL
 
 - **Enabling query logging for your RDS for PostgreSQL DB instance:**

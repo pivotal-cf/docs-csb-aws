@@ -200,6 +200,45 @@ The following errors can occur in Amazon ElastiCache for Redis:
     </table>
 </div>
 
+<div id="redis-auto-minor-upgrade-version-7" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Unable to create instance without specifying minor version (redis 7 only)</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>create or update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:
+                  <ul>
+                  <li><code>InvalidParameterCombination: Cannot find version 7.x for redis</code></li>
+                  <li><code>engine_version: Redis versions must match `major.minor` when using version 6 or higher
+                  </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  There is an [underlying error in AWS API](https://github.com/hashicorp/terraform-provider-aws/issues/27918) preventing this scenario.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    <ul>
+                    <li>Unfortunately there is no workaround. A minor version should be specified when using Redis version 7 and `auto_minor_version_upgrade` should be set to false.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 ### <a id="rds-general-errors"></a> Amazon general RDS Errors
 
 The following errors can occur in any Amazon RDS instance:
