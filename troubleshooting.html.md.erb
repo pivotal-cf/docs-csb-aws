@@ -205,7 +205,7 @@ The following errors can occur in Amazon ElastiCache for Redis:
         <tbody>
              <tr>
                 <td>Error</td>
-                <td>Unable to create instance without specifying minor version (redis 7 only)</td>
+                <td>Unable to create instance without specifying minor version (redis 7 only).</td>
              </tr>
              <tr>
                 <td>Operation</td>
@@ -217,7 +217,7 @@ The following errors can occur in Amazon ElastiCache for Redis:
                   Errors containing:
                   <ul>
                   <li><code>InvalidParameterCombination: Cannot find version 7.x for redis</code></li>
-                  <li><code>engine_version: Redis versions must match `major.minor` when using version 6 or higher
+                  <li><code>engine_version: Redis versions must match `major.minor` when using version 6 or higher.
                   </ul>
                 </td>
             </tr>
@@ -231,7 +231,7 @@ The following errors can occur in Amazon ElastiCache for Redis:
                 <td>Solution</td>
                 <td>
                     <ul>
-                    <li>Unfortunately there is no workaround. A minor version should be specified when using Redis version 7 and `auto_minor_version_upgrade` should be set to false.</li>
+                    <li>Unfortunately there is no workaround. Specify a minor version when using Redis version 7 and set `auto_minor_version_upgrade` to false.</li>
                     </ul>
                 </td>
             </tr>
