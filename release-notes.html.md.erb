@@ -9,9 +9,9 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 ## <a id="1-6-0"></a> v1.6.0
 
-**Release Date:** DD MMM YYYY
+**Release date:** DD MMM YYYY
 
-### Breaking Changes
+### Breaking changes
 
 This release has the following breaking changes:
 
@@ -33,8 +33,8 @@ New features and changes in this release:
 ### Amazon ElastiCache for Redis
 
 - **Enabling automatic minor version upgrade is now possible:**
- 
- You can now enable automatic minor version upgrade by the IaaS. This can be set up by configuring the new 
+
+ You can now enable automatic minor version upgrade by the IaaS. This can be set up by configuring the new
  `auto_minor_version_upgrade` parameter and specifying a major version for `redis_version`. This feature
  is disabled by default. For more information, see [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
 
@@ -59,7 +59,7 @@ New features and changes in this release:
 
   For how to configure, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
 
-- **Encrypting CloudWatch Logs:**
+- **Encrypting CloudWatch logs:**
 
   A new property, `cloudwatch_log_groups_kms_key_id`, is exposed, and enables you to configure your
   AWS KMS customer-managed key to encrypt the logs generated when activating PostgreSQL or upgrade
@@ -79,9 +79,9 @@ New features and changes in this release:
 
 Due to changes in user management introduced in PostgreSQL v15, creating a service instance
 with PostgreSQL v15 prior to this release resulted in a malfunctioning instance where
-unbinding and multiple bindings will not work as expected.
+unbinding and multiple bindings do not work as expected.
 
-For more information, see [PostgreSQL 15.0 Release Notes](https://www.postgresql.org/docs/release/15.0/).
+For more information, see [PostgreSQL 15.0 Release notes](https://www.postgresql.org/docs/release/15.0/).
 
 #### Amazon RDS for MySQL
 
@@ -118,7 +118,7 @@ For more information, see [PostgreSQL 15.0 Release Notes](https://www.postgresql
   For more information about how to create and manage this service, see
   [Amazon S3 Bucket](reference/aws-s3.html.md.erb).
 
-### Resolved Issues
+### Resolved issues
 
 This release has the following fixes:
 
@@ -137,7 +137,7 @@ This release has the following fixes:
   to old versions of the documentation. From now on, the links point to a generic landing page where
   you can find links to every product version and, from there, navigate to the service you want.
 
-### Known Issues
+### Known issues
 
 This release has the following issues:
 

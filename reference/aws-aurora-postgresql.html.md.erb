@@ -14,11 +14,10 @@ It details the plans, configuration parameters, and binding credentials.
 Amazon Aurora PostgreSQL-Compatible Edition instances when binding or unbinding.
 For secure connections to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
-<p class="note">
-  <strong>Note:</strong> PostgreSQL v15 is supported by <%= vars.product_full %> 1.6.0 and later.
-  In previous versions, if you create an instance, unbinding and multiple bindings will not work
+>**Note**
+>PostgreSQL v15 is supported by <%= vars.product_full %> 1.6.0 and later.
+  In previous versions, if you create an instance, unbinding and multiple bindings do not work
   as expected due to changes to PostgreSQL v15 user management.
-</p>
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
