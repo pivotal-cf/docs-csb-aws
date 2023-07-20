@@ -217,7 +217,7 @@ The following errors can occur in Amazon ElastiCache for Redis:
                   Errors containing:
                   <ul>
                   <li><code>InvalidParameterCombination: Cannot find version 7.x for redis</code></li>
-                  <li><code>engine_version: Redis versions must match `major.minor` when using version 6 or higher.
+                  <li><code>engine_version: Redis versions must match `major.minor` when using version 6 or higher</code></li>.
                   </ul>
                 </td>
             </tr>
@@ -246,6 +246,7 @@ The following errors can occur in any Amazon RDS instance:
 <ul>
     <li>
         <a href="#reaching-aws-subnets-quota">Reaching AWS subnets quota in a subnet group for RDS</a>
+        <a href="#engine-version-post-condition-failed">Major engine version should be specified when auto_minor_version_upgrade is enabled</a>
     </li>
 </ul>
 
@@ -292,6 +293,57 @@ The following errors can occur in any Amazon RDS instance:
                 <td>
                     Create a custom DB subnet group through the AWS console and add the desired subnets for RDS
                     instances to use. Then use the DB subnet group name as a plan or provision parameter.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="engine-version-post-condition-failed" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Major engine version should be specified when `auto_minor_version_upgrade` is enabled</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>create or update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:
+                  <ul>
+                  <li>
+                    <code>
+                        Resource postcondition failed ............
+                        ..........................................
+                        A Major engine version should be specified when auto_minor_version_upgrade is enabled.
+                        Expected engine version: x.x - got: x.x.x
+                    </code>
+                  </li>
+                  </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  A business rule prevents you from creating or updating an RDS instance with a configuration that
+                  enables `auto_minor_version_upgrade` and does not select a major engine version. AWS will automatically upgrade the minor versions, but you must pick a major version.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                  Create or update your RDS instance with either auto minor version upgrade disabled or auto minor
+                  version upgrade enabled but selecting a <strong>major engine version</strong>.
+                  <br>
+                  To know what is the major version, you can run the following command:
+                  <code>
+                    aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
+                  </code>
+                    You should substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the desired values.
                 </td>
             </tr>
         </tbody>
