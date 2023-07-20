@@ -11,7 +11,7 @@ This topic gives you troubleshooting information for <%= vars.product_full %>.
 
 Start here if you have a specific error or error messages.
 
-### <a id="common-services-errors"></a> Common Services Errors
+### <a id="common-services-errors"></a> Common services errors
 
 The following errors can occur in multiple services:
 
@@ -121,7 +121,7 @@ The following errors can occur in multiple services:
     </table>
 </div>
 
-### <a id="redis-errors"></a> Amazon ElastiCache for Redis Errors
+### <a id="redis-errors"></a> Amazon ElastiCache for Redis errors
 
 The following errors can occur in Amazon ElastiCache for Redis:
 
@@ -231,7 +231,7 @@ The following errors can occur in Amazon ElastiCache for Redis:
                 <td>Solution</td>
                 <td>
                     <ul>
-                    <li>Unfortunately there is no workaround. Specify a minor version when using Redis version 7 and set `auto_minor_version_upgrade` to false.</li>
+                    <li>Unfortunately there is no workaround. Specify a minor version when using Redis version 7 and set auto_minor_version_upgrade to false.</li>
                     </ul>
                 </td>
             </tr>
@@ -239,7 +239,7 @@ The following errors can occur in Amazon ElastiCache for Redis:
     </table>
 </div>
 
-### <a id="rds-general-errors"></a> Amazon general RDS Errors
+### <a id="rds-general-errors"></a> Amazon general RDS errors
 
 The following errors can occur in any Amazon RDS instance:
 
@@ -304,7 +304,7 @@ The following errors can occur in any Amazon RDS instance:
         <tbody>
              <tr>
                 <td>Error</td>
-                <td>Major engine version should be specified when `auto_minor_version_upgrade` is enabled</td>
+                <td>Major engine version should be specified when auto_minor_version_upgrade is enabled</td>
              </tr>
              <tr>
                 <td>Operation</td>
@@ -330,20 +330,20 @@ The following errors can occur in any Amazon RDS instance:
                 <td>Cause</td>
                 <td>
                   A business rule prevents you from creating or updating an RDS instance with a configuration that
-                  enables `auto_minor_version_upgrade` and does not select a major engine version. AWS will automatically upgrade the minor versions, but you must pick a major version.
+                  enables auto_minor_version_upgrade and does not select a major engine version. AWS automatically upgrades the minor versions, but you must pick a major version.
                 </td>
             </tr>
             <tr>
                 <td>Solution</td>
                 <td>
-                  Create or update your RDS instance with either auto minor version upgrade disabled or auto minor
+                  Create or update your RDS instance with either auto minor version upgrade deactivated or auto minor
                   version upgrade enabled but selecting a <strong>major engine version</strong>.
                   <br>
                   To know what is the major version, you can run the following command:
                   <code>
                     aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
                   </code>
-                    You should substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the desired values.
+                    You should substitute the engine, aurora-mysql, and the engine version, 5.7.mysql_aurora.2.02.3, with the desired values.
                 </td>
             </tr>
         </tbody>
