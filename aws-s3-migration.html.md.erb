@@ -33,10 +33,9 @@ For how to configure plans, see
 You might want to migrate data from instances created with the legacy broker to instances
 created with the <%= vars.product_short %>.
 
-<p class="note important">
-  <strong>Important:</strong>Migration of data might incur app downtime.
+>**Important**
+>Migration of data might incur app downtime.
   The amount of downtime depends on the method chosen.
-</p>
 
 There are several options for performing S3 migration, including the
 [AWS CLI sync command](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/sync.html),
@@ -106,15 +105,14 @@ To migrate data from an existing legacy S3 instance to the <%= vars.product_shor
    binding credentials received from <%= vars.product_short %> exposes the bucket name as `bucket_name`.
    You must update the consuming app to handle the `bucket_name` credential property.
 
-    <p class="note">
-      <strong>Note:</strong> VMware recommends reviewing all references where the legacy S3 bucket was used
+    >**Note**
+    >VMware recommends reviewing all references where the legacy S3 bucket was used
       to make sure that the new bucket is now being referenced.
-    </p>
 
-1. Push and start the app by running:
+2. Push and start the app by running:
 
    ```console
    cf push APP-NAME
    ```
 
-1. (Optional) After the migration has finished, remove the legacy service instance.
+3. (Optional) After the migration has finished, remove the legacy service instance.
