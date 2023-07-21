@@ -20,10 +20,10 @@ This release has the following breaking changes:
   To manage these tags, you must add to your AWS account new permission policies.
   See new [IAM Policies](installing-with-aws.html.md.erb).
 
-- **Major engine version should be specified when `auto_minor_version_upgrade` is enabled:**
-  From now onwards, you cannot create or update an RDS instance with a configuration that
+- **Major engine version must be specified when `auto_minor_version_upgrade` is enabled:**
+  As of v1.6.0, you cannot create or update an RDS instance with a configuration that
   enables `auto_minor_version_upgrade` and does not select a major engine version.
-  To be able to read the available RDS major versions, you must add to your AWS account new permission policies.
+  To read the available RDS major versions, you must add to your AWS account new permission policies.
   See new [IAM Policies](installing-with-aws.html.md.erb).
   When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html.md.erb#upgrading-specifics).
 
