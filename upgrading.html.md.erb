@@ -202,7 +202,7 @@ There are several steps you could follow to be able to upgrade the RDS instances
 
 * Modify your instance
   
-  Let's say you created an RDS instance with an engine version `5.7.mysql_aurora.2.02.3`.
+  Let's say you created an RDS instance with an engine version `5.7.mysql_aurora.2.02.3` passed as a parameter at provision time. You can then update the engine_version to a major version by executing the following command:
 
     ```shell
     cf update-service <MY-SERVICE-INSTANCE-NAME> -c '{"engine_version": "5.7"}'
