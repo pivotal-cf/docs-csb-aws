@@ -128,4 +128,94 @@ out which instances are pending upgrade.
 
 ## <a id="upgrading-specifics"></a> Upgrade to v1.6
 
-There are currently no notes for upgrading to v1.6.
+### Amazon RDS
+
+The following section describes changes for Amazon RDS.
+
+#### Changes in `auto_minor_version_upgrade` behaviour
+
+From this version onwards, RDS instances with a configuration that
+enables `auto_minor_version_upgrade` and does not have a major engine version will be considered
+instances with an invalid set-up, and the upgrade procedure will fail.
+
+If you have instances with `auto_minor_version_upgrade` <strong>enabled</strong> and, you selected an `engine_version`
+different from a major version in provision or update phase, you must either disable the
+`auto_minor_version_upgrade` or select a major `engine_version` before upgrading.
+
+Before executing the upgrade procedure, you must configure your instances to be aligned with these specifications.
+
+There are several steps you could follow to be able to upgrade the RDS instances without any error.
+
+* Modify your plans to use a major version
+    
+    Let's say you created an RDS instance with an engine version `5.7.mysql_aurora.2.02.3`.
+    To know what the major version is, you can run the following command:
+    
+    ```shell
+    aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
+    .... 
+    ....
+    # Result:
+    {
+      "engine_version": "5.7.mysql_aurora.2.02.3",
+      "major_version": "5.7"
+    }
+    ```
+    
+    You should substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the desired values.
+
+    Your plan must look like this:
+
+    ```json
+    {
+        "name":"my-custom-plan", 
+        "id":"10b2bd92-2a0b-11ed-b70f-cccrcf3xxxxx",
+        "description":"My custom plan aurora-mysql",
+        "auto_minor_version_upgrade": true,
+        "engine_version": "5.7",
+        "metadata": {
+            "displayName": "My Custom Plan",
+            "bullets": ["aurora-mysql", "5.7", "auto minor version upgrade enabled"]
+        }
+    }
+    ```
+
+* Modify your plans to disable `auto_minor_version_upgrade`
+
+  Let's say you created an RDS instance using a plan with an engine version `5.7.mysql_aurora.2.02.3`.
+
+  Your plan must look like this:
+
+    ```json
+    {
+        "name":"my-custom-plan", 
+        "id":"10b2bd92-2a0b-11ed-b70f-cccrcf3xxxxx",
+        "description":"My custom plan aurora-mysql",
+        "auto_minor_version_upgrade": false,
+        "engine_version": "5.7.mysql_aurora.2.02.3",
+        "metadata": {
+            "displayName": "My Custom Plan",
+            "bullets": ["aurora-mysql", "5.7", "auto minor version upgrade disabled"]
+        }
+    }
+    ```
+
+* Modify your instance
+  
+  Let's say you created an RDS instance with an engine version `5.7.mysql_aurora.2.02.3`.
+
+    ```shell
+    cf update-service <MY-SERVICE-INSTANCE-NAME> -c '{"engine_version": "5.7"}'
+    ```
+
+  or
+
+    ```shell
+    cf update-service <MY-SERVICE-INSTANCE-NAME> -c '{"auto_minor_version_upgrade": false}'
+    ```
+
+<p class="note important">
+   <strong>Important:</strong> `aurora-mysql` admits a non-defined or empty value for `engine_version`.
+    If you have not defined the `engine_version` in your plans or as a parameter when creating or updating the
+    instance, we recommend setting the version and following the instructions above.
+</p>
