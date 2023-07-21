@@ -3,55 +3,58 @@ title: Upgrading Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
-This topic tells you how to upgrade <%= vars.product_full %>. The following sections have
-information about the [Upgrade procedure](#procedure), [Upgrading service instances](#upgrade-instances),
-and specific details about [Upgrading to v1.6](#upgrading-specifics).
+Do you want to upgrade <%= vars.product_full %>? The following
+sections tell you about the [Upgrade procedure](#procedure), [Upgrading
+service instances](#upgrade-instances), and specific details about [Upgrading to
+v1.6](#upgrading-specifics).
 
 ## <a id="procedure"></a> Upgrade procedure
 
-<p class="note important">
-   <strong>Important:</strong> When upgrading <%= vars.product_short %>, service instances might need
-   to be upgraded.
-   Failure to upgrade one or more instance does not cause the tile installation to fail.<br><br>
-   Ensure that you review the <code>deploy-all</code> errand logs in the change log to verify that
-   no errors occurred when upgrading instances.
-</p>
+>**Important**
+>When upgrading <%= vars.product_short %>, service instances might need to be
+upgraded. Failure to upgrade one or more instance does not cause the tile
+   installation to fail.
+   Review the `deploy-all` errand logs in the change
+   log to verify that no errors occurred when upgrading instances.
 
 To upgrade <%= vars.product_short %>:
 
-1. Before you stage the new tile version,
-   [ensure that all service instances are up to date](#upgrade-instances).
+1. Before you stage the new tile version, [ensure that all service instances are
+   up to date](#upgrade-instances).
 
-2. Download the new version of <%= vars.product_short %> from
-   [<%= vars.product_network %>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
+2. Download the new version of <%= vars.product_short %> from [<%=
+   vars.product_network
+   %>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
 
-3. Stage and configure the tile by following the instructions in
-   [Installing with AWS](installing-with-aws.html.md.erb).
+3. Stage and configure the tile by following the instructions in [Installing
+   with AWS](installing-with-aws.html.md.erb).
 
 4. Make all the changes described in [Upgrading to v1.6](#upgrading-specifics).
 
-5. Verify that your configuration complies with the
-   [important notes about upgrading service instances](#upgrade-notes), especially regarding upgrade all instances config, plans
-   and beta offerings.
+5. Verify that your configuration complies with the [important notes about
+   upgrading service instances](#upgrade-notes), especially regarding upgrading
+   all instances of configuration, plans, and beta offerings.
 
 6. Go to the <%= vars.ops_manager %> Installation Dashboard.
 
 7. Click **Review Pending Changes** and then click **Apply Changes**.
 
-8. Review the `deploy-all` errand logs for any errors created because of the upgrade instances task.
+8. Review the `deploy-all` errand logs for any errors created because of the
+   upgrade instances task.
 
 ## <a id="upgrade-instances"></a> Ensure that service instances are up to date before upgrading the tile
 
-Service instances that haven't been upgraded with one version of the tile might not be upgradable by
-a newer version.
-For this reason, ensure there are no service instances pending upgrade before staging the new version of the tile.
+Service instances that haven't been upgraded with one version of the tile might
+not be upgradable by a later version. For this reason, verify that there are no
+service instances pending upgrade before staging the new version of the tile.
 
-You can see if there are instances with a pending upgrade by reviewing the `deploy-all` errand
-log for <%= vars.product_short %>. Alternatively, you can
+You can see whether there are instances with a pending upgrade by reviewing the
+`deploy-all` errand log for <%= vars.product_short %>. Alternatively, you can
 [ensure all instances are up to date with the CLI plug-in](#checking-cli-plugin)
 and the `-dry-run` flag, which outputs the list of instances pending upgrade.
 
-If you find instances that are pending upgrade, follow the upgrading instructions for your current version.
+If you find instances that are pending upgrade, follow the upgrading
+instructions for your current version.
 
 ### <a id="upgrade-notes"></a> Important notes about upgrading service instances
 
@@ -59,42 +62,46 @@ Before you start upgrading service instances, see the following notes:
 
 - **Enabling the Upgrade all services check box:**
 
-  If the **Upgrade all services** check box is not selected, service instances are not upgraded
-  during installation. These instances become unmanageable by the broker.
-  Any operations on that instance, such as update, bind, unbind, or delete, are blocked
-  until you run the upgrade task.
-  You can run the upgrade task at any time before upgrading the product to a later version.
-  See [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config) for information
-  on how to configure this task.
-  Alternatively you can run the upgrade at a later stage using the [CLI plug-in](#upgrading-cli-plugin)
+  If the **Upgrade all services** check box is not selected, service instances
+  are not upgraded during installation. These instances become unmanageable by
+  the broker. Any operations on that instance, such as update, bind, unbind, or
+  delete, are blocked until you run the upgrade task. You can run the upgrade
+  task at any time before upgrading the product to a later version. For more
+  information about how to configure this task, see [Upgrade
+  All Service Instances
+  configuration](installing-with-aws.html.md.erb#upgrade-all-config). Alternatively, you can run the
+  upgrade at a later stage by using the [CLI plug-in](#upgrading-cli-plugin)
 
 - **Enabling the Enable Beta offerings check box:**
 
-  If the **Enable Beta offerings** check box is not selected when applying changes, instances from
-  those service offerings are not upgraded. These instances become unmanageable by the broker.
-  Ensure that the **Enable Beta offerings** check box is selected if you have instances from those
-  offerings you intend to keep updated.
+  If the **Enable Beta offerings** check box is not selected when applying
+  changes, instances from those service offerings are not upgraded. These
+  instances become unmanageable by the broker. Ensure that the **Enable Beta
+  offerings** check box is selected if you have instances from those offerings
+  you intend to keep updated.
 
 - **Deleting custom plans:**
 
-  If you delete custom plans before upgrading all instances, instances from these plans are not
-  upgraded. These instances become unmanageable by the broker. Delete plans after upgrading all
-  instances, or see [Release Notes for Cloud Service Broker for AWS](release-notes.html.md.erb) and
-  [Upgrading to v1.6](#upgrading-specifics) to prevent conflicting upgrades.
+  If you delete custom plans before upgrading all instances, instances from
+  these plans are not upgraded. These instances become unmanageable by the
+  broker. Delete plans after upgrading all instances, or see [Release Notes for
+  Cloud Service Broker for AWS](release-notes.html.md.erb) and [Upgrading to
+  v1.6](#upgrading-specifics) to prevent conflicting upgrades.
 
 - **Only upgrade the tile after all service instances are up to date:**
 
-  You can run the upgrade all instances task as many times as needed.
-  If preferred, you can run the upgrade all instances task by using the cf CLI instead of,
-  or in addition to, running it through the tile.
-  Failure to upgrade one or more instances does not cause the tile installation to fail.
-  Review the `deploy all` errand logs to ensure that all instances have upgraded.
+  You can run the upgrade all instances task as many times as needed. If
+  preferred, you can run the upgrade all instances task by using the cf CLI
+  instead of, or in addition to, running it through the tile. Failure to upgrade
+  one or more instances does not cause the tile installation to fail. Review the
+  `deploy all` errand logs to ensure that all instances have upgraded.
 
 ### <a id="checking-cli-plugin"></a> Ensure that all instances are up to date with the CLI plug-in
 
 To verify that no instances are pending upgrade:
 
-1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
+1. Install the [cf CLI UpgradeAllServices
+   plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
 1. Follow the instructions in the **Usage** section of the `README` in the
    [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage)
    GitHub repository to perform a dry run.
@@ -105,15 +112,18 @@ To verify that no instances are pending upgrade:
    cf upgrade-all-services BROKER-NAME -dry-run
    ```
 
-This command provides a list of instances from enabled plans pending upgrade. If the list is not
-empty, upgrade the instances listed before attempting a tile upgrade.
+This command provides a list of instances from enabled plans pending upgrade. If
+the list is not empty, upgrade the instances listed before attempting a tile
+upgrade.
 
 ### <a id="upgrading-cli-plugin"></a> Upgrade instances through the CLI plug-in
 
 To run the cf CLI plug-in:
 
-1. Install the [cf CLI UpgradeAllServices plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
-1. To run the upgrade, follow the instructions in the **Usage** section of the `README` in the
+1. Install the [cf CLI UpgradeAllServices
+   plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
+1. To run the upgrade, follow the instructions in the **Usage** section of the
+   `README` in the
    [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage)
    GitHub repository.
 
@@ -123,8 +133,8 @@ To run the cf CLI plug-in:
    cf upgrade-all-services BROKER-NAME
    ```
 
-Run the CLI plug-in with the `-dry-run` flag before applying the service instance upgrade to find
-out which instances are pending upgrade.
+Run the CLI plug-in with the `-dry-run` flag before applying the service
+instance upgrade to find out which instances are pending upgrade.
 
 ## <a id="upgrading-specifics"></a> Upgrade to v1.6
 
@@ -132,28 +142,31 @@ out which instances are pending upgrade.
 
 The following section describes changes for Amazon RDS.
 
-#### Changes in `auto_minor_version_upgrade` behaviour
+#### Changes in `auto_minor_version_upgrade` behavior
 
-From this version onwards, RDS instances with a configuration that
-enables `auto_minor_version_upgrade` and does not have a major engine version will be considered
-instances with an invalid set-up, and the upgrade procedure will fail.
+Starting with v1.6, if an RDS instance is configured to enable
+`auto_minor_version_upgrade` and does not have a major engine version, its setup
+is considered invalid. The upgrade procedure fails.
 
-If you have instances with `auto_minor_version_upgrade` <strong>enabled</strong> and, you selected an `engine_version`
-different from a major version in provision or update phase, you must either disable the
-`auto_minor_version_upgrade` or select a major `engine_version` before upgrading.
+If you have instances with `auto_minor_version_upgrade` <strong>enabled</strong>
+and you selected an `engine_version` different from a major version in provision
+or update phase, you must either deactivate `auto_minor_version_upgrade` or
+select a major `engine_version` before upgrading.
 
-Before executing the upgrade procedure, you must configure your instances to be aligned with these specifications.
+Before running the upgrade procedure, you must configure your instances to be
+aligned with these specifications.
 
-There are several steps you could follow to be able to upgrade the RDS instances without any error.
+There are several steps you can follow to upgrade the RDS instances
+without any error.
 
-* Modify your plans to use a major version
-    
-    Let's say you created an RDS instance with an engine version `5.7.mysql_aurora.2.02.3`.
-    To know what the major version is, you can run the following command:
-    
+* Modify your plans to use a major version.
+
+    For example, if you created an RDS instance with an engine version
+    `5.7.mysql_aurora.2.02.3`, to find out what the major version is, run:
+
     ```shell
     aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
-    .... 
+    ....
     ....
     # Result:
     {
@@ -161,14 +174,15 @@ There are several steps you could follow to be able to upgrade the RDS instances
       "major_version": "5.7"
     }
     ```
-    
-    You should substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the desired values.
+
+    Substitute the engine `aurora-mysql` and the engine version
+    `5.7.mysql_aurora.2.02.3` with the values you want.
 
     Your plan must look like this:
 
     ```json
     {
-        "name":"my-custom-plan", 
+        "name":"my-custom-plan",
         "id":"10b2bd92-2a0b-11ed-b70f-cccrcf3xxxxx",
         "description":"My custom plan aurora-mysql",
         "auto_minor_version_upgrade": true,
@@ -180,15 +194,14 @@ There are several steps you could follow to be able to upgrade the RDS instances
     }
     ```
 
-* Modify your plans to disable `auto_minor_version_upgrade`
+* Modify your plans to deactivate `auto_minor_version_upgrade`.
 
-  Let's say you created an RDS instance using a plan with an engine version `5.7.mysql_aurora.2.02.3`.
-
-  Your plan must look like this:
+  For example, if you created an RDS instance by using a plan with an engine
+  version `5.7.mysql_aurora.2.02.3`, your plan must look like this:
 
     ```json
     {
-        "name":"my-custom-plan", 
+        "name":"my-custom-plan",
         "id":"10b2bd92-2a0b-11ed-b70f-cccrcf3xxxxx",
         "description":"My custom plan aurora-mysql",
         "auto_minor_version_upgrade": false,
@@ -200,22 +213,24 @@ There are several steps you could follow to be able to upgrade the RDS instances
     }
     ```
 
-* Modify your instance
-  
-  Let's say you created an RDS instance with an engine version `5.7.mysql_aurora.2.02.3` passed as a parameter at provision time. You can then update the engine_version to a major version by executing the following command:
+* Modify your instance.
+
+  For example, if you created an RDS instance with an engine version
+  `5.7.mysql_aurora.2.02.3` passed as a parameter at provision time, you can
+  then update  `engine_version` to a major version by running:
 
     ```shell
     cf update-service <MY-SERVICE-INSTANCE-NAME> -c '{"engine_version": "5.7"}'
     ```
 
-  For disabling auto_minor_version_upgrade, you can execute the following command, provided the current value was not configured in the plan:
+  To deactivate auto_minor_version_upgrade, you can run the following
+  command, provided the current value is not configured in the plan:
 
     ```shell
     cf update-service <MY-SERVICE-INSTANCE-NAME> -c '{"auto_minor_version_upgrade": false}'
     ```
 
-<p class="note important">
-   <strong>Important:</strong> `aurora-mysql` admits a non-defined or empty value for `engine_version`.
-    If you have not defined the `engine_version` in your plans or as a parameter when creating or updating the
-    instance, we recommend setting the version and following the instructions above.
-</p>
+>**Important** `aurora-mysql` admits a non-defined or empty value for
+>`engine_version`. If you have not defined  `engine_version` in your plans or
+    as a parameter when creating or updating the instance, VMware recommends setting
+    the version and following the preceding instructions.
