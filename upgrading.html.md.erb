@@ -208,7 +208,7 @@ There are several steps you could follow to be able to upgrade the RDS instances
     cf update-service <MY-SERVICE-INSTANCE-NAME> -c '{"engine_version": "5.7"}'
     ```
 
-  or
+  For disabling auto_minor_version_upgrade, you can execute the following command, provided the current value was not configured in the plan:
 
     ```shell
     cf update-service <MY-SERVICE-INSTANCE-NAME> -c '{"auto_minor_version_upgrade": false}'
