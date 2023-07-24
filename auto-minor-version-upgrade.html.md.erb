@@ -1,0 +1,135 @@
+---
+title: Auto Minor Version Upgrade feature on Cloud Service Broker for AWS
+owner: Cloud Service Broker
+---
+
+## IaaS and CSB engine version synchronization
+
+### What is Auto Minor Version Upgrade?
+
+Auto Minor Version Upgrade is an AWS feature you can enable to have your database automatically
+upgraded to a new approved minor engine version.
+
+
+You can easily see when a minor version upgrade is scheduled to be applied to your database instance
+in the AWS Console. You can also choose to apply an available minor version upgrade immediately
+through the AWS console.
+
+### What is the current problem associated with auto minor version upgrade and CSB?
+
+Auto minor version upgrade implies changes in the infrastructure managed by our CSB product.
+Because these changes are out-of-bands, and CSB does not perform auto synchronizations with the IaaS,
+once the automatic upgrade happens in the IaaS, the stored state of the infrastructure in CSB will
+differ from the current infrastructure in AWS. This causes CSB to try to update the RDS instance with
+the previous values whenever a CSB upgrade or instance update occurs.
+
+### When does this problem happen?
+
+Updating or upgrading an RDS instance with auto minor version upgrade enabled and a minor engine version selected.
+
+From this version onwards, CSB forces selecting a Major Engine Version when enabling auto minor version upgrade.
+[See troubleshooting page](troubleshooting.html.md.erb#engine-version-post-condition-failed).
+
+However, instances created with the previous version of CSB may already be out of sync or configured in a way
+that allows this to happen.
+
+### What are the necessary steps to avoid this problem?
+
+#### IaaS and CSB synchronization
+
+The value of the state of the infrastructure managed by CSB needs to be synchronized with AWS.
+In other words, the engine version associated with a service instance stored in CSB must be the same
+as the one reflected on AWS. If it is different, the version stored in CSB must be a Major Engine Version.
+
+If the instance is already out of sync, you will update the CSB state with the actual configuration.
+This means updating the engine version in the CSB to match the one in the IaaS.
+You must also disable the flag to prevent this scenario from happening again.
+
+Example:
+```shell
+cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": false, "engine_version": "5.7.mysql_aurora.2.02.3"}'
+```
+
+
+If the instance is not yet out of sync, disable the flag to prevent future out-of-sync scenarios.
+
+Example:
+
+```shell
+cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": false}'
+```
+
+##### Fixing configuration
+
+If you configured the engine version as a plan property, you must change the plan to use the same minor
+version as the IaaS and update the instance.
+
+For example, if you created an RDS instance and the IaaS indicates the engine
+version `5.7.mysql_aurora.2.02.3`, your plan must look like this:
+
+Your plan must look like this:
+
+```json
+{
+    "name":"my-custom-plan",
+    "id":"10b2bd92-2a0b-11ed-b70f-cccrcf3xxxxx",
+    "description":"My custom plan aurora-mysql",
+    "auto_minor_version_upgrade": true,
+    "engine_version": "5.7.mysql_aurora.2.02.3",
+    "metadata": {
+        "displayName": "My Custom Plan",
+        "bullets": ["aurora-mysql", "5.7", "auto minor version upgrade enabled"]
+    }
+}
+```
+
+For updating the instance, you can run
+
+```shell
+cf update-service my-service-instance -c '{}'
+```
+
+>**Warning** different service instances could have different minor engine versions,
+>which will imply creating different plans and updating each instance to use the corresponding plan.
+
+For updating the plan, you can run
+
+```shell
+cf update-service my-service-instance -p instance_plan_name
+```
+
+
+##### Enable Auto Minor Version Upgrade
+
+If you want to enable an auto minor version upgrade, you must specify a **Major Engine Version**
+and set the flag to true. If this is done through a plan, you must update the instances afterwards.
+
+If you change the plan
+
+```shellcf update-service my-service-instance -p instance_plan_name
+```
+
+If you update the instance
+
+```shell
+cf update-service my-service-instance -c '{"engine_version": "MAJOR_ENGINE_VERSION"}'
+```
+
+>**Warning** AWS will select the default engine version. AWS will upgrade the RDS instance
+>if the default engine version is greater than the current version.
+>This upgrade will be applied immediately, so you must carefully plan the operation to account for downtime.
+
+If you want to know what the major version is, you can run
+
+```shell
+aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
+....
+....
+# Result:
+{
+  "engine_version": "5.7.mysql_aurora.2.02.3",
+  "major_version": "5.7"
+}
+```
+
+Substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the values you want.
