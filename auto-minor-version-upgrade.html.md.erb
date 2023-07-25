@@ -25,7 +25,8 @@ the previous values whenever a CSB upgrade or instance update occurs.
 
 ### When does this problem happen?
 
-Updating or upgrading an RDS instance with auto minor version upgrade enabled and a minor engine version selected.
+This happens when updating or upgrading an RDS instance with auto minor version upgrade enabled and
+a minor engine version selected.
 
 From this version onwards, CSB forces selecting a Major Engine Version when enabling auto minor version upgrade.
 [See troubleshooting page](troubleshooting.html.md.erb#engine-version-post-condition-failed).
@@ -37,19 +38,19 @@ that allows this to happen.
 
 #### IaaS and CSB synchronization
 
-The value of the state of the infrastructure managed by CSB needs to be synchronized with AWS.
-In other words, the engine version associated with a service instance stored in CSB must be the same
+The engine version associated with a service instance stored in CSB must be the same
 as the one reflected on AWS. If it is different, the version stored in CSB must be a Major Engine Version.
 
-If the instance is already out of sync, you will update the CSB state with the actual configuration.
+If the instance is already out of sync, you will need to update the CSB state with the actual configuration.
 This means updating the engine version in the CSB to match the one in the IaaS.
-You must also disable the flag to prevent this scenario from happening again.
+You must also disable the `auto_minor_version_upgrade` flag to prevent this scenario from happening again.
 
 Example:
 ```shell
 cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": false, "engine_version": "5.7.mysql_aurora.2.02.3"}'
 ```
 
+See [How to know whether the instance is out of sync section](#how-to-know-whether-the-instance-is-out-of-sync) for more information
 
 If the instance is not yet out of sync, disable the flag to prevent future out-of-sync scenarios.
 
@@ -59,10 +60,9 @@ Example:
 cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": false}'
 ```
 
-##### Fixing configuration
-
-If you configured the engine version as a plan property, you must change the plan to use the same minor
-version as the IaaS and update the instance.
+If you configured the `engine_version` and/or `auto_minor_version_upgrade` flags as a plan properties,
+you must change the values of these properties in the plan and update the instance for the change to
+take effect.
 
 For example, if you created an RDS instance and the IaaS indicates the engine
 version `5.7.mysql_aurora.2.02.3`, your plan must look like this:
@@ -92,7 +92,7 @@ cf update-service my-service-instance -c '{}'
 >**Warning** different service instances could have different minor engine versions,
 >which will imply creating different plans and updating each instance to use the corresponding plan.
 
-For updating the plan, you can run
+If you created a different plan, you can change the service instance plan by running
 
 ```shell
 cf update-service my-service-instance -p instance_plan_name
@@ -104,9 +104,17 @@ cf update-service my-service-instance -p instance_plan_name
 If you want to enable an auto minor version upgrade, you must specify a **Major Engine Version**
 and set the flag to true. If this is done through a plan, you must update the instances afterwards.
 
-If you change the plan
+If you created a new plan
 
-```shellcf update-service my-service-instance -p instance_plan_name
+```shell
+cf update-service my-service-instance -p instance_plan_name
+```
+
+
+If you updated an existing plan:
+
+```shell
+cf update-service my-service-instance -c '{}'
 ```
 
 If you update the instance
@@ -115,14 +123,14 @@ If you update the instance
 cf update-service my-service-instance -c '{"engine_version": "MAJOR_ENGINE_VERSION"}'
 ```
 
->**Warning** AWS will select the default engine version. AWS will upgrade the RDS instance
->if the default engine version is greater than the current version.
+>**Warning** When specifying a major version, AWS will select the default engine version.
+>AWS will upgrade the RDS instance if the default engine version is greater than the current version.
 >This upgrade will be applied immediately, so you must carefully plan the operation to account for downtime.
 
-If you want to know what the major version is, you can run
+If you want to know what the major version is for a given minor version, you can run
 
 ```shell
-aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
+aws rds describe-db-engine-versions  --engine <ENGINE_NAME> --engine-version <ENGINE_VERSION> --include-all --region <REGION> | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
 ....
 ....
 # Result:
@@ -133,3 +141,33 @@ aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.
 ```
 
 Substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the values you want.
+
+For supported engine values, see the Engine parameter in
+[API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
+
+To know what the actual engine version used in AWS is, you can run
+
+```shell
+aws rds describe-db-instances --db-instance-identifier <DB_INSTANCE_IDENTIFIER> | jq -r '.DBInstances[] | .EngineVersion' 
+```
+
+#### How to know whether the instance is out of sync
+
+Let's imagine that you created an `aurora-mysql` instance with the `8.0.mysql_aurora.3.01.0` engine version
+and AWS updated the instance to the `8.0.mysql_aurora.3.03.1` version.
+
+Because an instance out of sync does not accept any update, if you update the service instance, you
+will receive an error that contains:
+
+`InvalidParameterCombination: Cannot upgrade <ENGINE> from <AWS_ENGINE_VERSION> to <ORIGINAL_ENGINE_VERSION>` 
+
+Example:
+* Run an update without any parameter to force the update
+  
+  ```shell
+    cf update-service my_service_instance_name -c '{}'
+  ```
+* Error:
+  ```shell
+    InvalidParameterCombination: Cannot upgrade aurora-mysql from 8.0.mysql_aurora.3.03.1 to 8.0.mysql_aurora.3.01.0
+   ```
