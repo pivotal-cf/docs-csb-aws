@@ -1,9 +1,9 @@
 ---
-title: Auto Minor Version Upgrade feature on Tanzu Cloud Service Broker for AWS
+title: Auto Minor Version Upgrade on Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
-## IaaS and Tanzu Cloud Service Broker for AWS engine version synchronization
+## IaaS and Cloud Service Broker for AWS engine version synchronization
 
 ### What is Auto Minor Version Upgrade?
 
@@ -66,7 +66,7 @@ For example:
 cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": false}'
 ```
 
-If you configured the `engine_version` and/or `auto_minor_version_upgrade` flags as a plan properties,
+If you configured the `engine_version` and `auto_minor_version_upgrade` flags as plan properties,
 you must change the values of these properties in the plan and update the instance for the change to
 take effect.
 
