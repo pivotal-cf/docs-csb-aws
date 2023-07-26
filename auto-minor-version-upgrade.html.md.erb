@@ -1,59 +1,68 @@
 ---
-title: Auto Minor Version Upgrade feature on Cloud Service Broker for AWS
+title: Auto Minor Version Upgrade feature on Tanzu Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
-## IaaS and CSB engine version synchronization
+## IaaS and Tanzu Cloud Service Broker for AWS engine version synchronization
 
 ### What is Auto Minor Version Upgrade?
 
-Auto Minor Version Upgrade is an AWS feature you can enable to have your database automatically
-upgraded to a new approved minor engine version.
+Auto Minor Version Upgrade is an AWS feature you can enable to have your
+database automatically upgraded to a new approved minor engine version.
 
+You can see when a minor version upgrade is scheduled to be applied to
+your database instance in the AWS Console. You can also choose to apply an
+available minor version upgrade immediately through the AWS console.
 
-You can easily see when a minor version upgrade is scheduled to be applied to your database instance
-in the AWS Console. You can also choose to apply an available minor version upgrade immediately
-through the AWS console.
+### What is the current problem associated with auto minor version upgrade and Tanzu Cloud Service Broker for AWS?
 
-### What is the current problem associated with auto minor version upgrade and CSB?
-
-Auto minor version upgrade implies changes in the infrastructure managed by our CSB product.
-Because these changes are out-of-bands, and CSB does not perform auto synchronizations with the IaaS,
-once the automatic upgrade happens in the IaaS, the stored state of the infrastructure in CSB will
-differ from the current infrastructure in AWS. This causes CSB to try to update the RDS instance with
-the previous values whenever a CSB upgrade or instance update occurs.
+Auto minor version upgrade implies changes in the infrastructure managed by
+VMware Tanzu Cloud Service Broker for AWS. These changes are out of
+band, and Tanzu Cloud Service Broker for AWS does not perform
+auto synchronizations with the IaaS. As a result, once the automatic upgrade happens in the
+IaaS, the stored state of the infrastructure in Tanzu Cloud Service Broker for AWS differs from the current
+infrastructure in AWS. This causes Tanzu Cloud Service Broker for AWS to try to update the
+Amazon RDS instance with
+the previous values whenever a Tanzu Cloud Service Broker for AWS upgrade or instance update occurs.
 
 ### When does this problem happen?
 
-Updating or upgrading an RDS instance with auto minor version upgrade enabled and a minor engine version selected.
+This problem happens when updating or upgrading an RDS instance with auto minor version upgrade enabled
+and a minor engine version selected.
 
-From this version onwards, CSB forces selecting a Major Engine Version when enabling auto minor version upgrade.
-[See troubleshooting page](troubleshooting.html.md.erb#engine-version-post-condition-failed).
+From v1.6.0 of Tanzu Cloud Service Broker for AWS onwards, Tanzu Cloud Service Broker
+for AWS forces selecting a major engine version when
+enabling auto minor version upgrade. [See troubleshooting
+page](troubleshooting.html.md.erb#engine-version-post-condition-failed).
 
-However, instances created with the previous version of CSB may already be out of sync or configured in a way
-that allows this to happen.
+However, instances created with the previous version of Tanzu Cloud Service Broker for AWS might already be out
+of sync or configured in a way that allows this to happen.
 
 ### What are the necessary steps to avoid this problem?
 
-#### IaaS and CSB synchronization
+#### IaaS and Cloud Service Broker synchronization
 
-The value of the state of the infrastructure managed by CSB needs to be synchronized with AWS.
-In other words, the engine version associated with a service instance stored in CSB must be the same
-as the one reflected on AWS. If it is different, the version stored in CSB must be a Major Engine Version.
+The state of the infrastructure managed by Tanzu Cloud Service Broker for AWS must be
+synced with AWS. In other words, the engine version associated with a
+service instance stored in Tanzu Cloud Service Broker for AWS must be the same as the one reflected on AWS. If
+it is different, the version stored in Tanzu Cloud Service Broker for AWS must be a major engine version.
 
-If the instance is already out of sync, you will update the CSB state with the actual configuration.
-This means updating the engine version in the CSB to match the one in the IaaS.
-You must also disable the flag to prevent this scenario from happening again.
+If the instance is already out of sync, update Tanzu Cloud Service Broker for AWS with the
+actual configuration. This means updating the engine version in Tanzu Cloud
+Service Broker for AWS to match
+the one in the IaaS. You must also deactivate the flag to prevent this scenario
+from happening again.
 
-Example:
+For example:
+
 ```shell
 cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": false, "engine_version": "5.7.mysql_aurora.2.02.3"}'
 ```
 
+If the instance is not yet out of sync, deactivate the flag to prevent future
+out-of-sync scenarios.
 
-If the instance is not yet out of sync, disable the flag to prevent future out-of-sync scenarios.
-
-Example:
+For example:
 
 ```shell
 cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": false}'
@@ -61,13 +70,11 @@ cf update-service my-mysql-aurora-instance -c '{"auto_minor_version_upgrade": fa
 
 ##### Fixing configuration
 
-If you configured the engine version as a plan property, you must change the plan to use the same minor
-version as the IaaS and update the instance.
+If you configured the engine version as a plan property, you must change the
+plan to use the same minor version as the IaaS and update the instance.
 
 For example, if you created an RDS instance and the IaaS indicates the engine
 version `5.7.mysql_aurora.2.02.3`, your plan must look like this:
-
-Your plan must look like this:
 
 ```json
 {
@@ -83,43 +90,47 @@ Your plan must look like this:
 }
 ```
 
-For updating the instance, you can run
+To update the instance, run:
 
 ```shell
 cf update-service my-service-instance -c '{}'
 ```
 
->**Warning** different service instances could have different minor engine versions,
->which will imply creating different plans and updating each instance to use the corresponding plan.
+>**Caution**
+>Different service instances can have different minor engine
+>versions, which requires creating different plans and updating each instance
+>to use the corresponding plan.
 
-For updating the plan, you can run
+To update the plan, run:
 
 ```shell
 cf update-service my-service-instance -p instance_plan_name
 ```
 
-
 ##### Enable Auto Minor Version Upgrade
 
-If you want to enable an auto minor version upgrade, you must specify a **Major Engine Version**
-and set the flag to true. If this is done through a plan, you must update the instances afterwards.
+To enable an auto minor version upgrade, you must specify a **Major
+Engine Version** and set the flag to true. If this is done through a plan, you
+must update the instances afterwards.
 
-If you change the plan
+If you change the plan, run:
 
 ```shellcf update-service my-service-instance -p instance_plan_name
 ```
 
-If you update the instance
+If you update the instance, run:
 
 ```shell
 cf update-service my-service-instance -c '{"engine_version": "MAJOR_ENGINE_VERSION"}'
 ```
 
->**Warning** AWS will select the default engine version. AWS will upgrade the RDS instance
->if the default engine version is greater than the current version.
->This upgrade will be applied immediately, so you must carefully plan the operation to account for downtime.
+>**Caution**
+>AWS selects the default engine version. AWS upgrades the
+>RDS instance if the default engine version is greater than the current version.
+>This upgrade is applied immediately, so you must carefully plan the
+>operation to account for downtime.
 
-If you want to know what the major version is, you can run
+To find out what the major version is, run:
 
 ```shell
 aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
@@ -132,4 +143,5 @@ aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.
 }
 ```
 
-Substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the values you want.
+Substitute the engine `aurora-mysql` and the engine version
+`5.7.mysql_aurora.2.02.3` with the values you want.
