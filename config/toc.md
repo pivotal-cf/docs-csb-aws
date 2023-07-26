@@ -5,6 +5,7 @@
 * [Migrating an Amazon S3 Instance](../aws-s3-migration.html)
 * [Migrating an Amazon DynamoDB Namespace Instance](../aws-dynamodb-namespace-migration.html)
 * [Upgrading](../upgrading.html)
+* [Auto Minor Version Upgrade](../auto-minor-version-upgrade.html.md.erb)
 * [Service Plan Reference](../reference/index.html)
     * [Amazon S3 Bucket](../reference/aws-s3.html)
     * [Amazon RDS for MySQL](../reference/aws-mysql.html)
