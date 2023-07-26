@@ -37,10 +37,6 @@ New features and changes in this release:
   The broker automatically creates AWS tags for the service instance GUID and the org-space GUID. You
   can now also configure default global tags to add for each AWS service.
 
-- **Improved stack selection to try with "cflinuxfs3" before using the default value:**
-  Previously, it was possible in some scenarios that the default value was a Windows stack causing
-  tile installation to fail.
-
 ### Amazon ElastiCache for Redis
 
 - **Enabling automatic minor version upgrade is now possible:**
@@ -137,6 +133,11 @@ This release has the following fixes:
 
   By using General Purpose SSD gp3 storage volumes, VMware did not allow you to customize storage performance.
   This configuration is no longer blocked.
+
+- **Improved stack selection to try with "cflinuxfs3" before using the default value:**
+
+  Previously, it was possible in some scenarios that the default value was a Windows stack causing
+  tile installation to fail.
 
 #### General
 
