@@ -250,6 +250,7 @@ The following errors can occur in any Amazon RDS instance:
 - [Reaching AWS subnets quota in a subnet group for RDS](#reaching-aws-subnets-quota)
 - [Major engine version should be specified when auto_minor_version_upgrade is enabled](#engine-version-post-condition-failed)
 - [Engine version not found when using a major version](#cannot-find-engine-version)
+- [Incompatible network state](#incompatible-network-state)
 
 <div id="reaching-aws-subnets-quota" class="wrap-table-overflow">
     <table class="table">
@@ -393,6 +394,48 @@ The following errors can occur in any Amazon RDS instance:
                 <td>
                   Create or update your RDS instance with auto minor version upgrade deactivated and select a
                   <strong>specific minor engine version</strong>.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="incompatible-network-state" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>incompatible-network state</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>create</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:
+                  <ul>
+                  <li><code>incompatible-network</code></li>
+                  </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  An incompatible-network state indicates one or more of the following is true of the Amazon RDS DB instance:
+                    <ul>
+                        <li>There are no available IP addresses in the subnet that the Amazon RDS DB instance was launched into.</li>
+                        <li>The subnet used in the Amazon RDS DB subnet group no longer exists in the Amazon Virtual Private Cloud (Amazon VPC).</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    Create a custom DB subnet group through the AWS console and choose subnets from the
+                    navigation pane. Confirm that all subnets selected previously have available IP addresses.
+                    Then use the DB subnet group name as a plan or provision parameter.
                 </td>
             </tr>
         </tbody>
