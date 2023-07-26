@@ -220,6 +220,13 @@ This release has the following fixes:
 
 This release has the following issues:
 
+#### General
+
+- **Failure to select the right stack during install:**
+
+  When there are multiple build packs installed and non of them is a cflinuxfs4, it can happen that 
+  it matches a Windows buildpack if both Windows and Linux have installed the binary_buildpack.
+
 #### Amazon ElastiCache for Redis
 
 - **Inconsistent design in the format accepted in the `redis_version` property:**
