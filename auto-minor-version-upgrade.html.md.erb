@@ -27,7 +27,6 @@ the previous values whenever a Tanzu Cloud Service Broker for AWS upgrade or ins
 
 ### When does this problem happen?
 
-
 This happens when updating or upgrading an RDS instance with auto minor version upgrade enabled and
 a minor engine version selected.
 
@@ -51,7 +50,7 @@ it is different, the version stored in Tanzu Cloud Service Broker for AWS must b
 The engine version associated with a service instance stored in Tanzu Cloud Service Broker for AWS must be the same
 as the one reflected on AWS. If it is different, the version stored in Tanzu Cloud Service Broker for AWS must be a Major Engine Version.
 
-If the instance is already out of sync, you will need to update the Tanzu Cloud Service Broker for AWS state with the actual configuration.
+If the instance is already out of sync, you need to update the Tanzu Cloud Service Broker for AWS state with the actual configuration.
 This means updating the engine version in Tanzu Cloud Service Broker for AWS to match the one in the IaaS.
 You must also deactivate the `auto_minor_version_upgrade` flag to prevent this scenario from happening again:
 
@@ -127,7 +126,7 @@ If you updated the instance, run:
 cf update-service my-service-instance -c '{"engine_version": "MAJOR_ENGINE_VERSION"}'
 ```
 
->**Caution** 
+>**Caution**
 >When specifying a major version, AWS selects the default engine version.
 >AWS upgrades the RDS instance if the default engine version is greater than the current version.
 >This upgrade is applied immediately, so you must carefully plan the operation to account for downtime.
@@ -135,7 +134,7 @@ cf update-service my-service-instance -c '{"engine_version": "MAJOR_ENGINE_VERSI
 To find out what the major version is for a given minor version, run:
 
 ```shell
-aws rds describe-db-engine-versions  --engine <ENGINE_NAME> --engine-version <ENGINE_VERSION> --include-all --region <REGION> | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
+aws rds describe-db-engine-versions  --engine ENGINE-NAME --engine-version ENGINE-VERSION --include-all --region REGION | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
 ....
 ....
 # Result:
@@ -145,7 +144,7 @@ aws rds describe-db-engine-versions  --engine <ENGINE_NAME> --engine-version <EN
 }
 ```
 
-Substitute the <ENGINE_NAME> and the <ENGINE_VERSION> with the values you want.
+Substitute `ENGINE-NAME` and `ENGINE-VERSION` with the values you want.
 
 For supported engine values, see the Engine parameter in
 [API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
@@ -153,30 +152,30 @@ For supported engine values, see the Engine parameter in
 To find out what the actual engine version used in AWS is, run:
 
 ```shell
-aws rds describe-db-instances --db-instance-identifier <DB_INSTANCE_IDENTIFIER> | jq -r '.DBInstances[] | .EngineVersion' 
+aws rds describe-db-instances --db-instance-identifier DB-INSTANCE-IDENTIFIER | jq -r '.DBInstances[] | .EngineVersion'
 ```
 
 #### How to know whether the instance is out of sync
 
-If executing the command to get the actual engine version in AWS, you receive a different version from the
-one defined in the plan, then most likely, the instance is out of sync.
+If when you run the command to get the actual engine version in AWS, you receive a different version from the
+one defined in the plan, then most likely the instance is out of sync.
 
-When unsure, you can try an update the instance.
+When unsure, you can try to update the instance.
 
 For example, say that you created an `aurora-mysql` instance with the `8.0.mysql_aurora.3.01.0` engine version
 and AWS updated the instance to the `8.0.mysql_aurora.3.03.1` version.
 Because an instance out of sync does not accept any update, if you update the service instance, you receive an error that contains:
 
-`InvalidParameterCombination: Cannot upgrade <ENGINE> from <AWS_ENGINE_VERSION> to <ORIGINAL_ENGINE_VERSION>` 
+`InvalidParameterCombination: Cannot upgrade ENGINE from AWS-ENGINE-VERSION to ORIGINAL-ENGINE-VERSION`
 
 For example:
-  
+
 * Run an update without any parameter to force the update:
-  
+
   ```shell
     cf update-service my_service_instance_name -c '{}'
   ```
-  
+
 * Error:
 
   ```shell
