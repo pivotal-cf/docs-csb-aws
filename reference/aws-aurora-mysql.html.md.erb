@@ -136,8 +136,15 @@ provision only:
     <tr>
       <td><code>engine_version</code></td>
       <td>String</td>
-      <td>The Aurora engine version, e.g. "8.0.mysql_aurora.3.02.0". Not all features are supported by all versions. Refer to the AWS documentation for more details..</td>
-      <td><code>null</code> which results in the AWS default. VMware recommends setting the version.</td>
+      <td>
+        The Aurora engine version, e.g. "8.0.mysql_aurora.3.02.0".
+        Not all features are supported by all versions.
+        Refer to the AWS documentation for more details.
+        Although null is a valid value, VMware recommends specifying an engine version, otherwise AWS
+        will select the version based on the version marked by default at the time of creation or update
+        of the instance.
+      </td>
+      <td><code>null</code> which results in the AWS default.</td>
       <td>provision and update</td>
     </tr>
     <tr>
