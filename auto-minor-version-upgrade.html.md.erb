@@ -145,7 +145,7 @@ aws rds describe-db-engine-versions  --engine <ENGINE_NAME> --engine-version <EN
 }
 ```
 
-Substitute the engine `aurora-mysql` and the engine version `5.7.mysql_aurora.2.02.3` with the values you want.
+Substitute the <ENGINE_NAME> and the <ENGINE_VERSION> with the values you want.
 
 For supported engine values, see the Engine parameter in
 [API action CreateDBInstance](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html).
@@ -157,6 +157,11 @@ aws rds describe-db-instances --db-instance-identifier <DB_INSTANCE_IDENTIFIER> 
 ```
 
 #### How to know whether the instance is out of sync
+
+If executing the command to get the actual engine version in AWS, you receive a different version from the
+one defined in the plan, then most likely, the instance is out of sync.
+
+When unsure, you can try an update the instance.
 
 For example, say that you created an `aurora-mysql` instance with the `8.0.mysql_aurora.3.01.0` engine version
 and AWS updated the instance to the `8.0.mysql_aurora.3.03.1` version.
@@ -176,4 +181,4 @@ For example:
 
   ```shell
     InvalidParameterCombination: Cannot upgrade aurora-mysql from 8.0.mysql_aurora.3.03.1 to 8.0.mysql_aurora.3.01.0
-   ```
+  ```
