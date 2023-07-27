@@ -453,11 +453,11 @@ The following errors can occur in any Amazon PostgreSQL instance:
         <tbody>
              <tr>
                 <td>Error</td>
-                <td>User does not have permission for tables created by other user</td>
+                <td>User does not have permission for tables created by other user in the PUBLIC schema</td>
              </tr>
              <tr>
                 <td>Operation</td>
-                <td>Bindings modifying/reading tables created by other bindings</td>
+                <td>Bindings modifying/reading tables created by other bindings in the PUBLIC schema</td>
              </tr>
              <tr>
                 <td>Symptom</td>
@@ -487,6 +487,7 @@ The following errors can occur in any Amazon PostgreSQL instance:
                   More especifically the following issues can happen
                     <ul>
                         <li>Binding A not having access to a table that is created by binding B, when table is created after binding A was created.</li>
+                        <li>Binding A not being able to read tables created by binding B, until a new binding C gets created</li>
                         <li>Binding A not being able to change tables created by binding B, until binding B gets deleted (unbound from its app)</li>
                     </ul>
                 </td>
