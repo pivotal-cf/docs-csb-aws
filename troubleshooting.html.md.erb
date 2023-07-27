@@ -442,7 +442,6 @@ The following errors can occur in any Amazon RDS instance:
     </table>
 </div>
 
-
 ### <a id="postgres-errors"></a> Amazon PostgreSQL errors
 
 The following errors can occur in any Amazon PostgreSQL instance:
@@ -458,7 +457,7 @@ The following errors can occur in any Amazon PostgreSQL instance:
              </tr>
              <tr>
                 <td>Operation</td>
-                <td>Bindings modifyig/reading tables created by other bindings</td>
+                <td>Bindings modifying/reading tables created by other bindings</td>
              </tr>
              <tr>
                 <td>Symptom</td>
@@ -480,7 +479,7 @@ The following errors can occur in any Amazon PostgreSQL instance:
                   all bindings should have the same access to all objects with ability to query and modify them regardless
                   of what binding created them in the first place.
                   This conflicts with PostgreSQL permission model, where the user that created an object is the owner
-                  and hence the only one able to modify tables and query them, unless permission is explicitely give to other 
+                  and hence the only one able to modify tables and query them, unless permission is explicitly granted to other 
                   roles.
                   This applies for bindings as well as service keys.
 
@@ -505,7 +504,7 @@ The following errors can occur in any Amazon PostgreSQL instance:
                 1. Unbind the application that has created the objects and bind again (or delete the service key that has created the objects). 
                 This is because when unbinding, the CSB automatically transfers ownership of existing objects to the `binding_user_group` role.
                 
-                2. Manuall transfer ownership to the binding_user_group with the following statement "ALTER TABLE tab_name OWNER TO binding_user_group;". 
+                2. Manually transfer ownership to the binding_user_group with the following statement "ALTER TABLE tab_name OWNER TO binding_user_group;". 
                 You will need to execute this statement logging in to the database with the credentials from the binding/service key used to create the objects. 
                 
                 3. If you only need other bindings to perform data operations, then you can create new bindings for interacting with these objects.
