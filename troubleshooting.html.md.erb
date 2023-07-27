@@ -433,8 +433,12 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td>Solution</td>
                 <td>
-                    Create a custom DB subnet group through the AWS console and choose subnets from the
-                    navigation pane. Confirm that all subnets selected previously have available IP addresses.
+                    AWS does not make any guarantees as to what subnet from the subnet group an RDS instance will
+                    be launched in. Although one can assume it is going to balance new instance creation among 
+                    all the subnets in the group, in reality, this doesn't happen. This means one subnet in the
+                    group can run out of IPs, whilst the others are widely unused.
+                    To workaround this issue, create a custom DB subnet group through the AWS console and
+                    choose the subnets that still have available IP addresses from the navigation pane.
                     Then use the DB subnet group name as a plan or provision parameter.
                 </td>
             </tr>
