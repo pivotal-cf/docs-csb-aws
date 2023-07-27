@@ -433,11 +433,11 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td>Solution</td>
                 <td>
-                    AWS does not make any guarantees as to what subnet from the subnet group an RDS instance will
-                    be launched in. Although one can assume it is going to balance new instance creation among 
+                    AWS does not make any guarantees as to what subnet from the subnet group an RDS instance is
+                    launched in. Although you can assume it is going to balance new instance creation among
                     all the subnets in the group, in reality, this doesn't happen. This means one subnet in the
-                    group can run out of IPs, whilst the others are widely unused.
-                    To workaround this issue, create a custom DB subnet group through the AWS console and
+                    group can run out of IPs, while the others are widely unused.
+                    To work around this issue, create a custom DB subnet group through the AWS console and
                     choose the subnets that still have available IP addresses from the navigation pane.
                     Then use the DB subnet group name as a plan or provision parameter.
                 </td>
