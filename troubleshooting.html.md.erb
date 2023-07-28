@@ -369,8 +369,8 @@ The following errors can occur in any Amazon PostgreSQL instance:
 
                 If you have issues with tables already created, you must either:
                     <ol>
-                        <li>Unbind the application that has created the objects and bind again (or delete the service key that has created the objects). This is because when unbinding, Tanzu Cloud Service Broker for AWS automatically transfers ownership of existing objects to the `binding_user_group` role.</li>
-                        <li>Manually transfer ownership to the `binding_user_group` with the following statement "ALTER TABLE tab_name OWNER TO binding_user_group;". You must run this statement after logging in to the database with the credentials from the binding/service key used to create the objects.</li>
+                        <li>Unbind the application that has created the objects and bind again (or delete the service key that has created the objects). This is because when unbinding, Tanzu Cloud Service Broker for AWS automatically transfers ownership of existing objects to the <code>binding_user_group</code> role.</li>
+                        <li>Manually transfer ownership to the <code>binding_user_group</code> with the following statement "ALTER TABLE tab_name OWNER TO binding_user_group;". You must run this statement after logging in to the database with the credentials from the binding/service key used to create the objects.</li>
                         <li>If you only need other bindings to perform data operations, you can create new bindings for interacting with these objects. This is because Tanzu Cloud Service Broker for AWS assigns permissions to all existing tables whenever a new binding is created. However, this new binding does not have permissions to perform DDL operations until points 1. or 2. are implemented.</li>
                     </ol>
                 </td>
