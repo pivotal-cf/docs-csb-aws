@@ -476,45 +476,45 @@ The following errors can occur in any Amazon PostgreSQL instance:
             <tr>
                 <td>Cause</td>
                 <td>
-                  The CloudFoundry binding model implies that multiple bindings should be able to query
-                  or modify the same tables. This is particularly useful for rotating credentials, where 
-                  unbind and bind operations are needed. Additionally the broker currently does not support
-                  creating bindings with different levels of access to the objects created. This all means that
-                  all bindings should have the same access to all objects with ability to query and modify them regardless
+                  The Cloud Foundry binding model implies that multiple bindings can query
+                  or edit the same tables. This is particularly useful for rotating credentials where
+                  unbind and bind operations are needed. Additionally, the broker does not support
+                  creating bindings with different levels of access to the objects created. This means that
+                  all bindings need the same access to all objects and can query and edit them regardless
                   of what binding created them in the first place.
-                  This conflicts with PostgreSQL permission model, where the user that created an object is the owner
-                  and hence the only one able to modify tables and query them, unless permission is explicitly granted to other 
+                  This conflicts with the PostgreSQL permission model, where the user that created an object is the owner
+                  and is the only one who can edit tables and query them, unless permission is explicitly granted to other
                   roles.
-                  This applies for bindings as well as service keys.
+                  This applies for bindings and service keys.
 
                   <br>
-                  More especifically the following issues can happen
+                  Specifically, the following issues can happen:
                     <ul>
-                        <li>Binding A not having access to a table that is created by binding B, when table is created after binding A was created.</li>
-                        <li>Binding A not being able to read tables created by binding B, until a new binding C gets created</li>
-                        <li>Binding A not being able to change tables created by binding B, until binding B gets deleted (unbound from its app)</li>
+                        <li>Binding A not having access to a table that binding B created, when binding B created the table after binding A was created.</li>
+                        <li>Binding A cannot read tables created by binding B until a new binding C is created.</li>
+                        <li>Binding A cannot change tables created by binding B until binding B is deleted (unbound from its app).</li>
                     </ul>
                 </td>
             </tr>
             <tr>
                 <td>Solution</td>
                 <td>
-                All the database users created when binding and creating service keys with the CSB for AWS are assigned the role `binding_user_group`. This implies
+                All the database users created when binding and creating service keys with Tanzu Cloud Service Broker for AWS are assigned the role `binding_user_group`. This implies
                 they all have access to tables created by the `binding_user_group` role.
-                Creating any objects with the `binding_user_group` role instead of the binding user will workaround any of the issues mentioned here.
-                This can be achieve by executing `SET ROLE binding_user_group` before any other instruction in the sql script that creates your object or framework performing database migrations.
-                
-                If you are having issues with tables already created, you will need to either:
-                
-                1. Unbind the application that has created the objects and bind again (or delete the service key that has created the objects). 
-                This is because when unbinding, the CSB automatically transfers ownership of existing objects to the `binding_user_group` role.
-                
-                2. Manually transfer ownership to the binding_user_group with the following statement "ALTER TABLE tab_name OWNER TO binding_user_group;". 
-                You will need to execute this statement logging in to the database with the credentials from the binding/service key used to create the objects. 
-                
-                3. If you only need other bindings to perform data operations, then you can create new bindings for interacting with these objects.
-                This is because the CSB does assign permissions to all existing tables whenever a new binding is created. However this new bindings will still 
-                not have permissions to perform DDL operations until points 1. or 2. are implemented. 
+                Creating any objects with the `binding_user_group` role instead of the binding user resolves any of the issues mentioned here.
+                You can achieve this by running `SET ROLE binding_user_group` before any other instruction in the SQL script that creates your object or framework performing database migrations.
+
+                If you have issues with tables already created, you must either:
+
+                1. Unbind the application that has created the objects and bind again (or delete the service key that has created the objects).
+                This is because when unbinding, Tanzu Cloud Service Broker for AWS automatically transfers ownership of existing objects to the `binding_user_group` role.
+
+                2. Manually transfer ownership to the `binding_user_group` with the following statement "ALTER TABLE tab_name OWNER TO binding_user_group;".
+                You must run this statement after logging in to the database with the credentials from the binding/service key used to create the objects.
+
+                3. If you only need other bindings to perform data operations, you can create new bindings for interacting with these objects.
+                This is because Tanzu Cloud Service Broker for AWS assigns permissions to all existing tables whenever a new binding is created. However, this new binding does
+                not have permissions to perform DDL operations until points 1. or 2. are implemented.
                 </td>
             </tr>
         </tbody>
