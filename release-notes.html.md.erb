@@ -134,10 +134,10 @@ This release has the following fixes:
   By using General Purpose SSD gp3 storage volumes, VMware did not allow you to customize storage performance.
   This configuration is no longer blocked.
 
-- **Improved stack selection to try with "cflinuxfs3" before using the default value:**
+- **Fixed the incorrect buildpack stack association when the stack `cflinuxfs4` was not available in your deployment:**
 
-  Previously, it was possible in some scenarios that the default value was a Windows stack causing
-  tile installation to fail.
+  From now onward, if the deployment does not have available the `cflinuxfs4`stack, but the stack `cflinuxfs3`,
+  the Tile will deploy the application selecting the `cflinuxfs3` stack creating the correct association.
 
 #### General
 
