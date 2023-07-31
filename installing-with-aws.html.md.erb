@@ -5,18 +5,20 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-This topic tells you how to install and configure <%= vars.product_full %> (<%= vars.product_short %>).
+This topic tells you how to install and configure <%= vars.product_full %> (<%=
+vars.product_short %>).
 
 ## <a id="prereq"></a> Prerequisites for Installing <%= vars.product_short %>
 
 Before you install <%= vars.product_short %>, you must have:
 
-- **A small MySQL database:** This database is used as the _state database_.
-  The broker requires this database to store its state.
+- **A small MySQL database:** This database is used as the _state database_. The
+  broker requires this database to store its state.
 
-- **AWS account credentials:** If the AWS account where the instances are created differs from the
-  one the platform runs in, the user is responsible for setting up the necessary networking.
-  The broker needs the following credentials to manage resources within an account:
+- **AWS account credentials:** If the AWS account where the instances are
+  created differs from the one the platform runs in, the user is responsible for
+  setting up the necessary networking. The broker needs the following
+  credentials to manage resources within an account:
   - Access Key ID
   - Secret Access Key
 
@@ -175,33 +177,38 @@ Before you install <%= vars.product_short %>, you must have:
    }
    ```
 
-  To enable the Enhanced Monitoring feature for Amazon RDS, it's necessary to grant additional permissions.
-  To read about setting up and enabling Enhanced Monitoring
-  see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html).
+  To enable the Enhanced Monitoring feature for Amazon RDS, it's necessary to
+  grant additional permissions. To read about setting up and enabling Enhanced
+  Monitoring see the [AWS
+  documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html).
 
 ## <a id="install"></a> Install <%= vars.product_short %>
 
-To use <%= vars.ops_manager %> Installation Dashboard to install <%= vars.product_short %>:
+To use <%= vars.ops_manager %> Installation Dashboard to install <%=
+vars.product_short %>:
 
-1. Download the product file from
-[<%= vars.product_network %>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
+1. Download the product file from [<%= vars.product_network
+%>](https://network.tanzu.vmware.com/products/cloud-service-broker-aws/).
 
-1. Navigate to the <%= vars.ops_manager %> Installation Dashboard and click **Import a Product** to
-upload the product file.
+1. Navigate to the <%= vars.ops_manager %> Installation Dashboard and click
+**Import a Product** to upload the product file.
 
-1. Under **Import a Product**, click **+** next to the version number of <%= vars.product_short %>
-in the left sidebar. This adds the tile to your staging area.
+1. Under **Import a Product**, click **+** next to the version number of <%=
+vars.product_short %> in the left sidebar. This adds the tile to your staging
+area.
 
 1. Click the newly added **<%= vars.product_short %>** tile.
 
 ## <a id="config-aws"></a> Configure the <%= vars.product_short %>
 
-The following procedures describe configuring the panes on the <%= vars.product_short %> tile.
+The following procedures describe configuring the panes on the <%=
+vars.product_short %> tile.
 
 ### <a id="config-azs"></a> Configure AZs and Networks
 
-This section describes how to choose an AZ to run the service broker for <%= vars.product_short %>.
-It also describes how to select networks for <%= vars.product_short %>.
+This section describes how to choose an AZ to run the service broker for <%=
+vars.product_short %>. It also describes how to select networks for <%=
+vars.product_short %>.
 
 To configure AZs and networks:
 
@@ -219,8 +226,8 @@ To configure AZs and networks:
 
 ### <a id="config-creds"></a> Configure AWS Credentials
 
-This section describes how to configure the AWS credentials that <%= vars.product_short %> requires to
-manage service instances.
+This section describes how to configure the AWS credentials that <%=
+vars.product_short %> requires to manage service instances.
 
 To configure AWS credentials:
 
@@ -234,36 +241,37 @@ To configure AWS credentials:
    | AWS Secret Access Key | Enter the AWS Secret Access Key            |
    | Default Region        | Enter the Region where your VPC is located |
 
-   <p class="note"><strong>Note:</strong> Gov Cloud regions are not supported.
+   >**Note**
+   >Gov Cloud regions are not supported.
 
 3. Click **Save**.
 
 ### <a id="state-db"></a> Configure a State Database
 
-This section describes how to associate <%= vars.product_short %> with the MySQL state database.
+This section describes how to associate <%= vars.product_short %> with the MySQL
+state database.
 
 #### <a id="encrypt-state-db"></a> About Encrypting the State Database
 
-In production environments, VMware recommends that you enable encryption.
-This encrypts certain sensitive information in the state database, such as IaaS credentials.
-The encryption password that you enter on the **Service Broker Config** pane is used to generate an
-encryption key.
+In production environments, VMware recommends that you enable encryption. This
+encrypts certain sensitive information in the state database, such as IaaS
+credentials. The encryption password that you enter on the **Service Broker
+Config** pane is used to generate an encryption key.
 
-Applying changes takes longer than normal when you first enable encryption and when you change the
-encryption password.
+Applying changes takes longer than normal when you first enable encryption and
+when you change the encryption password.
 
-<p class="note caution">
-  <strong>Caution:</strong> Enable backup and restore capabilities in the MySQL database before
-  attempting encryption. This is because if something goes wrong, and your database is only partially
-  encrypted, it is safest to revert to the most recent database backup.
-</p>
+>**Caution** Enable backup and restore capabilities in the MySQL database before
+>attempting encryption. This is because if something goes wrong, and your
+  database is only partially encrypted, it is safest to revert to the most
+  recent database backup.
 
 #### <a id="state-db-prereq"></a> Prerequisite
 
-You must have a small MySQL database to use as the state database.
-The state database stores text information about each state change of each service instance, so it
-does not have to be large. For most use cases, 10&nbsp;GB is more than enough to cover the needs of
-<%= vars.product_short %>.
+You must have a small MySQL database to use as the state database. The state
+database stores text information about each state change of each service
+instance, so it does not have to be large. For most use cases, 10&nbsp;GB is
+more than enough to cover the needs of <%= vars.product_short %>.
 
 #### <a id="configure-state-db"></a> Procedure: Configure a State Database
 
@@ -271,7 +279,8 @@ To configure <%= vars.product_short %> with a database:
 
 1. Click **Service Broker Config**.
 
-   <%= image_tag("images/service-broker-config-pane.png", :alt => "Fields for configuring the service broker.", :width => "400") %>
+   <%= image_tag("images/service-broker-config-pane.png", :alt => "Fields for
+   configuring the service broker.", :width => "400") %>
 
 2. Configure the text boxes as follows:
 
@@ -289,10 +298,11 @@ To configure <%= vars.product_short %> with a database:
 
 3. Click **Save**.
 
-4. If upgrading from a previous tile version, service instances might need upgrading.
-By default, the tile upgrades all instances during installation.
-To configure the upgrade task, see [Upgrade All Service Instances Configuration](#upgrade-all-config).
-For version-specific upgrade instructions, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
+4. If upgrading from a previous tile version, service instances might need
+upgrading. By default, the tile upgrades all instances during installation. To
+configure the upgrade task, see [Upgrade All Service Instances
+Configuration](#upgrade-all-config). For version-specific upgrade instructions,
+see [Upgrading Cloud Service Broker for AWS](upgrading.html).
 
 1. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
@@ -300,39 +310,40 @@ For version-specific upgrade instructions, see [Upgrading Cloud Service Broker f
 
 3. Click **Apply changes** to install the <%= vars.product_short %> tile.
 
-If you later want to change the password on the state database,
-see [Rotate the Encryption Password on the State Database](#rotate-password) later in the topic.
+If you later want to change the password on the state database, see [Rotate the
+Encryption Password on the State Database](#rotate-password) later in the topic.
 
-If you later want to deactivate encryption,
-see [Remove Encryption from the State Database](#remove-encryption) later in the topic.
+If you later want to deactivate encryption, see [Remove Encryption from the
+State Database](#remove-encryption) later in the topic.
 
 ### <a id="services"></a> Configure Services with <%= vars.product_short %>
 
-This section describes how to configure services and service plans offered by the
-<%= vars.product_short %> within the Cloud Foundry Marketplace on your instance of Cloud Foundry.
+This section describes how to configure services and service plans offered by
+the <%= vars.product_short %> within the Cloud Foundry Marketplace on your
+instance of Cloud Foundry.
 
-<%= vars.product_short %> specifies new service plans through JSON.
-An example is provided, using the smallest possible size, within each service.
+<%= vars.product_short %> specifies new service plans through JSON. An example
+is provided, using the smallest possible size, within each service.
 
 To configure services and service plans:
 
-1. Click the already-installed <%= vars.product_short %> tile in your
-<%= vars.ops_manager %> tile Dashboard.
+1. Click the already-installed <%= vars.product_short %> tile in your <%=
+vars.ops_manager %> tile Dashboard.
 
-1. Find the service you want to make available in the left navigation under
-the **Settings** tab.
+1. Find the service you want to make available in the left navigation under the
+**Settings** tab.
 
-1. Enter additional plans as additional JSON objects within the provided text box.
-   For details about properties for each service configuration, see
+1. Enter additional plans as additional JSON objects within the provided text
+   box. For details about properties for each service configuration, see
    [Service Plan Reference](reference/index.html).
 
-   <p class="note">
-     <strong>Note:</strong> When developers create or update a service instance,
+   >**Note**
+   >When developers create or update a service instance,
      they cannot override any plan-level properties that you set in this text box.
-  </p>
 
-1. (Optional) To use different credentials to the ones specified in the **AWS Config** tab,
-supply the credentials as properties to a plan instance in the additional plans box:
+2. (Optional) To use different credentials to the ones specified in the **AWS
+Config** tab, supply the credentials as properties to a plan instance in the
+additional plans box:
 
    ```json
    [
@@ -349,26 +360,29 @@ supply the credentials as properties to a plan instance in the additional plans 
 
 1. Click **Save**.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard and click **Review Pending Changes**.
+2. Return to the <%= vars.ops_manager %> Installation Dashboard and click
+   **Review Pending Changes**.
 
-1. Click **Apply changes**.
+3. Click **Apply changes**.
 
-1. Review your Cloud Foundry Marketplace to see the new plans.
+4. Review your Cloud Foundry Marketplace to see the new plans.
 
 ### <a id="config-flags"></a> Configure Feature Flags
 
-This section describes how to enable feature flags for <%= vars.product_short %>.
+This section describes how to enable feature flags for <%= vars.product_short
+%>.
 
 To configure feature flags:
 
 1. Click **Feature Flags**.
 
-1. By default, the `Enable Beta service offerings` flag is `false`.
-   To enable all service offerings tagged as beta, select the check box.
+1. By default, the `Enable Beta service offerings` flag is `false`. To enable
+   all service offerings tagged as beta, select the check box.
 
 1. Click **Save**.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard and click **Review Pending Changes**.
+1. Return to the <%= vars.ops_manager %> Installation Dashboard and click
+   **Review Pending Changes**.
 
 1. Click **Apply changes**.
 
@@ -376,8 +390,8 @@ To configure feature flags:
 
 ## <a id="rotate-password"></a>Rotate the Encryption Password on the State Database
 
-If you have already set an encryption password and want to change it, see the following instructions
-steps:
+If you have already set an encryption password and want to change it, see the
+following instructions steps:
 
 To rotate the password on the state database:
 
@@ -387,8 +401,8 @@ To rotate the password on the state database:
 
 3. Click **Add**.
 
-4. Enter a new **Label** and **Password** for the new password, and select  **Primary**.
-   You cannot change the label or password after you save.
+4. Enter a new **Label** and **Password** for the new password, and select
+   **Primary**. You cannot change the label or password after you save.
 
 5. Click **Save**.
 
@@ -398,22 +412,25 @@ To rotate the password on the state database:
 
 8. Click **Apply changes** to install the <%= vars.product_short %> tile.
 
-9. (Recommended) After the apply changes process completes, delete the non-primary label and password
-   pair and apply changes again.
+9. (Recommended) After the apply changes process completes, delete the
+   non-primary label and password pair and apply changes again.
 
-   <%= image_tag("images/rotate-password.png", :alt => "Screenshot of the section where you can rotate
-   the encryption password on the state database.", :width => "400") %>
+   <%= image_tag("images/rotate-password.png", :alt => "Screenshot of the
+   section where you can rotate the encryption password on the state database.",
+   :width => "400") %>
 
 ## <a id="remove-encryption"></a> Remove Encryption from the State Database
 
-If the data in the state database was previously encrypted and you want to deactivate encryption,
-remove encryption from the state database:
+If the data in the state database was previously encrypted and you want to
+deactivate encryption, remove encryption from the state database:
 
 1. Click **Service Broker Config**.
 
-2. Deselect the **Enable encryption of the Cloud Service Broker database** check box.
+2. Deselect the **Enable encryption of the Cloud Service Broker database** check
+   box.
 
-3. Deselect the **Primary** check box, but do not change the Label or Password text boxes.
+3. Deselect the **Primary** check box, but do not change the Label or Password
+   text boxes.
 
 4. Click **Save**.
 
@@ -423,39 +440,42 @@ remove encryption from the state database:
 
 7. Click **Apply changes** to install the <%= vars.product_short %> tile.
 
-8. (Recommended) After the apply changes process completes, delete all label and password pairs and
-   apply changes again.
+8. (Recommended) After the apply changes process completes, delete all label and
+   password pairs and apply changes again.
 
-   <%= image_tag("images/remove-encryption.png", :alt => "Screenshot of the section where you can
-   remove encryption from the state database.", :width => "400") %>
+   <%= image_tag("images/remove-encryption.png", :alt => "Screenshot of the
+   section where you can remove encryption from the state database.", :width =>
+   "400") %>
 
 ## <a id="upgrade-all-config"></a> Upgrade All Services Instances Configuration
 
-If upgrading from a previous tile version, service instances might need upgrading.
-By default, the tile upgrades all instances from active service plans during installation.
+If upgrading from a previous tile version, service instances might need
+upgrading. By default, the tile upgrades all instances from active service plans
+during installation.
 
 This section is about configuring the **Upgrade All Service Instances** task.
 For the overall upgrade process and version-specific upgrade instructions, see
 [Upgrading Cloud Service Broker for AWS](upgrading.html).
 
-If the **Upgrade all services** check box is not selected, service instances are _not_ upgraded
-during installation.
-The broker might be unable to manage service instances that are not upgraded.
-Any operations on that instance, such as update, bind, unbind, or delete, are blocked
-until you run the upgrade task.
-You can run the upgrade task at any time, and as many times as needed.
+If the **Upgrade all services** check box is not selected, service instances are
+_not_ upgraded during installation. The broker might be unable to manage service
+instances that are not upgraded. Any operations on that instance, such as
+update, bind, unbind, or delete, are blocked until you run the upgrade task. You
+can run the upgrade task at any time, and as many times as needed.
 
-<p class="note important">
-  <strong>Important:</strong> Failure to upgrade one or more instance does not cause the tile
-  installation to fail.
-  Review the <code>deploy all</code> errand logs to ensure all instances have been upgraded successfully.
-</p>
+>**Important** Failure to upgrade one or more instance does not cause the tile
+>installation to fail. Review the `deploy all` errand logs to ensure all
+  instances have been upgraded successfully.
+
 
 To configure the upgrade task:
 
 1. Go to the **Upgrade All Service Instances Config** tab.
 
-   <%= image_tag("images/upgrade-all-services-config-pane.png", :alt => "Screenshot of Upgrade All Service Instances Config tab. The Upgrade all services check box is checked. The text box contains the number 10.", :width => "400") %>
+   <%= image_tag("images/upgrade-all-services-config-pane.png", :alt =>
+   "Screenshot of Upgrade All Service Instances Config tab. The Upgrade all
+   services check box is checked. The text box contains the number 10.", :width
+   => "400") %>
 
 2. Configure the fields as follows:
 
