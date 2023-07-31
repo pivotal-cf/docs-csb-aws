@@ -8,13 +8,12 @@ owner: Cloud Service Broker
 This topic provides reference information about the <a href="https://aws.amazon.com/rds/postgresql/">Amazon RDS for PostgreSQL</a> (csb-aws-postgres)
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
-<p class="note">
-  <strong>Note:</strong> Release v1.2.0 removes brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
+>**Note**
+>Release v1.2.0 removes brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
   All plans must be configured through the tile.
   If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
-  maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
-  For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
-</p>
+  maintain, see [Previously Provided Pre-configured Plans](#old-plans).
+  For more information about upgrade steps, see [Upgrading](../upgrading.html.md.erb).
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -42,10 +41,9 @@ to your plan.
 To create plans with specific size and versions, set `instance_class`, `storage_gb`, and `postgres_version`
 properties.
 
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot
+>**Note**
+>If you set a parameter at plan level, developers cannot
   change the value when creating or updating service instances.
-</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
