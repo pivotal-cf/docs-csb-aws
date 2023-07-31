@@ -9,13 +9,12 @@ This topic gives you reference information about the
 [Amazon RDS for MySQL](https://aws.amazon.com/rds/mysql/) (csb-aws-mysql) service.
 It details the plans, configuration parameters, and binding credentials.
 
-<p class="note">
-  <strong>Note:</strong> Release v1.3.0 removes brokerpak pre-configured plans for Amazon RDS for MySQL.
+>**Note**
+>Release v1.3.0 removes brokerpak pre-configured plans for Amazon RDS for MySQL.
   All plans must be configured through the tile.
   If you have instances of the RDS for MySQL that were created in previous versions that you want to
-  maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
-  For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>.
-</p>
+  maintain, see [Previously Provided Pre-configured Plans](#old-plans).
+  For more information about upgrade steps, see [Upgrading](../upgrading.html.md.erb).
 
 <%= vars.product_full %> v1.3.0 and later doesn't support unsecured connections to RDS MySQL instances.
 For secure connections to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
@@ -45,10 +44,9 @@ You can also add any of the parameters listed in the [Configuration Parameters](
 
 To create plans with specific size and versions, set `instance_class`, `storage_gb`, and `mysql_version` properties.
 
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value
+>**Note**
+>If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
-</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
@@ -478,10 +476,9 @@ The format for binding credentials for MySQL is as follows:
 }
 ```
 
-<p class="note">
-  <strong>Note:</strong> The <code>jdbcUrl</code> has server certificate verification always enabled,
+>**Note**
+>The `jdbcUrl` has server certificate verification always enabled,
   and requires the use of MySQL Connector for Java v8.0.13 or later.
-</p>
 
 ## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 

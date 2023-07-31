@@ -39,10 +39,9 @@ The following table lists parameters which can only be configured for additional
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
 
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value
+>**Note**
+>If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
-</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
@@ -182,10 +181,11 @@ provision only:
         For more information about deleting Aurora database cluster and database instances,
         see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection">AWS documentation</a>.
         For more information about storage reliability, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html">AWS documentation</a>.
-        <p class="note">
-          <strong>Note:</strong> If the protection is active and a deprovision operation is performed, all
+        <p class="note important">
+        <span class="note__title">Important</span>
+           If the protection is active and a deprovision operation is performed, all
           instances associated with the cluster are erased.
-          This leaves the system without computing capacity, and the service will stop.
+          This leaves the system without computing capacity, and the service stops.
           The data remains safe because it is associated with the virtual volume associated with the cluster.
           To recover the computing capacity after an accidental deprovision operation,
           set the number of instances that you want for the cluster through the property

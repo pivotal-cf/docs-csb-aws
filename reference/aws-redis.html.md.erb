@@ -9,10 +9,9 @@ This topic gives you reference information about the
 [Amazon ElastiCache for Redis](https://aws.amazon.com/elasticache/redis) (csb-aws-redis) service.
 It details the plans, configuration parameters, and binding credentials.
 
-<p class="note important">
-  <strong>Important:</strong> The Amazon ElastiCache for Redis service is currently in beta and is intended for
+>**Important**
+> The Amazon ElastiCache for Redis service is currently in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
-</p>
 
 ## <a id="plans"></a> Plans
 
@@ -48,11 +47,12 @@ The default plans for Amazon ElastiCache for Redis are in the table below:
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
-When configuring <%= vars.product_short %> you can add additional plans.
-For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+When configuring <%= vars.product_short %> you can add additional plans. For how
+to configure plans, see [Configure Services with Cloud Service Broker for
+AWS](../installing-with-aws.html#services).
 
-The following table lists parameters that can only be configured for additional plans:
+The following table lists parameters that can only be configured for additional
+plans:
 
 | Parameter Name    | Values                                                                              | Default | Required |
 |-------------------|-------------------------------------------------------------------------------------|---------|----------|
@@ -66,13 +66,12 @@ The following table lists parameters that can only be configured for additional 
 | `cache_size`      | Cache size in GB. 2&ndash;256, multiples of 2.                                      | _n/a_   | Yes      |
 | `redis_version`   | The version for the Redis instance. It can be any AWS-supported Redis version.      | _n/a_   | Yes      |
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
-to your plan.
+You can also add any of the parameters listed in the [Configuration
+Parameters](#parameters) section to your plan.
 
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value when creating
+>**Note**
+>If you set a parameter at plan level, developers cannot change the value when creating
   or updating service instances.
-</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
@@ -88,10 +87,10 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The following table lists the parameters that you can configure, by using the `-c` flag, when
-provisioning or updating a `csb-aws-redis` service.
-The Operation column displays whether a parameter is supported for both provision and update, or for
-provision only:
+The following table lists the parameters that you can configure, by using the
+`-c` flag, when provisioning or updating a `csb-aws-redis` service. The
+Operation column displays whether a parameter is supported for both provision
+and update, or for provision only:
 
 <table class="nice">
   <thead>
