@@ -5,32 +5,29 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-This topic gives you reference information about the
-[Amazon ElastiCache for Redis](https://aws.amazon.com/elasticache/redis) (csb-aws-redis)
-service. It details the plans, configuration parameters, and binding credentials.
+This topic gives you reference information about the [Amazon ElastiCache for
+Redis](https://aws.amazon.com/elasticache/redis) (csb-aws-redis) service. It
+details the plans, configuration parameters, and binding credentials.
 
-<p class="note">
-  <strong>Note:</strong> <%= vars.product_full %> v1.5.0 removes brokerpak pre-configured plans for Amazon ElastiCache for Redis.
-  All plans must be configured through the tile.
-  If you have instances of Amazon ElastiCache for Redis that were created in previous versions and that you want to
-  maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
-  For more information about upgrade steps, see
-  <a href="../upgrading.html.md.erb">Upgrading <%= vars.product_full %></a>.
-</p>
-
-<p class="note">
-  <strong>Note:</strong> In <%= vars.product_full %> v1.5.0 and later, changes made to this service using the <code>cf update-service</code> command are applied immediately.
+>**Note** <%= vars.product_full %> v1.5.0 removes brokerpak pre-configured plans
+>for Amazon ElastiCache for Redis. All plans must be configured through the
+  tile. If you have instances of Amazon ElastiCache for Redis that were created
+  in previous versions and that you want to maintain, see [Previously Provided
+  Pre-configured Plans](#old-plans). For more information about upgrade steps,
+  see [Upgrading <%= vars.product_full %>](../upgrading.html.md.erb).
+>Also, in <%= vars.product_full %> v1.5.0 and later, changes made to this
+>service by using the `cf update-service` command are applied immediately.
   This is instead of being queued to be applied during the maintenance window.
   This might result in brief downtime while the server reboots.
-</p>
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
-When configuring <%= vars.product_short %> you can add additional plans.
-For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+When configuring <%= vars.product_short %> you can add additional plans. For how
+to configure plans, see [Configure Services with Cloud Service Broker for
+AWS](../installing-with-aws.html#services).
 
-The following table lists parameters that can only be configured for additional plans:
+The following table lists parameters that can only be configured for additional
+plans:
 
 | Parameter Name         | Values                                                                                     | Default | Required |
 |------------------------|--------------------------------------------------------------------------------------------|---------|----------|
@@ -44,13 +41,12 @@ The following table lists parameters that can only be configured for additional 
 | `metadata.displayName` | Name to use when displaying the plan in the Marketplace.                                   | _n/a_   | No       |
 | `metadata.bullets`     | List of bullet points to display in Apps Manager.                                          | _n/a_   | No       |
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
-to your plan.
+You can also add any of the parameters listed in the [Configuration
+Parameters](#parameters) section to your plan.
 
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value when creating
+>**Note**
+>If you set a parameter at plan level, developers cannot change the value when creating
   or updating service instances.
-</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
@@ -66,10 +62,10 @@ You can update the configuration parameters for a service instance by running:
 cf update-service SERVICE-INSTANCE -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
 ```
 
-The following table lists the parameters that you can configure, by using the `-c` flag, when
-provisioning or updating a `csb-aws-redis` service.
-The Operation column displays whether a parameter is supported for both provision and update, or for
-provision only:
+The following table lists the parameters that you can configure, by using the
+`-c` flag, when provisioning or updating a `csb-aws-redis` service. The
+Operation column displays whether a parameter is supported for both provision
+and update, or for provision only:
 
 <table class="nice">
   <thead>
@@ -509,11 +505,12 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
-<%= vars.product_short %> returns the Redis AUTH token created at provision time alongside endpoints
-information to connect to the service instance.
+<%= vars.product_short %> returns the Redis AUTH token created at provision time
+alongside endpoints information to connect to the service instance.
 
-> **Note** Because the <%= vars.product_short %> configures Redis AUTH as the authentication mechanism,
-> all bindings share the same Redis AUTH token. Deleting the binding does not revoke the credentials.
+> **Note** Because the <%= vars.product_short %> configures Redis AUTH as the
+> authentication mechanism, all bindings share the same Redis AUTH token.
+> Deleting the binding does not revoke the credentials.
 
 ## <a id="binding-creds"></a> Binding Credentials
 
@@ -529,17 +526,20 @@ The format for binding credentials for Redis is as follows:
 }
 ```
 
-`host` is the primary node endpoint address. This endpoint can be used both for writing and reading.
+`host` is the primary node endpoint address. This endpoint can be used both for
+writing and reading.
 
-`reader_endpoint` is the IaaS-recommended endpoint to use for reads whenever eventual consistency is
-acceptable.
-The reader endpoint evenly splits incoming connections to the endpoint between all read replicas.
-For more information, see the
-<a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Endpoints.html">AWS documentation</a>.
+`reader_endpoint` is the IaaS-recommended endpoint to use for reads whenever
+eventual consistency is acceptable. The reader endpoint evenly splits incoming
+connections to the endpoint between all read replicas. For more information, see
+the <a
+href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Endpoints.html">AWS
+documentation</a>.
 
 ## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 
-The following table lists the previously provided plans for Amazon ElastiCache for Redis service:
+The following table lists the previously provided plans for Amazon ElastiCache
+for Redis service:
 
 | Plan      | Cache Size         | AWS Cache Node Type | HA  |
 |-----------|--------------------|---------------------|-----|
@@ -550,31 +550,34 @@ The following table lists the previously provided plans for Amazon ElastiCache f
 | medium-ha | minimum 4&nbsp;GB  | cache.m5.large      | yes |
 | large-ha  | minimum 16&nbsp;GB | cache.r4.xlarge     | yes |
 
-To keep these plans in this version of the broker, add them through the tile as custom plans.
-For how to configure plans through the tile, see
-[Configure Services with <%= vars.product_short %>](../installing-with-aws.html#services).
+To keep these plans in this version of the broker, add them through the tile as
+custom plans. For how to configure plans through the tile, see [Configure
+Services with <%= vars.product_short %>](../installing-with-aws.html#services).
 
-> **Important** Property `cache_size` is now deprecated.
-> Consider replacing it with its equivalent `node_type`. For more information, see
-> [Equivalence of cache_size and node_type](#cache-size-node-type).
-> Specifying `node_type` in a plan prevents any existing or future service from specifying `node_type`
-> as a service-specific configuration parameter.
+> **Important** Property `cache_size` is now deprecated. Consider replacing it
+> with its equivalent `node_type`. For more information, see [Equivalence of
+> cache_size and node_type](#cache-size-node-type). Specifying `node_type` in a
+> plan prevents any existing or future service from specifying `node_type` as a
+> service-specific configuration parameter.
 
-This has strong implications for existing plans because existing services might become unmanageable
-if they specified a custom `node_type` when they were created.
+This has strong implications for existing plans because existing services might
+become unmanageable if they specified a custom `node_type` when they were
+created.
 
-When in doubt, keep using `cache_size` for existing plans and start using `node_type` for any new
-plans.
+When in doubt, keep using `cache_size` for existing plans and start using
+`node_type` for any new plans.
 
-For more information about node types and pricing, see the
-[AWS documentation](https://aws.amazon.com/elasticache/pricing/) and
-[Choosing your node size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
+For more information about node types and pricing, see the [AWS
+documentation](https://aws.amazon.com/elasticache/pricing/) and [Choosing your
+node
+size](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/nodes-select-size.html).
 
-<%= vars.product_full %> v1.5.0 sets the default values to `true` for `at_rest_encryption_enabled` and
-`multi_az_enabled`.
-Because previously created instances cannot be modified to use Multi-AZ or encryption at rest, set the
-properties `multi_az_enabled` and `at_rest_encryption_enabled` to `false` when replicating the old
-plans to match service instances that have already been created.
+<%= vars.product_full %> v1.5.0 sets the default values to `true` for
+`at_rest_encryption_enabled` and `multi_az_enabled`. Because previously created
+instances cannot be modified to use Multi-AZ or encryption at rest, set the
+properties `multi_az_enabled` and `at_rest_encryption_enabled` to `false` when
+replicating the old plans to match service instances that have already been
+created.
 
 Add the following block to keep the `small` plan:
 
@@ -692,7 +695,8 @@ Add the following block to keep the `large-ha` plan:
 
 ## <a id="cache-size-node-type"></a> Equivalence of cache_size and node_type
 
-Table of equivalents for `cache_size` and `node_type` for the previously pre-configured plans:
+Table of equivalents for `cache_size` and `node_type` for the previously
+pre-configured plans:
 
 | Plan      | Cache Size | Description | AWS Cache Node Type | HA  |
 |-----------|-----|--------------------|---------------------|-----|
@@ -703,7 +707,8 @@ Table of equivalents for `cache_size` and `node_type` for the previously pre-con
 | medium-ha | 4   | minimum 4&nbsp;GB  | cache.m5.large      | yes |
 | large-ha  | 16  | minimum 16&nbsp;GB | cache.r4.xlarge     | yes |
 
-Table of equivalents for `cache_size` and `node_type` not used by any of the previously pre-configured plans:
+Table of equivalents for `cache_size` and `node_type` not used by any of the
+previously pre-configured plans:
 
 | Cache Size | AWS Cache Node Type |
 |------------|---------------------|

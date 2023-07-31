@@ -8,15 +8,11 @@ owner: Cloud Service Broker
 This topic gives you reference information about the [Amazon RDS for MSSQL](https://aws.amazon.com/sql/)
 (csb-aws-mssql) service. It details the plans, configuration parameters, and binding credentials.
 
-<p class="note important">
-  <strong>Important:</strong> The Amazon RDS for MSSQL service is in beta and is intended for
+>**Important**
+>The Amazon RDS for MSSQL service is in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
-</p>
-
-<p class="note important">
-  <strong>Important:</strong> For secure connections to work, install the AWS certificate bundle in
+>Also, For secure connections to work, install the AWS certificate bundle in
   <%= vars.ops_manager %>.
-</p>
 
 ## <a id="plans-config"></a> Plan Configuration Parameters
 
@@ -40,10 +36,9 @@ The following table lists parameters that can only be configured for additional 
 You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
 
-<p class="note">
-  <strong>Note:</strong> If you set a parameter at plan level, developers cannot change the value
+>**Note**
+>If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
-</p>
 
 ## <a id="parameters"></a> Configuration Parameters
 
