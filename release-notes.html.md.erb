@@ -7,7 +7,7 @@ owner: Cloud Service Broker
 
 This topic describes the changes in this minor release of <%= vars.product_full %>.
 
-## <a id="1-6-0"></a> v1.6.0
+## <a id="1-7-0"></a> v1.7.0
 
 **Release date:** DD MMM YYYY
 
@@ -15,17 +15,6 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 This release has the following breaking changes:
 
-- **New permissions are needed to manage tags:**
-  You can now configure default global tags to add for each AWS service.
-  To manage these tags, you must add to your AWS account new permission policies.
-  See new [IAM Policies](installing-with-aws.html.md.erb).
-
-- **Major engine version must be specified when `auto_minor_version_upgrade` is enabled:**
-  As of v1.6.0, you cannot create or update an RDS instance with a configuration that
-  enables `auto_minor_version_upgrade` and does not select a major engine version.
-  To read the available RDS major versions, you must add to your AWS account new permission policies.
-  See new [IAM Policies](installing-with-aws.html.md.erb).
-  When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html.md.erb#upgrading-specifics).
 
 ### Features
 
@@ -33,148 +22,18 @@ New features and changes in this release:
 
 #### General
 
-- **Default global tags configuration exposed in the AWS Configuration section in the Tile:**
-  The broker automatically creates AWS tags for the service instance GUID and the org-space GUID. You
-  can now also configure default global tags to add for each AWS service.
 
-### Amazon ElastiCache for Redis
 
-- **Enabling automatic minor version upgrade is now possible:**
-
- You can now enable automatic minor version upgrade by the IaaS. This can be set up by configuring the new
- `auto_minor_version_upgrade` parameter and specifying a major version for `redis_version`. This feature
- is deactivated by default. For more information, see [Configuration Parameters](reference/aws-redis.html.md.erb#parameters).
-
-#### Amazon RDS for PostgreSQL
-
-- **Enabling query logging for your RDS for PostgreSQL DB instance:**
-
-  You can now enable query logging by setting `parameter_group_name` with a pre-created Parameter Group
-  that fulfills requirements for PostgreSQL log exports and the property `enable_export_postgresql_logs`.
-  By default, query logging is deactivated.
-  When activated, the default number of log retention days is 30.
-
-  For how to configure, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
-
-- **Enabling upgrade logging for your RDS for PostgreSQL DB instance:**
-
-  You can now enable upgrade logging by setting the property `enable_export_upgrade_logs`.
-  The upgrade log group only receives logs after a major upgrade happens (in other words, when the
-  `pgupgrade` module is invoked).
-  By default, upgrade logging is deactivated.
-  When activated, the default number of log retention days is 30.
-
-  For how to configure, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
-
-- **Encrypting CloudWatch logs:**
-
-  A new property, `cloudwatch_log_groups_kms_key_id`, is exposed, and enables you to configure your
-  AWS KMS customer-managed key to encrypt the logs generated when activating PostgreSQL or upgrade
-  logs.
-
-  For more information, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
-
-- **Set I/O operations per seconds (IOPS) when storage type is `gp3`:**
-
-  By using General Purpose SSD gp3 storage volumes, you can customize storage performance.
-  IOPS cannot be specified for `gp3` storage if the `storage_gb` value is below a per-engine threshold.
-  For more information, see [Configuration Parameters](reference/aws-postgres.html.md.erb#parameters).
-
-- **Support PostgreSQL v15:**
-
-  PostgreSQL v15 is now supported.
-
-#### Amazon RDS for Aurora PostgreSQL
-
-- **Support PostgreSQL v15:**
-
-  PostgreSQL v15 is now supported.
-
-#### Amazon RDS for MySQL
-
-- **Set I/O operations per seconds (IOPS) when storage type is `gp3`:**
-
-  By using General Purpose SSD gp3 storage volumes, you can customize storage performance.
-  IOPS cannot be specified for `gp3` storage if the `storage_gb` value is below a per-engine threshold.
-  For more information, see [Configuration Parameters](reference/aws-mysql.html.md.erb#parameters).
-
-#### Amazon RDS for MSSQL
-
-- **The Amazon RDS for MSSQL (Beta) service:**
-
-  An experimental foundation was added for development and test purposes only.
-  For more information about how to create and manage this service, see
-  [Amazon RDS for MSSQL (Beta)](reference/aws-mssql.html.md.erb).
-
-- **Basic properties exposed:**
-
-  Properties such as engine, MSSQL version, storage capacity, database name, instance name, VPC ID,
-  VPC security group IDs, and instance class are now configurable at plan creation or instance
-  operations. Moreover, you can define your own RDS subnet group when creating a plan or instance.
-
-  For more information about how to create and manage this service, see
-  [Amazon RDS for MSSQL (Beta)](reference/aws-mssql.html.md.erb).
-
-#### Amazon S3 Bucket
-
-- **The property `require_tls` is exposed:**
-
-  This property allows you to configure whether the bucket explicitly denies access to HTTP requests.
-  If enabled, the bucket only accepts requests sent through HTTPS.
-
-  For more information about how to create and manage this service, see
-  [Amazon S3 Bucket](reference/aws-s3.html.md.erb).
 
 ### Resolved issues
 
 This release has the following fixes:
 
-- **Fixed set I/O operations per seconds (IOPS) when storage type is `gp3`:**
 
-  By using General Purpose SSD gp3 storage volumes, VMware did not allow you to customize storage performance.
-  This configuration is no longer blocked.
-
-- **Fixed incorrect buildpack stack association when the stack `cflinuxfs4` is not available in your deployment:**
-
-  As of v1.6.0, if a deployment does not have the `cflinuxfs4` stack available,
-  but the `cflinuxfs3` stack is available,
-  the Tile deploys the application by selecting the `cflinuxfs3` stack and creating the correct association.
-
-#### General
-
-<%= partial vars.path_to_partials + '/csb/timeout-resolved' %>
-
-- **Fixes incorrect documentation links in Apps Manager:**
-
-  In Apps Manager, there is a link pointing to the documentation for each service. The links pointed
-  to old versions of the documentation. From now on, the links point to a generic landing page where
-  you can find links to every product version and, from there, navigate to the service you want.
 
 ### Known issues
 
-This release has the following issues:
 
-#### Amazon ElastiCache for Redis
-
-- **Inconsistent design in the format accepted in the `redis_version` property:**
-
-  If the version is 6 or later you can set the major and minor version, such as `6.2`.
-  Alternatively, you can leave the minor version unspecified in order to use the latest
-  version at creation time. For example, `6.x`.
-  For `7.x` versions, however, you must specify the minor version. For example, `7.0`.
-
-#### Amazon RDS
-
-- **Reaching AWS subnets quota in a DB subnet group:**
-  When creating an RDS instance, you can receive an error that says,
-  `DBSubnetQuotaExceededFault: Your specified number of subnets is greater than the limit of 20 DB subnets per group`.
-  This error results from the incorrect configuration associated with the DB subnet group.
-  For the solution, see the [troubleshooting page](troubleshooting.html.md.erb#reaching-aws-subnets-quota).
-
-- **Postgres bindings unable to see/modify objects created by another binding:**
-
-  If an app creates an object, such as a table, with permissions that do not allow other users to see/modify that object,
-  other bindings might fail to read/modify the objects. For more information, see the [troubleshooting page](troubleshooting.html.md.erb#postgres-binding-issue).
 
 ## <a id="view"></a> View release notes for another version
 
