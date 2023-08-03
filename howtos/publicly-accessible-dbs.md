@@ -34,8 +34,8 @@ However be aware that some CSB services will assign each and every subnet presen
 unless a custom set of subnets is specified. This can take you completely by surprise, the more so
 given that for some services you can also leave the VPC unspecified. CSB will pick the default one.
 
-_Eg. **The default VPC** will be used for the Amazon RDS for PostgreSQL service when `aws_vpc_id` is unspecified_:
-https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.5/csb-aws/GUID-reference-aws-postgres.html#configuration-parameters-1
+_Eg. **The default VPC** will be used for the Amazon RDS for PostgreSQL service when `aws_vpc_id` is unspecified_.
+See [Configuration Parameters](../reference/aws-postgres.html.md.erb#parameters) for more information
 
 
 ## Pitfalls when creating service plans
@@ -48,7 +48,7 @@ https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.5/csb-aws/GUID-r
 
 ## Pitfalls when creating service instances
 
-- If setting `publicly_accessible: true` or `ipv4_enabled: true` doesn't seem to allow public connections, contact the team
+If setting `publicly_accessible: true` doesn't seem to allow public connections, contact the team
   in charge of creating the CSB plans for your org and ask them whether they intend to support public database instances or not.
 - If setting `publicly_accessible: true` or `ipv4_enabled: true` causes your db to randomly accept public connection, contact the team
   in charge of creating the CSB plans for your org and ask them whether they intend to support public database instances or not.
@@ -72,21 +72,14 @@ https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Troubleshooting.html
 
 Other common scenario is missing just a firewall or security rule.  
 - If your service uses AWS RDS, you should specify `rds_vpc_security_group_ids` as a comma delimited list of security group ID's for instance.  
-  _You will need access to AWS Console to create the security groups. Alternatively, ask your CSB operators to provide you this list._
-- If your service uses GCP SQL, you should specify `authorized_networks_cidrs` as a JSON array of CIDR notation IPv4 or IPv6 addresses.
+  _You may need to review your security rules to add the rules needed to allow network traffic._
 
 
 ## Creating a public instance from scratch
 
 - AWS RDS:
   1. [Creating a DB instance in a VPC.](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.InstanceInVPC)  
-     _You should skip **Step 4: Create a DB instance in the VPC** since we want the DB to be managed by CSB._
-  1. [Create a CSB instance.](https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.5/csb-aws/GUID-reference-index.html)
+    _You should skip **The "Create a DB instance in the VPC" step** since we want the DB to be managed by CSB._
+  1. [Create a CSB instance.](../reference/index.html.md.erb)
      _Remember to specify the following fields:_  
      `aws_vpc_id`, `rds_subnet_group`, `rds_vpc_security_group_ids`, `publicly_accessible`.
-- GCP SQL:
-  1. [Create a VPC network.](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#creating_networks)
-  1. [Create a subnet.](https://cloud.google.com/vpc/docs/create-modify-vpc-networks#add-subnets)
-  1. [Create a CSB instance.](https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-GCP/1.2/csb-gcp/GUID-reference-index.html)  
-     _Remember to specify the following fields:_  
-     `authorized_network_id`, `authorized_networks_cidrs` and `public_ip`.
