@@ -13,9 +13,7 @@ Topics covered in this document:
 
 ### Setting `publicly_accessible` is not enough
 
-This is strictly true for AWS RDS. Other IAASes use different naming conventions (GCP > public_ip),
-however the same principle still applies. Setting such field is required but not sufficient for making
-the DB instance public.
+Setting `publicly_accessible` is required but not sufficient for making the DB instance public.
 
 Additional requirements tend to also use different naming conventions across IAASes, but in general,
 each and everyone of these additional requirements will fit into one of the following descriptions:
