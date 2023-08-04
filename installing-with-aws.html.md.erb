@@ -242,12 +242,16 @@ To configure AWS credentials:
 
 1. Click **AWS Config**.
 
+   <%= image_tag("images/aws-config.png", :alt => "Fields for
+   configuring aws access and connectivity.", :width => "400") %>
+
 2. Configure the text boxes as follows:
 
    | Text box              | Instructions                               |
    |-----------------------|--------------------------------------------|
    | AWS Access Key        | Enter the AWS Access Key                   |
    | AWS Secret Access Key | Enter the AWS Secret Access Key            |
+   | VPC ID                | Default VPC to connect service instances to. This value can be overriden in plans or at provisioning time. |
    | Default Region        | Enter the Region where your VPC is located |
 
    >**Note**
