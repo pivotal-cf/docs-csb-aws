@@ -519,7 +519,7 @@ The following errors can occur in any Amazon RDS instance:
                 <td>Solution</td>
                 <td>
                     <ol>
-                        <li>Check if explicitly specifying `aws_vpc_id`, `rds_subnet_group` and `rds_vpc_security_group_ids` solves the issue.</li>
+                        <li>Check if explicitly specifying <code>aws_vpc_id</code>, <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code> solves the issue.</li>
                         <li>If any of these fields are enforced by the plan, ask maintainers of the plan if they support public databases.</li>
                         <li>Check if you have correctly configured your <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html">Security group rules</a>.</li>
                         <li>Check if you have correctly configured your <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Subnets">DB subnet group</a>.</li>
