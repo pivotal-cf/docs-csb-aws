@@ -479,11 +479,25 @@ The following errors can occur in any Amazon RDS instance:
                 <td>
                   Several factors may contribute to the appearance of this error:
                     <ul>
-                        <li>If <code>aws_vpc_id</code> is left blank, the service instance will be created in the default VPC.</li>
-                        <li>If <code>rds_subnet_group</code> is left blank, a new subnet group containing all subnets in the VPC will be created and assigned to the service instance.</li>
-                        <li>If <code>rds_vpc_security_group_ids</code> is left blank, a new security group will be created with some generic rules that might not suit your needs.</li>
-                        <li>If any of the subnets included in the <code>rds_subnet_group</code> associated to the instance is private.</li>
-                        <li>If the specified <code>rds_vpc_security_group_ids</code> are insufficient or contain conflicting security rules.</li>
+                        <li>
+                          The service instance ended up associated to an unexpected VPC.<br>
+                          <i>Pitfall: when <code>aws_vpc_id</code> is left blank the service instance is created in the default VPC.</i>
+                        </li>
+                        <li>
+                          The service instance ended up associated to some unexpected subnets.<br>
+                          <i>Pitfall: when <code>rds_subnet_group</code> is left blank a new subnet group containing all subnets in the VPC is created and assigned to the service instance.</i>
+                        </li>
+                        <li>
+                          The service instance ended up associated to an unexpected security group.<br>
+                          <i>Pitfall: when <code>rds_vpc_security_group_ids</code> is left blank a new security group will be created allowing all ingress but no egress traffic.</i>
+                        </li>
+                        <li>
+                          The subnet group associated to the service instance contains some private subnets.<br>
+                          <i>Pitfall: according to AWS official docs, <quote>for a DB instance to be publicly accessible, all of the subnets in its DB subnet group must be public.</quote></i>
+                        </li>
+                        <li>
+                          The security groups associated to the service instance are missing some rules to allow routing your external traffic, or some rules are conflicting with one another.
+                        </li>
                     </ul>
                 </td>
             </tr>
