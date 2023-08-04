@@ -1,5 +1,5 @@
 ---
-title: Installing and Configuring Cloud Service Broker for AWS
+title: Installing and configuring Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
@@ -8,7 +8,7 @@ owner: Cloud Service Broker
 This topic tells you how to install and configure <%= vars.product_full %> (<%=
 vars.product_short %>).
 
-## <a id="prereq"></a> Prerequisites for Installing <%= vars.product_short %>
+## <a id="prereq"></a> Prerequisites for installing <%= vars.product_short %>
 
 Before you install <%= vars.product_short %>, you must have:
 
@@ -213,7 +213,7 @@ area.
 The following procedures describe configuring the panes on the <%=
 vars.product_short %> tile.
 
-### <a id="config-azs"></a> Configure AZs and Networks
+### <a id="config-azs"></a> Configure AZs and networks
 
 This section describes how to choose an AZ to run the service broker for <%=
 vars.product_short %>. It also describes how to select networks for <%=
@@ -233,7 +233,7 @@ To configure AZs and networks:
 
 3. Click **Save**.
 
-### <a id="config-creds"></a> Configure AWS Credentials
+### <a id="config-creds"></a> Configure AWS credentials
 
 This section describes how to configure the AWS credentials that <%=
 vars.product_short %> requires to manage service instances.
@@ -242,29 +242,29 @@ To configure AWS credentials:
 
 1. Click **AWS Config**.
 
-   <%= image_tag("images/aws-config.png", :alt => "Fields for
-   configuring aws access and connectivity.", :width => "400") %>
+   ![Text boxes for
+   configuring AWS access and connectivity.](images/aws-config.png)
 
 2. Configure the text boxes as follows:
 
    | Text box              | Instructions                               |
    |-----------------------|--------------------------------------------|
-   | AWS Access Key        | Enter the AWS Access Key                   |
-   | AWS Secret Access Key | Enter the AWS Secret Access Key            |
+   | AWS Access Key        | Enter the AWS access key.                   |
+   | AWS Secret Access Key | Enter the AWS secret access key.            |
    | VPC ID                | Default VPC to connect service instances to. This value can be overriden in plans or at provisioning time. |
-   | Default Region        | Enter the Region where your VPC is located |
+   | Default Region        | Enter the region where your VPC is located. |
 
    >**Note**
    >Gov Cloud regions are not supported.
 
 3. Click **Save**.
 
-### <a id="state-db"></a> Configure a State Database
+### <a id="state-db"></a> Configure a state database
 
 This section describes how to associate <%= vars.product_short %> with the MySQL
 state database.
 
-#### <a id="encrypt-state-db"></a> About Encrypting the State Database
+#### <a id="encrypt-state-db"></a> About encrypting the state database
 
 In production environments, VMware recommends that you enable encryption. This
 encrypts certain sensitive information in the state database, such as IaaS
@@ -286,7 +286,7 @@ database stores text information about each state change of each service
 instance, so it does not have to be large. For most use cases, 10&nbsp;GB is
 more than enough to cover the needs of <%= vars.product_short %>.
 
-#### <a id="configure-state-db"></a> Procedure: Configure a State Database
+#### <a id="configure-state-db"></a> Procedure: Configure a state database
 
 To configure <%= vars.product_short %> with a database:
 
@@ -329,7 +329,7 @@ Encryption Password on the State Database](#rotate-password) later in the topic.
 If you later want to deactivate encryption, see [Remove Encryption from the
 State Database](#remove-encryption) later in the topic.
 
-### <a id="services"></a> Configure Services with <%= vars.product_short %>
+### <a id="services"></a> Configure services with <%= vars.product_short %>
 
 This section describes how to configure services and service plans offered by
 the <%= vars.product_short %> within the Cloud Foundry Marketplace on your
@@ -380,7 +380,7 @@ additional plans box:
 
 4. Review your Cloud Foundry Marketplace to see the new plans.
 
-### <a id="config-flags"></a> Configure Feature Flags
+### <a id="config-flags"></a> Configure feature flags
 
 This section describes how to enable feature flags for <%= vars.product_short
 %>.
@@ -401,7 +401,7 @@ To configure feature flags:
 
 1. Review your Cloud Foundry Marketplace to see the new services.
 
-## <a id="rotate-password"></a>Rotate the Encryption Password on the State Database
+## <a id="rotate-password"></a>Rotate the encryption password on the state database
 
 If you have already set an encryption password and want to change it, see the
 following instructions steps:
@@ -432,7 +432,7 @@ To rotate the password on the state database:
    section where you can rotate the encryption password on the state database.",
    :width => "400") %>
 
-## <a id="remove-encryption"></a> Remove Encryption from the State Database
+## <a id="remove-encryption"></a> Remove encryption from the state database
 
 If the data in the state database was previously encrypted and you want to
 deactivate encryption, remove encryption from the state database:
@@ -460,7 +460,7 @@ deactivate encryption, remove encryption from the state database:
    section where you can remove encryption from the state database.", :width =>
    "400") %>
 
-## <a id="upgrade-all-config"></a> Upgrade All Services Instances Configuration
+## <a id="upgrade-all-config"></a> Upgrade all services instances configuration
 
 If upgrading from a previous tile version, service instances might need
 upgrading. By default, the tile upgrades all instances from active service plans
