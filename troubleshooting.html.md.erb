@@ -256,6 +256,7 @@ The following errors can occur in any Amazon RDS instance:
 - [Engine version not found when using a major
   version](#cannot-find-engine-version)
 - [Incompatible network state](#incompatible-network-state)
+- [Unreachable publicly accessible DB](#publicly-accessible-unreachable)
 
 <div id="reaching-aws-subnets-quota" class="wrap-table-overflow">
     <table class="table">
@@ -450,6 +451,71 @@ The following errors can occur in any Amazon RDS instance:
         </tbody>
     </table>
 </div>
+
+<div id="publicly-accessible-unreachable" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>Unreachable publicly accessible DB</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>create or update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  All following conditions must be occurring:
+                    <ul>
+                        <li>Service instance is currently configured with property <code>publicly_accessible: true</code>.</li>
+                        <li>The database is not reachable from outside your TAS foundation.</li>
+                        <li>Apps within your TAS foundation can connect without issues using a service binding.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  Several factors may contribute to the appearance of this error:
+                    <ul>
+                        <li>If <code>aws_vpc_id</code> is left blank, the service instance will be created in the default VPC.</li>
+                        <li>If <code>rds_subnet_group</code> is left blank, a new subnet group containing all subnets in the VPC will be created and assigned to the service instance.</li>
+                        <li>If <code>rds_vpc_security_group_ids</code> is left blank, a new security group will be created with some generic rules that might not suit your needs.</li>
+                        <li>If any of the subnets included in the <code>rds_subnet_group</code> associated to the instance is private.</li>
+                        <li>If the specified <code>rds_vpc_security_group_ids</code> are insufficient or contain conflicting security rules.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Recommendations</td>
+                <td>
+                  For service plans creators:
+                    <ul>
+                        <li>
+                          Explicitly specify <code>aws_vpc_id</code>, <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code> in the plan.<br>
+                          Currently, there is no way to specify at plan level that a property is mandatory and can't be left empty when creating an instance,
+                          so if your use case doesn't allow you to set these fields in the plan please keep in mind the pitfalls listed in <b>Cause</b> section above.
+                        </li>
+                        <li>Set <code>publicly_accessible: false</code> if your VPC and subnets were not designed with public DBs in mind or if you want to disallow them.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    <ol>
+                        <li>Check if explicitly specifying `aws_vpc_id`, `rds_subnet_group` and `rds_vpc_security_group_ids` solves the issue.</li>
+                        <li>If any of these fields are enforced by the plan, ask maintainers of the plan if they support public databases.</li>
+                        <li>Check if you have correctly configured your <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html">Security group rules</a>.</li>
+                        <li>Check if you have correctly configured your <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Subnets">DB subnet group</a>.</li>
+                    </ol>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
 ### <a id="postgres-errors"></a> Amazon PostgreSQL errors
 
