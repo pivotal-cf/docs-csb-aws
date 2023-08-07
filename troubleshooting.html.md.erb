@@ -486,12 +486,12 @@ The following errors can occur in any Amazon RDS instance:
                         </li>
                         <li>
                           The service instance ended up associated to some unexpected subnets.<br>
-                          Pitfall: when <code>rds_subnet_group</code> is left blank the service instance is associated to whatever subnet group is specified in the Tile's config.<br>
+                          Pitfall: when <code>rds_subnet_group</code> is left blank the service instance is associated to whatever subnet group is specified in the Tile's Service Offering config if present.<br>
                           <i>A new subnet group containing all subnets present in the VPC is created and assigned to the service instance when not specified.</i>
                         </li>
                         <li>
                           The service instance ended up associated to an unexpected security group.<br>
-                          Pitfall: when <code>rds_vpc_security_group_ids</code> is left blank the service instance is associated to whatever subnet group is specified in the Tile's config.<br>
+                          Pitfall: when <code>rds_vpc_security_group_ids</code> is left blank the service instance is associated to whatever subnet group is specified in the Tile's Service Offering config if present.<br>
                           <i>A new security group allowing all ingress traffic but no egress traffic is created and assigned to the service instance when not specified.</i>
                         </li>
                         <li>
@@ -507,14 +507,14 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td>Recommendations</td>
                 <td>
-                  For service plans creators:
+                  For operators:
                     <ul>
                         <li>
-                          Explicitly specify <code>aws_vpc_id</code>, <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code> in the plan.<br>
+                          Explicitly specify <code>aws_vpc_id</code>, <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code> in the plans or specify a default value in the Service Offering configuration when option is present.<br>
                           Currently, there is no way to specify at plan level that a property is mandatory and can't be left empty when creating an instance,
                           so if your use case doesn't allow you to set these fields in the plan please keep in mind the pitfalls listed in <b>Cause</b> section above.
                         </li>
-                        <li>Set <code>publicly_accessible: false</code> if your VPC, subnets and security groups are not designed with public DBs in mind or if you want to disallow them.</li>
+                        <li>Set <code>publicly_accessible: false</code> in the plans if your VPC, subnets and security groups are not designed with public DBs in mind or if you want to disallow them.</li>
                     </ul>
                 </td>
             </tr>
