@@ -456,6 +456,7 @@ The following errors can occur in any Amazon RDS instance:
 The following errors can occur in any Amazon PostgreSQL instance:
 
 - [User does not have permission for table](#postgres-binding-issue)
+- [IOPS and GP3 InvalidParameterCombination when storage size less than 400GB](#gp3-iops-issue)
 
 <div id="postgres-binding-issue" class="wrap-table-overflow">
     <table class="table">
@@ -515,6 +516,51 @@ The following errors can occur in any Amazon PostgreSQL instance:
                         <li>Manually transfer ownership to the <code>binding_user_group</code> with the following statement "ALTER TABLE tab_name OWNER TO binding_user_group;". You must run this statement after logging in to the database with the credentials from the binding/service key used to create the objects.</li>
                         <li>If you only need other bindings to perform data operations, you can create new bindings for interacting with these objects. This is because Tanzu Cloud Service Broker for AWS assigns permissions to all existing tables whenever a new binding is created. However, this new binding does not have permissions to perform DDL operations until points 1. or 2. are implemented.</li>
                     </ol>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="gp3-iops-issue" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>InvalidParameterCombination: You can't specify IOPS or storage throughput for engine
+              postgres and a storage size less than 400</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>Create</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Instance fails to create with error mentioned above if `storage_type` is set to `gp3` and `storage_gb` is less than 400GB event
+                  when `iops` is not specified.
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  The broker has a default value for iops of 3000 that is used if no value is specified and iops configuration is possible
+                  for the `storage_type` requested. However this value cannot be set if the `storage_gb` value is below a certain threshold
+                  For more information see [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    Specifying a value of `0` for `iops` will prevent the broker from setting `iops` in the instance. Baseline storage performance 
+                    will still be maintained by AWS as [documented]((https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)).
+                    You have two alternatives
+                    <ul>
+                    <li>Specify `"iops":0` in the plans: This value will be configured for all instances of the plan and can't 
+                    be overriden on an instance per instance bases</li>
+                    <li>Specify `"iops":0` as provision parameter: This can be configured in each service instance individually.
+                        <code>cf create-service csb-aws-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"iops":0}'</code>
+                    </li>
+                    </ul>
                 </td>
             </tr>
         </tbody>
