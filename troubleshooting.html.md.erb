@@ -456,6 +456,7 @@ The following errors can occur in any Amazon RDS instance:
 The following errors can occur in any Amazon PostgreSQL instance:
 
 - [User does not have permission for table](#postgres-binding-issue)
+- [IOPS and GP3 InvalidParameterCombination when storage size less than 400GB](#gp3-iops-postgres-issue)
 
 <div id="postgres-binding-issue" class="wrap-table-overflow">
     <table class="table">
@@ -520,3 +521,102 @@ The following errors can occur in any Amazon PostgreSQL instance:
         </tbody>
     </table>
 </div>
+<div id="gp3-iops-postgres-issue" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>InvalidParameterCombination: You can't specify IOPS or storage throughput for engine
+              postgres and a storage size less than 400</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>Create</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Instance fails to create with error mentioned above if `storage_type` is set to `gp3` and `storage_gb` is less than 400GB event
+                  when `iops` is not specified.
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  The broker has a default value for iops of 3000 that is used if no value is specified and iops configuration is possible
+                  for the `storage_type` requested. However this value cannot be set if the `storage_gb` value is below a certain threshold
+                  For more information see [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    Specifying a value of `0` for `iops` will prevent the broker from setting `iops` in the instance. Baseline storage performance 
+                    will still be maintained by AWS as [documented]((https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)).
+                    You have two alternatives
+                    <ul>
+                    <li>Specify `"iops":0` in the plans: This value will be configured for all instances of the plan and can't 
+                    be overriden on an instance per instance bases</li>
+                    <li>Specify `"iops":0` as provision parameter: This can be configured in each service instance individually.
+                        <code>cf create-service csb-aws-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"iops":0}'</code>
+                    </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+### <a id="mysql-errors"></a> Amazon MySQL errors
+
+The following errors can occur in any Amazon MySQL instance:
+
+- [IOPS and GP3 InvalidParameterCombination when storage size less than 400GB](#gp3-iops-mysql-issue)
+
+<div id="gp3-iops-mysql-issue" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>InvalidParameterCombination: You can't specify IOPS or storage throughput for engine
+              mysql and a storage size less than 400</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>Create</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Instance fails to create with error mentioned above if `storage_type` is set to `gp3` and `storage_gb` is less than 400GB event
+                  when `iops` is not specified.
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  The broker has a default value for iops of 3000 that is used if no value is specified and iops configuration is possible
+                  for the `storage_type` requested. However this value cannot be set if the `storage_gb` value is below a certain threshold
+                  For more information see [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    Specifying a value of `0` for `iops` will prevent the broker from setting `iops` in the instance. Baseline storage performance 
+                    will still be maintained by AWS as [documented]((https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)).
+                    You have two alternatives
+                    <ul>
+                    <li>Specify `"iops":0` in the plans: This value will be configured for all instances of the plan and can't 
+                    be overriden on an instance per instance bases</li>
+                    <li>Specify `"iops":0` as provision parameter: This can be configured in each service instance individually.
+                        <code>cf create-service csb-aws-mysql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"iops":0}'</code>
+                    </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
