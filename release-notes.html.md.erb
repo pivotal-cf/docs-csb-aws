@@ -28,6 +28,11 @@ New features and changes in this release:
   For more details on encrypting a database instance, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Enabling).
   Do not confuse this with [Transparent Data Encryption (TDE)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.TDE.html).
 
+- **Storage autoscaling:**
+  By default, all new MSSQL instances are created with storage autoscaling disabled.
+  Alternatively, it's possible to enable it by setting `max_allocated_storage` to a value greater than `storage_gb` at creation time or by updating the instance.
+  For more information check [Managing capacity automatically with Amazon RDS storage autoscaling](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling).
+
 - **Storage type and IOPS:**
   By default, all new MSSQL instances use io1 with up to 3000 operations per second (IOPS).
   Alternatively, it's possible to specify different storage type and iops at creation time or modify them after creation.
