@@ -135,6 +135,17 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>max_allocated_storage</code></td>
+      <td>Integer</td>
+      <td>
+        Upper limit in gibibytes to which Amazon RDS can automatically scale the storage of the DB instance.
+        Must be greater than or equal to <code>storage_gb</code> or <code>0</code> to disable storage autoscaling.
+        For more information check <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling">Managing capacity automatically with Amazon RDS storage autoscaling</a>.
+      </td>
+      <td>0</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>instance_class</code></td>
       <td>String</td>
       <td>
