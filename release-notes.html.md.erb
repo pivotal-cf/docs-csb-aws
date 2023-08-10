@@ -33,6 +33,14 @@ New features and changes in this release:
   Alternatively, it's possible to enable it by setting `max_allocated_storage` to a value greater than `storage_gb` at creation time or by updating the instance.
   For more information check [Managing capacity automatically with Amazon RDS storage autoscaling](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling).
 
+- **Storage type and IOPS:**
+  By default, all new MSSQL instances use io1 with up to 3000 operations per second (IOPS).
+  Alternatively, it's possible to specify different storage type and iops at creation time or modify them after creation.
+  For more information check [Amazon RDS DB instance storage](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html).
+
+  - **Deletion protection:**
+  By default, all new MSSQL instances are created with deletion protection disabled.
+  Alternatively, it's possible to enable deletion protection at creation time or by updating the instance.
 
 #### General
 

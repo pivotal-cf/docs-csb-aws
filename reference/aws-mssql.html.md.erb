@@ -160,6 +160,30 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>storage_type</code></td>
+      <td>String</td>
+      <td>
+        Type of storage to be used.
+        One of <code>standard</code> (magnetic), <code>gp2</code> (general purpose SSD), <code>gp3</code>
+        (general purpose SSD), or <code>io1</code> (provisioned IOPS SSD).
+        For more information check <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#Concepts.Storage">Amazon RDS storage types</a>.
+      </td>
+      <td><code>io1</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>iops</code></td>
+      <td>Integer</td>
+      <td>
+        The amount of provisioned IOPS.
+        For this property to take effect, <code>storage_type</code> must be set to <code>gp3</code> or <code>io1</code>.
+        For more information on customizing iops with gp3 check <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#Concepts.Storage.GeneralSSD">General Purpose SSD storage</a>.
+        For more information on customizing iops with io1 check <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS">Provisioned IOPS storage</a>.
+      </td>
+      <td><code>3000</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_vpc_id</code></td>
       <td>String</td>
       <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
@@ -189,6 +213,13 @@ provision only:
       </td>
       <td>None</td>
       <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>deletion_protection</code></td>
+      <td>Boolean</td>
+      <td>Whether deletion protection is enabled. The database cannot be deleted when this value is set to <code>true</code>.</td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
     </tr>
     <tr>
       <td><code>aws_access_key_id</code></td>
