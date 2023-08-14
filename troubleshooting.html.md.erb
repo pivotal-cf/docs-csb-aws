@@ -256,7 +256,7 @@ The following errors can occur in any Amazon RDS instance:
 - [Engine version not found when using a major
   version](#cannot-find-engine-version)
 - [Incompatible network state](#incompatible-network-state)
-- [Unreachable publicly accessible DB](#publicly-accessible-unreachable)
+- [Unreachable publicly accessible database](#publicly-accessible-unreachable)
 
 <div id="reaching-aws-subnets-quota" class="wrap-table-overflow">
     <table class="table">
@@ -281,26 +281,26 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td>Cause</td>
                 <td>
-                  There is a resource quota for AWS called Subnets per DB subnet group that establishes the maximum
-                  number of subnets per DB subnet group to each supported region to 20.
+                  There is a resource quota for AWS called Subnets per database subnet group that establishes the maximum
+                  number of subnets per database subnet group to each supported region to 20.
                   <br>
                   When operators/developers do not supply an existing subnet group in the plan or provision time,
                   the CSB creates a subnet group. The CSB adds all the present subnets in the specified VPC
                   to the new subnet group. For example, let’s say the operator:
                     <ul>
                         <li>Specifies a VPC with 25 subnets through the tile.</li>
-                        <li>Does not specify a DB subnet group in the plan.</li>
-                        <li>Does not specify a DB subnet group at provisioning time.</li>
+                        <li>Does not specify a database subnet group in the plan.</li>
+                        <li>Does not specify a database subnet group at provisioning time.</li>
                     </ul>
-                  Then the CSB creates a DB subnet group and adds <strong>all</strong> subnets, 25 in this example,
-                  to the DB subnet group. Hence, this operation breaches the AWS resource quota.
+                  Then the CSB creates a database subnet group and adds <strong>all</strong> subnets, 25 in this example,
+                  to the database subnet group. Hence, this operation breaches the AWS resource quota.
                 </td>
             </tr>
             <tr>
                 <td>Solution</td>
                 <td>
-                    Create a custom DB subnet group through the AWS console and add the desired subnets for RDS
-                    instances to use. Then use the DB subnet group name as a plan or provision parameter.
+                    Create a custom database subnet group through the AWS console and add the desired subnets for RDS
+                    instances to use. Then use the database subnet group name as a plan or provision parameter.
                 </td>
             </tr>
         </tbody>
@@ -345,13 +345,13 @@ The following errors can occur in any Amazon RDS instance:
                 <td>Solution</td>
                 <td>
                   Create or update your RDS instance with either auto minor version upgrade deactivated or auto minor
-                  version upgrade enabled but selecting a <strong>major engine version</strong>.
+                  version upgrade enabled but select a <strong>major engine version</strong>.
                   <br>
-                  To know what is the major version, you can run the following command:
+                  To find out the major version, you can run the following command:
                   <code>
                     aws rds describe-db-engine-versions  --engine aurora-mysql --engine-version 5.7.mysql_aurora.2.02.3 --include-all --region us-west-2 | jq -r '.DBEngineVersions[] | { engine_version: .EngineVersion, major_version: .MajorEngineVersion }'
                   </code>
-                    You should substitute the engine, aurora-mysql, and the engine version, 5.7.mysql_aurora.2.02.3, with the desired values.
+                    Substitute the engine, aurora-mysql, and the engine version, 5.7.mysql_aurora.2.02.3, with the values that you want.
                 </td>
             </tr>
         </tbody>
@@ -468,9 +468,9 @@ The following errors can occur in any Amazon RDS instance:
                 <td>
                   All following conditions must be occurring:
                     <ul>
-                        <li>Service instance is currently configured with property <code>publicly_accessible: true</code>.</li>
-                        <li>The database is not reachable from outside your TAS foundation.</li>
-                        <li>Apps within your TAS foundation can connect without issues using a service binding.</li>
+                        <li>Service instance is configured with the property <code>publicly_accessible: true</code>.</li>
+                        <li>The database is not reachable from outside your Tanzu Application Service foundation.</li>
+                        <li>Apps within your Tanzu Application Service foundation can connect without issues by using a service binding.</li>
                     </ul>
                 </td>
             </tr>
@@ -480,26 +480,26 @@ The following errors can occur in any Amazon RDS instance:
                   Several factors may contribute to the appearance of this error:
                     <ul>
                         <li>
-                          The service instance ended up associated to an unexpected VPC.<br>
-                          Pitfall: when <code>aws_vpc_id</code> is left blank the service instance is created in whatever VPC is specified in the Tile's config.<br>
+                          The service instance was associated to an unexpected VPC.<br>
+                          Pitfall: when <code>aws_vpc_id</code> is left blank, the service instance is created in whatever VPC is specified in the Tile's config.<br>
                           <i>Or in <a href="https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html">AWS' default VPC</a> when not specified.</i>
                         </li>
                         <li>
-                          The service instance ended up associated to some unexpected subnets.<br>
-                          Pitfall: when <code>rds_subnet_group</code> is left blank the service instance is associated to whatever subnet group is specified in the Tile's Service Offering config if present.<br>
+                          The service instance was associated to some unexpected subnets.<br>
+                          Pitfall: when <code>rds_subnet_group</code> is left blank, the service instance is associated to whatever subnet group is specified in the Tile's Service Offering config if present.<br>
                           <i>A new subnet group containing all subnets present in the VPC is created and assigned to the service instance when not specified.</i>
                         </li>
                         <li>
-                          The service instance ended up associated to an unexpected security group.<br>
+                          The service instance was associated to an unexpected security group.<br>
                           Pitfall: when <code>rds_vpc_security_group_ids</code> is left blank the service instance is associated to whatever subnet group is specified in the Tile's Service Offering config if present.<br>
-                          <i>A new security group allowing all ingress traffic but no egress traffic is created and assigned to the service instance when not specified.</i>
+                          <i>A new security group allows all ingress traffic but no egress traffic is created and assigned to the service instance when not specified.</i>
                         </li>
                         <li>
                           The subnet group associated to the service instance contains some private subnets.<br>
-                          <i>Pitfall: according to AWS official docs, <quote>for a DB instance to be publicly accessible, all of the subnets in its DB subnet group must be public.</quote></i>
+                          <i>Pitfall: according to AWS official docs, <quote>for a database instance to be publicly accessible, all of the subnets in its database subnet group must be public.</quote></i>
                         </li>
                         <li>
-                          The security groups associated to the service instance are missing some rules to allow routing your external traffic, or some rules are conflicting with one another.
+                          The security groups associated to the service instance are missing some rules to allow routing your external traffic, or some rules conflict with one another.
                         </li>
                     </ul>
                 </td>
@@ -510,11 +510,11 @@ The following errors can occur in any Amazon RDS instance:
                   For operators:
                     <ul>
                         <li>
-                          Explicitly specify <code>aws_vpc_id</code>, <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code> in the plans or specify a default value in the Service Offering configuration when option is present.<br>
-                          Currently, there is no way to specify at plan level that a property is mandatory and can't be left empty when creating an instance,
-                          so if your use case doesn't allow you to set these fields in the plan please keep in mind the pitfalls listed in <b>Cause</b> section above.
+                          Explicitly specify <code>aws_vpc_id</code>, <code>rds_subnet_group</code>, and <code>rds_vpc_security_group_ids</code> in the plans or specify a default value in the Service Offering configuration when this option is present.<br>
+                          There is no way to specify at plan level that a property is mandatory and can't be left empty when creating an instance,
+                          so if your use case doesn't allow you to set these fields in the plan, keep in mind the pitfalls listed in the preceding <b>Cause</b> section.
                         </li>
-                        <li>Set <code>publicly_accessible: false</code> in the plans if your VPC, subnets and security groups are not designed with public DBs in mind or if you want to disallow them.</li>
+                        <li>Set <code>publicly_accessible: false</code> in the plans if your VPC, subnets, and security groups are not designed with public dtabases in mind or if you want to disallow them.</li>
                     </ul>
                 </td>
             </tr>
@@ -522,10 +522,10 @@ The following errors can occur in any Amazon RDS instance:
                 <td>Solution</td>
                 <td>
                     <ol>
-                        <li>Check if explicitly specifying <code>aws_vpc_id</code>, <code>rds_subnet_group</code> and <code>rds_vpc_security_group_ids</code> solves the issue.</li>
+                        <li>Check whether explicitly specifying <code>aws_vpc_id</code>, <code>rds_subnet_group</code>, and <code>rds_vpc_security_group_ids</code> solves the issue.</li>
                         <li>If any of these fields are enforced by the plan, ask maintainers of the plan if they support public databases.</li>
-                        <li>Check if you have correctly configured your <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html">Security group rules</a>.</li>
-                        <li>Check if you have correctly configured your <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Subnets">DB subnet group</a>.</li>
+                        <li>Check whether you have correctly configured your <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/security-group-rules.html">Security group rules</a>.</li>
+                        <li>Check whether you have correctly configured your <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Subnets">database subnet group</a>.</li>
                     </ol>
                 </td>
             </tr>
