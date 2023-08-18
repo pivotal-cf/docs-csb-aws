@@ -24,12 +24,12 @@ New features and changes in this release:
 
 - **Database encryption:**
   By default, all new MSSQL instances are encrypted with an AWS managed encryption key. Alternatively, it's possible to
-  provide a custom KMS encryption key ARN, or to disable encryption altogether.
+  provide a custom KMS encryption key ARN, or to deactivate encryption altogether.
   For more details on encrypting a database instance, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Enabling).
   Do not confuse this with [Transparent Data Encryption (TDE)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.TDE.html).
 
 - **Storage autoscaling:** By default, all new MSSQL instances are created with
-  storage autoscaling disabled. Alternatively, it's possible to enable it by
+  storage autoscaling deactivated. Alternatively, it's possible to enable it by
   setting `max_allocated_storage` to a value greater than `storage_gb` at
   creation time or by updating the instance. For more information, see [Managing
   capacity automatically with Amazon RDS storage
@@ -44,14 +44,14 @@ New features and changes in this release:
   in the AWS documentation.
 
   - **Deletion protection:**
-  By default, all new MSSQL instances are created with deletion protection disabled.
+  By default, all new MSSQL instances are created with deletion protection deactivated.
   Alternatively, it's possible to enable deletion protection at creation time or by updating the instance.
 
   - **Publicly accessible:**
   By default, all new MSSQL instances are created with `publicly_accessible: false` for increased security.
   Alternatively, it's possible to set `publicly_accessible: true` at creation time or by updating the instance.
   Note that setting `publicly_accessible: true` is not sufficient for making the DB instance public.
-  For more information, see [Unreachable publicly accessible database](troubleshooting.html#publicly-accessible-unreachable).  
+  For more information, see [Unreachable publicly accessible database](troubleshooting.html#publicly-accessible-unreachable).
 
 #### General
 
