@@ -184,6 +184,17 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>publicly_accessible</code></td>
+      <td>Boolean</td>
+      <td>
+      If <code>true</code>, make instance available to public connections.
+      Note that setting <code>publicly_accessible: true</code> is not sufficient for making the DB instance public.
+      For more information, see <a href="../troubleshooting.html#publicly-accessible-unreachable">Unreachable publicly accessible database</a>.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>aws_vpc_id</code></td>
       <td>String</td>
       <td>The Virtual Private Cloud (VPC) to connect the instance to.</td>
