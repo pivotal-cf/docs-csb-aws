@@ -567,21 +567,21 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td>Solution</td>
                 <td>
-                  For <strong>non-production, test instances where data is irrelevant</strong> the most straightforward
+                  For <strong>non-production test instances where data is irrelevant</strong> the most straightforward
                   solution is to delete the service instance with the wrong storage_type and create a new one.
                 </td>
                 <td>
-                  For <strong>production instances</strong> accidentally created with <code>storage_type: standard</code>
-                  the only solution would be to backup the existing instance and restore it in a new one with the right <code>storage_type</code>.
+                  For <strong>production instances</strong> accidentally created with <code>storage_type: standard</code>,
+                  the only solution is to back up the existing instance and restore it in a new instance with the right <code>storage_type</code>.
                 </td>
                 <td>
-                  For <strong>production instances</strong> created with a different <code>storage_type</code> which you want
+                  For <strong>production instances</strong> created with a different <code>storage_type</code> that you want
                   to migrate to <code>storage_type: standard</code>.
                   <ul>
                     <li>Perform a backup + restore as in the previous scenario.
                     <li>
                       Read <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#CHAP_Storage.Magnetic">
-                      AWS Magnetic storage type limitations</a> and and reconsider leaving your actual storage type intact.
+                      AWS Magnetic storage type limitations</a> and consider leaving your original storage type intact.
                     </li>
                   </ul>
                 </td>
@@ -613,10 +613,10 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td>Cause</td>
                 <td>
-                  Scaling storage usually doesn't cause any outage or performance degradation of the DB instance.
-                  After you modify the storage size for a DB instance, the status of the DB instance is <code>storage-optimization</code>.
+                  Scaling storage usually doesn't cause any outage or performance degradation of the database instance.
+                  After you modify the storage size for a database instance, the status of the database instance is <code>storage-optimization</code>.
                   Storage optimization can take several hours. You can't make further storage modifications for either six (6) hours
-                  or until storage optimization has completed on the instance, whichever is longer.e
+                  or until storage optimization has completed on the instance, whichever is longer.
                 </td>
             </tr>
             <tr>
@@ -625,8 +625,8 @@ The following errors can occur in any Amazon RDS instance:
                   Update any other properties not related to disk immediately and postpone the modification of disk-related properties.
                 </td>
                 <td>
-                  If you need to upscale your storage capacity frequently enabling storage autoscaling might be a better option.
-                  See <a href="reference/aws-mssql.html#parameters">Amazon RDS for MSSQL configuration Parameters - max_allocated_storage</a>. 
+                  If you need to upscale your storage capacity, frequently enabling storage autoscaling might be a better option.
+                  See <a href="reference/aws-mssql.html#parameters">Amazon RDS for MSSQL configuration Parameters - max_allocated_storage</a>.
                 </td>
             </tr>
         </tbody>
