@@ -257,6 +257,8 @@ The following errors can occur in any Amazon RDS instance:
   version](#cannot-find-engine-version)
 - [Incompatible network state](#incompatible-network-state)
 - [Unreachable publicly accessible database](#publicly-accessible-unreachable)
+- [You can't modify storage type](#modify-storage-type)
+- [You can't currently modify the storage of this DB](#currently-being-optimized)
 
 <div id="reaching-aws-subnets-quota" class="wrap-table-overflow">
     <table class="table">
@@ -533,6 +535,103 @@ The following errors can occur in any Amazon RDS instance:
     </table>
 </div>
 
+<div id="modify-storage-type" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>You can't modify storage type</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>Update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:
+                  <ul>
+                  <li><code>InvalidParameterCombination</code> and the text <pre>You can't modify storage type</pre></li>
+                  </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  Some modifications to storage-type are not allowed by AWS. Including but not limited to:
+                    <ul>
+                        <li>Changing from <code>io1</code> to <code>standard</code> (magnetic) or vice versa.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                  For <strong>non-production, test instances where data is irrelevant</strong> the most straightforward
+                  solution is to delete the service instance with the wrong storage_type and create a new one.
+                </td>
+                <td>
+                  For <strong>production instances</strong> accidentally created with <code>storage_type: standard</code>
+                  the only solution would be to backup the existing instance and restore it in a new one with the right <code>storage_type</code>.
+                </td>
+                <td>
+                  For <strong>production instances</strong> created with a different <code>storage_type</code> which you want
+                  to migrate to <code>storage_type: standard</code>.
+                  <ul>
+                    <li>Perform a backup + restore as in the previous scenario.
+                    <li>
+                      Read <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#CHAP_Storage.Magnetic">
+                      AWS Magnetic storage type limitations</a> and and reconsider leaving your actual storage type intact.
+                    </li>
+                  </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="currently-being-optimized" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>You can't currently modify the storage of this DB instance because the previous storage change is being optimized</td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>Update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  Errors containing:
+                  <ul>
+                  <li><code>InvalidParameterCombination:</code> and the text <pre> You can't currently modify the storage of this DB instance because the previous storage change is being optimized.</pre></li>
+                  </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  Scaling storage usually doesn't cause any outage or performance degradation of the DB instance.
+                  After you modify the storage size for a DB instance, the status of the DB instance is <code>storage-optimization</code>.
+                  Storage optimization can take several hours. You can't make further storage modifications for either six (6) hours
+                  or until storage optimization has completed on the instance, whichever is longer.e
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                  Update any other properties not related to disk immediately and postpone the modification of disk-related properties.
+                </td>
+                <td>
+                  If you need to upscale your storage capacity frequently enabling storage autoscaling might be a better option.
+                  See <a href="reference/aws-mssql.html#parameters">Amazon RDS for MSSQL configuration Parameters - max_allocated_storage</a>. 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 ### <a id="postgres-errors"></a> Amazon PostgreSQL errors
 
