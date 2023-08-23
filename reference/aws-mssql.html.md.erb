@@ -171,6 +171,27 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>monitoring_interval</code></td>
+      <td>Number</td>
+      <td>
+        The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the database instance.
+        To stop collecting Enhanced Monitoring metrics, enter 0. Valid values: 0, 1, 5, 10, 15, 30, 60.
+        A <code>monitoring_role_arn</code> value is required if you enter a <code>monitoring_interval</code> value other than 0.
+      </td>
+      <td><code>0</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>monitoring_role_arn</code></td>
+      <td>String</td>
+      <td>
+        Enhanced Monitoring requires permission to act on your behalf to send OS metric information to CloudWatch Logs.
+        This property represents the ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>storage_type</code></td>
       <td>String</td>
       <td>
