@@ -25,8 +25,10 @@ New features and changes in this release:
 - **Database encryption:**
   By default, all new MSSQL instances are encrypted with an AWS managed encryption key. Alternatively, it's possible to
   provide a custom KMS encryption key ARN, or to deactivate encryption altogether.
-  For more details on encrypting a database instance, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Enabling).
-  Do not confuse this with [Transparent Data Encryption (TDE)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.TDE.html).
+  For more details about encrypting a database instance, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Enabling).
+  Do not confuse this with [Transparent Data Encryption
+  (TDE)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.TDE.html)
+  in the AWS documentation.
 
 - **Storage autoscaling:** By default, all new MSSQL instances are created with
   storage autoscaling deactivated. Alternatively, it's possible to enable it by
@@ -38,7 +40,7 @@ New features and changes in this release:
 
 - **Storage type and IOPS:**
   By default, all new MSSQL instances use io1 with up to 3000 operations per second (IOPS).
-  Alternatively, it's possible to specify different storage type and IOPS at creation time or modify them after creation.
+  Alternatively, it's possible to specify different storage type and IOPS at creation time or edit them after creation.
   For more information, see [Amazon RDS DB instance
   storage](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html)
   in the AWS documentation.
@@ -54,15 +56,21 @@ New features and changes in this release:
   For more information, see [Unreachable publicly accessible database](troubleshooting.html#publicly-accessible-unreachable).
 
   - **Option group:**
-  An existing DB option group can now be associated through `option_group_name`.
-  MSSQL offers additional features such as SQL Server Audit, Transparent Data Encryption, etc. which are configured using an option group.
-  For more information check [Amazon RDS options for the Microsoft SQL Server database engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.html).
+  An existing database option group can now be associated through `option_group_name`.
+  MSSQL offers additional features such as SQL Server Audit, Transparent Data
+  Encryption, and so on, which are configured by using an option group.
+  For more information, see [Amazon RDS options for the Microsoft SQL Server
+  database
+  engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.html)
+  in the AWS documentation.
 
   - **Enhanced monitoring:**
   By default, all new MSSQL instances are created with enhanced monitoring deactivated.
   Alternatively, it's possible to activate it by specifying a `monitoring_interval` and a `monitoring_role_arn` at creation time or by updating the instance.
   With Enhanced Monitoring, you can monitor the operating system of your database instance in real time and see how different processes or threads use the CPU.
-  For more information, see: [Amazon RDS Monitoring OS metrics with Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html).
+  For more information, see: [Amazon RDS Monitoring OS metrics with Enhanced
+  Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html)
+  in the AWS documentation.
 
 
 #### General
