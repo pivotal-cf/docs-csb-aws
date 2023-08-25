@@ -165,6 +165,7 @@ provision only:
       <td>
         Name of the DB option group to associate.
         MSSQL offers additional features such as SQL Server Audit, Transparent Data Encryption, etc.
+        Setting <code>option_group_name: ""</code> during an update gets ignored. If your intention is to start using the default option group you need to pass its name explicitly.
         For more information check <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.html">Amazon RDS options for the Microsoft SQL Server database engine</a>
       </td>
       <td><code>None</code></td>

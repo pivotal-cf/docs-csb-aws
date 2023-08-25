@@ -59,6 +59,8 @@ New features and changes in this release:
   An existing database option group can now be associated through `option_group_name`.
   MSSQL offers additional features such as SQL Server Audit, Transparent Data
   Encryption, and so on, which are configured by using an option group.
+  Setting `option_group_name: ""` during an update gets ignored. If your intention is
+  to start using the default option group you need to pass its name explicitly.
   For more information, see [Amazon RDS options for the Microsoft SQL Server
   database
   engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.html)
