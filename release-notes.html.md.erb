@@ -55,14 +55,13 @@ New features and changes in this release:
   Note that setting `publicly_accessible: true` is not sufficient for making the database instance public.
   For more information, see [Unreachable publicly accessible database](troubleshooting.html#publicly-accessible-unreachable).
 
-  - **Option group:**
-  An existing database option group can now be associated through `option_group_name`.
-  MSSQL offers additional features such as SQL Server Audit, Transparent Data
-  Encryption, and so on, which are configured by using an option group.
-  Setting `option_group_name: ""` during an update gets ignored. If you want to replace
-  current option group with the default one you need to explictly specify its name.
-  For more information, see [Amazon RDS options for the Microsoft SQL Server
-  database
+  - **Option group:** An existing database option group can now be associated
+  through `option_group_name`. MSSQL offers additional features such as SQL
+  Server Audit, Transparent Data Encryption, and so on, which are configured by
+  using an option group. Setting `option_group_name: ""` during an update is
+  ignored. If you want to replace the current option group with the default one,
+  you need to explicitly specify its name. For more information, see [Amazon RDS
+  options for the Microsoft SQL Server database
   engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.html)
   in the AWS documentation.
 
