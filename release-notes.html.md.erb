@@ -75,11 +75,22 @@ New features and changes in this release:
 
   - **Exposed Automated Backups:**
   By default, all new MSSQL instances are created with automatic backups enabled.
-  Alternatively, it's possible to deactive them, change the backup window, retention period, etc.
+  Alternatively, it's possible to deactivate them, change the backup window, retention period, etc.
   For more information, see: [Amazon RDS Working with
   backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html)
   in the AWS documentation
   and [Configuration Parameters](reference/aws-mssql.html#parameters).
+
+  - **Exposed `allow_major_version_upgrade`:**
+  By default, major version upgrades are allowed when creating a MSSQL instance.
+  This property is a flag that allows to perform or block the upgrade to major versions.
+  For more information, see the [configuration Parameters](reference/aws-mssql.html#parameters).
+
+  - **Exposed `auto_minor_version_upgrade`:**
+  By default, CSB enables <strong>auto</strong> upgrades automatically during the maintenance window.
+  If <code>auto_minor_version_upgrade</code> is enabled, you must specify a major engine version.
+  For more information about how to obtain available major versions, see 
+  the [configuration Parameters](reference/aws-mssql.html#parameters).
 
 
 #### General
