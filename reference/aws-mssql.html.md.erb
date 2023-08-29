@@ -353,7 +353,7 @@ provision only:
       <td>Boolean</td>
       <td>
         Indicates that major version upgrades are allowed.
-        Changing this parameter does not result in an outage and the change is
+        Changing this parameter does not result in an outage, and the change is
         asynchronously applied as soon as possible.
       </td>
       <td><code>true</code></td>
@@ -368,7 +368,7 @@ provision only:
         If <code>auto_minor_version_upgrade</code> is enabled, you must specify a major engine version.
         AWS command to see the available engine versions for MSSQL Standard Edition:
         <code>aws rds describe-db-engine-versions  --engine sqlserver-se --include-all --region us-west-2</code>
-        See <code>engine</code> property for available engines.
+        See the <code>engine</code> property for available engines.
       </td>
       <td><code>true</code></td>
       <td>provision and update</td>
