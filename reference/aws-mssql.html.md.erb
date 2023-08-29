@@ -176,7 +176,7 @@ provision only:
       <td>String</td>
       <td>
         Name of the custom parameter group to associate with this instance.
-        If left unset, the default parameter group for the specified mssql_version is used.
+        If left unset, a new parameter group is created automatically with containment enabled.
         When specifying a custom parameter group, the custom parameter group must have <code>contained database authentication</code> set to <code>1</code>.
         Setting <code>parameter_group_name: ""</code> during an update is ignored. If you want to replace the current parameter group with the default one, you need to explicitly specify its name.
         For more information, see <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html">Amazon RDS Working with parameter groups</a>.
