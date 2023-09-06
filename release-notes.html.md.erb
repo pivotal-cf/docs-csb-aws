@@ -91,13 +91,13 @@ New features and changes in this release:
   - **Exposed `allow_major_version_upgrade`:**
   By default, major version upgrades are allowed when creating an MSSQL instance.
   This property is a flag that allows you to perform or block the upgrade to major versions.
-  For more information, see the [configuration Parameters](reference/aws-mssql.html#parameters).
+  For more information, see the [Configuration Parameters](reference/aws-mssql.html#parameters).
 
   - **Exposed `auto_minor_version_upgrade`:**
   By default, CSB enables <strong>auto</strong> upgrades automatically during the maintenance window.
   If <code>auto_minor_version_upgrade</code> is enabled, you must specify a major engine version.
   For more information about how to obtain available major versions, see
-  the [configuration Parameters](reference/aws-mssql.html#parameters).
+  the [Configuration Parameters](reference/aws-mssql.html#parameters).
 
   - **Exposed maintenance window configuration:**
   You can now specify the weekly time range for when maintenance on the mssql instance is performed.
@@ -112,16 +112,17 @@ New features and changes in this release:
 
   - `performance_insights_enabled`: Specifies whether the Performance Insights feature is enabled.
     It is `false` by default.
+    For more information, see the [Configuration Parameters](reference/aws-mssql.html#parameters).
 
   - `performance_insights_kms_key_id`: The ARN for the KMS key to encrypt Performance Insights data.
     When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled` as
-    `true`.
-    After the KMS key is set, it can never be changed.
+    `true`. After the KMS key is set, it can never be changed.
+    For more information, see the [Configuration Parameters](reference/aws-mssql.html#parameters).
 
   - `performance_insights_retention_period`: The number of days to retain Performance Insights data.
     When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
     The following values are valid: 7, MONTHS * 31 (where MONTHS is a number of months from 1-23) and, 731.
-
+    For more information, see the [Configuration Parameters](reference/aws-mssql.html#parameters).
 
 #### General
 
