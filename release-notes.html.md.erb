@@ -122,6 +122,10 @@ New features and changes in this release:
     When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
     The following values are valid: 7, month * 31, where month is a number of months from 1-23, 731.
 
+- **Exposed Server's Character Set**
+  The default server collation when you create the DB instance.
+  Can't be modified, but apps can specify a different collation at table, or column level.
+  For more information, see [AWS RDS Collations and character sets for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.CommonDBATasks.Collation.html).
 
 #### General
 
