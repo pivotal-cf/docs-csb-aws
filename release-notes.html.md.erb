@@ -110,17 +110,17 @@ New features and changes in this release:
   illustrate the database performance and help you analyze it.
   By default, Performance Insights is deactivated. To enable this feature, configure these properties:
 
-    - `performance_insights_enabled`: Specifies whether the Performance Insights feature is enabled.
-      It is `false` by default.
+  - `performance_insights_enabled`: Specifies whether the Performance Insights feature is enabled.
+    It is `false` by default.
 
-    - `performance_insights_kms_key_id`: The ARN for the KMS key to encrypt Performance Insights data.
-      When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled` as
-      `true`.
-      After the KMS key is set, it can never be changed.
+  - `performance_insights_kms_key_id`: The ARN for the KMS key to encrypt Performance Insights data.
+    When specifying `performance_insights_kms_key_id`, you must set `performance_insights_enabled` as
+    `true`.
+    After the KMS key is set, it can never be changed.
 
-    - `performance_insights_retention_period`: The number of days to retain Performance Insights data.
-      When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
-      The following values are valid: 7, MONTHS * 31 (where MONTHS is a number of months from 1-23) and, 731.
+  - `performance_insights_retention_period`: The number of days to retain Performance Insights data.
+    When specifying `performance_insights_retention_period`, you must set `performance_insights_enabled` as `true`.
+    The following values are valid: 7, MONTHS * 31 (where MONTHS is a number of months from 1-23) and, 731.
 
 
 #### General
