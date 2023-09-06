@@ -200,7 +200,7 @@ provision only:
       <td>String</td>
       <td>
         Enhanced Monitoring requires permission to act on your behalf to send OS metric information to CloudWatch Logs.
-        This property represents the ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs.
+        This property represents the Amazon Resource Name (ARN) for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -305,7 +305,7 @@ provision only:
     <tr>
         <td><code>kms_key_id</code></td>
         <td>String</td>
-        <td>The Amazon Resource Name (ARN) for the user-managed KMS encryption key. When setting this value, <code>storage_encrypted</code> must be enabled. When not set, the AWS managed key is used for encrypting the database.</td>
+        <td>The ARN for the user-managed Key Management Service (KMS) encryption key. When setting this value, <code>storage_encrypted</code> must be enabled. When not set, the AWS managed key is used for encrypting the database.</td>
         <td><code>""</code></td>
         <td>provision</td>
     </tr>
@@ -430,7 +430,7 @@ provision only:
         Specifies whether Performance Insights are enabled.
         Performance Insights expand on existing Amazon RDS monitoring features to illustrate your
         database performance and help you analyze it.
-        From the Performance Insights dashboard you can visualize the database load on your
+        From the Performance Insights dashboard, you can visualize the database load on your
         Amazon RDS database instance load and filter the load by wait types,
         SQL statements, hosts, or users.
       </td>
@@ -442,7 +442,8 @@ provision only:
       <td>String</td>
       <td>
         The ARN for the KMS key to encrypt Performance Insights data.
-        When specifying <code>performance_insights_kms_key_id</code>, set <code>performance_insights_enabled</code> as <code>true</code>.
+        If you set <code>performance_insights_kms_key_id</code>, you must also set
+        <code>performance_insights_enabled</code> to <code>true</code>.
         After the KMS key is set, it can never be changed.
       </td>
       <td><code>""</code></td>
@@ -452,11 +453,15 @@ provision only:
       <td><code>performance_insights_retention_period</code></td>
       <td>Integer</td>
       <td>
-        The number of days for which to retain Performance Insights data.<br><br>
-        The value must be <code>7</code>, <code>NUMBER-OF-MONTHS</code> * 31 (where <code>NUMBER-OF-MONTHS</code> is <code>1</code>-<code>23</code>), or <code>731</code>.<br>
-        For example, the following values are valid: <code>93</code> (because it's 3 months * 31),
-        <code>341</code> (because it's 11 months * 31), <code>589</code> (because it's 19 months * 31),
-        and <code>731</code>.<br><br>
+        The number of days to retain Performance Insights data.<br><br>
+        The value must be <code>7</code>, <code>NUMBER-OF-MONTHS</code> * 31 (where <code>NUMBER-OF-MONTHS</code> is <code>1</code>-<code>23</code>), or <code>731</code>.<br><br>
+        For example, the following values are valid:
+        <ul>
+          <li><code>93</code> (3 months * 31)</li>
+          <li><code>341</code> (11 months * 31)</li>
+          <li><code>589</code> (19 months * 31)</li>
+          <li><code>731</code>.</li>
+        </ul>
         If you specify an invalid retention period, such as <code>94</code>, RDS issues an error.
       </td>
       <td><code>7</code></td>
