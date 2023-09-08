@@ -129,6 +129,12 @@ New features and changes in this release:
   This cannot be modified, but apps can specify a different collation at table or column level.
   For more information, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.CommonDBATasks.Collation.html).
 
+- **Exposed Multi-AZ:**
+  Allows enabling/disabling Multi-AZ using either SQL Server Database Mirroring (DBM) or Always On Availability Groups (AGs) depending on the chosen SQL Server version.
+  For Multi-AZ to work properly your security group needs to be configured to allow UDP and TCP traffic for port 3343.
+  For more information, see the [Multi-AZ instance ports requirement](https://aws.amazon.com/rds/sqlserver/faqs/#Multi-AZ_instance_ports_requirement).
+  Also see [Multi-AZ deployments for Amazon RDS for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerMultiAZ.html).
+
 #### General
 
 
