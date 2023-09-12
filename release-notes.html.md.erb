@@ -137,6 +137,22 @@ New features and changes in this release:
   For more information, see [Multi-AZ instance ports requirement](https://aws.amazon.com/rds/sqlserver/faqs/#Multi-AZ_instance_ports_requirement) and
   [Multi-AZ deployments for Amazon RDS for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerMultiAZ.html) in the AWS documentation.
 
+- **Server rejects non-SSL connections by default:**
+  The `require_ssl` property is `true` by default, which makes the server require SSL connections.
+  When `false`, the server accepts SSL and non-SSL connections.
+  If `parameter_group_name` is specified then, the `require_ssl` parameter does not take effect.
+
+- **Bind and unbind are now performed over TLS:**
+  For these operations to work, you must install the AWS certificate bundle in Ops Manager.
+
+- **MSSQL JDBC URL SSL parameter:**
+  RDS for MSSQL configures the JDBC URL depending on the `require_ssl`.
+  When enabling `require_ssl`, the next parameters are configured as follows:
+    * `encrypt`: `true`
+    * `trustServerCertificate`: `false`
+    * `hostNameInCertificate`:  Common Name (CN) or DNS name in the Subject Alternate Name (SAN) in the server certificate
+  When disabling `require_ssl`, `encrypt` will be set as `false`
+
 #### General
 
 
