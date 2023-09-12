@@ -492,6 +492,70 @@ provision only:
       <td><code>true</code></td>
       <td>provision and update</td>
     </tr>
+    <tr>
+      <td><code>enable_export_agent_logs</code></td>
+      <td>Boolean</td>
+      <td>
+        If <code>true</code>, it enables the `agent` <code>cloud_watch_log_export</code>
+        on the RDS instance.
+        When activated, it creates an associated `agent` CloudWatch log group.
+        When deactivated, the associated `agebt` CloudWatch log group is deleted.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>cloudwatch_agent_log_group_retention_in_days</code></td>
+      <td>Integer</td>
+      <td>
+        If provided, it specifies the number of days you want to retain log events in the
+        <code>agent</code> log group.
+        It is used in conjunction with <code>enable_export_agent_logs</code>.
+        If you select 0, the events in the log group are always retained and never expire.
+      </td>
+      <td><code>30</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>enable_export_error_logs</code></td>
+      <td>Boolean</td>
+      <td>
+        If <code>true</code>, it enables the <code>error</code> <code>cloud_watch_log_export</code>
+        on the RDS instance.
+        When activated, it creates an associated error CloudWatch log group.
+        When deactivated, the associated error CloudWatch log group is deleted.
+      </td>
+      <td><code>false</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>cloudwatch_error_log_group_retention_in_days</code></td>
+      <td>Integer</td>
+      <td>
+        If provided, it specifies the number of days you want to retain log events in the
+        <code>error</code> log group.
+        It is used in conjunction with <code>enable_export_error_logs</code>.
+        If you select 0, the events in the log group are always retained and never expire.
+      </td>
+      <td><code>30</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>cloudwatch_log_groups_kms_key_id</code></td>
+      <td>String</td>
+      <td>
+        Log group data is always encrypted in CloudWatch Logs. By default, CloudWatch Logs uses
+        server-side encryption for the log data at rest.
+        As an alternative, you can use AWS Key Management Service (AWS KMS) for this encryption.
+        If you use AWS KMS, the encryption is done by using an AWS KMS customer-managed key.<br><br>
+        This property, if provided, sets the customer-managed key to use for encrypting the CloudWatch
+        log group created for the `agent` and `error` logs.
+        It is used in conjunction with <code>enable_export_agent_logs</code> and
+        <code>enable_export_error_logs</code>.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
   </tbody>
 </table>
 
