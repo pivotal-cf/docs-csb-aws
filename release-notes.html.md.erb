@@ -143,7 +143,8 @@ New features and changes in this release:
   If `parameter_group_name` is specified then, the `require_ssl` parameter does not take effect.
 
 - **Bind and unbind are now performed over TLS:**
-  For these operations to work, you must install the AWS certificate bundle in Ops Manager.
+  For these operations to work, you must install the AWS certificate bundle in
+  Tanzu Operations Manager.
 
 - **MSSQL JDBC URL SSL parameter:**
   RDS for MSSQL configures the JDBC URL depending on the `require_ssl`.
@@ -151,7 +152,7 @@ New features and changes in this release:
     * `encrypt`: `true`
     * `trustServerCertificate`: `false`
     * `hostNameInCertificate`:  Common Name (CN) or DNS name in the Subject Alternate Name (SAN) in the server certificate
-  When disabling `require_ssl`, `encrypt` will be set as `false`
+  When deactivating `require_ssl`, `encrypt` is set as `false`.
 
 #### General
 

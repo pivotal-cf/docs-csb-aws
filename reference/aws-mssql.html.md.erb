@@ -534,6 +534,8 @@ RDS for MSSQL configures the JDBC URL depending on the `require_ssl` property.
 When enabling `require_ssl`, the next parameters are configured as follows:
 * `encrypt`: `true`
 * `trustServerCertificate`: `false`
-* `hostNameInCertificate`:  Common Name (CN) or DNS name in the Subject Alternate Name (SAN) in the server certificate
-When disabling `require_ssl`, `encrypt` will be set as `false`
-For more information, see [Microsoft documentation](https://learn.microsoft.com/en-us/sql/connect/jdbc/understanding-ssl-support)
+* `hostNameInCertificate`:  Common Name (CN) or DNS name in the Subject
+  Alternate Name (SAN) in the server certificate. When deactivating `require_ssl`,
+  `encrypt` is set as `false`.
+For more information, see [Microsoft
+documentation](https://learn.microsoft.com/en-us/sql/connect/jdbc/understanding-ssl-support).
