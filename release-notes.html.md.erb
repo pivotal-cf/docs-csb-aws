@@ -155,6 +155,23 @@ New features and changes in this release:
   AWS KMS customer-managed key to encrypt the logs generated when activating `agent` or `error` logs.
   For more information, see [Configuration Parameters](reference/aws-mssql.html#parameters).
 
+- **Server rejects non-SSL connections by default:**
+  The `require_ssl` property is `true` by default, which makes the server require SSL connections.
+  When `false`, the server accepts SSL and non-SSL connections.
+  If `parameter_group_name` is specified then, the `require_ssl` parameter does not take effect.
+
+- **Bind and unbind are now performed over TLS:**
+  For these operations to work, you must install the AWS certificate bundle in
+  Tanzu Operations Manager.
+
+- **MSSQL JDBC URL SSL parameter:**
+  RDS for MSSQL configures the JDBC URL depending on the `require_ssl`.
+  When enabling `require_ssl`, the next parameters are configured as follows:
+    * `encrypt`: `true`
+    * `trustServerCertificate`: `false`
+    * `hostNameInCertificate`:  Common Name (CN) or DNS name in the Subject Alternate Name (SAN) in the server certificate.
+  When deactivating `require_ssl`, `encrypt` is set as `false`.
+
 #### General
 
 
