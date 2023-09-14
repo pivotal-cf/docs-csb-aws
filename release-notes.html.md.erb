@@ -137,6 +137,24 @@ New features and changes in this release:
   For more information, see [Multi-AZ instance ports requirement](https://aws.amazon.com/rds/sqlserver/faqs/#Multi-AZ_instance_ports_requirement) and
   [Multi-AZ deployments for Amazon RDS for Microsoft SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerMultiAZ.html) in the AWS documentation.
 
+
+- **Enabling `agent` logging for your RDS for MSSQL DB instance:**
+  You can now enable `agent` logging by setting the property `enable_export_agent_logs`.
+  By default, `agent` logging is deactivated.
+  When activated, the default number of log retention days is 30.
+  For how to configure, see [Configuration Parameters](reference/aws-mssql.html#parameters).
+
+- **Enabling `error` logging for your RDS for MSSQL DB instance:**
+  You can now enable `error` logging by setting the property `enable_export_error_logs`.
+  By default, `error` logging is deactivated.
+  When activated, the default number of log retention days is 30.
+  For how to configure, see [Configuration Parameters](reference/aws-mssql.html#parameters).
+
+- **Encrypting CloudWatch logs:**
+  A new property, `cloudwatch_log_groups_kms_key_id`, is exposed, and enables you to configure your
+  AWS KMS customer-managed key to encrypt the logs generated when activating `agent` or `error` logs.
+  For more information, see [Configuration Parameters](reference/aws-mssql.html#parameters).
+
 - **Server rejects non-SSL connections by default:**
   The `require_ssl` property is `true` by default, which makes the server require SSL connections.
   When `false`, the server accepts SSL and non-SSL connections.
