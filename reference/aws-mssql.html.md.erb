@@ -486,6 +486,7 @@ provision only:
         or Always On Availability Groups (AGs) depending on the chosen SQL Server version.
         For Multi-AZ to work correctly, your security group must be configured to allow UDP and TCP
         traffic for port 3343.
+        Multi-AZ requires backups enabled, hence you need to ensure <code>backup_retention_period</code> is greater than <code>0</code>.
         For more information, see <a href="https://aws.amazon.com/rds/sqlserver/faqs/#Multi-AZ_instance_ports_requirement">Multi-AZ instance ports requirement</a>
         and <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerMultiAZ.html">Multi-AZ deployments for Amazon RDS for Microsoft SQL Server</a> in the AWS documentation.
       </td>
