@@ -182,8 +182,8 @@ legacy-provisioned resource by choosing the "subsume" plan and including the met
     $ cf purge-service-instance my-old-instance
     </pre>
 
-    <p class="note warning">
-      <strong> Warning:</strong> Do not run <code>cf delete-service</code> because then the
+    <p class="note caution">
+      <span class="note__title">Caution</span> Do not run <code>cf delete-service</code> because then the
       VMware Tanzu Service Broker for AWS deletes the AWS resource, that is, the database.
     </p>
 
