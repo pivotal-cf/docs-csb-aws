@@ -41,7 +41,7 @@ You might want to migrate data from instances created with the legacy broker to 
 created with the <%= vars.product_short %>.
 
 <p class="note important">
-  <strong>Important:</strong> Migration of data might incur app downtime.
+  <span class="note__title">Important</span> Migration of data might incur app downtime.
   The amount of downtime depends on the method chosen.
 </p>
 
@@ -102,7 +102,7 @@ To migrate data from an existing legacy PostgreSQL instance to the <%= vars.prod
 For how to configure data migration, see the documentation for the process you have chosen.
 
     <p class="note">
-      <strong>Note:</strong> A data migration process might create schemas and tables without
+      <span class="note__title">Note</span> A data migration process might create schemas and tables without
       granting access for other users to work with that data.
       You can resolve this by connecting to the database using the credentials used for DMS,
       and granting the `binding_user_group` access to the schemas and tables.
