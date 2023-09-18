@@ -6,7 +6,7 @@ owner: Cloud Service Broker
 <strong><%= modified_date %></strong>
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon RDS for PostgreSQL service is in beta and is intended for
+  <span class="note__title">Important</span> The Amazon RDS for PosgreSQL service is currently in beta and is intended for
   evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
@@ -198,7 +198,7 @@ The format for binding credentials for PostgreSQL is as follows:
 ```
 
 <p class="note">
-  <strong>Note:</strong> When a binding or service key is deleted, the underlying PostgreSQL user
+  <span class="note__title">Note</span> When a binding or service key is deleted, the underlying PostgreSQL user
   still exists in the database. To remove the user completely, use the CLI.
   For more information, see the
   <a href="https://www.postgresql.org/docs/current/sql-dropuser.html">PostgreSQL documentation</a>.
