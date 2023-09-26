@@ -12,8 +12,9 @@ the following:
   for AWS tile
 - PostgreSQL instance of the VMware Tanzu Service Broker for AWS tile
 - Aurora MySQL instance of the VMware Tanzu Service Broker for AWS tile
+- SQL Server instance of the VMware Tanzu Service Broker for AWS tile. Attention, the migration process is more restrictive and involves the mandatory use of [DMS](https://aws.amazon.com/dms/).
 
-## <a id='about'></a> About Migrating Data to an Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL Instance
+## <a id='about'></a> About Migrating Data to an Amazon RDS for MySQL, PostgreSQL, Aurora MySQL, or SQL Server Instance
 
 Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
 is going out of support, you must move from instances that the legacy broker created over to
@@ -23,7 +24,7 @@ The <%= vars.product_short %> plans are configurable.
 When migrating, examine the configuration of the plans in use with the legacy broker and create
 matching plans in <%= vars.product_short %>.
 
-You can use the AWS Data Migration Service (DMS) to migrate data between Amazon RDS instances.
+You can use the AWS Data Migration Service (DMS) to migrate data between Amazon RDS instances (DMS is mandatory for SQL Server). 
 The tool copies data from one database to another.
 Because the original database is not modified, you can reverse the migration if you detect any problems.
 It also enables migration to happen over time.
@@ -64,13 +65,17 @@ After the migration is completed you can stop ongoing migration and, if you want
 broker instance.
 
 For more detailed steps showing the Cloud Foundry commands necessary to use AWS DMS,
-see [Migrate Data from a Legacy MySQL Instance](#steps).
+see [Migrate Data from a Legacy Instance](#steps).
 
 ## <a id='steps'></a> Migrate Data from a Legacy RDS Instance
 
 To migrate data from an existing legacy RDS instance to <%= vars.product_short %>:
 
 1. Create a backup of the legacy RDS instance.
+   1. To create a backup in SQL Server, you will need a user with elevated privileges.
+   Credentials associated with applications that use this service do not have the necessary privileges to create a
+   backup. You must contact Support to assist you in the process of obtaining credentials from a user with elevated
+   privileges. Jump to step number 4.
 
 2. Get credentials for the legacy RDS instance details by running:
 
@@ -114,10 +119,10 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
     cf service-key NEW-SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
     ```
 
-7. Inspect the JSON output for the host name, name, user name, password, and port required to
+7. Inspect the JSON output for the host name, name, username, password, and port required to
    configure the data migration.
 
-8. Configure and run data migration, for example, by using AWS DMS.
+8. Configure and run data migration, for example, by using AWS DMS (DMS is mandatory for SQL Server).
    For how to configure data migration, see the documentation for the method you have chosen.
 
     > **Important** The data migration process might create schemas and tables without granting
@@ -169,7 +174,7 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
        cf restage APP-NAME
        ```
 
-    RDS MySQL or RDS Aurora MySQL
+    RDS MySQL, RDS Aurora MySQL, or SQL Server
     : The legacy binding exposes the database name in the credentials block as `database`, whereas
       the binding credentials received from <%= vars.product_short %> exposes the database name as
       `name`. You must update the consuming app to handle the `name` credential property.
