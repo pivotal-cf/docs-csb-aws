@@ -72,7 +72,7 @@ see [Migrate Data from a Legacy Instance](#steps).
 To migrate data from an existing legacy RDS instance to <%= vars.product_short %>:
 
 1. Create a backup of the legacy RDS instance.
-   1. To create a backup in SQL Server, you will need a user with elevated privileges.
+   1. To create a backup in SQL Server, you need a user with elevated privileges.
    Credentials associated with applications that use this service do not have the necessary privileges to create a
    backup. You must contact Support to assist you in the process of obtaining credentials from a user with elevated
    privileges. Jump to step number 4.
@@ -119,7 +119,7 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
     cf service-key NEW-SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
     ```
 
-7. Inspect the JSON output for the host name, name, username, password, and port required to
+7. Inspect the JSON output for the host name, name, user name, password, and port required to
    configure the data migration.
 
 8. Configure and run data migration, for example, by using AWS DMS (DMS is mandatory for SQL Server).
