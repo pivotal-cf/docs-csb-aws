@@ -160,8 +160,11 @@ You can also configure these parameters using the `-c` flag when provisioning a 
     <tr>
       <td><code>parameter_group_name</code></td>
       <td>String</td>
-      <td>The MySQL parameter group name for the service instance.</td>
-      <td><code>default.mysql.MYSQL-VERSION</code></td>
+      <td>
+        The MySQL parameter group name for the service instance.
+        Setting <code>parameter_group_name: ""</code> during an update is ignored. If you want to replace the current parameter group with the default one, you need to explicitly specify its name.
+      </td>
+      <td><code>""</code></td>
     </tr>
     <tr>
       <td><code>rds_subnet_group</code></td>
