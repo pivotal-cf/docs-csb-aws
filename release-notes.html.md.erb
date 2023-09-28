@@ -15,6 +15,9 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 This release has the following breaking changes:
 
+- **The <%= vars.product_full%> now requires a new permission**:
+  The `ec2:AuthorizeSecurityGroupEgress` is now required because MSSQL creates egress rules when using Multi-AZ deployments.
+
 - **The <%= vars.product_full%> tile now requires Jammy Stemcell**:
   The tile now depends on Jammy Stemcells instead of Xenial. You need to have a Jammy Stemcell available in Tanzu Operations Manager.
   This change also requires that Tanzu Operations Manager is at version v2.10.33 or later.
