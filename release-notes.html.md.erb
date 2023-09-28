@@ -15,6 +15,9 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 This release has the following breaking changes:
 
+- **The <%= vars.product_full%> now requires a new permission**:
+  The `ec2:AuthorizeSecurityGroupEgress` is now required as MSSQL creates egress rules when using Multi-AZ deployments.
+
 
 ### Features
 
