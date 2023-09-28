@@ -16,8 +16,11 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 This release has the following breaking changes:
 
 - **The <%= vars.product_full%> now requires a new permission**:
-  The `ec2:AuthorizeSecurityGroupEgress` is now required as MSSQL creates egress rules when using Multi-AZ deployments.
+  The `ec2:AuthorizeSecurityGroupEgress` is now required because MSSQL creates egress rules when using Multi-AZ deployments.
 
+- **The <%= vars.product_full%> tile now requires Jammy Stemcell**:
+  The tile now depends on Jammy Stemcells instead of Xenial. You need to have a Jammy Stemcell available in Tanzu Operations Manager.
+  This change also requires that Tanzu Operations Manager is at version v2.10.33 or later.
 
 ### Features
 
@@ -51,17 +54,17 @@ New features and changes in this release:
   storage](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html)
   in the AWS documentation.
 
-  - **Deletion protection:**
+- **Deletion protection:**
   By default, all new MSSQL instances are created with deletion protection deactivated.
   Alternatively, it's possible to enable deletion protection at creation time or by updating the instance.
 
-  - **Publicly accessible:**
+- **Publicly accessible:**
   By default, all new MSSQL instances are created with `publicly_accessible: false` for increased security.
   Alternatively, it's possible to set `publicly_accessible: true` at creation time or by updating the instance.
   Note that setting `publicly_accessible: true` is not sufficient for making the database instance public.
   For more information, see [Unreachable publicly accessible database](troubleshooting.html#publicly-accessible-unreachable).
 
-  - **Option group:** An existing database option group can now be associated
+- **Option group:** An existing database option group can now be associated
   through `option_group_name`. MSSQL offers additional features such as SQL
   Server Audit, Transparent Data Encryption, and so on, which are configured by
   using an option group. Setting `option_group_name: ""` during an update is
@@ -71,7 +74,7 @@ New features and changes in this release:
   engine](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.html)
   in the AWS documentation.
 
-  - **Enhanced monitoring:**
+- **Enhanced monitoring:**
   By default, all new MSSQL instances are created with enhanced monitoring deactivated.
   Alternatively, it's possible to activate it by specifying a `monitoring_interval` and a `monitoring_role_arn` at creation time or by updating the instance.
   With Enhanced Monitoring, you can monitor the operating system of your database instance in real time and see how different processes or threads use the CPU.
@@ -79,7 +82,7 @@ New features and changes in this release:
   Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html)
   in the AWS documentation.
 
-  - **Exposed Automated Backups:**
+- **Exposed Automated Backups:**
   By default, all new MSSQL instances are created with automatic backups enabled.
   Alternatively, it's possible to deactivate them, change the backup window, retention period, etc.
   For more information, see: [Amazon RDS Working with
@@ -87,25 +90,26 @@ New features and changes in this release:
   in the AWS documentation
   and [Configuration Parameters](reference/aws-mssql.html#parameters).
 
-  - **Parameter group:**
+- **Parameter group:**
   An existing database parameter group can now be associated through `parameter_group_name`.
   If left unset, a new parameter group is created automatically with containment enabled.
   When specifying a custom parameter group, the custom parameter group must have `contained database authentication` set to `1`.
   Setting `parameter_group_name: ""` during an update is ignored. If you want to replace the current parameter group with the default one, you need to explicitly specify its name.
   For more information, see [Amazon RDS Working with parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html).
 
-  - **Exposed `allow_major_version_upgrade`:**
+- **Exposed `allow_major_version_upgrade`:**
   By default, major version upgrades are allowed when creating an MSSQL instance.
-  This property is a flag that allows you to perform or block the upgrade to major versions.
+  This property is a flag that allows you to allow or block the upgrade to major versions.
   For more information, see the [Configuration Parameters](reference/aws-mssql.html#parameters).
 
-  - **Exposed `auto_minor_version_upgrade`:**
-  By default, CSB enables <strong>auto</strong> upgrades automatically during the maintenance window.
+- **Exposed `auto_minor_version_upgrade`:**
+  This property is a flag that allows you to allow or block auto minor version upgrades.
+  By default, CSB enables <strong>auto</strong> upgrades during the maintenance window.
   If <code>auto_minor_version_upgrade</code> is enabled, you must specify a major engine version.
   For more information about how to obtain available major versions, see
   the [Configuration Parameters](reference/aws-mssql.html#parameters).
 
-  - **Exposed maintenance window configuration:**
+- **Exposed maintenance window configuration:**
   You can now specify the weekly time range for when maintenance on the mssql instance is performed.
   The minimum maintenance window is a 60-minute period.
   For more information, see
@@ -179,10 +183,6 @@ New features and changes in this release:
   When deactivating `require_ssl`, `encrypt` is set as `false`.
 
 #### General
-
-- **The **<% vars.product_full%> tile now requires Jammy Stemcell**:
-  The tile now depends on Jammy Stemcells instead of Xenial. You need to have a Jammy Stemcell available in Tanzu Operations Manager.
-  This change also requires that Tanzu Operations Manager is at version v2.10.33 or later.
 
 
 ### Resolved issues
