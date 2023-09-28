@@ -278,7 +278,15 @@ To configure AWS credentials:
    >**Note**
    >Gov Cloud regions are not supported.
 
-3. Click **Save**.
+3. Configure the **Global Tags** section.
+
+   The broker automatically creates AWS tags for the service instance GUID and the org-space GUID.
+   You can also configure default global tags to add for each AWS service. See next example:
+
+   <%= image_tag("images/aws-config-global-tags.png", :alt => "Text boxes for
+   configuring AWS default global tags to add for each AWS service.", :width => "400") %>
+
+4. Click **Save**.
 
 ### <a id="state-db"></a> Configure a state database
 
