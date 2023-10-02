@@ -802,3 +802,57 @@ The following errors can occur in any Amazon MySQL instance:
     </table>
 </div>
 
+### <a id="mssql-errors"></a> Amazon MSSQL errors
+
+The following errors can occur in any Amazon MSSQL instance:
+
+- [Error disabling backups and Multi-AZ in the same updating operation](#backups-multi-az-issue)
+
+<div id="backups-multi-az-issue" class="wrap-table-overflow">
+    <table class="table">
+        <tbody>
+             <tr>
+                <td>Error</td>
+                <td>
+                    InvalidParameterValue: Backup retention cannot be set to zero for DB Instance xxxxx
+                    since it has Multi-AZ enabled on it.
+                </td>
+             </tr>
+             <tr>
+                <td>Operation</td>
+                <td>Update</td>
+             </tr>
+             <tr>
+                <td>Symptom</td>
+                <td>
+                  The instance fails to update with the error mentioned above if `backup_retention_period` is set to `0` and
+                  `multi_az` is set to `false` in the same updating operation.
+                </td>
+            </tr>
+            <tr>
+                <td>Cause</td>
+                <td>
+                  The broker handles asynchronous parallel operations in the upgrade operation and has no ability to
+                  set the order of execution of the two updates.
+                </td>
+            </tr>
+            <tr>
+                <td>Solution</td>
+                <td>
+                    The updates need to be sequential:
+                    <ul>
+                      <ol>
+                        You must disable `multi_az` and wait until the operation finishes.
+                        <code>cf update-service csb-aws-mssql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"multi_az": false}'</code>
+                      </ol>
+                      <ol>
+                        Set `backup_retention_period` to `0`.
+                        <code>cf update-service csb-aws-mssql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"backup_retention_period":0}'</code>
+                      </ol>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
