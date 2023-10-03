@@ -21,6 +21,11 @@ This release has the following breaking changes:
 - **The <%= vars.product_full%> tile now requires Jammy Stemcell**:
   The tile now depends on Jammy Stemcells instead of Xenial. You need to have a Jammy Stemcell available in Tanzu Operations Manager.
   This change also requires that Tanzu Operations Manager is at version v2.10.33 or later.
+- 
+- **The <%= vars.product_full%> tile will stop the installation process if there are any outdated instances**:
+  From now on, you must ensure that service instances are up to date before upgrading the tile, or the
+  installation process will stop. Your instances will use the last released functionality that includes the latest
+  security patches.
 
 ### Features
 
