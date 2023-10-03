@@ -116,14 +116,14 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
 
 5. Configure and run AWS DMS service.
 
-   1. Create a replication instance using the AWS DMS console:
+   *  Create a replication instance using the AWS DMS console:
       A replication instance performs the actual data migration between source and target endpoints.
       Your instance needs enough storage and processing power to perform the tasks that migrate data from
       your source database to your target database.
       Read [AWS documentation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_GettingStarted.Replication.html)
       to set up replication between the source and target databases.
 
-   2. Using the Legacy RDS Instance as a **source** for AWS DMS:
+   *  Using the Legacy RDS Instance as a **source** for AWS DMS:
       Read important documentation [here](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html)
       to know how to configure a Microsoft SQL Server database as a source for AWS DMS.
 
@@ -132,27 +132,28 @@ To migrate data from an existing legacy RDS instance to <%= vars.product_short %
 
       > **Important** The credentials exposed in a binding associated with the legacy RDS instance do not have
       > these privileges. You could use the AWS Master user with elevated privileges to generate a user to perform this
-      > operation.
+      > operation. Resetting the password of the AWS Master user will leave the legacy broker inoperative. 
+      > Once the password is reset, the broker will not be able to create binding or delete them.
 
       Pay special attention to the [limitations](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html#CHAP_Source.SQLServer.Limitations)
       on using SQL Server as a source for AWS DMS.
 
-   3. Using the new RDS Instance as a **target** for AWS DMS.
+   *  Using the new RDS Instance as a **target** for AWS DMS.
       Read important documentation [here](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html)
       to know how to configure a Microsoft SQL Server database as a target for AWS DMS.
 
       Pay special attention to the [limitations](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html#CHAP_Target.SQLServer.Limitations)
       on using SQL Server as a target for AWS DMS.
 
-      The credentials obtained in step number 3, will have the necessary permissions for the AWS DMS user account 
+      The credentials obtained in step "Get credentials from the service key by running", will have the necessary permissions for the AWS DMS user account 
       you use to connect to the target SQL Server database.
-   
-   4. Create a Database Migration Task
+
+   *  Create a Database Migration Task
       This task is in charge of migrating data between the source and target database.
       Read [AWS documentation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_GettingStarted.Replication.html#CHAP_GettingStarted.Replication.Tasks)
       to set up the database migration task.
-   
-   5. Test replication
+
+   *  Test replication
       Make sure that your database migration task is finished and query the target database for data.
 
 6. Update the app to consume the new binding credential format:
