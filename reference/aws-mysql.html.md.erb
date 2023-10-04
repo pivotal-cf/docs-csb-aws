@@ -37,7 +37,7 @@ The following table lists parameters which can only be configured for additional
 | `plan_updateable`         | Whether the Plan supports upgrading, downgrading, or sidegrading to another version.                                     | true    | No       |
 | `cores`                   | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
 | `mysql_version`           | The version of the MySQL instance. Either major version, for example, `8.0`, or full version, for example, `8.0.30`.     | _n/a_   | Yes      |
-| `storage_gb`              | Size of storage volume for service instance. 5&ndash;4096.                                                               | _n/a_   | Yes      |
+| `storage_gb`              | Size of storage volume for service instance. Minimum size 5 GB.                                                          | _n/a_   | Yes      |
 | `metadata.displayName`    | Name to use when displaying the plan in the Marketplace.                                                                 | _n/a_   | No       |
 | `metadata.bullets`        | List of bullet points to display in Apps Manager.                                                                        | _n/a_   | No       |
 
@@ -443,7 +443,7 @@ provision only:
       <td>Integer</td>
       <td>
         If provided, it sets the retention days for the log group that contains the RDS audit logs.
-        It is used in conjunction with <code>enable_audit_logging<code>.
+        It is used in conjunction with <code>enable_audit_logging</code>.
       </td>
       <td><code>30</code></td>
       <td>provision and update</td>
@@ -454,7 +454,7 @@ provision only:
       <td>
         If provided, it sets the KSM key to use for encrypting the CloudWatch log group that is
         created for the RDS audit logs.
-        It is used in conjunction with <code>enable_audit_logging<code>.
+        It is used in conjunction with <code>enable_audit_logging</code>.
       </td>
       <td><code>""</code></td>
       <td>provision and update</td>
@@ -520,7 +520,7 @@ Add the following block to keep the `small` plan:
     "storage_autoscale": false,
     "metadata": {
       "displayName": "small",
-      "bullets": [MySQL v5.7", "minimum 2 cores", "minimum 4GB ram", "5GB storage"]
+      "bullets": ["MySQL v5.7", "minimum 2 cores", "minimum 4GB ram", "5GB storage"]
     }
 }
 ```
@@ -541,7 +541,7 @@ Add the following block to keep the `medium` plan:
     "storage_autoscale": false,
     "metadata": {
       "displayName": "medium",
-      "bullets": [MySQL v5.7", "minimum 4 cores", "minimum 8GB ram", "10GB storage"]
+      "bullets": ["MySQL v5.7", "minimum 4 cores", "minimum 8GB ram", "10GB storage"]
     }
 
 }
@@ -563,7 +563,7 @@ Add the following block to keep the `large` plan:
     "storage_autoscale": false,
     "metadata": {
       "displayName": "large",
-      "bullets": [MySQL v5.7", "minimum 8 cores", "minimum 16GB ram", "20GB storage"]
+      "bullets": ["MySQL v5.7", "minimum 8 cores", "minimum 16GB ram", "20GB storage"]
     }
 
 }
