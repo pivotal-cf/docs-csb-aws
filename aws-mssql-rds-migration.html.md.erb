@@ -1,0 +1,190 @@
+---
+title: Migrating to an Amazon RDS for MSSQL
+owner: Cloud Service Broker for AWS
+---
+
+<strong><%= modified_date %></strong>
+
+This topic tells you how to migrate to an instance of the <%= vars.product_full %> tile from an SQL Server instance
+of the [VMware Tanzu Service Broker for AWS tile](https://network.pivotal.io/products/aws-services/).
+
+## <a id='about'></a> About Migrating Data to an Amazon RDS for SQL Server Instance
+
+Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
+is going out of support, you must move from instances that the legacy broker created over to
+service instances that <%= vars.product_short %> created.
+
+The <%= vars.product_short %> plans are configurable.
+When migrating, examine the configuration of the plans in use with the legacy broker and create
+matching plans in <%= vars.product_short %>.
+
+You can use the AWS Data Migration Service (DMS) to migrate data between Amazon RDS instances. 
+The tool copies data from one database to another.
+Because the original database is not modified, you can reverse the migration if you detect any problems.
+It also enables migration to happen over time.
+
+The DMS is a tool provided as part of AWS.
+For more information about AWS DMS, see the [AWS documentation](https://aws.amazon.com/dms/).
+
+### <a id='configuration'></a> Matching Configuration
+
+Both the legacy broker and <%= vars.product_short %> allow you to customize service plans.
+
+Create plans in <%= vars.product_short %> that match the plans used in the legacy broker.
+It might be useful to create a test service instance and compare the properties in the AWS console.
+For how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](installing-with-aws.html.md.erb#services).
+
+### <a id='migration'></a> Migrating Data
+
+You might want to migrate data from instances created with the legacy broker to instances created
+with <%= vars.product_short %>.
+
+> **Important** Migration of data might incur app downtime. The amount of downtime depends on the
+> method chosen.
+
+There are many methods for performing data migration, including [AWS DMS](https://aws.amazon.com/dms/),
+manual data migration, and methods available from other vendors.
+
+For more information about the data migration process, see the documentation for the method that you
+choose.
+
+
+> **Important** The data migration process might create schemas and tables in the target database.
+> The new instance created using <%= vars.product_short %> re-assigns data ownership to the
+> `binding_user_group` role when deleting a service key or unbinding an app. This is necessary for 
+> the proper functioning of the system.
+
+In general, to migrate data:
+
+1. Create an Amazon RDS instance using <%= vars.product_short %>.
+2. Replicate the data from a legacy broker instance into the newly created instance.
+3. Unbind apps from the legacy broker instance and bind them to the newly created instance.
+
+We recommend establishing security processes such as security backups, automation of the replication process,
+pre- and post-operations to check the data integrity, think about database size, downtimes,
+engines and compatibilities, etc.
+
+After the migration is completed you can stop ongoing migration and, if you want, delete the legacy
+broker instance.
+
+
+For more detailed steps showing the Cloud Foundry commands necessary to use AWS DMS,
+see [Migrate Data from a Legacy Instance using DMS](#steps).
+
+## <a id='steps'></a> Migrate Data from a Legacy RDS Instance using DMS
+
+To migrate data from an existing legacy RDS instance to <%= vars.product_short %>:
+
+1. Create a new RDS service instance using <%= vars.product_short %> by running:
+
+    ```console
+    cf create-service SERVICE-OFFERING SERVICE-PLAN NEW-SERVICE-INSTANCE-NAME
+    ```
+
+    Where:
+
+    - `SERVICE-OFFERING` is the name of the RDS service offer selected to match the legacy instance
+    - `SERVICE-PLAN` is the name of the RDS service plan created to match the legacy instance
+      configuration
+    - `NEW-SERVICE-INSTANCE-NAME` is the name of the new RDS service instance
+
+2. Create a service key in the new RDS service by running:
+
+    ```console
+    cf create-service-key NEW-SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
+    ```
+
+    Where:
+
+    - `NEW-SERVICE-INSTANCE-NAME` is the name of the new RDS service instance
+    - `SERVICE-KEY-NAME` is a name that you choose for the service key
+
+3. Get credentials from the service key by running:
+
+    ```console
+    cf service-key NEW-SERVICE-INSTANCE-NAME SERVICE-KEY-NAME
+    ```
+
+4. Inspect the JSON output for the hostname, name, user name, password, and port required to
+   configure the data migration target.
+
+5. Configure and run AWS DMS service.
+
+   *  Create a replication instance using the AWS DMS console:
+      A replication instance performs the actual data migration between source and target endpoints.
+      Your instance needs enough storage and processing power to perform the tasks that migrate data from
+      your source database to your target database.
+      Read [AWS documentation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_GettingStarted.Replication.html)
+      to set up replication between the source and target databases.
+
+   *  Using the Legacy RDS Instance as a **source** for AWS DMS:
+      Read important documentation [here](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html)
+      to know how to configure a Microsoft SQL Server database as a source for AWS DMS.
+
+      A SQL Server account with appropriate access privileges to the source database is required for
+      using the replication task in AWS DMS. This account must have the `view definition` and `view server state` permissions.
+
+      > **Important** The credentials exposed in a binding associated with the legacy RDS instance do not have
+      > these privileges. You could use the AWS Master user with elevated privileges to generate a user to perform this
+      > operation. Resetting the password of the AWS Master user will leave the legacy broker inoperative. 
+      > Once the password is reset, the broker will not be able to create binding or delete them.
+
+      Pay special attention to the [limitations](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html#CHAP_Source.SQLServer.Limitations)
+      on using SQL Server as a source for AWS DMS.
+
+   *  Using the new RDS Instance as a **target** for AWS DMS.
+      Read important documentation [here](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html)
+      to know how to configure a Microsoft SQL Server database as a target for AWS DMS.
+
+      Pay special attention to the [limitations](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html#CHAP_Target.SQLServer.Limitations)
+      on using SQL Server as a target for AWS DMS.
+
+      The credentials obtained in step "Get credentials from the service key by running", will have the necessary permissions for the AWS DMS user account 
+      you use to connect to the target SQL Server database.
+
+   *  Create a Database Migration Task
+      This task is in charge of migrating data between the source and target database.
+      Read [AWS documentation](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_GettingStarted.Replication.html#CHAP_GettingStarted.Replication.Tasks)
+      to set up the database migration task.
+
+   *  Test replication
+      Make sure that your database migration task is finished and query the target database for data.
+
+6. Update the app to consume the new binding credential format:
+   The legacy binding exposes the database name in the credentials block as `database`, whereas
+   the binding credentials received from <%= vars.product_short %> exposes the database name as
+   `name`. You must update the consuming app to handle the `name` credential property.
+
+7. Disconnect the app from the legacy service binding by running
+
+    ```console
+    cf unbind-service APP-NAME LEGACY-SERVICE-INSTANCE-NAME
+    ```
+
+    Where:
+
+    - `APP-NAME` is the app using the old AWS RDS instance.
+    - `LEGACY-SERVICE-INSTANCE-NAME` is the name of the VMware Tanzu Service Broker for the AWS-brokered RDS
+      instance.
+
+8. Bind the app to the new service instance by running:
+
+    ```console
+    cf bind-service APP-NAME NEW-SERVICE-INSTANCE-NAME
+    ```
+
+    Where `NEW-SERVICE-INSTANCE-NAME` is the name of the <%= vars.product_short %> service instance
+    that you created earlier.
+
+    For example:
+
+    <pre class="terminal">
+    $ cf bind-service my-app my-csb-aws-instance
+    </pre>
+
+    Because <%= vars.product_short %> creates new credentials at bind time, this creates new binding
+    credentials for the app.
+
+9. After the migration finishes, you can stop continuous migration and remove the legacy service
+   instance.
