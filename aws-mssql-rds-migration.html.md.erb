@@ -49,11 +49,6 @@ manual data migration, and methods available from other vendors.
 For more information about the data migration process, see the documentation for the method that you
 choose.
 
-> **Important** Most of the available methods for performing data migration, imply you need a user
-> with elevated privileges in order to initiate the migration.
-> The credentials exposed in a binding associated with the legacy RDS instance 
-> do not have the privileges to perform maintenance operations. You could use the AWS Master user
-> with elevated privileges to generate a user to perform these operations.
 
 > **Important** The data migration process might create schemas and tables in the target database.
 > The new instance created using <%= vars.product_short %> re-assigns data ownership to the
