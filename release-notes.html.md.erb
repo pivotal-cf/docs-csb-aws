@@ -8,8 +8,20 @@ owner: Cloud Service Broker
 This topic describes the changes in this minor release of <%= vars.product_full %>.
 
 ## <a id="1-8-0"></a> v1.8.0
-
 **Release date:** DD MMM YYYY
+
+### Resolved Issues
+
+This release has the following fixes:
+
+- **Prevent performance degradation of database consistency checks at startup**
+
+  Previously the <%= vars.product_short %> would keep information in the database about instances and
+  bindings that had already been destroyed. This would cause the broker's database space usage to grow
+  overtime with no real benefit. Under extreme usage, It would also have some undesired side effects like making the consistency
+  checks at start up take longer than expected causing the platform to time out. The <%= vars.product_short %>
+  will now physically delete information from destroyed assets preventing this situation from happening
+  in the future.
 
 ### Breaking Changes
 
@@ -21,13 +33,6 @@ This release has the following breaking changes:
 ### Features
 
 New features and changes in this release:
-
-- **Run-in header:** Description.
-- **Run-in header:** Description.
-
-### Resolved Issues
-
-This release has the following fixes:
 
 - **Run-in header:** Description.
 - **Run-in header:** Description.
