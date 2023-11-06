@@ -138,6 +138,24 @@ provision only:
         The AWS Key Management Service (KMS) key ID used for the
         Amazon S3 server-side encryption, which uses AWS Key Management Service (SSE-KMS).
         To use this parameter, set the value of <code>sse_default_algorithm</code> to <code>aws:kms</code>.
+
+        Changing the <code>sse_default_kms_key</code> doesn't reencrypt existing objects, therefore any new binding
+        won't be able to read those objects, unless you add the old KMS key to the <code>sse_extra_kms_key_ids</code>.
+
+        Also, keep in mind that any existing binding will keep using the previous <code>sse_default_kms_key_id</code>.
+        If you need to ensure that all bindings for an instance use the latest <code>sse_default_kms_key_id</code>
+        you need to delete and recreate them.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>sse_extra_kms_key_ids</code></td>
+      <td>String</td>
+      <td>
+        A comma-separated list of additional custom KMS key ids which can be used to encrypt and decrypt objects in the bucket.
+        The list of <code>sse_extra_kms_key_ids</code> is relevant even if server-side encryption is disabled, since apps will
+        be able to use any KMS key from this list to selectively encrypt new objects and read any objects encrypted with them.
       </td>
       <td><code>null</code></td>
       <td>provision and update</td>
