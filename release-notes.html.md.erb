@@ -40,10 +40,10 @@ This release has the following fixes:
   The <%= vars.product_short %> now physically deletes information from destroyed assets preventing this 
   situation from happening.
 - **Using a custom KMS key for object encryption:**
-  Previosuly, when trying to encrypt an object with a custom KMS key it failed with an `AccessDenied` error.  
+  Previously, when trying to encrypt an object with a custom KMS key, it failed with an `AccessDenied` error.  
   When a custom KMS key was used as the `sse_default_kms_key`, this prevented uploading encrypted objects.  
-  This bug didn't cause objects to be uploaded accidentally unencrypted. However, you may want  
-  to review the encryption settings for your instances because you may want to harness the new property `sse_extra_kms_key_ids`.  
+  This bug didn't cause uploaded objects to be accidentally unencrypted. However, you may want  
+  to review the encryption settings for your instances, because you can now harness the new property `sse_extra_kms_key_ids`.  
   For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
 - **Run-in header:** Description.
 
