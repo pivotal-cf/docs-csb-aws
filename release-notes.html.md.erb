@@ -10,19 +10,6 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 ## <a id="1-8-0"></a> v1.8.0
 **Release date:** DD MMM YYYY
 
-### Resolved Issues
-
-This release has the following fixes:
-
-- **Prevent performance degradation of database consistency checks at start up**
-
-  Previously the <%= vars.product_short %> would keep information in the database about instances and
-  bindings that had already been destroyed. In the long term, this would cause the broker's database space 
-  usage to grow with no real benefit. In some rare scenarios, making broker start up slower and causing the 
-  platform to time out. 
-  The <%= vars.product_short %> will now physically delete information from destroyed assets preventing this 
-  situation from happening in the future.
-
 ### Breaking Changes
 
 This release has the following breaking changes:
@@ -34,7 +21,30 @@ This release has the following breaking changes:
 
 New features and changes in this release:
 
+- **New property `sse_extra_kms_key_ids`**:
+  You can now specify a comma-separated list of custom KMS key IDs that bindings can use to encrypt and decrypt objects in the bucket.  
+  This property is also useful if you need to rotate the `sse_default_kms_key`.  
+  For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
 - **Run-in header:** Description.
+
+
+### Resolved Issues
+
+This release has the following fixes:
+
+- **Prevent performance degradation of database consistency checks at start up**
+  Previously the <%= vars.product_short %> would keep information in the database about instances and
+  bindings that had already been destroyed. In the long term, this caused the broker's database space 
+  usage to grow with no benefit. In some rare scenarios, it made broker start up slower and caused the 
+  platform to time out. 
+  The <%= vars.product_short %> now physically deletes information from destroyed assets preventing this 
+  situation from happening.
+- **Using a custom KMS key for object encryption:**
+  Previosuly, when trying to encrypt an object with a custom KMS key it failed with an `AccessDenied` error.  
+  When a custom KMS key was used as the `sse_default_kms_key`, this prevented uploading encrypted objects.  
+  This bug didn't cause objects to be uploaded accidentally unencrypted. However, you may want  
+  to review the encryption settings for your instances because you may want to harness the new property `sse_extra_kms_key_ids`.  
+  For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
 - **Run-in header:** Description.
 
 ### Known Issues
