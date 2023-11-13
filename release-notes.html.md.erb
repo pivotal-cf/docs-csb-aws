@@ -25,7 +25,14 @@ New features and changes in this release:
   You can now specify a comma-separated list of custom KMS key IDs that bindings can use to encrypt and decrypt objects in the bucket.  
   This property is also useful if you need to rotate the `sse_default_kms_key`.  
   For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
-- **Run-in header:** Description.
+
+#### General
+
+- **Terraform upgraded to v1.5.7:**
+
+  The Terraform version used to apply changes is upgraded from
+  v1.4.4 to v1.5.7. You must upgrade all service instances.
+  When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
 
 
 ### Resolved Issues
