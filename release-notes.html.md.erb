@@ -31,8 +31,8 @@ New features and changes in this release:
 
 - **GovCloud accounts are now supported**:
 
-  You can now specify a GovCloud region and credentials for the broker to work with. Not all features might be available in GovCloud regions. 
-  For differences with standard regions you can refer to the [AWS GovCloud documentation](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html)
+  You can now specify a GovCloud region and credentials for the broker to work with. It can happen that not all features are available in GovCloud regions. 
+  For differences with standard regions, you can refer to the [AWS GovCloud documentation](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html)
 
 
 #### Amazon S3 Bucket
@@ -49,8 +49,8 @@ New features and changes in this release:
 - **MSSQL now allows for encryption configuration for Express Edition in GovCloud regions**: 
   
   Unlike standard accounts, GovCloud does support encryption for Express edition. 
-  Prior to this version setting `storage_encrypted` to `true` and `engine` to `sqlserver-ex` would be prevented by the broker. From this version
-  onwards the broker will allow it. This will result in an error creating the instance for standard accounts but a successful creation for GovCloud accounts.  
+  Prior to this version, setting `storage_encrypted` to `true` and `engine` to `sqlserver-ex` was prevented by the broker. From this version
+  onwards the broker allows it. This results in an error creating the instance for standard accounts but a successful creation for GovCloud accounts.  
 
 
 
