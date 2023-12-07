@@ -21,11 +21,6 @@ This release has the following breaking changes:
 
 New features and changes in this release:
 
-- **New property `sse_extra_kms_key_ids`**:
-  You can now specify a comma-separated list of custom KMS key IDs that bindings can use to encrypt and decrypt objects in the bucket.  
-  This property is also useful if you need to rotate the `sse_default_kms_key`.  
-  For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
-
 #### General
 
 - **Terraform upgraded to v1.5.7:**
@@ -33,6 +28,32 @@ New features and changes in this release:
   The Terraform version used to apply changes is upgraded from
   v1.4.4 to v1.5.7. You must upgrade all service instances.
   When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
+
+- **GovCloud accounts are now supported**:
+
+  You can now specify a GovCloud region and credentials for the broker to work with. Not all features might be available in GovCloud regions. 
+  For differences with standard regions you can refer to the [AWS GovCloud documentation](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html)
+
+
+#### Amazon S3 Bucket
+
+- **New property `sse_extra_kms_key_ids`** for S3:
+
+  You can now specify a comma-separated list of custom KMS key IDs that bindings can use to encrypt and decrypt objects in the bucket.  
+  This property is also useful if you need to rotate the `sse_default_kms_key`.  
+  For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
+
+
+#### Amazon RDS for MSSQL
+
+- **MSSQL now allows for encryption configuration for Express Edition in GovCloud regions**: 
+  
+  Unlike standard accounts, GovCloud does support encryption for Express edition. 
+  Prior to this version setting `storage_encrypted` to `true` and `engine` to `sqlserver-ex` would be prevented by the broker. From this version
+  onwards the broker will allow it. This will result in an error creating the instance for standard accounts but a successful creation for GovCloud accounts.  
+
+
+
 
 
 ### Resolved Issues
