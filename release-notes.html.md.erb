@@ -29,7 +29,13 @@ New features and changes in this release:
   v1.4.4 to v1.5.7. You must upgrade all service instances.
   When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
 
-- **GovCloud accounts are now supported**:
+- **Apply changes now fails if there were problems upgrading one or more instances:**
+
+  Issues when upgrading instances will now be surfaced to OpsManager by failing the deploy-all errand. Deployment log needs to be
+  inspected for detailed information on upgrade failures under this scenario. 
+  For more information on the upgrade process see [Upgrading Cloud Service Broker for AWS](upgrading.html)  
+
+- **GovCloud accounts are now supported:**
 
   You can now specify a GovCloud region and credentials for the broker to work with. It can happen that not all features are available in GovCloud regions. 
   For differences with standard regions, you can refer to the [AWS GovCloud documentation](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html)
