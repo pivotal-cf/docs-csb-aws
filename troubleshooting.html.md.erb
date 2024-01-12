@@ -895,32 +895,33 @@ The following errors can occur in any Aurora instance:
                 <td>
                     Perform the following changes sequentially:
                     <ol>
-                      <li>
-                        - Specify <code>engine_version</code> in MAJOR.MINOR form (in case it is currently specified as MAJOR only).  
-                        - Temporarily disable <code>auto_minor_version_upgrade</code>.  
-                        - Temporarily update to a bigger <code>instance_class</code> type.  
-                        - Temporarily use the default <code>db_cluster_parameter_group_name</code> (in case a custom one is specified). Remember to choose the one corresponding to the current <code>engine_version</code>.
-                        
+                      <li>First:</li>
+                        <ul>
+                            <li>Specify <code>engine_version</code> in MAJOR.MINOR form (in case it is currently specified as MAJOR only).</li> 
+                            <li>Temporarily disable <code>auto_minor_version_upgrade</code>.</li>
+                            <li>Temporarily update to a bigger <code>instance_class</code> type.</li>
+                            <li>Temporarily use the default <code>db_cluster_parameter_group_name</code> (in case a custom one is specified). Remember to choose the one corresponding to the current <code>engine_version</code>.</li>
+                        </ul>
                         You can batch all these changes into a single update-service operation or perform them one by one. For example:  
                         
                         <code>cf update-service csb-aws-aurora-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"engine_version": "13.11", "auto_minor_version_upgrade": false, "instance_class": "db.t3.medium", "db_cluster_parameter_group_name": "default.aurora-postgresql13"}'</code>
-                      </li>
-                      <li>
-                        Once that's done, we can proceed with the major upgrade by:  
-                        - Specifying the new <code>engine_version</code> in MAJOR only form.  
-                        - Adapting <code>db_cluster_parameter_group_name</code> to use the one corresponding to the new <code>engine_version</code>.
-                        
+
+                      <li>Once that's done, you can proceed with the major upgrade by:</li>
+                        <ul>
+                            <li>Specifying the new <code>engine_version</code> in MAJOR only form.</li>
+                            <li>Adapting <code>db_cluster_parameter_group_name</code> to use the one corresponding to the new <code>engine_version</code>.</li>
+                        </ul>
                         Again, you can batch these changes into a single update-service operation or perform them one by one:  
                         
                         <code>cf update-service csb-aws-aurora-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"engine_version": "14", "db_cluster_parameter_group_name": "default.aurora-postgresql14"}'</code>
-                      <li>
-                        Finally:
-                        - Re-enable <code>auto_minor_version_upgrade</code> (if desired).  
-                        - Specify a new custom <code>db_cluster_parameter_group_name</code> or leave it blank to let Cloud Service Broker create one automatically for us.  
-                        - Scale down <code>instance_class</code> to its previous value, since the extra capacity was only needed during the actual upgrade.  
+                      
+                      <li>Finally:</li>
+                        <ul>
+                            <li>Re-enable <code>auto_minor_version_upgrade</code> (if desired).</li>
+                            <li>Specify a new custom <code>db_cluster_parameter_group_name</code> or leave it blank to let Cloud Service Broker create one automatically for us.</li>
+                            <li>Scale down <code>instance_class</code> to its previous value, since the extra capacity was only needed during the actual upgrade.</li>
                         
                         <code>cf update-service csb-aws-aurora-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"engine_version": "14", "auto_minor_version_upgrade": true, "instance_class": "db.serverless", "db_cluster_parameter_group_name": ""}'</code>
-                      </li>
                     </ol>
                 </td>
             </tr>
