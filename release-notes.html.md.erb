@@ -29,15 +29,20 @@ New features and changes in this release:
   v1.4.4 to v1.5.7. You must upgrade all service instances.
   When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
 
-- **GovCloud accounts are now supported**:
+- **Apply changes now fails if there were problems upgrading one or more instances:**
+
+  Issues when upgrading instances will now be surfaced to OpsManager by failing the deploy-all errand. Deployment log needs to be
+  inspected for detailed information on upgrade failures under this scenario. 
+  For more information on the upgrade process see [Upgrading Cloud Service Broker for AWS](upgrading.html)  
+
+- **GovCloud accounts are now supported:**
 
   You can now specify a GovCloud region and credentials for the broker to work with. It can happen that not all features are available in GovCloud regions. 
   For differences with standard regions, you can refer to the [AWS GovCloud documentation](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html)
 
-
 #### Amazon S3 Bucket
 
-- **New property `sse_extra_kms_key_ids`** for S3:
+- **New property `sse_extra_kms_key_ids`:**
 
   You can now specify a comma-separated list of custom KMS key IDs that bindings can use to encrypt and decrypt objects in the bucket.  
   This property is also useful if you need to rotate the `sse_default_kms_key`.  
@@ -46,7 +51,7 @@ New features and changes in this release:
 
 #### Amazon RDS for MSSQL
 
-- **MSSQL now allows for encryption configuration for Express Edition in GovCloud regions**: 
+- **MSSQL now allows for encryption configuration for Express Edition in GovCloud regions:** 
   
   Unlike standard accounts, GovCloud does support encryption for Express edition. 
   Prior to this version, setting `storage_encrypted` to `true` and `engine` to `sqlserver-ex` was prevented by the broker. From this version
@@ -60,7 +65,7 @@ New features and changes in this release:
 
 This release has the following fixes:
 
-- **Prevent performance degradation of database consistency checks at start up**
+- **Prevent performance degradation of database consistency checks at start up:**
   Previously the <%= vars.product_short %> would keep information in the database about instances and
   bindings that had already been destroyed. In the long term, this caused the broker's database space 
   usage to grow with no benefit. In some rare scenarios, it made broker start up slower and caused the 
