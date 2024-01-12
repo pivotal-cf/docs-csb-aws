@@ -913,8 +913,6 @@ The following errors can occur in any Aurora instance:
                         Again, you can batch these changes into a single update-service operation or perform them one by one:  
                         
                         <code>cf update-service csb-aws-aurora-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"engine_version": "14", "db_cluster_parameter_group_name": "default.aurora-postgresql14"}'</code>
-                    </ol>
-                    <ol>
                       <li>
                         Finally:
                         - Re-enable <code>auto_minor_version_upgrade</code> (if desired).  
