@@ -51,11 +51,33 @@ Understanding and addressing these instances is crucial for maintaining security
 ## Identifying Disconnected Instances
 - **Using CLI Tools**: Utilize Cloud Foundry CLI tools to identify disconnected instances.
     - **CLI CF `upgrade-all-services` plugin - Flag `-check-deactivated-plans`**: This specific flag can be used to check for instances linked to deactivated plans.
-     For more details, visit [Upgrade All Services CLI Plugin on GitHub](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin).
-    - **Example of execution**: `cf upgrade-all-services <broker_name> -check-deactivated-plans` 
-    - **Example of log**: `ADD EXAMPLE HERE`
-- **Revision of logs from previous installations**: CF logs a message when it detects instances created with plans that are not present in the CSB catalog.
-    - **`ADD EXAMPLE HERE`**: 
+    - Refer to documentation for more information:
+        - [Cloud Foundry CLI Reference Guide - Install CLI Plugin](https://cli.cloudfoundry.org/en-US/v7/install-plugin.html).
+        - [Cloud Foundry Documentation - Using a CF CLI Plugin](https://docs.cloudfoundry.org/cf-cli/use-cli-plugins.html).
+        - [Cloud Foundry Community - CF CLI UpgradeAllServices Plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
+        - [UpgradeAllServices CLI Plugin on GitHub - Flags](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin).
+    - **Plugin Installation**: To further clarify the installation of the plugin, the following code example is provided
+      ```shell
+      # Example code to demonstrate plugin installation
+      cf install-plugin -r CF-Community "UpgradeAllServices"
+      ```
+    - **Example of Execution**: To further clarify the use of the plugin, the following code example is provided
+      ```shell
+      # Example code to demonstrate plugin usage
+      cf upgrade-all-services <broker_name> -check-deactivated-plans
+      ```
+    - **Example of Log**: 
+      ```shell
+      ✓ cf upgrade-all-services csb-broker-dev -check-deactivated-plans                                              
+      2024-01-16T14:34:43Z: discovering service instances for broker: csb-broker-dev
+      2024-01-16T14:34:43Z: skipping instance: "s3-dev" guid: "1fe84e95-21c0-4acd-9bd9-6f2796971e46" Deactivated Plan: "default" Offering: "csb-aws-s3-bucket" Offering guid: "837f5ff6-5765-44a0-8b78-d7e3ebc8d428" Upgrade Available: false Last Operation Type: "create" State: "succeeded"
+      upgrade-all-services plugin failed: discovered deactivated plans associated with instances. Review the log to collect information and restore the deactivated plans or create user provided services
+      ```
+- **Revision of Logs From Previous Installations**: CF logs a message when it detects instances created with plans that are not present in the CSB catalog.
+    - **Example of Log**: 
+      ```shell
+      Warning: Service plans are missing from the broker's catalog (https://YOUR_CLOUD_SERVICE_BROKER_URL/v2/catalog) but can not be removed from Cloud Foundry while instances exist. The plans have been deactivated to prevent users from attempting to provision new instances of these plans. ....
+      ``` 
 
 # Section 3: Strategies for Handling Disconnected Instances
 
@@ -90,7 +112,7 @@ to orphaned or disconnected service instances in CSB for AWS and CF environments
 - **Moving to User-Provided Instances**:
     - Alternatively, consider moving orphaned instances to user-defined instances.
     - Manage these directly through the IaaS console for better control and customization.
-    - References to documentation for more information:
+    - Refer to documentation for more information:
         - [CF CLI Reference Guide for creating User-provided services instances](https://cli.cloudfoundry.org/en-US/v8/create-user-provided-service.html).
         - [TAS documentation for User-provided service instances](https://docs.vmware.com/en/VMware-Tanzu-Application-Service/5.0/tas-for-vms/services-user-provided.html).
         - [CF DevGuide for User-provider service instances](https://docs.cloudfoundry.org/devguide/services/user-provided.html).
