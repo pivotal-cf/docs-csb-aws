@@ -26,7 +26,7 @@ The primary objectives of this guide are:
 In the context of the Tanzu Cloud Service Broker (CSB) for AWS and Cloud Foundry (CF) environments, it's essential to
 understand what constitutes an orphaned service instance, why they occur, and the best practices for managing them.
 
-## What is An Orphaned Service Instance?
+## What Is An Orphaned Service Instance?
 
 - **Definition**: An orphaned service instance refers to a service instance that CF recognizes as part of the CSB, but
   for which the CSB lacks the necessary information to manage effectively.
@@ -50,7 +50,7 @@ understand what constitutes an orphaned service instance, why they occur, and th
   different, resulting in orphaned instances. This is because the CSB views the modified Plan ID as a new resource,
   disconnecting it from its original configuration and management context.
 
-## Recommended Actions for Orphaned Instances
+## Recommended Actions For Orphaned Instances
 
 - **Regular Health Checks**: Consistently monitor your CF environment for orphaned instances.
     - For instances related to unavailable custom plans, refer to the upgrade instructions specific to those plans and
