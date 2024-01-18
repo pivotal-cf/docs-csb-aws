@@ -156,7 +156,9 @@ related to orphaned service instances in CSB for AWS and CF environments.
         - Orphaned service instances that you do not want to manage with the CSB must be deleted from the CF database.
     - Refer to the next article for obtaining more information about deleting orphaned service instances.
         - [How to delete orphaned service instances derived from service brokers in Operations Manager](https://community.pivotal.io/s/article/How-to-delete-orphaned-service-instances-derived-from-service-brokers?language=en_US)
-        - **Example of execution**: `cf purge-service-instance mysql-dev`
+    - Refer to the Cloud Foundry documentation for obtaining more information about deleting orphaned service instances.
+        - [Purge a Service Instance](https://docs.cloudfoundry.org/services/managing-service-brokers.html#purge-service-instance) 
+    - **Example of Execution**: `cf purge-service-instance mysql-dev`
 
 3. **Avoiding Old Workarounds**:
     - Do not attempt to rejoin instances to the broker by recreating plans. This method is outdated and no longer
