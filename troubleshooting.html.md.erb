@@ -28,21 +28,21 @@ The following errors can occur in multiple services:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Broker trying to recreate the instance when updating it</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>update</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>The instance status is <code>update failed</code> and the message is similar to<br>
                 <code>update failed: Error: Instance cannot be destroyed on main.tf **** has
                 lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code>.</td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>The update request for a field is failing because one of the following is true:
                 <ul>
                 <li>The field cannot be updated</li>
@@ -59,7 +59,7 @@ The following errors can occur in multiple services:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     <ul>
                         <li>If the property can be updated, pass the parameter in the update
@@ -82,21 +82,21 @@ The following errors can occur in multiple services:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Broker trying to recreate the instance when changing plan</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>update plan</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>The instance status is <code>update failed</code> and the message is similar to<br>
                 <code>update failed: Error: Instance cannot be destroyed on main.tf **** has
                 lifecycle.prevent_destroy set, but the plan calls for this resource to be destroyed</code>.</td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                     The update request for the plan is failing because the new plan contains
                     incompatible property values.
@@ -112,7 +112,7 @@ The following errors can occur in multiple services:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     Update the instance to a plan with the compatible values.
                 </td>
@@ -135,15 +135,15 @@ The following errors can occur in Amazon ElastiCache for Redis:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Invalid Parameter Group</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>create or update</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors containing:
                   <ul>
@@ -153,14 +153,14 @@ The following errors can occur in Amazon ElastiCache for Redis:
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   The value of <code>parameter_group_name</code> points to a parameter group that is
                   not compatible with the version of Redis specified in <code>redis_version</code>.
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     <ul>
                     <li>Set the <code>parameter_group_name</code> to <code>""</code> so that the default is used.</li>
@@ -176,28 +176,28 @@ The following errors can occur in Amazon ElastiCache for Redis:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Snapshotting state while adding or removing nodes</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>update</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors containing:<br>
                   <code>unexpected state 'snapshotting', wanted target 'available'.</code>
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   An AWS snapshot was started during the operation.
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                   Retry the operation.
                 </td>
@@ -210,15 +210,15 @@ The following errors can occur in Amazon ElastiCache for Redis:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Unable to create instance without specifying minor version (redis 7 only).</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>create or update</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors containing:
                   <ul>
@@ -228,13 +228,13 @@ The following errors can occur in Amazon ElastiCache for Redis:
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   There is an [underlying error in AWS API](https://github.com/hashicorp/terraform-provider-aws/issues/27918) preventing this scenario.
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     <ul>
                     <li>Unfortunately there is no workaround. Specify a minor version when using Redis version 7 and set auto_minor_version_upgrade to false.</li>
@@ -261,15 +261,15 @@ The following errors can occur in any Amazon RDS instance:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Reaching AWS subnets quota in a subnet group for RDS</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>create</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors containing:
                   <ul>
@@ -278,7 +278,7 @@ The following errors can occur in any Amazon RDS instance:
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   There is a resource quota for AWS called Subnets per DB subnet group that establishes the maximum
                   number of subnets per DB subnet group to each supported region to 20.
@@ -296,7 +296,7 @@ The following errors can occur in any Amazon RDS instance:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     Create a custom DB subnet group through the AWS console and add the desired subnets for RDS
                     instances to use. Then use the DB subnet group name as a plan or provision parameter.
@@ -310,15 +310,15 @@ The following errors can occur in any Amazon RDS instance:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Major engine version should be specified when auto_minor_version_upgrade is enabled</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>create or update</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors containing:
                   <ul>
@@ -334,14 +334,14 @@ The following errors can occur in any Amazon RDS instance:
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   A business rule prevents you from creating or updating an RDS instance with a configuration that
                   enables auto_minor_version_upgrade and does not select a major engine version. AWS automatically upgrades the minor versions, but you must pick a major version.
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                   Create or update your RDS instance with either auto minor version upgrade deactivated or auto minor
                   version upgrade enabled but selecting a <strong>major engine version</strong>.
@@ -362,15 +362,15 @@ The following errors can occur in any Amazon RDS instance:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>Engine version not found when using a major version</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>create or update</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors containing:
                   <ul>
@@ -384,7 +384,7 @@ The following errors can occur in any Amazon RDS instance:
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   The AWS API cannot eventually find a minor version within its catalog.
                   Various causes can induce this error, such as:
@@ -395,7 +395,7 @@ The following errors can occur in any Amazon RDS instance:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                   Create or update your RDS instance with auto minor version upgrade deactivated and select a
                   <strong>specific minor engine version</strong>.
@@ -409,15 +409,15 @@ The following errors can occur in any Amazon RDS instance:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>incompatible-network state</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>create</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors containing:
                   <ul>
@@ -426,7 +426,7 @@ The following errors can occur in any Amazon RDS instance:
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   An incompatible-network state indicates one or more of the following is true of the Amazon RDS DB instance:
                     <ul>
@@ -436,7 +436,7 @@ The following errors can occur in any Amazon RDS instance:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     AWS does not make any guarantees as to what subnet from the subnet group an RDS instance is
                     launched in. Although you can assume it is going to balance new instance creation among
@@ -462,15 +462,15 @@ The following errors can occur in any Amazon PostgreSQL instance:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>User does not have permission for tables created by other user in the PUBLIC schema</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>Bindings modifying/reading tables created by other bindings in the PUBLIC schema</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Errors mentioning lack of permissions/ownership:
                   <ul>
@@ -480,7 +480,7 @@ The following errors can occur in any Amazon PostgreSQL instance:
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   The Cloud Foundry binding model implies that multiple bindings can query
                   or edit the same tables. This is particularly useful for rotating credentials where
@@ -503,7 +503,7 @@ The following errors can occur in any Amazon PostgreSQL instance:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                 All the database users created when binding and creating service keys with Tanzu Cloud Service Broker for AWS are assigned the role <code>binding_user_group</code>. This implies
                 they all have access to tables created by the <code>binding_user_group</code> role.
@@ -525,23 +525,23 @@ The following errors can occur in any Amazon PostgreSQL instance:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>InvalidParameterCombination: You can't specify IOPS or storage throughput for engine
               postgres and a storage size less than 400</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>Create</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Instance fails to create with this error if <code>storage_type</code> is set to <code>gp3</code> and <code>storage_gb</code> is less than a 400 GB event
                   when <code>iops</code> is not specified.
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   The broker has a default value for IOPS of 3000 that is used if no value is specified and IOPS configuration is possible
                   for the `storage_type` requested. However, this value cannot be set if the `storage_gb` value is below a certain threshold.
@@ -549,7 +549,7 @@ The following errors can occur in any Amazon PostgreSQL instance:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     Specifying a value of <code>0</code> for <code>iops</code> prevents the broker from setting <code>iops</code> in the instance. Baseline storage performance
                     is still maintained by AWS as [documented]((https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)).
@@ -578,23 +578,23 @@ The following errors can occur in any Amazon MySQL instance:
     <table class="table">
         <tbody>
              <tr>
-                <td>Error</td>
+                <td><strong>Error</strong></td>
                 <td>InvalidParameterCombination: You can't specify IOPS or storage throughput for engine
               mysql and a storage size less than 400</td>
              </tr>
              <tr>
-                <td>Operation</td>
+                <td><strong>Operation</strong></td>
                 <td>Create</td>
              </tr>
              <tr>
-                <td>Symptom</td>
+                <td><strong>Symptom</strong></td>
                 <td>
                   Instance fails to create with error mentioned above if `storage_type` is set to `gp3` and `storage_gb` is less than 400GB event
                   when `iops` is not specified.
                 </td>
             </tr>
             <tr>
-                <td>Cause</td>
+                <td><strong>Cause</strong></td>
                 <td>
                   The broker has a default value for iops of 3000 that is used if no value is specified and iops configuration is possible
                   for the `storage_type` requested. However this value cannot be set if the `storage_gb` value is below a certain threshold
@@ -602,7 +602,7 @@ The following errors can occur in any Amazon MySQL instance:
                 </td>
             </tr>
             <tr>
-                <td>Solution</td>
+                <td><strong>Solution</strong></td>
                 <td>
                     Specifying a value of `0` for `iops` will prevent the broker from setting `iops` in the instance. Baseline storage performance
                     will still be maintained by AWS as [documented]((https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)).
@@ -619,4 +619,3 @@ The following errors can occur in any Amazon MySQL instance:
         </tbody>
     </table>
 </div>
-
