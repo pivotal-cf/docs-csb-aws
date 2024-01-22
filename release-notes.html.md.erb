@@ -57,6 +57,13 @@ New features and changes in this release:
   Prior to this version, setting `storage_encrypted` to `true` and `engine` to `sqlserver-ex` was prevented by the broker. From this version
   onwards the broker allows it. This results in an error creating the instance for standard accounts but a successful creation for GovCloud accounts.  
 
+#### Improved tile installation safety checks
+
+- **Tile installation now refuses to install if it finds any outdated [non-orphaned instances](link-to-docs-for-howto-manage-orphaned-instances):** 
+
+  This measure improves the overall stability and maintainability of the broker and any running instances.
+  It protects operators from accidentally skipping mandatory intermediate versions which could introduce unexpected issues.
+  Despite this measure, it is expected for operators to [harness Upgrade Planner to view the supported upgrade path](https://upgrade-planner.pivotal.io).
 
 
 
