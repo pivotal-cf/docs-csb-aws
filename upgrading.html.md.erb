@@ -7,6 +7,32 @@ Do you want to upgrade <%= vars.product_full %>? The following sections tell you
 [upgrade procedure](#procedure), [upgrading service instances](#upgrade-instances), and specific
 details about [upgrading to v1.7](#upgrading-specifics).
 
+## Pre-Upgrade procedure
+
+<p class="note important">
+<span class="note__title">Before upgrading, it is crucial to perform the checks suggested in this section.</span>
+  Failure to do so could cause the upgrade process to fail and leave the broker unable to manage your instances.
+</p>
+
+* **Check if services are up-to-date**
+  Execute the command:
+
+   ```shell
+   cf upgrade-all-services BROKER-NAME -check-up-to-date
+   ```
+  This command checks whether all services provided by the specified broker are up-to-date.
+  An instance is considered not up-to-date if it is pending upgrade, or if it is an orphaned service instance.
+
+* **Check for orphaned service instances**
+  For greater granularity, you can specifically check only orphan service instances by running this command:
+
+   ```shell
+   cf upgrade-all-services BROKER-NAME -check-deactivated-plans
+   ```
+  This checks for any service instances still using plans that have been deactivated.
+  More details can be found in the [Managing orphaned service instances documentation](./managing_orphaned_service_instances.html.md.erb).
+
+
 ## <a id="procedure"></a> Upgrade procedure
 
 To upgrade <%= vars.product_short %>:
@@ -46,8 +72,7 @@ For these reasons, verify that there are no service instances pending upgrade be
 version of the tile.
 
 You can see whether there are instances with a pending upgrade by using the CLI plug-in.
-For more information, see [ensuring all instances are up to date with the CLI plug-in](#checking-cli-plugin)
-and the `-dry-run` or `-check-up-to-date` flags that output the list of instances pending upgrade.
+For more information, see [ensuring all instances are up to date with the CLI plug-in](#checking-cli-plugin).
 
 If you find instances that are pending upgrade, follow the upgrading instructions for your current
 version.
@@ -99,22 +124,17 @@ To verify that no instances are pending upgrade:
 
 2. Follow the instructions in the **Usage** section of the `README` in the
    [upgrade-all-services-cli-plugin](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin#usage)
-   GitHub repository to perform a `dry-run` or a `check-up-to-date` command.
-
-   `dry-run` example:
-
-   ```console
-   cf upgrade-all-services BROKER-NAME -dry-run
-   ```
+   GitHub repository to perform a `check-up-to-date` command.
 
    `check-up-to-date` example:
 
-   ```console
+   ```shell
    cf upgrade-all-services BROKER-NAME -check-up-to-date
    ```
 
-These commands provide a list, from enabled plans, of instances that are pending upgrades.
-Upgrade all the instances listed before attempting a tile upgrade.
+   These command provide a list, from enabled plans, of instances that are pending upgrades, and a list of
+   orphaned service instances that belong to deactivated plans.
+   Manage all the instances listed before attempting a tile upgrade.
 
 ### <a id="upgrading-cli-plugin"></a> Upgrade instances through the CLI plug-in
 
@@ -131,7 +151,7 @@ To use the cf CLI plug-in to upgrade instances:
 
    For example:
 
-   ```console
+   ```shell
    cf upgrade-all-services BROKER-NAME
    ```
 
