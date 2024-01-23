@@ -131,13 +131,13 @@ If an orphaned service instance was created with the current version of the <%= 
 
 1. **Move to a new plan**: when a service instance belongs to a deactivated plan, you can update the service instance
    to be associated with a valid plan. Firstly identify a valid plan for the service instance, then issue a command
-   to update the plan. Note that chaning a plan may update the service instance properties to match the default properties
+   to update the plan. Note that changing a plan may update the service instance properties to match the default properties
    of the new plan.
 
    ```shell
    cf update-service SERVICE-INSTANCE-NAME -p NEW-PLAN-NAME
    ```
-   Where `SERCICE-INSTANCE-NAME` is the name of the service instance, and `NEW-PLAN-NAME` is the name of the valid plan that you have chosen.
+   Where `SERVICE-INSTANCE-NAME` is the name of the service instance, and `NEW-PLAN-NAME` is the name of the valid plan that you have chosen.
 
 2. **Restore removed plans**: you may choose to restore a plan that was removed. To do this, update the plan configuration in
    the tile. The plan must have the same name, ID, and properties as before.
