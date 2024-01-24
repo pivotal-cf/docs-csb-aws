@@ -12,6 +12,7 @@
     * [Amazon DynamoDB (Beta)](../reference/aws-dynamodb.html)
     * [Amazon Aurora MySQL-Compatible Edition](../reference/aws-aurora-mysql.html)
     * [Amazon Aurora PostgreSQL-Compatible Edition](../reference/aws-aurora-postgresql.html)
-* [Troubleshooting](../troubleshooting.html.md.erb)
+* [Troubleshooting](../troubleshooting.html)
+* [Managing Orphaned Service Instances](../managing_orphaned_service_instances.html)
 * [Uninstalling](../uninstall.html)
 * [Back to Cloud Service Broker landing page](https://docs.vmware.com/en/Cloud-Service-Broker-for-VMware-Tanzu/index.html)
