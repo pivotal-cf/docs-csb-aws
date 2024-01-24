@@ -10,5 +10,6 @@
     * [Amazon RDS for PostgreSQL](../reference/aws-postgres.html)
     * [Amazon ElastiCache for Redis (Beta)](../reference/aws-redis.html)
     * [Amazon DynamoDB (Beta)](../reference/aws-dynamodb.html)
+* [Managing Orphaned Service Instances](../managing_orphaned_service_instances.html)
 * [Uninstalling](../uninstall.html)
 * [Back to Cloud Service Broker landing page](https://docs.vmware.com/en/Cloud-Service-Broker-for-VMware-Tanzu/index.html)
