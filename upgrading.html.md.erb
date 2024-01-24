@@ -111,11 +111,11 @@ The following sections describe changes for Amazon Aurora PostgreSQL-Compatible 
 <%= vars.product_short %> connections to Aurora PostgreSQL instances must use TLS encryption.
 For bind and unbind to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
-## Pre-Upgrade procedure
+## <a id="pre-upgrade-procedure"></a> Pre-Upgrade procedure
 
 <p class="note important">
-<span class="note__title">Before upgrading, it is crucial to perform the checks suggested in this section.</span>
-  Failure to do so could cause the upgrade process to fail and leave the broker unable to manage your instances.
+<span class="note__title">Important</span>Before upgrading, it is crucial to perform the checks suggested in this section.</span>
+  Failure to can cause the upgrade process to fail and leave the broker unable to manage your instances.
 </p>
 
 * **Check if services are up-to-date**
@@ -124,6 +124,7 @@ For bind and unbind to work, you must install the AWS certificate bundle in <%= 
    ```shell
    cf upgrade-all-services BROKER-NAME -check-up-to-date
    ```
+
   This command checks whether all services provided by the specified broker are up-to-date.
   An instance is considered not up-to-date if it is pending upgrade, or if it is an orphaned service instance.
 
@@ -133,8 +134,9 @@ For bind and unbind to work, you must install the AWS certificate bundle in <%= 
    ```shell
    cf upgrade-all-services BROKER-NAME -check-deactivated-plans
    ```
+
   This checks for any service instances still using plans that have been deactivated.
-  More details can be found in the [Managing orphaned service instances documentation](./managing_orphaned_service_instances.html.md.erb).
+  For more information, see [Managing orphaned service instances documentation](./managing_orphaned_service_instances.html.md.erb).
 
 
 ## <a id="procedure"></a> Upgrade procedure
