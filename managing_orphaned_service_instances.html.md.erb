@@ -5,7 +5,7 @@ owner: Cloud Service Broker
 
 <strong><%= modified_date %></strong>
 
-## Introduction
+## <a id="intro"></a> Introduction
 
 This topic is a comprehensive guide for using Tanzu Cloud Service Broker
 for AWS if you have service instances that belong to deactivated plans.
@@ -21,12 +21,12 @@ It will:
   steps to prevent potential service disruptions or security vulnerabilities.
 - Guide you through checking for orphaned service instances by using specific command-line tools.
 
-## Essential commands for orphaned instance management
+## <a id="commands-to-manage"></a> Commands for orphaned instance management
 
-This section provides a concise summary of the essential commands and steps required for detecting orphaned service
+This section provides a concise summary of the commands and steps required for detecting orphaned service
 instances in the Tanzu Cloud Service Broker for AWS (CSB) and Cloud Foundry environments.
 
-### <a id="detecting-orphans"></a>Detecting orphaned service instances
+### <a id="detecting-orphans"></a> Detecting orphaned service instances
 
 1. **Install the `upgrade-all-services` CLI plug-in** by running:
 
@@ -40,21 +40,20 @@ instances in the Tanzu Cloud Service Broker for AWS (CSB) and Cloud Foundry envi
       cf upgrade-all-services <broker_name> -check-deactivated-plans
       ```
 
-3. **Review logs**: Review the output the plug-in to identify any instances that require attention.
+3. **Review logs**: Review output of the plug-in to identify any instances that require attention.
 
-If there are any service instances belonging to deactivated plans, then it is essential to resolve these before attempting
+If there are any service instances belonging to deactivated plans, it is essential to resolve these before attempting
 any further upgrades of the <%= vars.product_short %>.
-See <a href="#orphan-strategies">strategies for handling orphaned instances</a> for more information.
+For more information, see <a href="#orphan-strategies">strategies for handling orphaned instances</a>.
 
-## Section 1: Overview of orphaned service instances
+## <a id="overview-orphans"></a> Section 1: Overview of orphaned service instances
 
 In the context of the CSB for AWS and Cloud Foundry environments, it's essential to understand what constitutes orphaned
 service instances, why they occur, and the best practices for managing them.
 
-### What is an orphaned service instance?
+### <a id="what-is-orphan"></a> What is an orphaned service instance?
 
-- **Definition**: An orphaned service instance refers to a service instance that Cloud Foundry recognizes as part of the CSB, but
-  for which the CSB lacks the necessary information to manage effectively.
+- **Definition**: An orphaned service instance refers to a service instance that Cloud Foundry recognizes as part of the CSB, but the CSB lacks the necessary information to manage it effectively.
 - **Implications**: Having orphaned instances in your Cloud Foundry environment can lead to challenges in manageability,
   upgradeability, agility, and security:
     - **Manageability**: These instances cannot have their configurations changed when required.
@@ -63,55 +62,54 @@ service instances, why they occur, and the best practices for managing them.
     - **Security**: Inability to manage these instances can pose significant security risks, especially in situations
       requiring immediate response.
 
-### Why do orphaned instances exist?
+### <a id="why-orphans"></a> Why do orphaned instances exist?
 
-- **Service removal**: Instances can become orphaned due to the removal of the service to which they belong, either for
+- **Service removal**: Instances can become orphaned when the service to which they belong is removed, either for
   strategic reasons or other considerations.
 - **Plan removal**: Instances can become orphaned due to the removal of plans, either for strategic reasons or other
   considerations.
 - **Custom plan changes**: Upgrades in the CSB can lead to the removal of old custom plans, which can also cause
   orphaned instances.
-- **Plan ID changes**: Altering the Plan ID in the service catalog can lead to the treatment of existing resources as
+- **Plan ID changes**: Altering the plan ID in the service catalog can lead to the treatment of existing resources as
   different, resulting in orphaned instances. This is because the CSB views the modified plan ID as a new resource,
-  disconnecting it from its original configuration and management context.
+  disconnected from its original configuration and management context.
 
-### Recommended actions for orphaned instances
+### <a id="recommended-actions"></a> Recommended actions for orphaned instances
 
 When the <%= vars.product_short %> is upgraded or configuration changes are made to plans, check
-for orphaned service instances. See <a href="#detecting-orphans">detecting orphaned service instances</a> for more information.
+for orphaned service instances. For more information, see <a href="#detecting-orphans">detecting orphaned service instances</a>.
 
-## Section 2: Identifying and managing orphaned service instances
+## <a id="identify-manage-orphans"></a> Section 2: Identifying and managing orphaned service instances
 
 This section provides guidance on identifying service instances that have become orphaned in the CSB for AWS and Cloud Foundry
 environments.
 Addressing these instances is crucial for maintaining security, manageability, upgradeability, and
 agility.
 
-### Identifying orphaned service instances
+### <a id="identify-orphans"></a> Identifying orphaned service instances
 
 - **Using CLI tools**: Utilize Cloud Foundry CLI tools to identify orphaned instances.
-    - **CLI Cloud Foundry `upgrade-all-services` plug-in - Flag `-check-deactivated-plans`**: This specific flag can be used to
-      check for instances linked to deactivated plans.
-    - See documentation for more information:
+    - **CLI Cloud Foundry `upgrade-all-services` plug-in - Flag `-check-deactivated-plans`**: You can use this flag to check for instances linked to deactivated plans.
+    - For more information, see the following documentation:
         - [Cloud Foundry CLI Reference Guide - Install CLI Plugin](https://cli.cloudfoundry.org/en-US/v7/install-plugin.html).
         - [Cloud Foundry Documentation - Using a Cloud Foundry CLI Plugin](https://docs.cloudfoundry.org/cf-cli/use-cli-plugins.html).
         - [Cloud Foundry Community - Cloud Foundry CLI UpgradeAllServices Plugin](https://plugins.cloudfoundry.org/#UpgradeAllServices).
         - [UpgradeAllServices CLI Plugin on GitHub - Flags](https://github.com/cloudfoundry/upgrade-all-services-cli-plugin).
-    - **Plug-in Installation**: To further clarify the installation of the plug-in, the following code example is provided:
+    - **Plug-in Installation**: To further clarify the installation of the plug-in, here is a code example:
       
       ```shell
       # Example code to demonstrate plugin installation
       cf install-plugin -r CF-Community "UpgradeAllServices"
       ```
 
-    - **Example of execution**: To further clarify the use of the plug-in, the following code example is provided:
+    - **Example of execution**: To further clarify the use of the plug-in, here is a code example:
       
       ```shell
       # Example code to demonstrate plugin usage
       cf upgrade-all-services <broker_name> -check-deactivated-plans
       ```
 
-    - **Example of log**: To further clarify the use of the plug-in, the following execution example is provided:
+    - **Example of log**: To further clarify the use of the plug-in, here is an execution example:
       
       ```shell
       ✓ cf upgrade-all-services csb-broker-dev -check-deactivated-plans                                              
@@ -122,83 +120,79 @@ agility.
 
 ## <a id="orphan-strategies"></a> Section 3: Strategies for handling orphaned instances
 
-Section 3 outlines the steps and strategies necessary for effectively managing and resolving issues
+Section 3 outlines the steps and strategies necessary for managing and resolving issues
 related to orphaned service instances in CSB for AWS and Cloud Foundry environments.
 
-### Options for addressing newly orphaned instances
+### <a id="options-address-new"></a> Options for addressing newly orphaned instances
 
-If an orphaned service instance was created with the current version of the <%= vars.product_short %> then it can be resolved by one of:
+If an orphaned service instance was created with the current version of the <%= vars.product_short %>, it can be resolved by doing one of the following:
 
 1. **Move to a new plan**: when a service instance belongs to a deactivated plan, you can update the service instance
-   to be associated with a valid plan. Firstly identify a valid plan for the service instance, then issue a command
-   to update the plan. Note that changing a plan may update the service instance properties to match the default properties
+   to be associated with a valid plan. First, identify a valid plan for the service instance, then issue a command
+   to update the plan. Changing a plan might update the service instance properties to match the default properties
    of the new plan.
 
    ```shell
    cf update-service SERVICE-INSTANCE-NAME -p NEW-PLAN-NAME
    ```
-   Where `SERVICE-INSTANCE-NAME` is the name of the service instance, and `NEW-PLAN-NAME` is the name of the valid plan that you have chosen.
+
+   Where:
+   - `SERVICE-INSTANCE-NAME` is the name of the service instance.
+   - `NEW-PLAN-NAME` is the name of the valid plan that you have chosen.
 
 2. **Restore removed plans**: you may choose to restore a plan that was removed. To do this, update the plan configuration in
    the tile. The plan must have the same name, ID, and properties as before.
-   See <a href="./installing-with-aws.html.md.erb#services">configure services with <%= vars.product_short %></a> for more information.
+   For more information, see <a href="./installing-with-aws.html.md.erb#services">configure services with <%= vars.product_short %></a>.
 
-### Options for addressing historic orphaned instances
+### <a id="options-address-old"></a>Options for addressing historic orphaned instances
 
-If an orphaned service instance was created with a previous version of the <%= vars.product_short %>, then it is not possible to
-resume management of the service instance with a later version of the <%= vars.product_short %>. In these cases, the options are:
+If an orphaned service instance was created with a previous version of the <%= vars.product_short %>, it is not possible to
+resume management of the service instance with a later version of the <%= vars.product_short %>. In such cases, your options include:
 
-1. **Transitioning to a user-provided service instance**: you may decide that you want to keep the service instance in AWS, but it will
-   no longer be managed by the <%= vars.product_short %>, instead it will be a user-provided service instance.
-    - Obtain the credentials of the service instance from CredHub
-    - Use the `cf create-user-provided-service` command to create a new service instance with the credentials
-    - Bind Apps to the new user-provided service instance
-    - Restart the Apps
-    - Purge the orphaned service instance using the `cf purge-service-instance` command
+1. **Transitioning to a user-provided service instance**: You can keep the service instance in AWS, but it will
+   no longer be managed by the <%= vars.product_short %>, instead it becomes a user-provided service instance.
+    - Obtain the credentials of the service instance from CredHub.
+    - Use the `cf create-user-provided-service` command to create a new service instance with the credentials.
+    - Bind apps to the new user-provided service instance.
+    - Restart the apps.
+    - Purge the orphaned service instance by using the `cf purge-service-instance` command.
 
-2. **Remove the service instance**: you may decide to remove the service instance. To do this:
-    - Back up any data that you wish to retain from the service instance. You could import this data into a newly created service instance if desired.
-    - Remove the service instance via the AWS console or CLI
-    - Purge the service instance from CloudFoundry using the `cf purge-service-instance` command
+2. **Remove the service instance**: You can remove the service instance. To do this:
+    - Back up any data that you want to retain from the service instance. You can import this data into a newly created service instance if desired.
+    - Remove the service instance via the AWS console or CLI.
+    - Purge the service instance from CloudFoundry by using the `cf purge-service-instance` command.
     - Log into the <%= vars.product_short %> app with `cf ssh <app name>` and then run the command
-      `app/cloud-service-broker purge <service instance id>`. This will remove data about the service instance and all binding from the <%= vars.product_short %> database.
+      `app/cloud-service-broker purge <service instance id>`. This removes data about the service instance and all binding from the <%= vars.product_short %> database.
 
-### Implications of ignoring orphaned instances
+### <a id="what-if-ignore"></a> Implications of ignoring orphaned instances
 
 - Neglecting orphaned instances during CSB updates can lead to an unhealthy environment.
-- Upgrade instructions for custom plans related to orphaned instances can become ineffective, necessitating manual
-  migration.
+- Upgrade instructions for custom plans related to orphaned instances can become ineffective, necessitating manual migration.
 
-## Summary
+## <a id="summary"></a> Summary
 
 We have addressed the crucial aspects of managing orphaned service instances within the
 Tanzu Cloud Service Broker for AWS and Cloud Foundry environments. The key takeaways include:
 
-### The significance of orphaned service instances
+### <a id="significance-orphans"></a> The significance of orphaned service instances
 
-- **Orphaned instances defined**: Disconnected service instances are those recognized by Cloud Foundry but cannot be managed by the
+- **Orphaned instances defined**: Disconnected service instances are those recognized by Cloud Foundry but they cannot be managed by the
   CSB due to missing information.
 - **Risks and challenges**: These instances pose significant risks in terms of manageability, upgradeability, agility,
-  and security. Their presence can hinder system updates, configuration changes, and timely response to security
-  threats.
+  and security. Their presence can hinder system updates, configuration changes, and timely response to security threats.
 
-### Proactive steps and best practices
+### <a id="best-practices"></a> Proactive steps and best practices
 
-- **Identifying instances**: Regularly use Cloud Foundry CLI tools to check for orphaned instances, especially use
-  the `UpgradeAllServices` plug-in with the `-check-deactivated-plans` flag.
-- **Root causes**: Instances become orphaned primarily due to plan removals, changes in custom plans, or by altering plan
-  IDs.
-- **Effective management**: Involves regular checks, database purge if necessary, and avoiding outdated methods like
-  recreating plans to rejoin instances to the broker.
+- **Identifying instances**: Regularly use Cloud Foundry CLI tools to check for orphaned instances, especially use the `UpgradeAllServices` plug-in with the `-check-deactivated-plans` flag.
+- **Root causes**: Instances become orphaned primarily due to plan removals, changes in custom plans, or by altering plan IDs.
+- **Effective management**: Involves regular checks, database purge if necessary, and avoiding outdated methods like recreating plans to rejoin instances to the broker.
 
-### Resolution strategies
+### <a id="resolution-strategies"></a> Resolution strategies
 
-- **User-provided instances**: Emphasize moving to user-provided instances or migrating data to new instances 
-within the broker.
-- **Avoiding complications**: Ignoring orphaned instances, especially during CSB updates, can lead to an unhealthy
-  environment and complicated upgrade processes.
+- **User-provided instances**: Emphasize moving to user-provided instances or migrating data to new instances within the broker.
+- **Avoid complications**: If you ignore orphaned instances, especially during CSB updates, it can lead to an unhealthy environment and complicated upgrade processes.
 
-### Final thoughts
+### <a id="final-thoughts"></a> Final thoughts
 
 Managing orphaned service instances is an essential aspect of maintaining a secure, agile, and manageable cloud
 environment. By following these strategies and guidelines, you can ensure that your Cloud Foundry
