@@ -10,7 +10,7 @@ This topic provides reference information about the [Amazon S3](https://aws.amaz
 
 It details the plans, configuration parameters, and binding credentials.
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
@@ -18,7 +18,7 @@ For how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name            | Values                                                                               | Default | Required |
+| Parameter name            | Values                                                                               | Default | Required |
 |---------------------------|------------------------------------------------------------------------------------- |---------|----------|
 | `name`                    | The plan name.                                                                       | _n/a_   | Yes      |
 | `id`                      | A unique GUID.                                                                       | _n/a_   | Yes      |
@@ -36,7 +36,7 @@ to your plan.
 >If you set a parameter at plan level, developers
   cannot change the value when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -58,7 +58,7 @@ provision only:
 <table class="table">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -315,7 +315,7 @@ When creating a bucket with Object Lock activated, Amazon S3 automatically activ
 bucket. To avoid differences between the local state and the AWS state, <%= vars.product_short %>
 activates versioning when enabling Object Lock.
 
-## <a id="binding-params"></a> Binding Parameters
+## <a id="binding-params"></a> Binding parameters
 
 You can bind a service by running:
 
@@ -351,7 +351,7 @@ to a `csb-aws-s3-bucket` service:
   </tbody>
 </table>
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for Amazon S3 Bucket is as follows:
 
@@ -366,7 +366,7 @@ The format for binding credentials for Amazon S3 Bucket is as follows:
 }
 ```
 
-## <a id="old-plans"></a> Previously Provided Pre-configured Plans
+## <a id="old-plans"></a> Previously provided pre-configured plans
 
 The following table lists the previously provided plans for the `csb-aws-s3-bucket` service:
 
