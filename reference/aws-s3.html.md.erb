@@ -23,7 +23,7 @@ The table below lists the plans for the `csb-aws-s3-bucket` service:
 | private       | Private S3 bucket|
 | public-read      | Publicly readable S3 bucket|
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
@@ -32,7 +32,7 @@ For how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   |
+| Parameter name       | Values                         | Default   |
 |----------------------|--------------------------------|-----------|
 | `name`*              | The plan name                  | _n/a_     |
 | `id`*                | A unique GUID                  | _n/a_     |
@@ -45,14 +45,14 @@ The following table lists parameters which can only be configured for additional
 
 <sup>*</sup> Required
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section to your plan.
+You can also add any of the parameters listed in the [Configuration parameters](#parameters) section to your plan.
 
 <p class="note">
   <span class="note__title">Note</span> If you set a parameter at plan level, developers cannot
   change the value when creating or updating service instances.
 </p>
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -74,7 +74,7 @@ provision only:
 <table class="nice">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -123,7 +123,7 @@ provision only:
   </tbody>
 </table>
 
-## <a id="binding-params"></a> Binding Parameters
+## <a id="binding-params"></a> Binding parameters
 
 You can bind a service by running:
 
@@ -159,7 +159,7 @@ binding to a `csb-aws-s3-bucket` service:
   </tbody>
 </table>
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for Amazon S3 Bucket is as follows:
 

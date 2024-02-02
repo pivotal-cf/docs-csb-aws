@@ -45,7 +45,7 @@ The default plans for Amazon ElastiCache for Redis are in the table below:
 | large-ha | minimum 16&nbsp;GB |cache.r4.xlarge | yes |
 
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
@@ -53,7 +53,7 @@ For how to configure plans, see
 
 The following table lists parameters that can only be configured for additional plans:
 
-| Parameter Name       | Values                         | Default   | Required |
+| Parameter name       | Values                         | Default   | Required |
 |----------------------|--------------------------------|-----------|----------|
 | `name`               | The plan name                  | _n/a_     | Yes      |
 | `id`                 | A unique GUID                  | _n/a_     | Yes      |
@@ -65,7 +65,7 @@ The following table lists parameters that can only be configured for additional 
 | `cache_size`         | Cache size in GB. 1&ndash;256, multiples of 2. | _n/a_     | Yes |
 | `redis_version`      | The version for the redis instance. Can be 3.2, 4.0, 5.0, 6.0. | _n/a_     | Yes |
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+You can also add any of the parameters listed in the [Configuration parameters](#parameters) section
 to your plan.
 
 <p class="note">
@@ -73,7 +73,7 @@ to your plan.
   or updating service instances.
 </p>
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -95,7 +95,7 @@ provision only:
 <table class="nice">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -185,7 +185,7 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for Redis is as follows:
 
