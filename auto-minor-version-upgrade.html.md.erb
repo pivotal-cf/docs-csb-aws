@@ -1,17 +1,17 @@
 ---
-title: Auto Minor Version Upgrade on Cloud Service Broker for AWS
+title: Auto minor version upgrade on Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
 ## IaaS and Cloud Service Broker for AWS engine version synchronization
 
-### What is Auto Minor Version Upgrade?
+### What is auto minor version upgrade?
 
 Auto Minor Version Upgrade is an AWS feature you can enable to have your
 database automatically upgraded to a new approved minor engine version.
 
 You can see when a minor version upgrade is scheduled to be applied to
-your database instance in the AWS Console. You can also choose to apply an
+your database instance in the AWS console. You can also choose to apply an
 available minor version upgrade immediately through the AWS console.
 
 ### What is the current problem associated with auto minor version upgrade and Cloud Service Broker for AWS?
@@ -104,7 +104,7 @@ If you created a different plan, you can change the service instance plan by run
 cf update-service my-service-instance -p instance_plan_name
 ```
 
-##### Enable Auto Minor Version Upgrade
+##### Enable auto minor version upgrade
 
 To enable an auto minor version upgrade, you must specify a **Major
 Engine Version** and set the flag to true. If this is done through a plan, you
