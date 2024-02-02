@@ -11,19 +11,19 @@ service.
 It describes the plans, configuration parameters, and binding credentials.
 
 <p class="note important">
-  <strong>Important:</strong> The Amazon Aurora MySQL-Compatible Edition service is in beta and is
+<span class="note__title">Important</span> The Amazon Aurora MySQL-Compatible Edition service is in beta and is
   intended for evaluation and test purposes only. Do not use this service in a production environment.
 </p>
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
+[Configure services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
 
 The following table lists parameters that can only be configured for additional plans:
 
-| Parameter Name       | Values                                                                                | Default   | Required |
+| Parameter name       | Values                                                                                | Default   | Required |
 |----------------------|---------------------------------------------------------------------------------------|-----------|----------|
 | `name`               | The plan name.                                                                         | _n/a_     | Yes      |
 | `id`                 | A unique GUID.                                                                         | _n/a_     | Yes      |
@@ -33,14 +33,14 @@ The following table lists parameters that can only be configured for additional 
 | `bindable`           | Specifies whether service instances of the service plan can bind to applications.      | `true`    | No       |
 | `plan_updateable`    | Whether the plan supports upgrading, downgrading, or sidegrading to another version.   | `true`    | No       |
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+You can also add any of the parameters listed in the [Configuration parameters](#parameters) section
 to your plan.
 
 >**Note**
 >If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -398,7 +398,7 @@ binding a `csb-aws-aurora-mysql` service:
 <table class="nice">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -416,7 +416,7 @@ binding a `csb-aws-aurora-mysql` service:
   </tbody>
 </table>
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for Amazon Aurora MySQL-Compatible Edition is as follows:
 

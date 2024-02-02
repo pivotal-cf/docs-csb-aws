@@ -10,14 +10,14 @@ This topic gives you reference information about the
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
 <p class="note">
-  <strong>Note:</strong> Release v1.2.0 removed brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
+<span class="note__title">Note</span> Release v1.2.0 removed brokerpak pre-configured plans for Amazon RDS for PostgreSQL.
   All plans must be configured through the tile.
   If you have instances of the RDS for PostgreSQL that were created in previous versions that you want to
   maintain, see <a href="#old-plans">Previously Provided Pre-configured Plans</a>.
   For more information about upgrade steps, see <a href="../upgrading.html.md.erb">Upgrading</a>
 </p>
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For instructions on how to configure plans, see
@@ -25,7 +25,7 @@ For instructions on how to configure plans, see
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name     | Description                                                                                                              | Default | Required |
+| Parameter name     | Description                                                                                                              | Default | Required |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------|---------|----------|
 | `name`             | The plan name.                                                                                                            | _n/a_   | Yes      |
 | `id`               | A unique GUID.                                                                                                            | _n/a_   | Yes      |
@@ -38,7 +38,7 @@ The following table lists parameters which can only be configured for additional
 | `storage_gb`       | This is storage volume size for service instance, which is 5&ndash;4096&nbsp;GB.                                          | _n/a_   | Yes      |
 | `cores`            | Deprecated - Minimum number of cores for the service instance. 2&ndash;64, multiples of 2. Use `instance_class` instead. | _n/a_   | No       |
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+You can also add any of the parameters listed in the [Configuration parameters](#parameters) section
 to your plan.
 
 To create plans with specific size and versions, set `instance_class`, `storage_gb`, and `postgres_version`
@@ -48,7 +48,7 @@ properties.
 >If you set a parameter at plan level, developers cannot
   change the value when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -70,7 +70,7 @@ provision only:
 <table class="nice">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -445,7 +445,7 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
 ```
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for PostgreSQL is as follows:
 
@@ -471,7 +471,7 @@ When a binding or service key is deleted, data owned by the PostgreSQL user is r
 called `binding_user_group` before the user is deleted. This ensures that other bindings still have
 access to the data.
 
-## <a id="old-plans"></a> Previously Provided Pre-configured Plans
+## <a id="old-plans"></a> Previously provided pre-configured plans
 
 The following table lists the previously provided plans for the Amazon RDS for PostgreSQL service:
 
@@ -483,7 +483,7 @@ The following table lists the previously provided plans for the Amazon RDS for P
 
 To keep these plans in this version of the broker, add them through the tile as custom plans.
 For how to configure plans through the tile, see
-[Configure Services with <%= vars.product_short %>](../installing-with-aws.html#services).
+[Configure services with <%= vars.product_short %>](../installing-with-aws.html#services).
 
 Add the following block to keep the `small` plan:
 
