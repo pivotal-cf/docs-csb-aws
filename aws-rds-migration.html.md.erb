@@ -1,5 +1,5 @@
 ---
-title: Migrating to an Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL Instance
+title: Migrating to an Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL instance
 owner: Cloud Service Broker for AWS
 ---
 
@@ -13,7 +13,7 @@ the following:
 - PostgreSQL instance of the VMware Tanzu Service Broker for AWS tile
 - Aurora MySQL instance of the VMware Tanzu Service Broker for AWS tile
 
-## <a id='about'></a> About Migrating Data to an Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL Instance
+## <a id='about'></a> About Migrating Data to an Amazon RDS for MySQL, PostgreSQL, or Aurora MySQL instance
 
 Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
 is going out of support, you must move from instances that the legacy broker created over to
@@ -31,7 +31,7 @@ It also enables migration to happen over time.
 The DMS is a tool provided as part of AWS.
 For more information about AWS DMS, see the [AWS documentation](https://aws.amazon.com/dms/).
 
-### <a id='configuration'></a> Matching Configuration
+### <a id='configuration'></a> Matching configuration
 
 Both the legacy broker and <%= vars.product_short %> allow you to customize service plans.
 
@@ -40,7 +40,7 @@ It might be useful to create a test service instance and compare the properties 
 For how to configure plans, see
 [Configure Services with Cloud Service Broker for AWS](installing-with-aws.html.md.erb#services).
 
-### <a id='migration'></a> Migrating Data
+### <a id='migration'></a> Migrating data
 
 You might want to migrate data from instances created with the legacy broker to instances created
 with <%= vars.product_short %>.
@@ -66,7 +66,7 @@ broker instance.
 For more detailed steps showing the Cloud Foundry commands necessary to use AWS DMS,
 see [Migrate Data from a Legacy MySQL Instance](#steps).
 
-## <a id='steps'></a> Migrate Data from a Legacy RDS Instance
+## <a id='steps'></a> Migrate data from a legacy RDS instance
 
 To migrate data from an existing legacy RDS instance to <%= vars.product_short %>:
 

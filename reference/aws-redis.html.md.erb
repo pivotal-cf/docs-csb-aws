@@ -45,7 +45,7 @@ The default plans for Amazon ElastiCache for Redis are in the table below:
 | large-ha  | minimum 16&nbsp;GB | cache.r4.xlarge     | yes |
 
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans. For how
 to configure plans, see [Configure Services with Cloud Service Broker for
@@ -54,7 +54,7 @@ AWS](../installing-with-aws.html#services).
 The following table lists parameters that can only be configured for additional
 plans:
 
-| Parameter Name    | Values                                                                              | Default | Required |
+| Parameter name    | Values                                                                              | Default | Required |
 |-------------------|-------------------------------------------------------------------------------------|---------|----------|
 | `name`            | The plan name.                                                                       | _n/a_   | Yes      |
 | `id`              | A unique GUID.                                                                       | _n/a_   | Yes      |
@@ -74,7 +74,7 @@ Parameters](#parameters) section to your plan.
 >If you set a parameter at plan level, developers cannot change the value when creating
   or updating service instances.
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -96,7 +96,7 @@ and update, or for provision only:
 <table class="nice">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -186,7 +186,7 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE --binding-name BINDING-NAME
 ```
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for Redis is as follows:
 

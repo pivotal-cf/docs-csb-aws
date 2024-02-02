@@ -51,7 +51,7 @@ For more information, see <a href="#orphan-strategies">strategies for handling o
 In the context of the CSB for AWS and Cloud Foundry environments, it's essential to understand what constitutes orphaned
 service instances, why they occur, and the best practices for managing them.
 
-### <a id="what-is-orphan"></a> What is an orphaned service instance?
+### <a id="what-is-orphan"></a> What is an orphaned service instance
 
 - **Definition**: An orphaned service instance refers to a service instance that Cloud Foundry recognizes as part of the CSB, but the CSB lacks the necessary information to manage it effectively.
 - **Implications**: Having orphaned instances in your Cloud Foundry environment can lead to challenges in manageability,
@@ -62,7 +62,7 @@ service instances, why they occur, and the best practices for managing them.
     - **Security**: Inability to manage these instances can pose significant security risks, especially in situations
       requiring immediate response.
 
-### <a id="why-orphans"></a> Why do orphaned instances exist?
+### <a id="why-orphans"></a> Why do orphaned instances exist
 
 - **Service removal**: Instances can become orphaned when the service to which they belong is removed, either for
   strategic reasons or other considerations.
@@ -142,7 +142,7 @@ If an orphaned service instance was created with the current version of the <%= 
 
 2. **Restore removed plans**: you may choose to restore a plan that was removed. To do this, update the plan configuration in
    the tile. The plan must have the same name, ID, and properties as before.
-   For more information, see <a href="./installing-with-aws.html.md.erb#services">configure services with <%= vars.product_short %></a>.
+   For more information, see <a href="./installing-with-aws.html.md.erb#services">Configure services with <%= vars.product_short %></a>.
 
 ### <a id="options-address-old"></a>Options for addressing historic orphaned instances
 
