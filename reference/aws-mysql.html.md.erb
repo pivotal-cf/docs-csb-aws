@@ -19,7 +19,7 @@ It details the plans, configuration parameters, and binding credentials.
 <%= vars.product_full %> v1.3.0 and later doesn't support unsecured connections to RDS MySQL instances.
 For secure connections to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
@@ -49,7 +49,7 @@ To create plans with specific size and versions, set `instance_class`, `storage_
 >If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -71,7 +71,7 @@ provision only:
 <table class="table">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -219,7 +219,7 @@ provision only:
         Cannot be specified for <code>gp3</code> storage if the <code>storage_gb</code> value is below a per-engine threshold. If below
         the threshold, set this property value to 0.
         For more information, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage">Amazon RDS User Guide</a>.
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage">Amazon RDS user guide</a>.
       </td>
       <td><code>3000</code></td>
       <td>provision and update</td>
@@ -227,7 +227,7 @@ provision only:
     <tr>
       <td><code>multi_az</code></td>
       <td>Boolean</td>
-      <td>If <code>true</code>, it enables Multi-AZ DB instance deployment.
+      <td>If <code>true</code>, it enables Multi-AZ database instance deployment.
         For more information about Multi-AZ deployments, see the
         <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html">AWS documentation</a>.
       </td>
@@ -473,7 +473,7 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
 ```
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for MySQL is as follows:
 
@@ -493,7 +493,7 @@ The format for binding credentials for MySQL is as follows:
 >The `jdbcUrl` has server certificate verification always enabled,
   and requires the use of MySQL Connector for Java v8.0.13 or later.
 
-## <a id="old-plans"></a> Previously Provided Pre-configured Plans
+## <a id="old-plans"></a> Previously provided pre-configured plans
 
 The following table lists the previously provided plans for the Amazon RDS for MySQL service:
 

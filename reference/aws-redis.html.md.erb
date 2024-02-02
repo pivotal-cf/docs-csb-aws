@@ -20,7 +20,7 @@ details the plans, configuration parameters, and binding credentials.
   This is instead of being queued to be applied during the maintenance window.
   This might result in brief downtime while the server reboots.
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans. For how
 to configure plans, see [Configure Services with Cloud Service Broker for
@@ -29,7 +29,7 @@ AWS](../installing-with-aws.html#services).
 The following table lists parameters that can only be configured for additional
 plans:
 
-| Parameter Name         | Values                                                                                     | Default | Required |
+| Parameter name         | Values                                                                                     | Default | Required |
 |------------------------|--------------------------------------------------------------------------------------------|---------|----------|
 | `name`                 | The plan name.                                                                             | _n/a_   | Yes      |
 | `id`                   | A unique GUID.                                                                             | _n/a_   | Yes      |
@@ -48,7 +48,7 @@ Parameters](#parameters) section to your plan.
 >If you set a parameter at plan level, developers cannot change the value when creating
   or updating service instances.
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -70,7 +70,7 @@ and update, or for provision only:
 <table class="table">
   <thead>
     <tr>
-      <th width="20%">Parameter Name</th>
+      <th width="20%">Parameter name</th>
       <th width="10%">Type</th>
       <th width="40%">Description</th>
       <th width="20%">Default</th>
@@ -512,7 +512,7 @@ alongside endpoints information to connect to the service instance.
 > authentication mechanism, all bindings share the same Redis AUTH token.
 > Deleting the binding does not revoke the credentials.
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for Redis is as follows:
 
@@ -536,12 +536,12 @@ the <a
 href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Endpoints.html">AWS
 documentation</a>.
 
-## <a id="old-plans"></a> Previously Provided Pre-configured Plans
+## <a id="old-plans"></a> Previously provided pre-configured plans
 
 The following table lists the previously provided plans for Amazon ElastiCache
 for Redis service:
 
-| Plan      | Cache Size         | AWS Cache Node Type | HA  |
+| Plan      | Cache size         | AWS cache node type | HA  |
 |-----------|--------------------|---------------------|-----|
 | small     | minimum 1&nbsp;GB  | cache.t2.small      | no  |
 | medium    | minimum 4&nbsp;GB  | cache.m5.large      | no  |
@@ -552,7 +552,7 @@ for Redis service:
 
 To keep these plans in this version of the broker, add them through the tile as
 custom plans. For how to configure plans through the tile, see [Configure
-Services with <%= vars.product_short %>](../installing-with-aws.html#services).
+services with <%= vars.product_short %>](../installing-with-aws.html#services).
 
 > **Important** Property `cache_size` is now deprecated. Consider replacing it
 > with its equivalent `node_type`. For more information, see [Equivalence of
@@ -698,7 +698,7 @@ Add the following block to keep the `large-ha` plan:
 Table of equivalents for `cache_size` and `node_type` for the previously
 pre-configured plans:
 
-| Plan      | Cache Size | Description | AWS Cache Node Type | HA  |
+| Plan      | Cache size | Description | AWS cache node type | HA  |
 |-----------|-----|--------------------|---------------------|-----|
 | small     | 1   | minimum 1&nbsp;GB  | cache.t2.small      | no  |
 | medium    | 4   | minimum 4&nbsp;GB  | cache.m5.large      | no  |
@@ -710,7 +710,7 @@ pre-configured plans:
 Table of equivalents for `cache_size` and `node_type` not used by any of the
 previously pre-configured plans:
 
-| Cache Size | AWS Cache Node Type |
+| Cache size | AWS cache node type |
 |------------|---------------------|
 | 2          | cache.t3.medium     |
 | 8          | cache.m5.xlarge     |
