@@ -1,5 +1,5 @@
 ---
-title: Migrating a DynamoDB Namespace Instance
+title: Migrating a DynamoDB Namespace instance
 owner: Cloud Service Broker for AWS
 ---
 
@@ -8,7 +8,7 @@ owner: Cloud Service Broker for AWS
 This topic tells you how to migrate from an Amazon DynamoDB instance of the VMware Tanzu Service Broker
 for AWS tile to the <%= vars.product_full %> tile.
 
-## <a id='overview'></a> About Migrating a DynamoDB Instance
+## <a id='overview'></a> About migrating a DynamoDB instance
 
 Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
 is going out of support, you must move from DynamoDB instances that were created by the
@@ -16,7 +16,7 @@ legacy broker over to <%= vars.product_short %>.
 
 You can use any compatible migration tool for migration.
 
-### <a id='migration'></a> Migrating Data
+### <a id='migration'></a> Migrating data
 
 You might want to migrate data from instances created with the legacy broker to instances created with
 <%= vars.product_short %>.
@@ -42,7 +42,7 @@ In general, to migrate data:
 4. Unbind apps from the legacy broker DynamoDB instance and bind them to the newly created instance.
 5. (Optional) After migration is complete, delete the legacy broker DynamoDB instance.
 
-## <a id='steps'></a> Migrate Data from a Legacy Amazon DynamoDB Instance
+## <a id='steps'></a> Migrate data from a legacy Amazon DynamoDB instance
 
 The following steps have the Cloud Foundry commands necessary to migrate data from an existing legacy
 instance to <%= vars.product_short %>:

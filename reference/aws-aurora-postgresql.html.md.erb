@@ -1,12 +1,12 @@
 ---
-title: Amazon Aurora PostgreSQL-Compatible Edition
+title: Amazon Aurora PostgreSQL-compatible edition
 owner: Cloud Service Broker
 ---
 
 <strong><%= modified_date %></strong>
 
 This topic gives you reference information about the
-[Amazon Aurora PostgreSQL-Compatible Edition](https://aws.amazon.com/rds/aurora/)
+[Amazon Aurora PostgreSQL-compatible edition](https://aws.amazon.com/rds/aurora/)
 (csb-aws-aurora-postgresql) service.
 It details the plans, configuration parameters, and binding credentials.
 
@@ -15,20 +15,20 @@ Amazon Aurora PostgreSQL-Compatible Edition instances when binding or unbinding.
 For secure connections to work, you must install the AWS certificate bundle in <%= vars.ops_manager %>.
 
 <p class="note">
-  <strong>Note:</strong> PostgreSQL v15 is not yet supported by <%= vars.product_full %>.
+<span class="note__title">Note</span> PostgreSQL v15 is not yet supported by <%= vars.product_full %>.
   If you create an instance, unbinding and multiple bindings will not work as expected due to
   changes to PostgreSQL v15 user management.
 </p>
 
-## <a id="plans-config"></a> Plan Configuration Parameters
+## <a id="plans-config"></a> Plan configuration parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
-[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
+[Configure services with Cloud Service Broker for AWS](../installing-with-aws.html.md.erb#services).
 
 The following table lists parameters which can only be configured for additional plans:
 
-| Parameter Name         | Values                                                                                | Default   | Required |
+| Parameter name         | Values                                                                                | Default   | Required |
 |------------------------|---------------------------------------------------------------------------------------|-----------|----------|
 | `name`                 | The plan name.                                                                        | _n/a_     | Yes      |
 | `id`                   | A unique GUID.                                                                        | _n/a_     | Yes      |
@@ -39,14 +39,14 @@ The following table lists parameters which can only be configured for additional
 | `metadata.displayName` | Name to use when displaying the plan in Marketplace                                   | _n/a_     | No       |
 | `metadata.bullets`     | List of bullet points to display in Apps Manager                                      | _n/a_     | No       |
 
-You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+You can also add any of the parameters listed in the [Configuration parameters](#parameters) section
 to your plan.
 
 >**Note**
 >If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration Parameters
+## <a id="parameters"></a> Configuration parameters
 
 You can provision a service by running:
 
@@ -487,7 +487,7 @@ binding a `csb-aws-aurora-postgresql` service:
   </tbody>
 </table>
 
-## <a id="binding-creds"></a> Binding Credentials
+## <a id="binding-creds"></a> Binding credentials
 
 The format for binding credentials for Amazon Aurora PostgreSQL-Compatible Edition is as follows:
 
