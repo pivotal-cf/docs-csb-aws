@@ -7,9 +7,9 @@ owner: Cloud Service Broker
 
 This topic describes the changes in this minor release of <%= vars.product_full %>.
 
-## <a id="1-8-0"></a> v1.8.0
+## <a id="1-9-0"></a> v1.9.0
 
-**Release date:** February 8, 2024
+**Release date:** mmmm dd, 2024
 
 ### Breaking changes
 
@@ -24,65 +24,13 @@ New features and changes in this release:
 
 #### General
 
-- **Terraform upgraded to v1.5.7:**
-
-  The Terraform version used to apply changes is upgraded from
-  v1.4.4 to v1.5.7. You must upgrade all service instances.
-  When you upgrade, ensure that you follow the [Upgrade procedure](upgrading.html#procedure).
-
-- **Apply changes now fails if there were problems upgrading one or more instances:**
-
-  Issues when upgrading instances are now surfaced to Tanzu Operations Manager by failing the deploy-all errand. In this case, the deployment log needs to be
-  inspected for detailed information on upgrade failures. 
-  For more information on the upgrade process, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
-
-- **GovCloud accounts are now supported:**
-
-  You can now specify a GovCloud region and credentials for the broker to work with. All features may not be available in GovCloud regions. 
-  For differences in standard regions, you can refer to the [AWS GovCloud documentation](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html).
-
-- **Tile installation now does not install if it finds any outdated [non-orphaned instances](managing_orphaned_service_instances.html.md.erb):**
-
-  This measure improves the overall stability and maintainability of the broker and any running instances.
-  It protects operators from accidentally skipping mandatory intermediate versions, which could introduce unexpected issues.
-  Despite this measure, VMware expects operators to [harness Upgrade Planner to view the supported upgrade path](https://upgrade-planner.pivotal.io).
-
-
-#### Amazon S3 Bucket
-
-- **New property `sse_extra_kms_key_ids`:**
-
-  You can now specify a comma-separated list of custom KMS key IDs that bindings can use to encrypt and decrypt objects in the bucket.  
-  This property is also useful if you need to rotate the `sse_default_kms_key`.  
-  For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
-
-
-#### Amazon RDS for MSSQL
-
-- **MSSQL now allows for encryption configuration for Express Edition in GovCloud regions:** 
-  
-  Unlike standard accounts, GovCloud does support encryption for Express edition. 
-  Prior to this version, setting `storage_encrypted` to `true` and `engine` to `sqlserver-ex` was prevented by the broker. From this version
-  onwards the broker allows it. This results in an error creating the instance for standard accounts but a successful creation for GovCloud accounts.  
 
 
 ### Resolved issues
 
 This release has the following fixes:
 
-- **Prevent performance degradation of database consistency checks at start up:**
-  Previously the <%= vars.product_short %> would keep information in the database about instances and
-  bindings that had already been destroyed. In the long term, this caused the broker's database space 
-  usage to grow with no benefit. In some rare scenarios, it made broker start up slower and caused the 
-  platform to time out. 
-  The <%= vars.product_short %> now physically deletes information from destroyed assets preventing this 
-  situation from happening.
-- **Using a custom KMS key for object encryption:**
-  Previously, when trying to encrypt an object with a custom KMS key, it failed with an `AccessDenied` error.  
-  When a custom KMS key was used as the `sse_default_kms_key`, this prevented uploading encrypted objects.  
-  This bug didn't cause uploaded objects to be accidentally unencrypted. However, you may want  
-  to review the encryption settings for your instances, because you can now harness the new property `sse_extra_kms_key_ids`.  
-  For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
+
 - **Run-in header:** Description.
 
 ### Known issues
