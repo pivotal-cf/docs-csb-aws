@@ -80,6 +80,8 @@ This release has the following fixes:
   This bug didn't cause uploaded objects to be accidentally unencrypted. However, you may want  
   to review the encryption settings for your instances, because you can now harness the new property `sse_extra_kms_key_ids`.  
   For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
+- **Can't create MSSQL instance if VPC contains more than 20 subnets:**
+   This issue prevented the creation of MSSQL instances in VPCs containing more than 20 subnets.
 
 ### Known issues
 
