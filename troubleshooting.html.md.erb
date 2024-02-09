@@ -878,14 +878,14 @@ The following errors can occur in any Aurora instance:
                 <td><strong>Symptom</strong></td>
                 <td>
                   Major upgrade fails and error in <code>pg_upgrade_server.log</code> (viewable from the AWS console)
-                  shows the above error.
+                  shows the preceding error.
                 </td>
             </tr>
             <tr>
                 <td><strong>Cause</strong></td>
                 <td>
                   Major version upgrade in Amazon Aurora for PostgreSQL with small instance types is not straightforward. In
-                  particular upgrade for small instances or serverless with low max capacity (e.g. 2 ACUs) causes an error
+                  particular, upgrade for small instances or serverless with low max capacity, for example 2 ACUs, causes an error
                   even through the AWS console.
                 </td>
             </tr>
@@ -897,12 +897,12 @@ The following errors can occur in any Aurora instance:
                       <li>First:</li>
                         <ul>
                             <li>Temporarily update to a bigger <code>instance_class</code> type.</li>
-                            <li>or, if using `serverless` instance type, increase the max capacity <code>serverless_max_capacity</code> to at least 4 ACUs</li>    
+                            <li>or, if using <code>serverless</code> instance type, increase the max capacity <code>serverless_max_capacity</code> to at least 4 ACUs</li>    
                                 <code>cf update-service SERVICE_INSTANCE_NAME -c '{"serverless_max_capacity": 4}'</code>
                         </ul>
-                      <li>Once that's done, you can retry the major version upgrade, eg:</li>
+                      <li>Once that's done, you can retry the major version upgrade. For example:</li>
                         <code>cf update-service SERVICE_INSTANCE_NAME -c '{"engine_version": "14"}'</code>                      
-                      <li>Finally scale down <code>instance_class</code> or <code>serverless_max_capacity</code > to its previous value, since the extra capacity was only needed during the actual upgrade.</li>
+                      <li>Finally, scale down <code>instance_class</code> or <code>serverless_max_capacity</code > to its previous value, since the extra capacity was only needed during the actual upgrade.</li>
                          <code>cf update-service SERVICE_INSTANCE_NAME -c '{"serverless_max_capacity": 2}'</code>
                     </ol>
                 </td>
