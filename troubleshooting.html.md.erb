@@ -843,11 +843,11 @@ The following errors can occur in any Amazon MSSQL instance:
                     <ul>
                       <ol>
                         You must disable `multi_az` and wait until the operation finishes.
-                        <code>cf update-service csb-aws-mssql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"multi_az": false}'</code>
+                        <code>cf update-service SERVICE_INSTANCE_NAME -c '{"multi_az": false}'</code>
                       </ol>
                       <ol>
                         Set `backup_retention_period` to `0`.
-                        <code>cf update-service csb-aws-mssql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"backup_retention_period":0}'</code>
+                        <code>cf update-service SERVICE_INSTANCE_NAME -c '{"backup_retention_period":0}'</code>
                       </ol>
                     </ul>
                 </td>
@@ -860,21 +860,15 @@ The following errors can occur in any Amazon MSSQL instance:
 
 The following errors can occur in any Aurora instance:
 
-- [Error upgrading Aurora instance to a new major version](#major-upgrade-aurora)
+- [Error upgrading Aurora instance to a new major version](#major-upgrade-aurora-shared-memory)
 
-<div id="major-upgrade-aurora" class="wrap-table-overflow">
+<div id="major-upgrade-aurora-memory" class="wrap-table-overflow">
     <table class="table">
         <tbody>
              <tr>
                 <td><strong>Error</strong></td>
-                <td>
-                    Any of the following error messages:
-                    <ul>
-                        <li>Shared memory segment sizes are configured too large</li>
-                        <li>Provider produced inconsistent final plan</li>
-                        <li>One or more database instances are still members of this parameter group</li>
-                    </ul>
-                </td>
+                <td>The following error message is displayed in the <code>pg_upgrade_server.log</code> logs: 
+                FATAL: shared memory segment sizes are configured too large</td>
              </tr>
              <tr>
                 <td><strong>Operation</strong></td>
@@ -883,13 +877,16 @@ The following errors can occur in any Aurora instance:
              <tr>
                 <td><strong>Symptom</strong></td>
                 <td>
-                  Major upgrade fails with some of these errors.
+                  Major upgrade fails and error in <code>pg_upgrade_server.log</code> (viewable from the AWS console)
+                  shows the above error.
                 </td>
             </tr>
             <tr>
                 <td><strong>Cause</strong></td>
                 <td>
-                  Under some circumstances, performing a major upgrade requires some manual coordination given the amount of moving parts involved in such a change.
+                  Major version upgrade in Amazon Aurora for PostgreSQL with small instance types is not straightforward. In
+                  particular upgrade for small instances or serverless with low max capacity (e.g. 2 ACUs) causes an error
+                  even through the AWS console.
                 </td>
             </tr>
             <tr>
@@ -899,32 +896,14 @@ The following errors can occur in any Aurora instance:
                     <ol>
                       <li>First:</li>
                         <ul>
-                            <li>Specify <code>engine_version</code> in MAJOR.MINOR form (in case it is currently specified as MAJOR only).</li> 
-                            <li>Temporarily disable <code>auto_minor_version_upgrade</code>.</li>
                             <li>Temporarily update to a bigger <code>instance_class</code> type.</li>
-                            <li>Temporarily use the default <code>db_cluster_parameter_group_name</code> (in case a custom one is specified). Remember to choose the one corresponding to the current <code>engine_version</code>.</li>
+                            <li>or, if using `serverless` instance type, increase the max capacity <code>serverless_max_capacity</code> to at least 4 ACUs</li>    
+                                <code>cf update-service SERVICE_INSTANCE_NAME -c '{"serverless_max_capacity": 4}'</code>
                         </ul>
-                        You can batch all these changes into a single update-service operation or perform them one by one. For example:  
-                        <br><br>
-                        <code>cf update-service csb-aws-aurora-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"engine_version": "13.11", "auto_minor_version_upgrade": false, "instance_class": "db.t3.medium", "db_cluster_parameter_group_name": "default.aurora-postgresql13"}'</code>
-
-                      <li>Once that's done, you can proceed with the major upgrade by:</li>
-                        <ul>
-                            <li>Specifying the new <code>engine_version</code> in MAJOR only form.</li>
-                            <li>Adapting <code>db_cluster_parameter_group_name</code> to use the one corresponding to the new <code>engine_version</code>.</li>
-                        </ul>
-                        Again, you can batch these changes into a single update-service operation or perform them one by one:  
-                        <br><br>
-                        <code>cf update-service csb-aws-aurora-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"engine_version": "14", "db_cluster_parameter_group_name": "default.aurora-postgresql14"}'</code>
-                      
-                      <li>Finally:</li>
-                        <ul>
-                            <li>Re-enable <code>auto_minor_version_upgrade</code> (if desired).</li>
-                            <li>Specify a new custom <code>db_cluster_parameter_group_name</code> or leave it blank to let Cloud Service Broker create one automatically.</li>
-                            <li>Scale down <code>instance_class</code> to its previous value, since the extra capacity was only needed during the actual upgrade.</li>
-                        </ul>
-                        <br>
-                        <code>cf update-service csb-aws-aurora-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"engine_version": "14", "auto_minor_version_upgrade": true, "instance_class": "db.serverless", "db_cluster_parameter_group_name": ""}'</code>
+                      <li>Once that's done, you can retry the major version upgrade, eg:</li>
+                        <code>cf update-service SERVICE_INSTANCE_NAME -c '{"engine_version": "14"}'</code>                      
+                      <li>Finally scale down <code>instance_class</code> or <code>serverless_max_capacity</code > to its previous value, since the extra capacity was only needed during the actual upgrade.</li>
+                         <code>cf update-service SERVICE_INSTANCE_NAME -c '{"serverless_max_capacity": 2}'</code>
                     </ol>
                 </td>
             </tr>
