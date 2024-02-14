@@ -319,6 +319,8 @@ To configure <%= vars.product_short %> with a database:
 
    | Text box | Instructions |
    |----------|--------------|
+   | **Memory limit** | Memory limit (e.g. 1024M, 2G) for the Service Broker App. Defaults to `2G`.|
+   | **Disk limit** | Disk limit (e.g. 1024M, 2G) for the Service Broker App. Defaults to `2G`.|
    | **Database host** | Enter the host name of the prerequisite state database.|
    | **Database username** and **Database password** | Enter the credentials for the state database. The example shown in the screenshot in the earlier step refers to setting the user name for a MySQL tile provisioned database. If you are configuring a database provisioned by another service, see the documentation for that service for the correct user name format. For RDS MySQL, see the [AWS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html). |
    | **Database port** | Enter the port number for connection to the state database. Defaults to `3306`. |
