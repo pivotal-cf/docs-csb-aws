@@ -667,8 +667,8 @@ The following errors can occur in any Amazon RDS instance:
                     is still maintained by AWS as [documented]((https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)).
                     You have two alternatives
                     <ul>
-                    <li>Specify <code>"iops":0</code> in the plans: This value is configured for all instances of the plan and can't
-                    be overriden on an instance per instance basis.</li>
+                    <li>Specify <code>"iops":0</code> in the plans. This value is configured for all instances of the plan and can't
+                    be overridden on an instance-per-instance basis.</li>
                     <li>Specify <code>"iops":0</code> as provision parameter: This can be configured in each service instance individually.
                         <code>cf create-service csb-aws-postgresql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"iops":0}'</code>
                     </li>
@@ -700,21 +700,21 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td><strong>Cause</strong></td>
                 <td>
-                  Whilst creating instances with <code>"storage_type": "gp3"</code> and <code>"storage_gb" &lt; 400GB</code> can be achieved by setting `iops: 0` as instructed in 
-                  [gp3-iops--issue](#gp3-iops-create-issue), this doesn't work for updates as the AWS API sets a default iops value and setting it
-                  to 0 is interpreted this time as trying to change that value.
+                  While creating instances with <code>"storage_type": "gp3"</code> and <code>"storage_gb" &lt; 400GB</code> can be achieved by setting `iops: 0` as instructed in 
+                  [gp3-iops--issue](#gp3-iops-create-issue), this doesn't work for updates. The AWS API sets a default iops value and setting it
+                  to 0 is interpreted as trying to change that default value.
                 </td>
             </tr>
             <tr>
                 <td><strong>Solution</strong></td>
                 <td>
                     Specifying a value of <code>3000</code> for <code>iops</code> preserves the AWS set default. Instances with the specified
-                    conditions need to be created with <code>"iops": 0</code> and then updated or moved to a plan that specify <code>"iops": 3000</code> instead for further
+                    conditions must be created with <code>"iops": 0</code> and then updated or moved to a plan that specifies <code>"iops": 3000</code> for further
                     updates/upgrades operations to work.
                     <ul>
                     <li>Specify <code>"iops":3000</code> in the plans: This value is configured for all instances of the plan and can't
-                    be overriden on an instance per instance basis.</li>
-                    <li>Specify <code>"iops":3000</code> as update parameter: This can be configured in each service instance individually.
+                    be overridden on an instance-per-instance basis.</li>
+                    <li>Specify <code>"iops":3000</code> as update parameter. This can be configured in each service instance individually.
                         <code>cf update-service csb-aws-postgresql -c '{"iops":3000}'</code>
                     </li>
                     </ul>
@@ -836,7 +836,7 @@ The following errors can occur in any Amazon MySQL instance:
                     You have two alternatives
                     <ul>
                     <li>Specify `"iops":0` in the plans: This value will be configured for all instances of the plan and can't
-                    be overriden on an instance per instance bases</li>
+                    be overridden on an instance-per-instance bases</li>
                     <li>Specify `"iops":0` as provision parameter: This can be configured in each service instance individually.
                         <code>cf create-service csb-aws-mysql PLAN_NAME SERVICE_INSTANCE_NAME -c '{"iops":0}'</code>
                     </li>
