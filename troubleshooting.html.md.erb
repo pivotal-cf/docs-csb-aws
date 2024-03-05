@@ -702,7 +702,7 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td><strong>Cause</strong></td>
                 <td>
-                  Whilst creating instances with <code>"storage_type": "gp3"</code> and <code>"storage_gb" < 400GB</code> can be achieved by setting `iops: 0` as instructed in 
+                  Whilst creating instances with <code>"storage_type": "gp3"</code> and <code>"storage_gb" &lt; 400GB</code> can be achieved by setting `iops: 0` as instructed in 
                   [gp3-iops--issue](#gp3-iops-create-issue), this doesn't work for updates as the AWS API sets a default iops value and setting it
                   to 0 is interpreted this time as trying to change that value.
                 </td>
