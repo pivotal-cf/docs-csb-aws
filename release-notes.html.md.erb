@@ -17,7 +17,12 @@ This release has no breaking changes.
 
 ### Features
 
-This release has no new features.
+New features and changes in this release:
+
+- **It is now possible to delete instances that failed creation due to input parameter validation errors:**
+In previous releases instances that failed creation due to input parameter validation errors
+needed to be deleted from Cloud Foundry using `cf purge-service-instance`. Due to feedback that this process
+caused unnecessary burden on teams, it is now possible to delete such instances with `cf delete-service` instead.
 
 ### Resolved issues
 
