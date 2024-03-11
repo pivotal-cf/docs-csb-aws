@@ -31,6 +31,9 @@ This release has the following fixes:
     You can now control memory and disk quota for the broker app by setting the preferred value in the broker configuration. By default, the quota is set to 2G for both.
     If you have previously made changes to these values outside of the tile, you should propagate those changes in the broker config. The values will then persist through subsequent tile updates.
 
+- **Some RDS MySQL and PostgreSQL instances using gp3 and io1 storage cannot be updated:**
+  You can now specify a value of `null` instead of `0` for `iops`, this will allow for creation and update of
+  instances with `storage_gb < 400GB`
 
 ### Known issues
 
