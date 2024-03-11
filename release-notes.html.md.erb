@@ -231,6 +231,11 @@ This release has the following known issues:
 
   There is no workaround for this issue. To solve it, upgrade to version 1.7.2 or later.
 
+- **Some RDS MySQL and PostgreSQL instances using gp3 and io1 storage cannot be updated:**
+  Attempts to update, change plans, upgrade RDS MySQL and PostgreSQL instances that use gp3 and io1 storage fail when
+  they are below the 400GB AWS imposed threshold for specifying iops. See the [troubleshooting
+page](troubleshooting.html.md.erb#gp3-iops-update-issue) for more information.  
+
 ## <a id="view"></a> View release notes for another version
 
 To view the release notes for another product version, select the version from drop-down menu at the
