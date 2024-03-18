@@ -17,20 +17,16 @@ This release has no breaking changes.
 
 ### Features
 
-New features and changes in this release:
+This release has no features.
+
+### Resolved issues
+
+This release has the following fixes:
 
 - **It is now possible to delete instances that failed creation due to input parameter validation errors:**
 In previous releases instances that failed creation due to input parameter validation errors
 needed to be deleted from Cloud Foundry using `cf purge-service-instance`. Due to feedback that this process
 caused unnecessary burden on teams, it is now possible to delete such instances with `cf delete-service` instead.
-
-- **SQS Beta is out:** Beta service for Amazon SQS is included in this release. It is not intended for production
-use. Future versions of the <%= vars.product_short %> might not be able to manage instances or bindings created
-with the SQS Beta service offering.
-
-### Resolved issues
-
-This release has the following fixes:
 
 - **Some RDS MySQL and PostgreSQL instances using gp3 and io1 storage cannot be updated:**
   You can now specify a value of `null` instead of `0` for `iops`, this will allow for creation and update of
