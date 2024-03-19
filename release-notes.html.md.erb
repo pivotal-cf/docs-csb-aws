@@ -1,5 +1,5 @@
 ---
-title: Release notes for Cloud Service Broker for AWS
+title: Release Notes for Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
@@ -9,9 +9,9 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 ## <a id="1-9-0"></a> v1.9.0
 
-**Release date:** mmmm dd, 2024
+**Release Date:** mmmm dd, 2024
 
-### Breaking changes
+### Breaking Changes
 
 This release has the following breaking changes:
 
@@ -28,11 +28,13 @@ A new set of properties enable the configuration of the service.
 These configurations include options for both FIFO and Standard queues, Dead Letter Queues (DLQs), encryption settings, and more.
 
 #### General Configuration
+
 - **Queue Type Selection (`fifo`)**:
   Choose between FIFO and Standard queues to optimize message delivery according to your application's needs.
   [Learn more](reference/aws-sqs.html.md.erb#parameters).
 
 #### Message Handling
+
 - **Visibility Timeout (`visibility_timeout_seconds`)**:
   Customize the visibility timeout for messages, controlling how long they remain invisible after being retrieved.
   [Learn more](reference/aws-sqs.html.md.erb#parameters).
@@ -71,7 +73,7 @@ These configurations include options for both FIFO and Standard queues, Dead Let
   application's performance needs. [Learn more](reference/aws-sqs.html.md.erb#parameters).
 
 
-### Resolved issues
+### Resolved Issues
 
 This release has the following fixes:
 
@@ -83,11 +85,11 @@ This release has the following fixes:
   You can now specify a value of `null` instead of `0` for `iops`. This allows for creation and update of
   instances with `storage_gb < 400GB`.
 
-### Known issues
+### Known Issues
 
 This release has the following issues:
 
-## <a id="view"></a> View release notes for another version
+## <a id="view"></a> View Release Notes for another Version
 
 To view the release notes for another product version, select the version from drop-down menu at the
 top of this page.
