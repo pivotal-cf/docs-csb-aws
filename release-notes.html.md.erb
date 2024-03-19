@@ -24,13 +24,17 @@ This release has no features.
 This release has the following fixes:
 
 - **It is now possible to delete instances that failed creation due to input parameter validation errors:**
-In previous releases instances that failed creation due to input parameter validation errors
-needed to be deleted from Cloud Foundry using `cf purge-service-instance`. Due to feedback that this process
-caused unnecessary burden on teams, it is now possible to delete such instances with `cf delete-service` instead.
+  In previous releases instances that failed creation due to input parameter validation errors
+  needed to be deleted from Cloud Foundry using `cf purge-service-instance`. Due to feedback that this process
+  caused unnecessary burden on teams, it is now possible to delete such instances with `cf delete-service` instead.
 
 - **Some RDS MySQL and PostgreSQL instances using gp3 and io1 storage cannot be updated:**
   You can now specify a value of `null` instead of `0` for `iops`, this will allow for creation and update of
   instances with `storage_gb < 400GB`
+
+- **Broker app memory and disk limitations can now be managed in the tile:** 
+  Memory and disk quota for the broker app can now be controlled by setting the prefered value in the broker configuration. By default the quota is set to 2G for both.
+  If you have previously made changes to these values outside of the tile you should propagate those changes in the broker config. The values will then persist through consequent tile updated.
 
 ### Known issues
 
