@@ -17,6 +17,7 @@
     * [Amazon DynamoDB Table (beta)](../reference/aws-dynamodb.html)
     * [Amazon Aurora MySQL-compatible edition](../reference/aws-aurora-mysql.html)
     * [Amazon Aurora PostgreSQL-compatible edition](../reference/aws-aurora-postgresql.html)
+    * [Amazon SQS](../reference/aws-sqs.html)
 * [Troubleshooting](../troubleshooting.html)
 * [Managing orphaned service instances](../managing_orphaned_service_instances.html)
 * [Uninstalling](../uninstall.html)

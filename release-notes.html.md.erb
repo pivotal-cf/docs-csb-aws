@@ -18,9 +18,57 @@ This release has the following breaking changes:
 
 ### Features
 
-New features and changes in this release:
+## Amazon SQS
 
-#### General
+- **SQS is generally available:** The Amazon SQS service is included in this release and can be used in production.
+
+### Configuration Options for Amazon SQS
+
+A new set of properties enable the configuration of the service.
+These configurations include options for both FIFO and Standard queues, Dead Letter Queues (DLQs), encryption settings, and more.
+
+#### General Configuration
+- **Queue Type Selection (`fifo`)**:
+  Choose between FIFO and Standard queues to optimize message delivery according to your application's needs.
+  [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+#### Message Handling
+- **Visibility Timeout (`visibility_timeout_seconds`)**:
+  Customize the visibility timeout for messages, controlling how long they remain invisible after being retrieved.
+  [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+- **Message Retention Period (`message_retention_seconds`)**:
+  Define the duration for which Amazon SQS retains a message, allowing for a flexible range from 1 minute to 14 days.
+  [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+- **Maximum Message Size (`max_message_size`)**: Set the limit for the size of a message, ranging from 1 KiB to 256 KiB,
+  to ensure efficient processing. [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+- **Delivery Delay (`delay_seconds`)**: Implement a delay for message delivery to the queue, facilitating batch
+  processing or time-sensitive operations. [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+- **Long Polling Support (`receive_wait_time_seconds`)**: Optimize message retrieval with long polling,
+  reducing the number of empty responses. [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+#### Security and Compliance
+
+- **Dead Letter Queue Configuration (`dlq_arn`, `max_receive_count`)**:
+  Enhance reliability by specifying a Dead Letter Queue for messages that cannot be processed successfully after a
+  certain number of attempts. [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+- **Encryption Settings (`sqs_managed_sse_enabled`, `kms_master_key_id`)**:
+  Secure your messages with SQS-managed SSE or specify your AWS KMS customer master key for encryption.
+  [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+#### FIFO Specific Configuration
+
+- **Content-Based Deduplication (`content_based_deduplication`)**:
+  Simplify message processing in FIFO queues by enabling automatic content-based deduplication.
+  [Learn more](reference/aws-sqs.html.md.erb#parameters).
+
+- **Deduplication and Throughput Management (`deduplication_scope`, `fifo_throughput_limit`)**:
+  Fine-tune FIFO queue behavior with deduplication scope and throughput limit settings to meet your
+  application's performance needs. [Learn more](reference/aws-sqs.html.md.erb#parameters).
 
 
 ### Resolved issues

@@ -1,0 +1,225 @@
+---
+title: CSB AWS SQS
+owner: Cloud Service Broker
+---
+
+<strong><%= modified_date %></strong>
+
+This topic provides reference information about the
+[CSB AWS SQS](https://aws.amazon.com/sqs/) (csb-aws-sqs) service.
+It details the service instance configuration parameters, and binding credentials.
+
+## <a id="plans-config"></a> Plan Configuration Parameters
+
+
+When configuring <%= vars.product_short %> you can add additional plans.
+For instructions on how to configure plans, see
+[Configure Services with Cloud Service Broker for AWS](../installing-with-aws.html#services).
+
+The following table outlines parameters that can be configured for additional plans:
+
+
+| Parameter name            | Description                                                                                                              | Default | Required |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------|---------|----------|
+| `name`                    | The plan name.                                                                                                           | _n/a_   | Yes      |
+| `id`                      | A unique GUID.                                                                                                           | _n/a_   | Yes      |
+| `description`             | Description of the new plan.                                                                                             | _n/a_   | Yes      |
+| `free`                    | When false, service instances of this service plan have a cost.                                                          | true    | No       |
+| `bindable`                | Specifies whether service instances of the service plan can bind to applications.                                        | true    | No       |
+| `plan_updateable`         | Whether the plan supports upgrading, downgrading, or sidegrading to another version.                                     | true    | No       |
+| `metadata.displayName`    | Name to use when displaying the plan in the Marketplace.                                                                 | _n/a_   | No       |
+| `metadata.bullets`        | List of bullet points to display in Apps Manager.                                                                        | _n/a_   | No       |
+
+
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
+to your plan.
+
+>**Note**
+>If you set a parameter at plan level, developers cannot
+change the value when creating or updating service instances.
+
+## <a id="parameters"></a> Configuration Parameters
+
+You can provision an SQS service by executing:
+
+```console
+cf create-service csb-aws-sqs PLAN-NAME SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+And update the configuration parameters for an existing service instance with:
+
+```console
+cf update-service SERVICE-INSTANCE-NAME -c '{"PARAMETER-NAME": "PARAMETER-VALUE"}'
+```
+
+The following table lists the parameters that you can configure, by using the `-c` flag, when
+provisioning or updating a `csb-aws-sqs` service.
+The Operation column displays whether a parameter is supported for both provision and update, or for
+provision only:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th width="20%">Parameter Name</th>
+      <th width="10%">Type</th>
+      <th width="40%">Description</th>
+      <th width="20%">Default</th>
+      <th width="10%">Operation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>region</code></td>
+      <td>String</td>
+      <td>The AWS region where the SQS queue will be created.</td>
+      <td>The value the operator entered for <strong>region</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>fifo</code></td>
+      <td>Boolean</td>
+      <td>
+        Specifies whether to create a FIFO queue.
+        This cannot be altered once the queue is created.
+      </td>
+      <td><code>false</code></td>
+      <td>provision</td>
+    </tr>
+    <tr>
+      <td><code>visibility_timeout_seconds</code></td>
+      <td>Integer</td>
+      <td>The visibility timeout for the queue, in seconds. Ranges from 0 to 43200 (12 hours).</td>
+      <td><code>30</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>message_retention_seconds</code></td>
+      <td>Integer</td>
+      <td>
+        The duration Amazon SQS retains a message, in seconds.
+        Ranges from 60 (1 minute) to 1209600 (14 days).
+      </td>
+      <td><code>345600</code> (4 days)</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>max_message_size</code></td>
+      <td>Integer</td>
+      <td>The maximum message size in bytes.
+        Ranges from 1024 bytes (1 KiB) to 262144 bytes (256 KiB).
+      </td>
+      <td><code>262144</code> (256 KiB)</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>delay_seconds</code></td>
+      <td>Integer</td>
+      <td>The delay in seconds for message delivery to the queue.
+        Ranges from 0 to 900 (15 minutes).
+      </td>
+      <td><code>0</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>receive_wait_time_seconds</code></td>
+      <td>Integer</td>
+      <td>The duration for the ReceiveMessage call to wait for a message to arrive before
+        returning, in seconds.
+      </td>
+      <td><code>0</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_access_key_id</code></td>
+      <td>String</td>
+      <td>Your AWS access key for authentication.</td>
+      <td>The value the operator entered for <strong>AWS Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>aws_secret_access_key</code></td>
+      <td>String</td>
+      <td>Your AWS secret key for authentication.</td>
+      <td>The value the operator entered for <strong>AWS Secret Access Key</strong> in <%= vars.ops_manager %>.</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>dlq_arn</code></td>
+      <td>String</td>
+      <td>ARN of the Dead Letter Queue. Configures redrive policy for the queue if provided.</td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>max_receive_count</code></td>
+      <td>Integer</td>
+      <td>The number of times a message is delivered to the source queue before being moved to the DLQ.</td>
+      <td><code>5</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>content_based_deduplication</code></td>
+      <td>Boolean</td>
+      <td>Enables content-based deduplication for FIFO queues.</td>
+      <td><code>false</code></td>
+      <td>Provision</td>
+    </tr>
+    <tr>
+      <td><code>deduplication_scope</code></td>
+      <td>String</td>
+      <td>Determines the scope of deduplication for messages within the FIFO queue.
+        Values are `messageGroup` or `queue`.</td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>fifo_throughput_limit</code></td>
+      <td>String</td>
+      <td>
+        Manages the throughput limit for the FIFO queue. Values are `perQueue` or `perMessageGroupId`.
+        When High throughput Mode is ON, the value for `deduplication_scope` must be `messageGroup` or the operation fails.
+        If not defined for a FIFO queue it defaults to `perQueue`.
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>sqs_managed_sse_enabled</code></td>
+      <td>Boolean</td>
+      <td>Enable SQS-managed encryption keys for encrypting messages.</td>
+      <td><code>true</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>kms_master_key_id</code></td>
+      <td>String</td>
+      <td>
+        Specify the AWS KMS customer master key (CMK) for encryption.
+        Requires `sqs_managed_sse_enabled` to be `false`.
+        E.g: <code>alias/aws/sqs</code>
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>kms_data_key_reuse_period_seconds</code></td>
+      <td>Integer</td>
+      <td>Duration in seconds for the reuse of a data key for encrypting messages.
+       Ranges from 60 (1 minute) to 86400 (24 hours).
+      </td>
+      <td><code>300</code> (5 minutes)</td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
+      <td><code>kms_extra_key_ids</code></td>
+      <td>String</td>
+      <td>A comma-separated list of AWS KMS key IDs used for SSE-KMS operations.
+        Since a DLQ can receive messages from multiple sources, all the KMS key IDs
+        used as sources must be included.
+      </td>
+      <td><code>""</code></td>
+      <td>provision and update</td>
+    </tr>
+  </tbody>
+</table>
+
