@@ -663,7 +663,7 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td><strong>Solution</strong></td>
                 <td>
-                    From 1.8.1 onwards, specifying `iops: null` results in successful creation and update.
+                    From 1.8.1 and later, specifying <code>iops: null</code> results in successful creation and update.
                     
                     For versions prior to 1.8.1, specifying a value of <code>0</code> for <code>iops</code> prevents the broker from setting <code>iops</code> in the instance. Baseline storage performance
                     is still maintained by AWS as [documented]((https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage)).
@@ -710,7 +710,7 @@ The following errors can occur in any Amazon RDS instance:
             <tr>
                 <td><strong>Solution</strong></td>
                 <td>
-                    From 1.8.1 onwards, specifying `iops: null` results in successful creation and update.
+                    From 1.8.1 onwards, specifying <code>iops: null</code> results in successful creation and update.
 
                     For versions prior to 1.8.1, specifying a value of <code>3000</code> for <code>iops</code> preserves the AWS set default. Instances with the specified
                     conditions must be created with <code>"iops": 0</code> and then updated or moved to a plan that specifies <code>"iops": 3000</code> for further

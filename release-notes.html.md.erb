@@ -1,5 +1,5 @@
 ---
-title: Release notes for Cloud Service Broker for AWS
+title: Release Notes for Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
@@ -9,9 +9,9 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 ## <a id="1-8-1"></a> v1.8.1
 
-**Release date:** March 18, 2024
+**Release Date:** March 20, 2024
 
-### Breaking changes
+### Breaking Changes
 
 This release has no breaking changes.
 
@@ -19,32 +19,32 @@ This release has no breaking changes.
 
 This release has no features.
 
-### Resolved issues
+### Resolved Issues
 
 This release has the following fixes:
 
 - **It is now possible to delete instances that failed creation due to input parameter validation errors:**
-  In previous releases instances that failed creation due to input parameter validation errors
-  needed to be deleted from Cloud Foundry using `cf purge-service-instance`. Due to feedback that this process
+  In previous releases, instances that failed creation due to input parameter validation errors
+  needed to be deleted from Cloud Foundry by using `cf purge-service-instance`. Due to feedback that this process
   caused unnecessary burden on teams, it is now possible to delete such instances with `cf delete-service` instead.
 
 - **Some RDS MySQL and PostgreSQL instances using gp3 and io1 storage cannot be updated:**
-  You can now specify a value of `null` instead of `0` for `iops`, this will allow for creation and update of
-  instances with `storage_gb < 400GB`
+  You can now specify a value of `null` instead of `0` for `iops`, this allows for creation and update of
+  instances with `storage_gb < 400GB`.
 
-- **Broker app memory and disk limitations can now be managed in the tile:** 
-  Memory and disk quota for the broker app can now be controlled by setting the prefered value in the broker configuration. By default the quota is set to 2G for both.
-  If you have previously made changes to these values outside of the tile you should propagate those changes in the broker config. The values will then persist through consequent tile updated.
+- **Broker app memory and disk limitations can now be managed in the tile:**
+  Memory and disk quota for the broker app can now be controlled by setting the preferred value in the broker configuration. By default the quota is set to 2 GB for both.
+  If you have previously made changes to these values outside of the tile, you can propagate those changes in the broker config. The values then persist through subsequent tile updates.
 
-### Known issues
+### Known Issues
 
 This release has no known issues.
 
 ## <a id="1-8-0"></a> v1.8.0
 
-**Release date:** February 8, 2024
+**Release Date:** February 8, 2024
 
-### Breaking changes
+### Breaking Changes
 
 This release has no breaking changes.
 
@@ -63,12 +63,12 @@ New features and changes in this release:
 - **Apply changes now fails if there were problems upgrading one or more instances:**
 
   Issues when upgrading instances are now surfaced to Tanzu Operations Manager by failing the deploy-all errand. In this case, the deployment log needs to be
-  inspected for detailed information on upgrade failures. 
+  inspected for detailed information on upgrade failures.
   For more information on the upgrade process, see [Upgrading Cloud Service Broker for AWS](upgrading.html).
 
 - **GovCloud accounts are now supported:**
 
-  You can now specify a GovCloud region and credentials for the broker to work with. All features may not be available in GovCloud regions. 
+  You can now specify a GovCloud region and credentials for the broker to work with. All features may not be available in GovCloud regions.
   For differences in standard regions, you can refer to the [AWS GovCloud documentation](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html).
 
 - **Tile installation now does not install if it finds any outdated [non-orphaned instances](managing_orphaned_service_instances.html.md.erb):**
@@ -76,7 +76,6 @@ New features and changes in this release:
   This measure improves the overall stability and maintainability of the broker and any running instances.
   It protects operators from accidentally skipping mandatory intermediate versions, which could introduce unexpected issues.
   Despite this measure, VMware expects operators to [harness Upgrade Planner to view the supported upgrade path](https://upgrade-planner.pivotal.io).
-
 
 #### Amazon S3 Bucket
 
@@ -86,26 +85,24 @@ New features and changes in this release:
   This property is also useful if you need to rotate the `sse_default_kms_key`.  
   For more information about these properties and how to use them, see the [Parameters section for Amazon S3 Bucket](reference/aws-s3.html.md.erb#parameters).
 
-
 #### Amazon RDS for MSSQL
 
-- **MSSQL now allows for encryption configuration for Express Edition in GovCloud regions:** 
+- **MSSQL now allows for encryption configuration for Express Edition in GovCloud regions:**
   
-  Unlike standard accounts, GovCloud does support encryption for Express edition. 
+  Unlike standard accounts, GovCloud does support encryption for Express edition.
   Prior to this version, setting `storage_encrypted` to `true` and `engine` to `sqlserver-ex` was prevented by the broker. From this version
   onwards the broker allows it. This results in an error creating the instance for standard accounts but a successful creation for GovCloud accounts.  
 
-
-### Resolved issues
+### Resolved Issues
 
 This release has the following fixes:
 
 - **Prevent performance degradation of database consistency checks at start up:**
   Previously the <%= vars.product_short %> would keep information in the database about instances and
-  bindings that had already been destroyed. In the long term, this caused the broker's database space 
-  usage to grow with no benefit. In some rare scenarios, it made broker start up slower and caused the 
-  platform to time out. 
-  The <%= vars.product_short %> now physically deletes information from destroyed assets preventing this 
+  bindings that had already been destroyed. In the long term, this caused the broker's database space
+  usage to grow with no benefit. In some rare scenarios, it made broker start up slower and caused the
+  platform to time out.
+  The <%= vars.product_short %> now physically deletes information from destroyed assets preventing this
   situation from happening.
 - **Using a custom KMS key for object encryption:**
   Previously, when trying to encrypt an object with a custom KMS key, it failed with an `AccessDenied` error.  
@@ -116,7 +113,7 @@ This release has the following fixes:
 - **Can't create MSSQL instance if VPC contains more than 20 subnets:**
    This issue prevented the creation of MSSQL instances in VPCs that contained more than 20 subnets.
 
-### Known issues
+### Known Issues
 
 This release has the following known issues:
 
@@ -125,7 +122,7 @@ This release has the following known issues:
   they are below the 400GB AWS imposed threshold for specifying iops. See the [Troubleshooting
 page](troubleshooting.html.md.erb#gp3-iops-update-issue) for more information.
 
-## <a id="view"></a> View release notes for another version
+## <a id="view"></a> View Release Notes for another Version
 
 To view the release notes for another product version, select the version from drop-down menu at the
 top of this page.
