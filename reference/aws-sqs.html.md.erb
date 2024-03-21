@@ -222,3 +222,59 @@ provision only:
     </tr>
   </tbody>
 </table>
+
+## <a id="binding"></a> Binding
+
+The binding operation will create the credentials to access the service, and will bind the
+service with an app on Cloud Foundry.
+
+You can bind a service by running:
+
+```console
+cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
+```
+
+## <a id="binding-params"></a> Binding Parameters
+
+For the CSB AWS SQS service, there are no user-configurable parameters required during the bind operation.
+
+## <a id="binding-creds"></a> Binding Credentials
+
+When you bind an application to a CSB AWS SQS service instance, the credentials provided will
+include necessary information and permissions for interacting with the SQS queue.
+This includes standard and FIFO queues, as well as any associated Dead Letter Queues (DLQs).
+
+The binding credentials format for Amazon SQS is as follows:
+
+```json
+{
+  "arn": "QUEUE-ARN",
+  "region": "QUEUE-REGION",
+  "queue_name": "QUEUE-NAME",
+  "queue_url": "QUEUE-URL",
+  "access_key_id": "ACCESS-KEY-ID",
+  "secret_access_key": "SECRET-ACCESS-KEY",
+  "dlq_arn": "DLQ-ARN",
+  "kms_all_key_ids": "KMS-KEY-IDS"
+}
+```
+
+### Key Details:
+
+- **ARN**: Amazon Resource Name for the queue.
+- **Region**: AWS region where the queue is hosted.
+- **Queue Name**: The name of the SQS queue.
+- **Queue URL**: The URL for accessing the SQS queue.
+- **Access Key ID** & **Secret Access Key**: User credentials to authenticate API requests to AWS SQS.
+- **DLQ ARN**: Amazon Resource Name for the Dead Letter Queue, if configured.
+- **KMS Key IDs**: The AWS KMS key IDs used for server-side encryption (SSE) operations.
+
+### Permissions:
+
+- The binding will have permissions necessary for standard operations on the queue (e.g., send, receive, delete messages).
+- If the SQS instance has an associated DLQ, the binding will also have permissions to trigger redrive operations.
+  - This allows messages to be moved back from the DLQ to the original queue, facilitating message reprocessing after failures.
+- These permissions ensure that applications bound to the SQS service instance can fully manage message lifecycle within both the main queue and any associated DLQs.
+
+By utilizing the provided credentials, applications can securely and efficiently interact with the SQS service,
+leveraging powerful messaging capabilities for building resilient and scalable cloud-native applications.
