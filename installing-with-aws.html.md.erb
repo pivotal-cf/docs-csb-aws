@@ -8,7 +8,7 @@ owner: Cloud Service Broker
 This topic tells you how to install and configure <%= vars.product_full %>
 (<%= vars.product_short %>).
 
-## <a id="prereq"></a> Prerequisites for installing <%= vars.product_short %>
+## <a id="prereq"></a> Prerequisites for Installing <%= vars.product_short %>
 
 Before you install <%= vars.product_short %>, you must have:
 
@@ -211,10 +211,10 @@ Before you install <%= vars.product_short %>, you must have:
    ```
 
   For more information about setting up and enabling Enhanced Monitoring, see the
-  [AWS Ddocumentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html).
+  [AWS Documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html).
 
   For more information about granting a user permission to pass a role to an AWS service, see the
-  [AWS Ddocumentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+  [AWS Documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 
 ## <a id="install"></a> Install <%= vars.product_short %>
 
@@ -235,7 +235,7 @@ To use <%= vars.ops_manager %> Installation Dashboard to install <%= vars.produc
 
 The following procedures describe configuring the panes on the <%= vars.product_short %> tile.
 
-### <a id="config-azs"></a> Configure AZs and networks
+### <a id="config-azs"></a> Configure AZs and Networks
 
 This section describes how to choose an AZ to run the service broker for <%= vars.product_short %>.
 It also describes how to select networks for <%= vars.product_short %>.
@@ -285,11 +285,11 @@ To configure AWS credentials:
 
 4. Click **Save**.
 
-### <a id="state-db"></a> Configure a state database
+### <a id="state-db"></a> Configure a State Database
 
 This section describes how to associate <%= vars.product_short %> with the MySQL state database.
 
-#### <a id="encrypt-state-db"></a> About encrypting the state database
+#### <a id="encrypt-state-db"></a> About Encrypting the State Database
 
 In production environments, VMware recommends that you enable encryption. This encrypts certain
 sensitive information in the state database, such as IaaS credentials. The encryption password that
@@ -308,7 +308,7 @@ You must have a small MySQL database to use as the state database. The state dat
 information about each state change of each service instance, so it does not have to be large.
 For most use cases, 10&nbsp;GB is more than enough to cover the needs of <%= vars.product_short %>.
 
-#### <a id="configure-state-db"></a> Procedure: Configure a state database
+#### <a id="configure-state-db"></a> Procedure: Configure a State Database
 
 To configure <%= vars.product_short %> with a database:
 
@@ -349,7 +349,7 @@ If you later want to change the password on the state database, see
 If you later want to deactivate encryption, see
 [Remove encryption from the state database](#remove-encryption) later in the topic.
 
-### <a id="services"></a> Configure services with <%= vars.product_short %>
+### <a id="services"></a> Configure Services with <%= vars.product_short %>
 
 This section describes how to configure services and service plans offered by the
 <%= vars.product_short %> within the Cloud Foundry Marketplace on your instance of Cloud Foundry.
@@ -394,7 +394,7 @@ To configure services and service plans:
 
 8. Review your Cloud Foundry Marketplace to see the new plans.
 
-### <a id="config-flags"></a> Configure feature flags
+### <a id="config-flags"></a> Configure Feature Flags
 
 This section describes how to enable feature flags for <%= vars.product_short %>.
 
@@ -413,7 +413,7 @@ To configure feature flags:
 
 1. Review your Cloud Foundry Marketplace to see the new services.
 
-## <a id="rotate-password"></a>Rotate the encryption password on the state database
+## <a id="rotate-password"></a>Rotate the Encryption Password on the State Database
 
 If you have already set an encryption password and want to change it, see the following instructions
 steps:
@@ -444,7 +444,7 @@ To rotate the password on the state database:
    section where you can rotate the encryption password on the state database.",
    :width => "400") %>
 
-## <a id="remove-encryption"></a> Remove encryption from the state database
+## <a id="remove-encryption"></a> Remove Encryption from the State Database
 
 If the data in the state database was previously encrypted and you want to deactivate encryption,
 remove encryption from the state database:
@@ -470,7 +470,7 @@ remove encryption from the state database:
    section where you can remove encryption from the state database.", :width =>
    "400") %>
 
-## <a id="upgrade-all-config"></a> Upgrade all services instances configuration
+## <a id="upgrade-all-config"></a> Upgrade All Services Instances Configuration
 
 If upgrading from a previous tile version, service instances might need upgrading. By default, the
 tile upgrades all instances from active service plans during installation.

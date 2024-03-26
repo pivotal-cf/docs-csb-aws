@@ -8,7 +8,7 @@ owner: Cloud Service Broker for AWS
 This topic tells you how to migrate from an Amazon S3 instance of the VMware Tanzu Service Broker for AWS
 tile to the <%= vars.product_full %> tile.
 
-## <a id='overview'></a> About migrating an Amazon S3 instance
+## <a id='overview'></a> About Migrating an Amazon S3 Instance
 
 Because the VMware Tanzu Service Broker for AWS (hereafter referred to as the legacy broker) tile
 is going out of support, it is important to move from S3 instances that were created by the legacy
@@ -20,7 +20,7 @@ matching plans in the <%= vars.product_short %>.
 
 You can use any compatible migration tool for migrating between Amazon S3 buckets.
 
-### <a id='configuration'></a> Matching configuration
+### <a id='configuration'></a> Matching Configuration
 
 Both the legacy broker and the <%= vars.product_short %> allow you to customize service plans.
 Create plans in the <%= vars.product_short %> that match the plans used in the legacy broker.
@@ -28,7 +28,7 @@ It might be useful to create a test service instance and compare the properties 
 For how to configure plans, see
 [Configure Services with Cloud Service Broker for AWS](installing-with-aws.html.md.erb#services).
 
-### <a id='migration'></a> Migrating data
+### <a id='migration'></a> Migrating Data
 
 You might want to migrate data from instances created with the legacy broker to instances
 created with the <%= vars.product_short %>.
@@ -52,7 +52,7 @@ In general, to migrate data:
 4. Unbind apps from the legacy broker S3 instance and bind them to the newly created instance.
 5. (Optional) After migration is complete, delete the legacy broker S3 instance.
 
-## <a id='steps'></a> Migrate data from a legacy Amazon S3 instance
+## <a id='steps'></a> Migrate Data from a Legacy Amazon S3 Instance
 
 The following steps have the Cloud Foundry commands necessary to use the AWS sync command.
 To migrate data from an existing legacy S3 instance to the <%= vars.product_short %>:

@@ -3,9 +3,9 @@ title: Auto minor version upgrade on Cloud Service Broker for AWS
 owner: Cloud Service Broker
 ---
 
-## IaaS and Cloud Service Broker for AWS engine version synchronization
+## IaaS and Cloud Service Broker for AWS Engine Version Synchronization
 
-### What is auto minor version upgrade?
+### What Is Auto Minor Version Upgrade?
 
 Auto Minor Version Upgrade is an AWS feature you can enable to have your
 database automatically upgraded to a new approved minor engine version.
@@ -14,7 +14,7 @@ You can see when a minor version upgrade is scheduled to be applied to
 your database instance in the AWS console. You can also choose to apply an
 available minor version upgrade immediately through the AWS console.
 
-### What is the current problem associated with auto minor version upgrade and Cloud Service Broker for AWS?
+### What Is the Current Problem Associated with Auto Minor Version Upgrade and Cloud Service Broker for AWS?
 
 Auto minor version upgrade implies changes in the infrastructure managed by
 VMware Tanzu Cloud Service Broker for AWS. These changes are out of
@@ -25,7 +25,7 @@ infrastructure in AWS. This causes Tanzu Cloud Service Broker for AWS to try to 
 Amazon RDS instance with
 the previous values whenever a Tanzu Cloud Service Broker for AWS upgrade or instance update occurs.
 
-### When does this problem happen?
+### When Does this Problem Happen?
 
 This happens when updating or upgrading an RDS instance with auto minor version upgrade enabled and
 a minor engine version selected.
@@ -38,9 +38,9 @@ page](troubleshooting.html.md.erb#engine-version-post-condition-failed).
 However, instances created with the previous version of Tanzu Cloud Service Broker for AWS might already be out
 of sync or configured in a way that allows this to happen.
 
-### What are the necessary steps to avoid this problem?
+### What Are the Necessary Steps to Avoid this Problem?
 
-#### IaaS and Cloud Service Broker synchronization
+#### IaaS and Cloud Service Broker Synchronization
 
 The state of the infrastructure managed by Tanzu Cloud Service Broker for AWS must be
 synced with AWS. In other words, the engine version associated with a
@@ -104,7 +104,7 @@ If you created a different plan, you can change the service instance plan by run
 cf update-service my-service-instance -p instance_plan_name
 ```
 
-##### Enable auto minor version upgrade
+##### Enable Auto Minor Version Upgrade
 
 To enable an auto minor version upgrade, you must specify a **Major
 Engine Version** and set the flag to true. If this is done through a plan, you
@@ -155,7 +155,7 @@ To find out what the actual engine version used in AWS is, run:
 aws rds describe-db-instances --db-instance-identifier DB-INSTANCE-IDENTIFIER | jq -r '.DBInstances[] | .EngineVersion'
 ```
 
-#### How to know whether the instance is out of sync
+#### How to Know whether the Instance Is Out of Sync
 
 If when you run the command to get the actual engine version in AWS, you receive a different version from the
 one defined in the plan, then most likely the instance is out of sync.

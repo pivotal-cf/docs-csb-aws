@@ -7,7 +7,7 @@ Do you want to upgrade <%= vars.product_full %>? The following sections tell you
 [Upgrade procedure](#procedure), [Upgrading service instances](#upgrade-instances), and specific
 details about [Upgrading to v1.7](#upgrading-specifics).
 
-## <a id="pre-upgrade-procedure"></a> Pre-upgrade procedure
+## <a id="pre-upgrade-procedure"></a> Pre-upgrade Procedure
 
 <p class="note important">
 <span class="note__title">Important</span>Before upgrading, it is crucial to perform the checks suggested in this section.</span>
@@ -35,7 +35,7 @@ details about [Upgrading to v1.7](#upgrading-specifics).
   For more information, see [Managing orphaned service instances documentation](./managing_orphaned_service_instances.html.md.erb).
 
 
-## <a id="procedure"></a> Upgrade procedure
+## <a id="procedure"></a> Upgrade Procedure
 
 To upgrade <%= vars.product_short %>:
 
@@ -65,7 +65,7 @@ To upgrade <%= vars.product_short %>:
 8. Review the `deploy-all` errand logs for any errors created because of the
    upgrade instances task.
 
-## <a id="upgrade-instances"></a> Ensure that service instances are up to date before upgrading the tile
+## <a id="upgrade-instances"></a> Ensure that Service Instances Are Up to Date before Upgrading the Tile
 
 You might be unable to upgrade service instances that you did not upgrade with an earlier version of
 the tile. A step in the installation phase stops the process if there are any outdated instances.
@@ -79,7 +79,7 @@ For more information, see [Ensuring all instances are up to date with the CLI pl
 If you find instances that are pending upgrade, follow the upgrading instructions for your current
 version.
 
-### <a id="upgrade-notes"></a> Important notes about upgrading service instances
+### <a id="upgrade-notes"></a> Important Notes about Upgrading Service Instances
 
 Before you start upgrading service instances, see the following notes:
 
@@ -91,11 +91,11 @@ Before you start upgrading service instances, see the following notes:
   delete, are blocked until you run the upgrade task. You can run the upgrade
   task at any time before upgrading the product to a later version. For more
   information about how to configure this task, see
-  [Upgrade All Service Instances configuration](installing-with-aws.html.md.erb#upgrade-all-config).
+  [Upgrade All Service Instances Configuration](installing-with-aws.html.md.erb#upgrade-all-config).
   Alternatively, you can run the upgrade at a later stage by using the
   [CLI plug-in](#checking-cli-plugin).
 
-- **Enabling the Enable Beta offerings check box:**
+- **Enabling the Enable Beta Offerings Check Box:**
 
   If the **Enable Beta offerings** check box is not selected when applying
   changes, instances from those service offerings are not upgraded. These
@@ -118,7 +118,7 @@ Before you start upgrading service instances, see the following notes:
   one or more instances does not cause the tile installation to fail. Review the
   `deploy all` errand logs to ensure that all instances have upgraded.
 
-### <a id="checking-cli-plugin"></a> Ensure that all instances are up to date with the CLI plug-in
+### <a id="checking-cli-plugin"></a> Ensure that All Instances Are Up to Date with the CLI Plug-in
 
 To verify that no instances are pending upgrade:
 
@@ -138,7 +138,7 @@ To verify that no instances are pending upgrade:
    orphaned service instances that belong to deactivated plans.
    Manage all the instances listed before attempting a tile upgrade.
 
-### <a id="upgrading-cli-plugin"></a> Upgrade instances through the CLI plug-in
+### <a id="upgrading-cli-plugin"></a> Upgrade Instances through the CLI Plug-in
 
 To use the cf CLI plug-in to upgrade instances:
 
