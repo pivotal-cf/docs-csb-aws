@@ -14,7 +14,7 @@ This topic gives you reference information about the [Amazon RDS for MSSQL](http
 >Also, For secure connections to work, install the AWS certificate bundle in
   <%= vars.ops_manager %>.
 
-## <a id="plans-config"></a> Plan configuration parameters
+## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %>, you can add additional plans.
 For how to configure plans, see
@@ -40,7 +40,7 @@ to your plan.
 >If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration parameters
+## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
@@ -90,7 +90,7 @@ provision only:
       <td>
         The AWS region to deploy the service in.
         For more information about available regions, see the
-        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
+        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS Documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
       <td>provision</td>
@@ -101,7 +101,7 @@ provision only:
       <td>
         (Required) The version for the MSSQL instance. It can be any version supported by the provider.
         For more information about Microsoft SQL versions on Amazon RDS, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport">AWS documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport">AWS Documentation</a>.
       </td>
       <td>None</td>
       <td>provision and update</td>
@@ -129,7 +129,7 @@ provision only:
         (Required) Size of storage volume for service instance.
         Minimum admitted value: 20&nbsp;GB.
         For more information about Amazon RDS DB instance storage for MSSQL, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html">AWS documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html">AWS Documentation</a>.
       </td>
       <td>None</td>
       <td>provision and update</td>
@@ -143,7 +143,7 @@ provision only:
         Accepted values depend on the selected <code>engine</code> and <code>mssql_version</code>.
         For information about the restrictions associated with the different types of instances that
         RDS MSSQL accepts, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.InstanceClasses">AWS documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.InstanceClasses">AWS Documentation</a>.
       </td>
       <td>None</td>
       <td>provision and update</td>
@@ -204,7 +204,7 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
 ```
 
-## <a id="binding-creds"></a> Binding credentials
+## <a id="binding-creds"></a> Binding Credentials
 
 The format for binding credentials for MSSQL is as follows:
 
