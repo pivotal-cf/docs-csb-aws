@@ -10,7 +10,7 @@ This topic gives you reference information about the
 service.
 It describes the plans, configuration parameters, and binding credentials.
 
-## <a id="plans-config"></a> Plan configuration parameters
+## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For how to configure plans, see
@@ -29,14 +29,14 @@ The following table lists parameters that can only be configured for additional 
 | `metadata.displayName` | Name to use when displaying the plan in Marketplace                                   | _n/a_     | No       |
 | `metadata.bullets`     | List of bullet points to display in Apps Manager                                      | _n/a_     | No       |
 
-You can also add any of the parameters listed in the [Configuration parameters](#parameters) section
+You can also add any of the parameters listed in the [Configuration Parameters](#parameters) section
 to your plan.
 
 >**Note**
 >If you set a parameter at plan level, developers cannot change the value
   when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration parameters
+## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
@@ -93,7 +93,7 @@ provision only:
       <td>
         The AWS region to deploy the service in.
         For more information about available regions, see the
-        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS documentation</a>.
+        <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions">AWS Documentation</a>.
       </td>
       <td><code>us-west-2</code></td>
       <td>provision</td>
@@ -108,7 +108,7 @@ provision only:
         are ineffective without setting the <code>instance_class</code> property to a valid value for
         Aurora Serverless v2.
         For information about restrictions associated with the different types of instances accepted
-        by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
+        by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS Documentation</a>.
         In this release, <code>db.serverless</code> is the special database instance class that
         Aurora Serverless v2 uses.
       </td>
@@ -125,7 +125,7 @@ provision only:
         are ineffective without setting the <code>instance_class</code> property to a valid value for
         Aurora Serverless v2.
         For information about restrictions associated with the different types of instances accepted
-        by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
+        by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS Documentation</a>.
         In this release, <code>db.serverless</code> is the special database instance class that
         Aurora Serverless v2 uses.
       </td>
@@ -138,7 +138,7 @@ provision only:
       <td>
         The Aurora engine version, for example, "8.0.mysql_aurora.3.02.0".
         Not all features are supported by all versions.
-        For more information, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
+        For more information, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS Documentation</a>.
         Although null is a valid value, VMware recommends specifying an engine version. Otherwise, AWS
         selects the version based on the version marked by default at the time of creation or update
         of the instance.
@@ -184,8 +184,8 @@ provision only:
         Whether deletion protection is enabled. You cannot delete the database cluster when this value is set,
         but you can delete database instances within the cluster.
         For more information about deleting Aurora database cluster and database instances,
-        see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection">AWS documentation</a>.
-        For more information about storage reliability, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html">AWS documentation</a>.
+        see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_DeleteCluster.html#USER_DeletionProtection">AWS Documentation</a>.
+        For more information about storage reliability, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.StorageReliability.html">AWS Documentation</a>.
         <p class="note caution">
           <span class="note__title">Caution</span>
           If the protection is active and a deprovision operation is performed, all
@@ -279,7 +279,7 @@ provision only:
         It requires setting <code>db_cluster_parameter_group_name</code> with a pre-created database
         cluster parameter group that fulfils requirements for audit log exports.
         For configuration options, see the
-        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Auditing.html">AWS documentation</a>.
+        <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Auditing.html">AWS Documentation</a>.
       </td>
       <td><code>false</code></td>
       <td>provision and update</td>
@@ -313,7 +313,7 @@ provision only:
         The database instance class determines the computation and memory capacity of an
         Amazon Aurora database instance.
         For information about the restrictions associated with the different types of instances
-        accepted by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS documentation</a>.
+        accepted by Aurora, see the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html">AWS Documentation</a>.
       </td>
       <td>None</td>
       <td>provision and update</td>
@@ -411,7 +411,7 @@ provision only:
         <td>
           Specifies whether a database cluster is encrypted.
           For more information about database cluster encryption, see the
-          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Overview.Encryption.html#Overview.Encryption.Enabling">AWS documentation</a>
+          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Overview.Encryption.html#Overview.Encryption.Enabling">AWS Documentation</a>
         </td>
         <td><code>true</code></td>
         <td>provision</td>
@@ -449,7 +449,7 @@ provision only:
           <code>09:46-10:16</code>.
           It must not overlap with the maintenance window. If not set, it uses the default for the
           region. For more information, see the
-          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow">AWS documentation</a>
+          <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow">AWS Documentation</a>
         </td>
         <td><code>null</code></td>
         <td>provision and update</td>
@@ -501,7 +501,7 @@ binding a `csb-aws-aurora-mysql` service:
   </tbody>
 </table>
 
-## <a id="binding-creds"></a> Binding credentials
+## <a id="binding-creds"></a> Binding Credentials
 
 The format for binding credentials for Amazon Aurora MySQL-Compatible Edition is as follows:
 

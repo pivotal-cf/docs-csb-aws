@@ -9,7 +9,7 @@ This topic gives you reference information about the
 [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) (csb-aws-postgresql)
 service. It details the plan and service instance configuration parameters, and binding credentials.
 
-## <a id="plans-config"></a> Plan configuration parameters
+## <a id="plans-config"></a> Plan Configuration Parameters
 
 When configuring <%= vars.product_short %> you can add additional plans.
 For instructions on how to configure plans, see
@@ -42,7 +42,7 @@ properties.
 >If you set a parameter at plan level, developers cannot
   change the value when creating or updating service instances.
 
-## <a id="parameters"></a> Configuration parameters
+## <a id="parameters"></a> Configuration Parameters
 
 You can provision a service by running:
 
@@ -521,7 +521,7 @@ You can bind a service by running:
 cf bind-service APP-NAME SERVICE-INSTANCE-NAME --binding-name BINDING-NAME
 ```
 
-## <a id="binding-creds"></a> Binding credentials
+## <a id="binding-creds"></a> Binding Credentials
 
 The format for binding credentials for PostgreSQL is as follows:
 
@@ -547,7 +547,7 @@ When a binding or service key is deleted, data owned by the PostgreSQL user is r
 called `binding_user_group` before the user is deleted. This ensures that other bindings still have
 access to the data.
 
-## <a id="old-plans"></a> Previously provided pre-configured plans
+## <a id="old-plans"></a> Previously Provided Pre-configured Plans
 
 The following table lists the previously provided plans for the Amazon RDS for PostgreSQL service:
 
