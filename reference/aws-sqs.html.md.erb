@@ -168,7 +168,7 @@ provision only:
       <td><code>deduplication_scope</code></td>
       <td>String</td>
       <td>Determines the scope of deduplication for messages within the FIFO queue.
-        Values are `messageGroup` or `queue`.</td>
+        Values are <code>messageGroup</code> or <code>queue</code>.</td>
       <td><code>null</code></td>
       <td>provision and update</td>
     </tr>
@@ -176,9 +176,9 @@ provision only:
       <td><code>fifo_throughput_limit</code></td>
       <td>String</td>
       <td>
-        Manages the throughput limit for the FIFO queue. Values are `perQueue` or `perMessageGroupId`.
-        When High throughput Mode is ON, the value for `deduplication_scope` must be `messageGroup` or the operation fails.
-        If not defined for a FIFO queue it defaults to `perQueue`.
+        Manages the throughput limit for the FIFO queue. Values are <code>perQueue</code> or <code>perMessageGroupId</code>.
+        When High throughput Mode is ON, the value for <code>deduplication_scope</code> must be <code>messageGroup</code> or the operation fails.
+        If not defined for a FIFO queue it defaults to <code>perQueue</code>.
       </td>
       <td><code>null</code></td>
       <td>provision and update</td>
@@ -195,7 +195,7 @@ provision only:
       <td>String</td>
       <td>
         Specify the AWS KMS customer master key (CMK) for encryption.
-        Overrides the `sqs_managed_sse_enabled` property.
+        Overrides the <code>sqs_managed_sse_enabled</code> property.
         E.g: <code>alias/aws/sqs</code>
       </td>
       <td><code>""</code></td>
