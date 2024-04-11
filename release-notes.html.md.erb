@@ -19,10 +19,12 @@ This release does not have breaking changes.
 
 ## OpenTofu for CSB Infrastructure Management
 
-- **Transition from Terraform to OpenTofu:** 
+- **Transition from Terraform to OpenTofu:**
   Transition from Terraform MPL v2 version 1.5.7 to OpenTofu 1.6.2 for CSB infrastructure management.
   OpenTofu's compatibility with Terraform's latest MPL v2 licensed version promises seamless infrastructure provisioning
-  and management enhancements. This update uses OpenTofu in our core base for improved efficiency.
+  and management enhancements. The infrastructure as code (IaC) tooling version used to apply changes is changed from
+  Terraform v1.4.4 to OpenTofu v1.6.2. You must upgrade all service instances. When you upgrade, ensure that you follow
+  the [Upgrade procedure](upgrading.html.md) to avoid any issues.
 
 ## Amazon SQS
 
@@ -94,8 +96,9 @@ This release has the following fixes:
   at the time of broker termination would remain indefinitely marked as "in progress".
   This state persisted even after the broker was restarted, making it challenging to resolve without manual
   intervention. Now the broker automatically detects these operations and marks them as "failed."
-  This significant improvement means that service instances affected by previously interrupted operations can now
-  be automatically cleaned up without requiring direct intervention from a CloudFoundry administrator.
+  This significant improvement allows for the cleanup of service instances affected by previously interrupted
+  operations. This can be achieved by executing the `cf delete-service` command, or it may require the intervention of a
+  CloudFoundry administrator to execute `cf purge-service-instance`.
 
 ### Known Issues
 
