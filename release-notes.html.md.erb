@@ -17,7 +17,7 @@ This release does not have breaking changes.
 
 ### Features
 
-## OpenTofu for CSB Infrastructure Management
+#### OpenTofu for CSB Infrastructure Management
 
 - **Transition from Terraform to OpenTofu:**
   Transition from Terraform MPL v2 version 1.5.7 to OpenTofu 1.6.2 for CSB infrastructure management.
@@ -26,19 +26,15 @@ This release does not have breaking changes.
   Terraform v1.4.4 to OpenTofu v1.6.2. You must upgrade all service instances. When you upgrade, ensure that you follow
   the [Upgrade procedure](upgrading.html.md) to avoid any issues.
 
-## Amazon SQS
+#### Amazon SQS
 
 - **SQS is generally available:** The Amazon SQS service is included in this release and can be used in production.
 
-### Permissions
-
-The Amazon SQS service requires new permissions to be added to the IAM role that the broker uses to interact with AWS.
+- **Permissions:** The Amazon SQS service requires new permissions to be added to the IAM role that the broker uses to interact with AWS.
 The new permissions are required to support the new features in this release.
 For more information, see [Configuring the IAM Policies](installing-with-aws.html.md).
 
-### Configuration Options for Amazon SQS
-
-A new set of properties enable the configuration of the service.
+- **Configuration Options for Amazon SQS:** A new set of properties enable the configuration of the service.
 These configurations include options for both FIFO and Standard queues, Dead Letter Queues (DLQs), encryption settings,
 and more.
 
