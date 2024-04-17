@@ -100,9 +100,12 @@ This release has the following fixes:
 
 This release has the following issues:
 
-- **Inconsistency of deployment state when migrating to OpenTofu backend**: As we migrate the broker internals to communicate to OpenTofu we continue to use Terraform providers.
-These providers were inconsistenlty being referenced as OpenTofu providers. 
-We recommend skipping version 1.9.0 or upgrading to the next patch version as soon as possible to reduce chances of issues with managing the service instances in the future. 
+- **Inconsistency of deployment state when migrating to OpenTofu backend**:
+  As we migrate the broker internals to communicate to OpenTofu, we continue to use
+  Terraform providers. These providers were inconsistently referenced as
+  OpenTofu providers. VMware recommends skipping version 1.9.0 or upgrading to the
+  next patch version as soon as possible to reduce possible future issues with
+  managing the service instances.
 
 ## <a id="view"></a> View Release Notes for another Version
 
