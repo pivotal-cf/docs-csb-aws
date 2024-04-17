@@ -87,7 +87,7 @@ and more.
 
 This release has the following fixes:
 
-- **Recover In-Progress Operations on Broker Restart**
+- **Recover In-Progress Operations on Broker Restart**:
   Prior to this update, any operation (such as provisioning, updating, or deprovisioning services) that was in progress
   at the time of broker termination would remain indefinitely marked as "in progress".
   This state persisted even after the broker was restarted, making it challenging to resolve without manual
