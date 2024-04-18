@@ -7,6 +7,20 @@ owner: Cloud Service Broker
 
 This topic describes the changes in this minor release of <%= vars.product_full %>.
 
+## <a id="1-9-1"></a> v1.9.1
+
+**Release Date:** April 18, 2024
+
+### Resolved Issues
+
+This release has the following fixes:
+
+- **Mitigate potential inconsistency of deployment state when migrating to OpenTofu backend**:
+  As we migrate the broker internals to communicate to OpenTofu, we continue to use
+  Terraform providers. These providers are no longer inconsistently referenced as
+  OpenTofu providers. There is no action that is needed. VMware recommends skipping version 1.9.0.
+
+
 ## <a id="1-9-0"></a> v1.9.0
 
 **Release Date:** April 11, 2024
