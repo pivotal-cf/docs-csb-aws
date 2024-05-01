@@ -16,7 +16,7 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 This release has the following fixes:
 
-- **Database startup error: incorrectly marking in-progress operations as failed**:
+- **Database startup error: Incorrectly marking in-progress operations as failed**:
   An error was discovered where database startup, including database migrations and failed operation recovery,
   was triggered for every command that accessed the database, including "tf dump." This caused any in-progress
   operations to be marked as failed, even if they were still genuinely in progress. This issue has existed since
