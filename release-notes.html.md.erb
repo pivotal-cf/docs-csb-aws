@@ -7,6 +7,21 @@ owner: Cloud Service Broker
 
 This topic describes the changes in this minor release of <%= vars.product_full %>.
 
+
+## <a id="1-9-2"></a> v1.9.2
+
+**Release Date:** May 01, 2024
+
+### Resolved Issues
+
+This release has the following fixes:
+
+- **Database startup error: incorrectly marking in-progress operations as failed**:
+  An error was discovered where database startup, including database migrations and failed operation recovery,
+  was triggered for every command that accessed the database, including "tf dump." This caused any in-progress
+  operations to be marked as failed, even if they were still genuinely in progress. This issue has existed since
+  the introduction of in-progress operation recovery in v1.9.0. VMware recommends skipping versions 1.9.0 and 1.9.1.
+
 ## <a id="1-9-1"></a> v1.9.1
 
 **Release Date:** April 18, 2024
