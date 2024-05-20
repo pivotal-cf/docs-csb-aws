@@ -281,6 +281,18 @@ provision only:
       <td>provision and update</td>
     </tr>
     <tr>
+      <td><code>allowed_aws_vpc_id</code></td>
+      <td>String</td>
+      <td>
+        The VPC ID to restrict access exclusively to the designated VPC.
+        E.g: `vpc-01362976bd10dc099`
+        Read more information about the necessary AWS infrastructure to be able to use this AWS characteristic
+        <a href="#vpc-endpoint">here</a>
+      </td>
+      <td><code>null</code></td>
+      <td>provision and update</td>
+    </tr>
+    <tr>
       <td><code>require_tls</code></td>
       <td>Boolean</td>
       <td>
@@ -410,3 +422,99 @@ Add the following block to keep the `public-read` plan:
       }
   }
 ```
+
+## <a id="vpc-endpoint"></a> VPC Endpoint
+
+**Why a VPC Endpoint is Needed:**
+VPC Endpoints are crucial in enhancing the security and efficiency of accessing AWS services from within your Amazon
+VPC (Virtual Private Cloud). By using VPC endpoints, the network traffic between your VPC and AWS services can be routed
+internally within the AWS network, avoiding the public internet. When traffic is routed internally withing the 
+AWS network, restrictions can be added to the user's policies to ensure that only users connecting from within the 
+specific VPCs can access the S3 bucket. This reduces exposure to external threats and decreases latency by 
+providing a direct network route.
+
+In scenarios where sensitive data like backups or confidential files are stored on S3, using a VPC endpoint ensures that
+this data is not inadvertently exposed to the internet. This is especially relevant to ensure all data interactions
+happen within a controlled and secure environment.
+
+The <%= vars.product_short %> will create IAM users with a policy configuration to specify VPC access, enhancing security
+controls at the user level but this configuration is not enough to ensure secure access to the S3 bucket. In order to
+ensure secure access to the S3 bucket, the VPC endpoint must be properly configured.
+
+<p class="note caution">
+<span class="note__title">Caution</span>
+ The <%= vars.product_short %> won't be responsible for creating or maintaining the VPC Endpoint. This responsibility
+ lies with the customer.
+</p>
+
+Here are some advantages of the current approach:
+
+1. **Enhanced Security Control**: By allowing access only from specific VPCs, we mitigate the risk of data breaches from
+   leaked credentials. Access from unauthorized locations is inherently blocked, providing robust data protection.
+
+2. **Customization and Flexibility**: Users have the flexibility to define and adjust their security settings based on
+   specific VPC IDs, tailoring the security measures to their operational needs.
+
+3. **Clear Responsibility**: This approach clarifies that the responsibility for managing VPC endpoints and ensuring
+   correct configurations rests with the users and not in CSB, promoting better governance and adherence to security
+   policies. Security requirements depend on the specific use case in the organization, and this approach allows for
+    customization to meet those requirements.
+
+**Example of a VPC Endpoint Policy:**
+To facilitate the secure and restricted access to S3 services when using CSB, the following VPC endpoint policy can be
+used. This policy ensures that only the traffic originating from the specified VPC and certain IAM users prefixed 
+with `csb-*` can access the resources.
+
+> **Note:** Replace `<ALLOWED_AWS_VPC_ID>` with the VPC ID passed as parameter `allowed_aws_vpc_id` when configuring
+> the S3 bucket.
+> Replace `<AWS-ACCOUNT-ID>` with the AWS account ID used by CSB.
+> This is the account ID that CSB uses and needed to allow managing S3 buckets.
+
+```json
+{
+  "Statement": [
+    {
+      "Action": "*",
+      "Effect": "Allow",
+      "Resource": "*",
+      "Principal": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:sourceVpc": "<ALLOWED_AWS_VPC_ID>"
+        },
+        "StringLike": {
+          "aws:username": "csb-*"
+        }
+      }
+    },
+    {
+      "Action": "*",
+      "Effect": "Allow",
+      "Resource": "*",
+      "Principal": {
+        "AWS": "arn:aws:iam::<AWS-ACCOUNT-ID>:root"
+      },
+      "Condition": {
+        "StringEquals": {
+          "aws:sourceVpc": "<VPC-ID>"
+        }
+      }
+    }
+  ]
+}
+```
+
+**In this policy:**
+
+- The first statement allows any actions (`*`) from any principals (`*`) on any resources (`*`), provided the request
+  originates from the specified VPC (`aws:sourceVpc`) and involves users whose usernames start with `csb-*`. CSB creates
+  IAM Users with the prefix `csb-*`.
+- The second statement specifically allows root access from the specified AWS account, ensuring that administrative
+  tasks can be performed without restrictions, but still only from within the designated VPC.
+
+This configuration ensures that even if credentials were leaked, they would not be usable outside the specified VPC,
+significantly enhancing the security of your AWS environment.
+
+
+
+
