@@ -7,27 +7,56 @@ owner: Cloud Service Broker
 
 This topic describes the changes in this minor release of <%= vars.product_full %>.
 
-## <a id="1-2-0"></a> v1.2.0
+## <a id="1-10-0"></a> v1.10.0
 
 **Release Date:** xxxx xx, 2024
 
 ### Breaking Changes
 
-
+There is no breaking change in this release.
 
 ### Features
 
-#### 
+#### Enhanced Security for Amazon S3 Service
 
-- 
+##### **Overview:**
 
-#### 
+We are introducing a new security feature that allows you to restrict access to your S3 buckets exclusively
+within a specified VPC. This feature aims to enhance data security by ensuring that Cloud Service Broker bindings
+only work from within the controlled environment of a designated VPC.
 
+##### **Details:**
+
+- **Property Added:** `allowed_aws_vpc_id`
+    - This property enables you to specify the VPC ID from which S3 buckets can be accessed. Access attempts from
+      outside this VPC will be denied, enhancing the security posture against unauthorized access.
+- **Dependency:**
+    - The effectiveness of this feature is dependent on the proper configuration of a VPC Endpoint. Cloud Service 
+      Broker for AWS won't be responsible to create or maintain the VPC Endpoint. This responsibility lies 
+      with the customer.
+    - The VPC Endpoint is essential for routing the traffic from the VPC to the AWS services securely and privately.
+
+- **Configuration Guidance:**
+    - When setting up this feature, ensure that your VPC Endpoint is configured to handle traffic to and from S3.
+     See some recommendations and instructions in [this document]().
+
+#### **Implementation Notes:**
+
+- **Endpoint Policy:** Ensure that your endpoint policy is compatible with this feature. Policy configuration should
+   be reviewed to avoid any unintended access denials that do not align with the restricted VPC access strategy.
+   See some recommendations and instructions in [this document]()
+
+#### **Customer Responsibility:**
+
+- **VPC Endpoint Setup and Maintenance:** You are responsible for creating and maintaining the VPC Endpoint. This
+  responsibility includes ensuring that the endpoint remains operational and that its configuration aligns with AWS best
+  practices.
+- **Policy Management:** You must manage and update the policy to reflect the changes in access strategies,
+  ensuring that all configurations are up-to-date with the latest security standards.
 
 ### Resolved Issues
 
 This release has the following fixes:
-
 
 ### Known Issues
 
