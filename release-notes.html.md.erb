@@ -29,13 +29,12 @@ only work from within the controlled environment of a designated VPC.
 
 - **Property Added:** `allowed_aws_vpc_id`
     - This property enables you to specify the VPC ID from which S3 buckets can be accessed. Access attempts from
-      outside this VPC will be denied, enhancing the security posture against unauthorized access.
+      outside this VPC are denied, enhancing the security posture against unauthorized access.
 - **Dependency:**
     - The effectiveness of this feature is dependent on the proper configuration of a VPC Endpoint. Cloud Service 
       Broker for AWS won't be responsible to create or maintain the VPC Endpoint. This responsibility lies 
       with the customer.
     - The VPC Endpoint is essential for routing the traffic from the VPC to the AWS services securely and privately.
-
 - **Configuration Guidance:**
     - When setting up this feature, ensure that your VPC Endpoint is configured to handle traffic to and from S3.
      See some recommendations and instructions in [this document]().
@@ -44,7 +43,7 @@ only work from within the controlled environment of a designated VPC.
 
 - **Endpoint Policy:** Ensure that your endpoint policy is compatible with this feature. Policy configuration should
    be reviewed to avoid any unintended access denials that do not align with the restricted VPC access strategy.
-   See some recommendations and instructions in [this document]()
+   See recommendations and instructions in [this document]()
 
 #### **Customer Responsibility:**
 
@@ -52,7 +51,7 @@ only work from within the controlled environment of a designated VPC.
   responsibility includes ensuring that the endpoint remains operational and that its configuration aligns with AWS best
   practices.
 - **Policy Management:** You must manage and update the policy to reflect the changes in access strategies,
-  ensuring that all configurations are up-to-date with the latest security standards.
+  ensuring that all configurations are up to date with the latest security standards.
 
 ### Resolved Issues
 
