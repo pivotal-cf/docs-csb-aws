@@ -37,13 +37,13 @@ only work from within the controlled environment of a designated VPC.
     - The VPC Endpoint is essential for routing the traffic from the VPC to the AWS services securely and privately.
 - **Configuration Guidance:**
     - When setting up this feature, ensure that your VPC Endpoint is configured to handle traffic to and from S3.
-     See some recommendations and instructions in [this document]().
+     See some recommendations and instructions in [this section](reference/aws-s3.html.md.erb#vpc-endpoint).
 
 #### **Implementation Notes:**
 
 - **Endpoint Policy:** Ensure that your endpoint policy is compatible with this feature. Policy configuration should
    be reviewed to avoid any unintended access denials that do not align with the restricted VPC access strategy.
-   See recommendations and instructions in [this document]()
+   See recommendations and instructions in [this section](reference/aws-s3.html.md.erb#vpc-endpoint).
 
 #### **Customer Responsibility:**
 
