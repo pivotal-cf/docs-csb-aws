@@ -9,11 +9,11 @@ This topic describes the changes in this minor release of <%= vars.product_full 
 
 ## <a id="1-10-0"></a> v1.10.0
 
-**Release Date:** xxxx xx, 2024
+**Release Date:** June 6, 2024
 
 ### Breaking Changes
 
-There is no breaking change in this release.
+There are no breaking changes in this release.
 
 ### Features
 
@@ -32,7 +32,7 @@ only work from within the controlled environment of a designated VPC.
       outside this VPC are denied, enhancing the security posture against unauthorized access.
 - **Dependency:**
     - The effectiveness of this feature is dependent on the proper configuration of a VPC Endpoint. Cloud Service 
-      Broker for AWS won't be responsible to create or maintain the VPC Endpoint. This responsibility lies 
+      Broker for AWS is not responsible to create or maintain the VPC Endpoint. This responsibility lies 
       with the customer.
     - The VPC Endpoint is essential for routing the traffic from the VPC to the AWS services securely and privately.
 - **Configuration Guidance:**
@@ -43,7 +43,7 @@ only work from within the controlled environment of a designated VPC.
 
 - **Endpoint Policy:** Ensure that your endpoint policy is compatible with this feature. Policy configuration should
    be reviewed to avoid any unintended access denials that do not align with the restricted VPC access strategy.
-   See recommendations and instructions in [this section](reference/aws-s3.html.md.erb#vpc-endpoint).
+   See recommendations and instructions in this section of [Amazon S3 Bucket](reference/aws-s3.html.md.erb#vpc-endpoint).
 
 #### **Customer Responsibility:**
 
@@ -55,11 +55,11 @@ only work from within the controlled environment of a designated VPC.
 
 ### Resolved Issues
 
-This release has the following fixes:
+There are no resolved issues in this release.
 
 ### Known Issues
 
-This release has the following issues:
+There are no known issues in this release.
 
 ## <a id="view"></a> View Release Notes for another Version
 
