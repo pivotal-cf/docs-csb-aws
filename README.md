@@ -12,7 +12,8 @@ Then, if necessary, immediately cherry-pick/copy any changes that you want to pu
 
 | Branch Name| Staging | Production |
 |------------|---------|------------|
-| main       | [v1.10 staging](https://docs-staging.vmware.com/en/draft/Tanzu-Cloud-Service-Broker-for-AWS/1.10/csb-aws/GUID-index.html) | N/A |
+| main       | [v1.20 staging](https://docs-staging.vmware.com/en/draft/Tanzu-Cloud-Service-Broker-for-AWS/1.20/csb-aws/GUID-index.html) | N/A |
+| 1.10       | [v1.10 staging](https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.10/csb-aws/GUID-index.html) | [v1.10 prod](https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.10/csb-aws/GUID-index.html) |
 | 1.9       | [v1.9 staging](https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.9/csb-aws/GUID-index.html) | [v1.9 prod](https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.9/csb-aws/GUID-index.html) |
 | 1.8        | [v1.8 staging](https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.8/csb-aws/GUID-index.html) | [v1.8 prod](https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.8/csb-aws/GUID-index.html) |
 | 1.7        | [v1.7 staging](https://docs-staging.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.7/csb-aws/GUID-index.html) | [v1.7 prod](https://docs.vmware.com/en/Tanzu-Cloud-Service-Broker-for-AWS/1.7/csb-aws/GUID-index.html) |
