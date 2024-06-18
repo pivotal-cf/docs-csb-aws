@@ -60,8 +60,13 @@ There are no resolved issues in this release.
 ### Known Issues
 
 - **Failure in binding and unbinding S3 service instances:** Service instances created with the S3 Bucket service offering (`cloud-service-broker-aws`) before 
-  this version fail during bind or unbind operation with error: `error generating bind variables: 1 error(s) occurred: couldn't compute the value for "allowed_aws_vpc_id", template: "${instance.details[\"allowed_aws_vpc_id\"]}", key "allowed_aws_vpc_id" does not exist in map instance.details`.
-  To recover from this issue, the affected service instance can be updated without any changes by running a no-op update with the following command: `cf update-service SERVICE_INSTANCE_NAME -c '{}'`
+  this version fail during bind or unbind operation with error:
+  
+   `error generating bind variables: 1 error(s) occurred: couldn't compute the value for "allowed_aws_vpc_id", template: "${instance.details[\"allowed_aws_vpc_id\"]}", key "allowed_aws_vpc_id" does not exist in map instance.details`
+  
+  To recover from this issue, the affected service instance can be updated without any changes by running a no-op update with the following command:
+  
+  `cf update-service SERVICE_INSTANCE_NAME -c '{}'`
 
 ## <a id="view"></a> View Release Notes for another Version
 
