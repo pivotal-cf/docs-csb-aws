@@ -29,8 +29,8 @@ template_variables:
 
   ops_manager: Ops Manager
 
-  product_url: https://network.tanzu.vmware.com/products/
-  product_link: <div class="header-item"><a href="https://network.tanzu.vmware.com/products/pivotal-cf">Back to Product Page</a></div>
+  product_url: https://support.broadcom.com/group/ecx/productdownloads?subfamily=Tanzu%20Cloud%20Service%20Broker%20for%20AWS
+  product_link: <div class="header-item"><a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=Tanzu%20Cloud%20Service%20Broker%20for%20AWS">Back to Product Page</a></div>
 
   service_name: Cloud Service Broker
   service_name_article: the Cloud Service Broker
@@ -44,5 +44,5 @@ template_variables:
   gtm_account_id: GTM-MW4LZHR
 
   use_global_header: true
-  global_header_product_href: https://network.tanzu.vmware.com/
+  global_header_product_href: https://support.broadcom.com/group/ecx/productdownloads?subfamily=Tanzu%20Cloud%20Service%20Broker%20for%20AWS
   global_header_product_link_text: Downloads
